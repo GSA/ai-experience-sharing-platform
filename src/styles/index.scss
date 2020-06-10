@@ -1,0 +1,32 @@
+// Edit the theme files to customize USWDS
+// https://designsystem.digital.gov/documentation/developers/#sass-and-theme-settings
+
+@import 'theme/styles.scss';
+
+// Your custom SASS/CSS goes here
+@media screen and (min-width: 640px) {
+  .tablet\:width-1\/3 {
+    width: 33%;
+  }
+  .tablet\:float-left {
+    float: left;
+  }
+}
+
+@media screen and (min-width: 640px) {
+  .paginate-link {
+    display: initial;
+  }
+  .paginate-button {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 640px) {
+  .paginate-link {
+    display: none;
+  }
+  .paginate-button {
+    display: block;
+  }
+}

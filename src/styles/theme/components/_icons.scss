@@ -1,0 +1,27 @@
+.icon-glossary {
+  position: relative;
+
+  svg {
+    @include u-text('primary-vivid');
+    fill: currentColor;
+    left: -20px;
+    position: absolute;
+    top: 0;
+  }
+
+  &:hover svg {
+    @include u-text('primary');
+  }
+}
+
+.icon-arrow {
+  position: relative;
+
+  &:before {
+    content: url('#{$theme-custom-image-path}/icon-arrow.svg');
+    display: block;
+    left: -16px;
+    position: absolute;
+    top: 0;
+  }
+}
