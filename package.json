@@ -5,6 +5,7 @@
   "scripts": {
     "clean": "rimraf .cache public _site",
     "build": "gatsby build",
+    "ghpage": "npm run build && cp -R ./public/. ./docs",
     "reset": "npx rimraf .git",
     "develop": "gatsby develop",
     "format": "prettier --write \"**/*.{js,jsx,json,md}\"",
