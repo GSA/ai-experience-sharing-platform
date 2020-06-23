@@ -3,7 +3,7 @@ import React from 'react';
 import { useStaticQuery } from 'gatsby';
 
 import close from 'uswds/dist/img/close.svg';
-import SearchForm from './search-form';
+import SearchForm from 'templates/components/SearchForm';
 
 const Nav = () => {
   const data = useStaticQuery(graphql`

@@ -19,6 +19,11 @@ module.exports = {
       { text: 'Secondary link', link: '/' },
       { text: 'Another secondary link', link: '/' },
     ],
+    categories: [
+      {slug: 'test',
+      label: 'Test Category',
+      description: 'Test Category Description for information context.'}
+    ],
 
     // Search.gov configuration
     //
@@ -62,7 +67,19 @@ module.exports = {
         path: `${__dirname}/src/images`,
       },
     },
-    `gatsby-transformer-remark`,
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `articles`,
+        path: `${__dirname}/src/articles`,
+      },
+    },
+    {
+      resolve: `gatsby-plugin-mdx`,
+      options: {
+        extensions: [`.md`, `.mdx`],
+      },
+    },
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
