@@ -15,10 +15,10 @@ export const shortcodes = {
   Tagline,
 };
 
-const Mdx = ({ data: { mdx } }) => {
+const Mdx = ({ children }) => {
   return (
     <MDXProvider components={shortcodes}>
-      <MDXRenderer>{mdx.body}</MDXRenderer>
+      <MDXRenderer>{children}</MDXRenderer>
     </MDXProvider>
   );
 };
