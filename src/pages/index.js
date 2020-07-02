@@ -1,10 +1,10 @@
 import React from 'react';
 
-import Layout from 'components/layout';
-import SEO from 'components/seo';
-import Hero from 'components/hero';
-import Tagline from 'components/tagline';
-import Highlights from 'components/highlights';
+import Layout from 'templates/layouts/Default';
+import SEO from 'templates/components/Seo';
+import Hero from 'components/Hero';
+import Tagline from 'components/Tagline';
+import Highlights from 'components/Highlights';
 
 const IndexPage = () => (
   <Layout>

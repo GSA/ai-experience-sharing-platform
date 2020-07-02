@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { graphql } from 'gatsby';
 
-import Layout from 'components/layout';
+import Layout from 'templates/layouts/Default';
 
 const SearchPage = ({ data, location }) => {
   const { access_key, affiliate, endpoint } = data.site.siteMetadata.searchgov;

@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import Banner from 'components/banner';
-import Footer from 'components/footer';
-import Header from 'components/header';
-import Nav from 'components/nav';
+import Banner from 'templates/components/Banner';
+import Footer from 'templates/components/Footer';
+import Header from 'templates/components/Header';
+import Nav from 'templates/components/PrimaryNav';
 
 const Layout = ({ children }) => {
   return (
