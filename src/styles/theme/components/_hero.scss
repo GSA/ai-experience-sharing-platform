@@ -1,0 +1,6 @@
+.usa-hero {
+  @include u-bg('primary-light');
+  &__heading {
+    @include u-font('sans', 'xl');
+  }
+}

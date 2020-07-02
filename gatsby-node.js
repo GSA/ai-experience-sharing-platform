@@ -33,7 +33,7 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
 exports.createPages = async ({ actions, graphql }) => {
   const { createPage } = actions;
 
-  //await createArticlePages(createPage, graphql);
+  await createArticlePages(createPage, graphql);
 };
 
 async function createArticlePages(createPage, graphql) {
@@ -41,10 +41,10 @@ async function createArticlePages(createPage, graphql) {
   const pages = await markdownQuery(graphql, 'articles');
 
   pages.forEach(({ node }) => {
-    console.log(JSON.stringify(node.fields));
+    const { frontmatter: { layout = 'primary' } = {} } = node;
     createPage({
       path: node.fields.name,
-      component,
+      component: path.resolve(`./src/templates/layouts/${layout}.js`),
       context: {
         name: node.fields.name,
       },

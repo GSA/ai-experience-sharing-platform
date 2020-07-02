@@ -1,17 +1,30 @@
 module.exports = {
   siteMetadata: {
-    author: 'Foo',
-    title: `Agency Name`,
+    author: 'GSA.gov',
+    title: `ai.digital.gov`,
     description: `Agency Name (EAC) Lorem ipsum dolor sit amet, consectetur adipiscing elit.
     Aenean et sapien a leo auctor scelerisque quis nec magna. Sed dictum ante a risus vehicula facilisis.`,
+    hero: {
+      title:
+        'Sharing Artificial Intelligence use cases across the federal government',
+    },
     navigation: [
-      { text: 'Home', link: '/' },
+      { text: 'Use Cases', link: '/' },
       {
-        text: 'Document submenu',
+        text: 'Resources',
         items: [
-          { text: 'Navigation link', link: '/' },
-          { text: 'Navigation link', link: '/' },
-          { text: 'Navigation link', link: '/' },
+          { text: 'Playbooks', link: '/' },
+          { text: 'Whitepapers', link: '/' },
+          { text: 'Guides', link: '/' },
+          { text: 'All Resources', link: '/' },
+        ],
+      },
+      {
+        text: 'About',
+        items: [
+          { text: 'Governance', link: '/' },
+          { text: 'History', link: '/' },
+          { text: 'Requirements', link: '/' },
         ],
       },
     ],
@@ -20,9 +33,11 @@ module.exports = {
       { text: 'Another secondary link', link: '/' },
     ],
     categories: [
-      {slug: 'test',
-      label: 'Test Category',
-      description: 'Test Category Description for information context.'}
+      {
+        slug: 'test-cat',
+        label: 'Test Category',
+        description: 'Test Category Description for information context.',
+      },
     ],
 
     // Search.gov configuration
@@ -70,8 +85,8 @@ module.exports = {
     {
       resolve: `gatsby-source-filesystem`,
       options: {
-        name: `articles`,
-        path: `${__dirname}/src/articles`,
+        name: `resource`,
+        path: `${__dirname}/src/resources`,
       },
     },
     {

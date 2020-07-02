@@ -15,10 +15,12 @@ export const shortcodes = {
   Tagline,
 };
 
-const PageTemplate = ({ data: { mdx } }) => {
+const Mdx = ({ data: { mdx } }) => {
   return (
     <MDXProvider components={shortcodes}>
       <MDXRenderer>{mdx.body}</MDXRenderer>
     </MDXProvider>
   );
 };
+
+export default Mdx;

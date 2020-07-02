@@ -1,14 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import SEO from 'templates/components/Seo';
 import Banner from 'templates/components/Banner';
 import Footer from 'templates/components/Footer';
 import Header from 'templates/components/Header';
 import Nav from 'templates/components/PrimaryNav';
 
-const Layout = ({ children }) => {
+const Primary = ({ title, children }) => {
   return (
     <>
+      <SEO title={title} />
       <a className="usa-skipnav" href="#main-content">
         Skip to main content
       </a>
@@ -23,8 +25,9 @@ const Layout = ({ children }) => {
   );
 };
 
-Layout.propTypes = {
+Primary.propTypes = {
+  title: PropTypes.string,
   children: PropTypes.node.isRequired,
 };
 
-export default Layout;
+export default Primary;
