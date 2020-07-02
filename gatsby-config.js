@@ -13,24 +13,24 @@ module.exports = {
       {
         text: 'Resources',
         items: [
-          { text: 'Playbooks', link: '/' },
-          { text: 'Whitepapers', link: '/' },
-          { text: 'Guides', link: '/' },
-          { text: 'All Resources', link: '/' },
+          { text: 'Playbooks', link: '/category/playbooks' },
+          { text: 'Whitepapers', link: '/category/whitepapers' },
+          { text: 'Guides', link: '/category/guides' },
+          { text: 'All Resources', link: '/resources' },
         ],
       },
       {
         text: 'About',
         items: [
-          { text: 'Governance', link: '/' },
-          { text: 'History', link: '/' },
-          { text: 'Requirements', link: '/' },
+          { text: 'Governance', link: '/governance' },
+          { text: 'History', link: '/history' },
+          { text: 'Requirements', link: '/requirements' },
         ],
       },
     ],
     secondaryLinks: [
-      { text: 'Secondary link', link: '/' },
-      { text: 'Another secondary link', link: '/' },
+      { text: 'Privacy policy', link: '/privacy' },
+      { text: 'Latest updates', link: '/updates' },
     ],
     categories: [
       {
@@ -86,7 +86,14 @@ module.exports = {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `resource`,
-        path: `${__dirname}/src/resources`,
+        path: `${__dirname}/src/content/resources`,
+      },
+    },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `contentpage`,
+        path: `${__dirname}/src/content/content-pages`,
       },
     },
     {
