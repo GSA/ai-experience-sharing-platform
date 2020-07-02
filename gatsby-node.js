@@ -28,13 +28,34 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
     name: 'name',
     value: fileNode.name,
   });
+  createNodeField({
+    node,
+    name: 'path',
+    value: `${fileNode.sourceInstanceName}/${fileNode.name}`,
+  });
 };
 
 exports.createPages = async ({ actions, graphql }) => {
   const { createPage } = actions;
 
   await createResourcePages(createPage, graphql);
+  await createContentPages(createPage, graphql);
 };
+
+async function createContentPages(createPage, graphql) {
+  const contentQuery = await markdownQuery(graphql, 'contentpage');
+  const { data: { results: { edges } = {} } = {} } = contentQuery;
+
+  edges.forEach(({ node }) => {
+    createPage({
+      path: node.fields.name,
+      component: path.resolve(`./src/templates/layouts/content-page.js`),
+      context: {
+        name: node.fields.name,
+      },
+    });
+  });
+}
 
 async function createResourcePages(createPage, graphql) {
   const resourceQuery = await markdownQuery(graphql, 'resource');
@@ -43,11 +64,9 @@ async function createResourcePages(createPage, graphql) {
   } = resourceQuery;
 
   edges.forEach(({ node }) => {
-    const { frontmatter: { layout = 'primary' } = {} } = node;
     createPage({
       path: `resource/${node.fields.name}`,
-      component: path.resolve(`./src/templates/layouts/${layout}.js`),
-      data: node,
+      component: path.resolve(`./src/templates/layouts/resource.js`),
       context: {
         name: node.fields.name,
       },

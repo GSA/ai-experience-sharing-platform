@@ -71,11 +71,7 @@
     box-shadow: none;
     color: color('secondary');
     text-decoration: none;
-    font-size: 0.75rem;
     font-weight: 700;
-    @include at-media('tablet') {
-      font-size: 0.875rem;
-    }
     &:before {
       content: '';
       display: inline-block;
@@ -127,8 +123,8 @@
     &:hover,
     &.usa-button--hover {
       color: color($value);
-      background-color: $theme-color-background-cool;
-      box-shadow: $button-stroke $theme-color-background-cool;
+      background-color: $theme-color-secondary-lightest;
+      box-shadow: $button-stroke $theme-color-secondary-lightest;
       text-decoration: none;
     }
     &:active,
@@ -165,13 +161,9 @@
     width: 100%;
   }
   &.usa-button--unstyled {
-    font-size: 0.75rem;
     background-color: transparent;
     box-shadow: none;
     line-height: 1;
-    @include at-media('tablet') {
-      font-size: 0.875rem;
-    }
   }
   &__external {
     display: inline-block;

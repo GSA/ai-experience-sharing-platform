@@ -1,15 +1,8 @@
 import React from 'react';
-import Taxonomy from './taxonomy';
+import Taxonomy from 'templates/layouts/taxonomy';
 
 export default (props) => {
-  const { pageContext, data } = props;
-
-  const { slug, type } = pageContext;
-  const { totalCount } = data.allMdx;
-  const title = `${totalCount} resources${
-    totalCount === 1 ? '' : 's'
-  } with the ${type} "${slug}"`;
-  return <Taxonomy {...props} title={title} />;
+  return <Taxonomy {...props} title="Resources" />;
 };
 
 // I can't dynamically filter the fontmatter field,
@@ -17,8 +10,8 @@ export default (props) => {
 // Lame.
 
 export const pageQuery = graphql`
-  query($slug: String) {
-    allMdx(filter: { frontmatter: { category: { eq: $slug } } }) {
+  query ResourceQuery {
+    allMdx(filter: { fields: { sourceName: { eq: "resource" } } }) {
       totalCount
       edges {
         node {
