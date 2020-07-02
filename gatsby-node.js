@@ -33,20 +33,45 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
 exports.createPages = async ({ actions, graphql }) => {
   const { createPage } = actions;
 
-  await createArticlePages(createPage, graphql);
+  await createResourcePages(createPage, graphql);
 };
 
-async function createArticlePages(createPage, graphql) {
-  const component = path.resolve('./src/templates/article-template.js');
-  const pages = await markdownQuery(graphql, 'articles');
+async function createResourcePages(createPage, graphql) {
+  const resourceQuery = await markdownQuery(graphql, 'resource');
+  const {
+    data: { results: { edges, tags, categories } = {} } = {},
+  } = resourceQuery;
 
-  pages.forEach(({ node }) => {
+  edges.forEach(({ node }) => {
     const { frontmatter: { layout = 'primary' } = {} } = node;
     createPage({
-      path: node.fields.name,
+      path: `resource/${node.fields.name}`,
       component: path.resolve(`./src/templates/layouts/${layout}.js`),
+      data: node,
       context: {
         name: node.fields.name,
+      },
+    });
+  });
+
+  categories.forEach(({ fieldValue }) => {
+    createPage({
+      path: `category/${fieldValue}`,
+      component: path.resolve(`./src/templates/layouts/category.js`),
+      context: {
+        slug: fieldValue,
+        type: 'category',
+      },
+    });
+  });
+
+  tags.forEach(({ fieldValue }) => {
+    createPage({
+      path: `tag/${fieldValue}`,
+      component: path.resolve(`./src/templates/layouts/tag.js`),
+      context: {
+        slug: fieldValue,
+        type: 'tag',
       },
     });
   });
@@ -55,7 +80,15 @@ async function createArticlePages(createPage, graphql) {
 async function markdownQuery(graphql, source) {
   const result = await graphql(`
     {
-      allMdx(filter: { fields: { sourceName: { eq: "${source}" } } }) {
+      results: allMdx(filter: { fields: { sourceName: { eq: "${source}" } } }) {
+        tags: group(field: frontmatter___tags) {
+          fieldValue
+          totalCount
+        }
+        categories: group(field: frontmatter___category) {
+          fieldValue
+          totalCount
+        }
         edges {
           node {
             frontmatter {
@@ -67,6 +100,7 @@ async function markdownQuery(graphql, source) {
           }
         }
       }
+      
     }
   `);
 
@@ -74,5 +108,5 @@ async function markdownQuery(graphql, source) {
     console.error(result.errors);
   }
 
-  return result.data.allMdx.edges;
+  return result;
 }

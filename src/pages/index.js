@@ -1,6 +1,6 @@
 import React from 'react';
 import { useStaticQuery, graphql } from 'gatsby';
-import Layout from 'templates/layouts/Primary';
+import Layout from 'templates/layouts/primary';
 import Hero from 'components/Hero';
 
 const IndexPage = () => {
