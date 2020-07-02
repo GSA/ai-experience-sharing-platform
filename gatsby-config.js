@@ -1,17 +1,30 @@
 module.exports = {
   siteMetadata: {
-    author: 'Foo',
-    title: `Agency Name`,
+    author: 'GSA.gov',
+    title: `ai.digital.gov`,
     description: `Agency Name (EAC) Lorem ipsum dolor sit amet, consectetur adipiscing elit.
     Aenean et sapien a leo auctor scelerisque quis nec magna. Sed dictum ante a risus vehicula facilisis.`,
+    hero: {
+      title: 'Title',
+      subtitle: 'subtitle',
+    },
     navigation: [
-      { text: 'Home', link: '/' },
+      { text: 'Use Cases', link: '/' },
       {
-        text: 'Document submenu',
+        text: 'Resources',
         items: [
-          { text: 'Navigation link', link: '/' },
-          { text: 'Navigation link', link: '/' },
-          { text: 'Navigation link', link: '/' },
+          { text: 'Playbooks', link: '/' },
+          { text: 'Whitepapers', link: '/' },
+          { text: 'Guides', link: '/' },
+          { text: 'All Resources', link: '/' },
+        ],
+      },
+      {
+        text: 'About',
+        items: [
+          { text: 'Governance', link: '/' },
+          { text: 'History', link: '/' },
+          { text: 'Requirements', link: '/' },
         ],
       },
     ],
@@ -20,9 +33,11 @@ module.exports = {
       { text: 'Another secondary link', link: '/' },
     ],
     categories: [
-      {slug: 'test',
-      label: 'Test Category',
-      description: 'Test Category Description for information context.'}
+      {
+        slug: 'test',
+        label: 'Test Category',
+        description: 'Test Category Description for information context.',
+      },
     ],
 
     // Search.gov configuration
