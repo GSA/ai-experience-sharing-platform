@@ -5,8 +5,8 @@ module.exports = {
     description: `Agency Name (EAC) Lorem ipsum dolor sit amet, consectetur adipiscing elit.
     Aenean et sapien a leo auctor scelerisque quis nec magna. Sed dictum ante a risus vehicula facilisis.`,
     hero: {
-      title: 'Title',
-      subtitle: 'subtitle',
+      title:
+        'Sharing Artificial Intelligence use cases across the federal government',
     },
     navigation: [
       { text: 'Use Cases', link: '/' },
@@ -34,7 +34,7 @@ module.exports = {
     ],
     categories: [
       {
-        slug: 'test',
+        slug: 'test-cat',
         label: 'Test Category',
         description: 'Test Category Description for information context.',
       },
@@ -85,8 +85,8 @@ module.exports = {
     {
       resolve: `gatsby-source-filesystem`,
       options: {
-        name: `articles`,
-        path: `${__dirname}/src/articles`,
+        name: `resource`,
+        path: `${__dirname}/src/resources`,
       },
     },
     {

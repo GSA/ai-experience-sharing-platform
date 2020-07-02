@@ -11,7 +11,6 @@ const IndexPage = () => {
           title
           hero {
             title
-            subtitle
           }
         }
       }
@@ -24,9 +23,7 @@ const IndexPage = () => {
   } = data;
   return (
     <Layout title={title}>
-      <Hero>
-        <div style={{ paddingTop: 150, paddingBottom: 150 }}>{heroTitle}</div>
-      </Hero>
+      <Hero>{heroTitle}</Hero>
       <div style={{ minHeight: 1000 }} />
     </Layout>
   );

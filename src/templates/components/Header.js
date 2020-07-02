@@ -8,10 +8,6 @@ const Header = ({ children }) => {
       site {
         siteMetadata {
           title
-          hero {
-            title
-            subtitle
-          }
         }
       }
     }
