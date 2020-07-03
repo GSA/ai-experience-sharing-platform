@@ -10,7 +10,7 @@ const Taxonomy = ({ pageContext, data, title }) => {
   return (
     <Primary title={`${type} - ${slug}`}>
       <div className="grid-container">
-        <div className="grid-row">
+        <div className="grid-row margin-top-4">
           <div className="grid-col-12">
             <div className="grid-row align-items-center padding-bottom-4">
               <div className="grid-col-8">
@@ -19,7 +19,7 @@ const Taxonomy = ({ pageContext, data, title }) => {
               <div className="grid-col-4" style={{ textAlign: 'right' }}>
                 <label
                   className="usa-labelmargin-0 display-inline-block"
-                  for="sort"
+                  htmlFor="sort"
                 >
                   Sort By:
                 </label>
@@ -43,6 +43,7 @@ const Taxonomy = ({ pageContext, data, title }) => {
                   <Article
                     title={node.frontmatter.title}
                     date={node.frontmatter.date}
+                    path={node.fields.path}
                   />
                 </div>
               );

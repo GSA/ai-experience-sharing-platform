@@ -17,6 +17,7 @@ export const pageQuery = graphql`
   query($name: String!) {
     mdx(fields: { sourceName: { eq: "resource" }, name: { eq: $name } }) {
       body
+      tableOfContents
       frontmatter {
         title
         category

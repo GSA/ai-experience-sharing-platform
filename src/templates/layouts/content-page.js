@@ -17,8 +17,9 @@ const ContentPage = ({
 
 export const pageQuery = graphql`
   query($name: String!) {
-    mdx(fields: { sourceName: { eq: "contentpage" }, name: { eq: $name } }) {
+    mdx(fields: { sourceName: { eq: "content-page" }, name: { eq: $name } }) {
       body
+      tableOfContents
       frontmatter {
         title
         category

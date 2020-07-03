@@ -2,7 +2,7 @@ import React from 'react';
 import Taxonomy from 'templates/layouts/taxonomy';
 
 export default (props) => {
-  return <Taxonomy {...props} title="Resources" />;
+  return <Taxonomy {...props} title="Use Cases" />;
 };
 
 // I can't dynamically filter the fontmatter field,
@@ -10,8 +10,8 @@ export default (props) => {
 // Lame.
 
 export const pageQuery = graphql`
-  query ResourceQuery {
-    allMdx(filter: { fields: { sourceName: { eq: "resource" } } }) {
+  query UseCaseQuery {
+    allMdx(filter: { fields: { sourceName: { eq: "use-case" } } }) {
       totalCount
       edges {
         node {

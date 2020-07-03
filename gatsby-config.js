@@ -9,13 +9,13 @@ module.exports = {
         'Sharing Artificial Intelligence use cases across the federal government',
     },
     navigation: [
-      { text: 'Use Cases', link: '/' },
+      { text: 'Use Cases', link: '/use-cases' },
       {
         text: 'Resources',
         items: [
-          { text: 'Playbooks', link: '/category/playbooks' },
-          { text: 'Whitepapers', link: '/category/whitepapers' },
-          { text: 'Guides', link: '/category/guides' },
+          { text: 'Playbooks', link: '/resource/category/playbooks' },
+          { text: 'Whitepapers', link: '/resource/category/whitepapers' },
+          { text: 'Guides', link: '/resource/category/guides' },
           { text: 'All Resources', link: '/resources' },
         ],
       },
@@ -86,14 +86,21 @@ module.exports = {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `resource`,
-        path: `${__dirname}/src/content/resources`,
+        path: `${__dirname}/src/content/resource`,
       },
     },
     {
       resolve: `gatsby-source-filesystem`,
       options: {
-        name: `contentpage`,
-        path: `${__dirname}/src/content/content-pages`,
+        name: `use-case`,
+        path: `${__dirname}/src/content/use-case`,
+      },
+    },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `content-page`,
+        path: `${__dirname}/src/content/content-page`,
       },
     },
     {
