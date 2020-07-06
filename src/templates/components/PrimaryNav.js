@@ -1,6 +1,6 @@
 import { Link } from 'gatsby';
 import React from 'react';
-import { useStaticQuery } from 'gatsby';
+import { useStaticQuery, graphql } from 'gatsby';
 
 import close from 'uswds/dist/img/close.svg';
 import SearchForm from 'templates/components/SearchForm';

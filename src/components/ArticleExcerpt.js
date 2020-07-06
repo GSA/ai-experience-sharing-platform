@@ -1,9 +1,7 @@
 import React from 'react';
-import Button from 'components/Button';
 import Content from 'components/Content';
 
 const ArticleExcerpt = ({ title, date, path, excerpt }) => {
-  console.log(path);
   return (
     <div className="ArticleExcerpt">
       <a className="ArticleExcerpt__title" variant="link" href={path}>

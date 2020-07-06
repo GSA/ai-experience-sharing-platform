@@ -1,4 +1,5 @@
 import React from 'react';
+import { graphql } from 'gatsby';
 import Taxonomy from './taxonomy';
 
 export default (props) => <Taxonomy {...props} />;
@@ -15,6 +16,11 @@ export const pageQuery = graphql`
         node {
           frontmatter {
             title
+          }
+          fields {
+            name
+            sourceName
+            pagePath
           }
         }
       }

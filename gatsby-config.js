@@ -9,14 +9,14 @@ module.exports = {
         'Sharing Artificial Intelligence use cases across the federal government',
     },
     navigation: [
-      { text: 'Use Cases', link: '/use-cases' },
+      { text: 'Use Cases', link: '/use-case' },
       {
         text: 'Resources',
         items: [
-          { text: 'Playbooks', link: '/resource/category/playbooks' },
-          { text: 'Whitepapers', link: '/resource/category/whitepapers' },
-          { text: 'Guides', link: '/resource/category/guides' },
-          { text: 'All Resources', link: '/resources' },
+          { text: 'Playbooks', link: '/resource/playbooks' },
+          { text: 'Whitepapers', link: '/resource/whitepapers' },
+          { text: 'Guides', link: '/resource/guides' },
+          { text: 'All Resources', link: '/resource' },
         ],
       },
       {
@@ -107,6 +107,7 @@ module.exports = {
       resolve: `gatsby-plugin-mdx`,
       options: {
         extensions: [`.md`, `.mdx`],
+        remarkPlugins: [require('remark-slug')],
       },
     },
     {

@@ -3,12 +3,13 @@ import PropTypes from 'prop-types';
 import Primary from './primary';
 import Article from 'components/ArticleExcerpt';
 
-const Taxonomy = ({ pageContext, data, title }) => {
-  const { slug, type } = pageContext;
+export const Taxonomy = ({ pageContext, data = {} }) => {
+  const title = pageContext.slug;
+  const { type } = pageContext;
   const { edges } = data.allMdx;
 
   return (
-    <Primary title={`${type} - ${slug}`}>
+    <Primary title={`${type}`}>
       <div className="grid-container">
         <div className="grid-row margin-top-4">
           <div className="grid-col-12">
@@ -36,14 +37,14 @@ const Taxonomy = ({ pageContext, data, title }) => {
               </div>
             </div>
 
-            {edges.map((edge) => {
+            {edges.map((edge, i) => {
               const { node } = edge;
               return (
-                <div className="margin-bottom-5">
+                <div key={`article-${i}`} className="margin-bottom-5">
                   <Article
                     title={node.frontmatter.title}
                     date={node.frontmatter.date}
-                    path={node.fields.path}
+                    path={node.fields.pagePath}
                   />
                 </div>
               );
@@ -58,4 +59,27 @@ Taxonomy.propTypes = {
   pageContext: PropTypes.object,
   data: PropTypes.object,
 };
+
+export const pageQuery = graphql`
+  query($type: String!) {
+    allMdx(filter: { fields: { sourceName: { eq: $type } } }) {
+      totalCount
+      edges {
+        node {
+          frontmatter {
+            title
+            date
+            tags
+            category
+          }
+          fields {
+            pagePath
+          }
+          body
+        }
+      }
+    }
+  }
+`;
+
 export default Taxonomy;
