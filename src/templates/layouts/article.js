@@ -47,8 +47,8 @@ export const pageQuery = graphql`
       frontmatter {
         title
         date
-        ...usecaseFields @include(if: $usecase)
-        ...resourceFields @include(if: $resource)
+        ...usecaseFx @include(if: $usecase)
+        ...resourceFx @include(if: $resource)
       }
       fields {
         name

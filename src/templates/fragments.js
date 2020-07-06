@@ -1,7 +1,7 @@
 import { graphql } from 'gatsby';
 
 export const fragments = graphql`
-  fragment usecaseFields on MdxFrontmatter {
+  fragment usecaseFx on MdxFrontmatter {
     title
     date
     participant
@@ -10,7 +10,7 @@ export const fragments = graphql`
     tags
   }
 
-  fragment resourceFields on MdxFrontmatter {
+  fragment resourceFx on MdxFrontmatter {
     title
     date
     category
