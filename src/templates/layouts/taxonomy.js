@@ -4,9 +4,10 @@ import Primary from './primary';
 import Article from 'components/ArticleExcerpt';
 
 export const Taxonomy = ({ pageContext, data = {} }) => {
+  console.log(data);
   const title = pageContext.slug;
-  const { type } = pageContext;
-  const { edges } = data.allMdx;
+  const { type, dataKey } = pageContext;
+  const { edges } = data[dataKey];
 
   return (
     <Primary title={`${type}`}>
@@ -38,7 +39,7 @@ export const Taxonomy = ({ pageContext, data = {} }) => {
             </div>
 
             {edges.map((edge, i) => {
-              const { node } = edge;
+              const { node = {} } = edge;
               return (
                 <div key={`article-${i}`} className="margin-bottom-5">
                   <Article
@@ -61,24 +62,26 @@ Taxonomy.propTypes = {
 };
 
 export const pageQuery = graphql`
-  query($type: String!) {
-    allMdx(filter: { fields: { sourceName: { eq: $type } } }) {
-      totalCount
-      edges {
-        node {
-          frontmatter {
-            title
-            date
-            tags
-            category
-          }
-          fields {
-            pagePath
-          }
-          body
-        }
-      }
-    }
+  query(
+    $type: String
+    $name: String
+    $resource: Boolean = false
+    $resourcecategory: Boolean = false
+    $resourcetags: Boolean = false
+    $usecase: Boolean = false
+    $usecaseparticipant: Boolean = false
+    $usecasepattern: Boolean = false
+    $usecasesolution: Boolean = false
+    $usecasetags: Boolean = false
+  ) {
+    ...Resource @include(if: $resource)
+    ...ResourceCategory @include(if: $resourcecategory)
+    ...ResourceTag @include(if: $resourcetags)
+    ...UseCase @include(if: $usecase)
+    ...UseCaseParticipant @include(if: $usecaseparticipant)
+    ...UseCasePattern @include(if: $usecasepattern)
+    ...UseCaseSolution @include(if: $usecasesolution)
+    ...UseCaseTag @include(if: $usecasetags)
   }
 `;
 

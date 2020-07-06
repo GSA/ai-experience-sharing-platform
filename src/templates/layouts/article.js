@@ -45,15 +45,11 @@ export const pageQuery = graphql`
       body
       tableOfContents
       frontmatter {
-        title
-        date
-        ...usecaseFx @include(if: $usecase)
-        ...resourceFx @include(if: $resource)
+        ...UseCaseFx @include(if: $usecase)
+        ...ResourceFx @include(if: $resource)
       }
       fields {
-        name
-        sourceName
-        pagePath
+        ...NodeFields
       }
     }
   }

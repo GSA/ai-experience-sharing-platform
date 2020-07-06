@@ -32,13 +32,6 @@ module.exports = {
       { text: 'Privacy policy', link: '/privacy' },
       { text: 'Latest updates', link: '/updates' },
     ],
-    categories: [
-      {
-        slug: 'test-cat',
-        label: 'Test Category',
-        description: 'Test Category Description for information context.',
-      },
-    ],
 
     // Search.gov configuration
     //

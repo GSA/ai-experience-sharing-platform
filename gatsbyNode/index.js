@@ -4,6 +4,7 @@ const {
 } = require('json-to-graphql-query');
 const nodepath = require('path');
 const fs = require('fs');
+const { paramCase } = require('param-case');
 
 module.exports.createPageType = async ({
   createPage,
@@ -15,9 +16,10 @@ module.exports.createPageType = async ({
   context,
 }) => {
   // This function will...
-  //   - Create Root Type Page from MDX Source files (/type)
-  //   - Create Page Type Collection Pages (/type/item)
-  //   - Create Type Taxonomy Pages (/type/taxonomy)
+  //
+  //   1. Create Page Type Collection Pages (/item or /type/item)
+  //   2. Create Root Type Page from MDX Source files (/type)
+  //   3. Create Type Taxonomy Pages (/type/taxonomy)
   if (!type) {
     console.log('WARNING! No type supplied to create content pages.');
     return;
@@ -32,48 +34,30 @@ module.exports.createPageType = async ({
 
   const { data: { results: { edges, ...tax } = {} } = {} } = query;
 
-  const rootPath = path ? `${path}` : '';
-  let rootComp = nodepath.resolve(
-    `./src/templates/layouts/${template ? `${template}-root` : 'taxonomy'}.js`
-  );
-  if (!fs.existsSync(rootComp)) {
-    console.log(
-      `Template not found for page type ${type}${
-        template ? ` - ${template}` : ''
-      }.`
-    );
-    rootComp = nodepath.resolve('./src/templates/layouts/article.js');
-  }
-  if (rootPath) {
-    createPage({
-      path: rootPath,
-      component: rootComp,
-      context: {
-        type,
-        [type]: true,
-      },
-    });
-  }
-  let component;
-  // 1. create type root pages
-  component = nodepath.resolve(
-    `./src/templates/layouts/${template ? template : 'article'}.js`
-  );
-  if (!fs.existsSync(component)) {
-    console.log(
-      `Template not found for page type ${type}${
-        template ? ` - ${template}` : ''
-      }.`
-    );
-    component = nodepath.resolve('./src/templates/layouts/article.js');
-  }
+  // if there are no results for the defined type, abort
   if (!edges) {
     console.error(`No entries found for ${type}!`);
     return;
   }
+  // define the rootPath for the content type
+  const rootPath = path ? `${path}` : '';
+
+  // 1. Create Page Type Collection Pages (/item or /type/item)
+  let component;
+  component = nodepath.resolve(
+    `./src/templates/layouts/${template ? template : 'article'}.js`
+  );
+  if (!fs.existsSync(component)) {
+    console.warn(
+      `Template not found for page type ${type}${
+        template ? ` - ${template}. Falling back to /layouts/article.js` : ''
+      }.`
+    );
+    component = nodepath.resolve('./src/templates/layouts/article.js');
+  }
   edges.forEach(({ node }) => {
     const pageProps = {
-      path: `${rootPath}/${node.fields.name}`,
+      path: `${rootPath}/${paramCase(node.fields.name)}`,
       component,
     };
 
@@ -81,7 +65,7 @@ module.exports.createPageType = async ({
     if (typeof context === 'function') {
       pageProps.context = context(node);
     } else if (context & (typeof context !== 'function')) {
-      console.error(`Supplied context for ${type} is not a function.`);
+      console.warn(`Supplied context for ${type} is not a function.`);
     } else {
       pageProps.context = node.fields;
     }
@@ -90,7 +74,36 @@ module.exports.createPageType = async ({
     createPage(pageProps);
   });
 
-  // 2. create type taxonomy pages
+  // 2. Create Root Type Page from MDX Source files (/type)
+
+  // if rootPath is defined then create the root content type page
+  if (rootPath) {
+    let rootComp = nodepath.resolve(
+      `./src/templates/layouts/${template}-root}.js`
+    );
+    if (!fs.existsSync(rootComp)) {
+      console.warn(
+        `Template not found for page type ${type}${
+          template ? ` - ${template}. Falling back to /layouts/taxonomy.js` : ''
+        }.`
+      );
+      rootComp = nodepath.resolve('./src/templates/layouts/taxonomy.js');
+    }
+    // clean root type of any non-alphanumber characters
+    // GQL doesn't like them...
+    const cleanRoot = cleanString(type);
+    createPage({
+      path: rootPath,
+      component: rootComp,
+      context: {
+        type,
+        [cleanRoot]: true,
+        dataKey: cleanRoot,
+      },
+    });
+  }
+
+  // 3. Create Type Taxonomy Pages (/type/taxonomy)
   if (!taxonomies) {
     console.log(`No taxonomies defined for ${type}.`);
     return;
@@ -111,35 +124,25 @@ module.exports.createPageType = async ({
     }
 
     tax[key].forEach(({ fieldValue }) => {
-      const taxPath = `${rootPath}/${fieldValue}`;
+      const taxPath = `${rootPath}/${paramCase(fieldValue)}`;
+      const cleanKey = cleanString(`${type}${key}`);
+      console.log('*****TAX******', taxPath, cleanKey);
       createPage({
         path: taxPath,
         component: taxComp,
         context: {
-          slug: fieldValue,
-          taxonomy: key,
+          name: fieldValue,
+          field: key,
+          type,
+          [cleanKey]: true,
+          dataKey: cleanKey,
         },
       });
     });
   });
 };
 
-const createFragment = async (graphql, fields) => {
-  // create field frontmatter fragments to be used when creating pages
-
-  const query = graphql`
-    fragment UseCaseFields on MdxFrontmatter {
-      title
-      date
-      participant
-      patterns
-      solutions
-      tags
-    }
-  `;
-
-  return query;
-};
+const cleanString = (string) => string.replace(/\W|_/g, '');
 
 const markdownQuery = async (graphql, source, tax) => {
   const rootQuery = {
