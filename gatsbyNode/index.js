@@ -131,7 +131,6 @@ module.exports.createPageType = async ({
     );
     return;
   }
-
   taxonomies.forEach(({ name: key, template: taxTemplate }, i) => {
     // is there a name
     if (!key) {

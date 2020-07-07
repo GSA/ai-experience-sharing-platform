@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const ArticleDetails = ({ id, title, items }) => {
-  console.log(items);
   return (
     <div className="ArticleDetails">
       {title && (

@@ -58,11 +58,5 @@ exports.createPages = async ({ actions, graphql }) => {
     collection: {
       path: 'use-case',
     },
-    taxonomies: [
-      { name: 'participant' },
-      { name: 'patterns' },
-      { name: 'solutions' },
-      { name: 'tags' },
-    ],
   });
 };
