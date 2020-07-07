@@ -1,18 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import Link from 'gatsby-link';
+import { Link } from 'gatsby';
 import { FontAwesomeIcon as Fa } from '@fortawesome/react-fontawesome';
 import { faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
 
 const nodes = {
-  a: ({ to, children, type, ...props }) => (
-    <a {...props} href={to} target="_blank" rel="noreferrer">
+  a: ({ url, children, type, ...props }) => (
+    <a {...props} href={url} target="_blank" rel="noreferrer">
       {children}
     </a>
   ),
-  b: ({ to, type = 'button', ...props }) => <button type={type} {...props} />,
-  link: ({ type, ...props }) => <Link {...props} />,
+  b: ({ url, type = 'button', ...props }) => <button type={type} {...props} />,
+  l: ({ type, url, ...props }) => <Link to={url} {...props} />,
 };
 
 const buildClass = ({
@@ -37,7 +37,7 @@ export const Button = ({
   color,
   variant,
   raised,
-  to,
+  url,
   onClick,
   external,
   forceExternalOff,
@@ -45,13 +45,13 @@ export const Button = ({
   type,
 }) => {
   const varClass = buildClass({ variant, color, raised, fullwidth });
-  const url = typeof to === 'string' ? to : '';
-  const isExternal = external || url.includes('://');
+  const isExternal =
+    external || (typeof url === 'string' && url.includes('://'));
   const Node =
-    onClick || type ? nodes['b'] : isExternal ? nodes['a'] : nodes['link'];
+    onClick || type ? nodes['b'] : isExternal ? nodes['a'] : nodes['l'];
   return (
     <Node
-      to={url}
+      url={url}
       type={type}
       onClick={onClick}
       className={`usa-button ${varClass} ${className ? className : ''}`}

@@ -189,4 +189,26 @@ export const fragments = graphql`
       }
     }
   }
+
+  fragment UseCaseFeatured on Query {
+    usecasefeatured: allMdx(
+      filter: {
+        frontmatter: { featured: { eq: $featured } }
+        fields: { sourceName: { eq: $type } }
+      }
+    ) {
+      totalCount
+      edges {
+        node {
+          body
+          frontmatter {
+            ...UseCaseFx
+          }
+          fields {
+            ...NodeFields
+          }
+        }
+      }
+    }
+  }
 `;
