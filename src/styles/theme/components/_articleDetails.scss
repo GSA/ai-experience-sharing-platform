@@ -1,0 +1,10 @@
+.ArticleDetails {
+  &__item {
+    @include u-padding-bottom(2);
+    &-title {
+      display: block;
+      font-weight: 600;
+      text-transform: capitalize;
+    }
+  }
+}

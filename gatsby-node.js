@@ -1,11 +1,5 @@
-/**
- * Implement Gatsby's Node APIs in this file.
- *
- * See: https://www.gatsbyjs.org/docs/node-apis/
- */
-
-const path = require('path');
 const { paginate } = require('gatsby-awesome-pagination');
+const { createPageType } = require('./gatsbyNode/index.js');
 
 exports.onCreateNode = ({ node, getNode, actions }) => {
   const { createNodeField } = actions;
@@ -30,102 +24,39 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
   });
   createNodeField({
     node,
-    name: 'path',
-    value: `${fileNode.sourceInstanceName}/${fileNode.name}`,
+    name: 'pagePath',
+    value: `/${fileNode.sourceInstanceName}/${fileNode.name}`,
   });
 };
 
 exports.createPages = async ({ actions, graphql }) => {
   const { createPage } = actions;
 
-  await createResourcePages(createPage, graphql);
-  await createContentPages(createPage, graphql);
+  await createPageType({
+    createPage,
+    graphql,
+    type: 'content-page',
+    template: './src/templates/layouts/content-page.js',
+  });
+
+  await createPageType({
+    createPage,
+    graphql,
+    type: 'resource',
+    path: 'resource',
+    collection: {
+      path: 'resource',
+    },
+    taxonomies: [{ name: 'tags' }, { name: 'category' }],
+  });
+
+  await createPageType({
+    createPage,
+    graphql,
+    type: 'use-case',
+    path: 'use-case',
+    collection: {
+      path: 'use-case',
+    },
+  });
 };
-
-async function createContentPages(createPage, graphql) {
-  const contentQuery = await markdownQuery(graphql, 'contentpage');
-  const { data: { results: { edges } = {} } = {} } = contentQuery;
-
-  edges.forEach(({ node }) => {
-    createPage({
-      path: node.fields.name,
-      component: path.resolve(`./src/templates/layouts/content-page.js`),
-      context: {
-        name: node.fields.name,
-      },
-    });
-  });
-}
-
-async function createResourcePages(createPage, graphql) {
-  const resourceQuery = await markdownQuery(graphql, 'resource');
-  const {
-    data: { results: { edges, tags, categories } = {} } = {},
-  } = resourceQuery;
-
-  edges.forEach(({ node }) => {
-    createPage({
-      path: `resource/${node.fields.name}`,
-      component: path.resolve(`./src/templates/layouts/resource.js`),
-      context: {
-        name: node.fields.name,
-      },
-    });
-  });
-
-  categories.forEach(({ fieldValue }) => {
-    createPage({
-      path: `category/${fieldValue}`,
-      component: path.resolve(`./src/templates/layouts/category.js`),
-      context: {
-        slug: fieldValue,
-        type: 'category',
-      },
-    });
-  });
-
-  tags.forEach(({ fieldValue }) => {
-    createPage({
-      path: `tag/${fieldValue}`,
-      component: path.resolve(`./src/templates/layouts/tag.js`),
-      context: {
-        slug: fieldValue,
-        type: 'tag',
-      },
-    });
-  });
-}
-
-async function markdownQuery(graphql, source) {
-  const result = await graphql(`
-    {
-      results: allMdx(filter: { fields: { sourceName: { eq: "${source}" } } }) {
-        tags: group(field: frontmatter___tags) {
-          fieldValue
-          totalCount
-        }
-        categories: group(field: frontmatter___category) {
-          fieldValue
-          totalCount
-        }
-        edges {
-          node {
-            frontmatter {
-              layout
-            }
-            fields {
-              name
-            }
-          }
-        }
-      }
-      
-    }
-  `);
-
-  if (result.errors) {
-    console.error(result.errors);
-  }
-
-  return result;
-}

@@ -3,14 +3,16 @@ import PropTypes from 'prop-types';
 import Primary from './primary';
 import Article from 'components/ArticleExcerpt';
 
-const Taxonomy = ({ pageContext, data, title }) => {
-  const { slug, type } = pageContext;
-  const { edges } = data.allMdx;
-
+export const Taxonomy = ({ pageContext, data = {} }) => {
+  const { name, field, type, dataKey } = pageContext;
+  const { edges } = data[dataKey];
+  const title = `${type}${field ? ` / ${field}` : ''}${
+    name ? ` / ${name}` : ''
+  }`;
   return (
-    <Primary title={`${type} - ${slug}`}>
+    <Primary title={title}>
       <div className="grid-container">
-        <div className="grid-row">
+        <div className="grid-row margin-top-4">
           <div className="grid-col-12">
             <div className="grid-row align-items-center padding-bottom-4">
               <div className="grid-col-8">
@@ -19,7 +21,7 @@ const Taxonomy = ({ pageContext, data, title }) => {
               <div className="grid-col-4" style={{ textAlign: 'right' }}>
                 <label
                   className="usa-labelmargin-0 display-inline-block"
-                  for="sort"
+                  htmlFor="sort"
                 >
                   Sort By:
                 </label>
@@ -36,13 +38,14 @@ const Taxonomy = ({ pageContext, data, title }) => {
               </div>
             </div>
 
-            {edges.map((edge) => {
-              const { node } = edge;
+            {edges.map((edge, i) => {
+              const { node = {} } = edge;
               return (
-                <div className="margin-bottom-5">
+                <div key={`article-${i}`} className="margin-bottom-5">
                   <Article
                     title={node.frontmatter.title}
                     date={node.frontmatter.date}
+                    path={node.fields.pagePath}
                   />
                 </div>
               );
@@ -57,4 +60,29 @@ Taxonomy.propTypes = {
   pageContext: PropTypes.object,
   data: PropTypes.object,
 };
+
+export const pageQuery = graphql`
+  query(
+    $type: String
+    $name: String
+    $resource: Boolean = false
+    $resourcecategory: Boolean = false
+    $resourcetags: Boolean = false
+    $usecase: Boolean = false
+    $usecaseparticipant: Boolean = false
+    $usecasepattern: Boolean = false
+    $usecasesolution: Boolean = false
+    $usecasetags: Boolean = false
+  ) {
+    ...Resource @include(if: $resource)
+    ...ResourceCategory @include(if: $resourcecategory)
+    ...ResourceTag @include(if: $resourcetags)
+    ...UseCase @include(if: $usecase)
+    ...UseCaseParticipant @include(if: $usecaseparticipant)
+    ...UseCasePattern @include(if: $usecasepattern)
+    ...UseCaseSolution @include(if: $usecasesolution)
+    ...UseCaseTag @include(if: $usecasetags)
+  }
+`;
+
 export default Taxonomy;

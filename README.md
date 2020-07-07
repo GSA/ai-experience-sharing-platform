@@ -61,6 +61,7 @@ dapAgency: 'GSA',
 ### Easy mode
 
 #### From Federalist
+
 This will create a copy of this repo in a Github repository of your choice and add it to your Federalist dashboard.
 
 - From [Federalist](https://federalistapp-staging.18f.gov/sites) click the "+ Add Site" button.
@@ -68,6 +69,7 @@ This will create a copy of this repo in a Github repository of your choice and a
 - Follow the instructions
 
 #### From Github
+
 This will create a copy of this repo in a Github repository of your choice but you will need to add it your [Federalist dashbord](https://federalistapp-staging.18f.gov/sites/new).
 
 - Click the "Use this template" button above or [here](https://github.com/18F/federalist-uswds-gatsby/generate).
@@ -77,12 +79,15 @@ This will create a copy of this repo in a Github repository of your choice but y
 ### Hard mode
 
 #### With `npx` (requires node)
+
     $ npx degit https://github.com/18F/federalist-uswds-gatsby <destination-folder>
     $ cd <destination-folder>
 
 #### Push to your Github repository
+
 - [Create a new Github repository](https://help.github.com/en/github/getting-started-with-github/create-a-repo).
 - Follow the instructions form Github or
+
 ```
     $ git init
     $ git add . && git commit -m 'Initial commit'
@@ -91,26 +96,63 @@ This will create a copy of this repo in a Github repository of your choice but y
     $ git push -u origin master
 ```
 
+## Page Types
+
+Pages in this site are generated through a semi-automated process. With the goal to maintain composable and visual consistency, a workflow has been established to make components as reusable as possible.
+
+The workflow is briefly defined as...
+
+1.  Define a source via `gatsby-source-filesystem`
+2.  Define the Page Type in `gatsby-node.js` via the `gatsby.createPages` hook using the `createPageType` function
+3.
+
+#### createPageType(_options_)
+
+Envoking this function within gatsby.createPages hook will...
+
+1. Create **Type Pages** (/item or /type/item)
+2. Create **Type Collection Page** (/type)
+3. Create **Type Taxonomy Pages** (/type/taxonomy)
+
+Each Page Type created with this function requires an associated `gatsby-source-filesystem` definition. The `name` of the source must match the `type` options field.
+
+#### _options_
+
+| field      | type           | required | description                                                                                                                                                                                                                                                                                                    |
+| ---------- | -------------- | -------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| createPage | function       | true     | forwarded from `gatsby.createPages` hook actions.                                                                                                                                                                                                                                                              |
+| graphql    | function       | true     | forwarded from `gatsby.createPages` hook.                                                                                                                                                                                                                                                                      |
+| type       | string         | true     | the name of the page type. This value must have a matching definition in the gatsby plugins.                                                                                                                                                                                                                   |
+| path       | string         | false    | the root path or endpoint used to create child/taxonomy pages for the page type. It is recommended to only have one Custom Page Type with no path as it can cause collisions between default Gatsby pages and other Custom Page Types. If this is not supplied, Collection and Taxonomy Pages will be ignored. |
+| template   | string         | false    | the path from src to use render the page.                                                                                                                                                                                                                                                                      |
+| taxonomies | array(object)  | false    | an array of taxonomy objects. the defined taxonomies will be grouped from the MDX query and a taxonomy page will be created for each defined taxonomy value.                                                                                                                                                   |
+| context    | function(node) | false    | used to build the context passed to the page template.                                                                                                                                                                                                                                                         |
+
 ### Installation for development
+
     $ git clone https://github.com/18F/federalist-uswds-gatsby
     $ cd federalist-uswds-gatsby
 
 ### Running the application
 
 #### With locally installed `node`
+
     $ npm install
     $ npm run develop
 
 To build but not serve the site, run `npm run build`.
 
 #### With Docker
+
     $ docker-compose run node npm install
     $ docker-compose up
 
 To build but not serve the site, run:
+
 ```
 docker-compose run node npm run build
 ```
+
 .
 
 Note that when built by Federalist, `npm run federalist` is used instead of

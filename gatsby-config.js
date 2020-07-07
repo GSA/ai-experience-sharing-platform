@@ -9,18 +9,20 @@ module.exports = {
         'Sharing Artificial Intelligence use cases across the federal government',
     },
     navigation: [
-      { text: 'Use Cases', link: '/' },
+      { text: 'Use Cases', link: '/use-case' },
       {
         text: 'Resources',
+        link: '/resource',
         items: [
-          { text: 'Playbooks', link: '/category/playbooks' },
-          { text: 'Whitepapers', link: '/category/whitepapers' },
-          { text: 'Guides', link: '/category/guides' },
-          { text: 'All Resources', link: '/resources' },
+          { text: 'Playbooks', link: '/resource/playbooks' },
+          { text: 'Whitepapers', link: '/resource/whitepapers' },
+          { text: 'Guides', link: '/resource/guides' },
+          { text: 'All Resources', link: '/resource' },
         ],
       },
       {
         text: 'About',
+        link: '/about',
         items: [
           { text: 'Governance', link: '/governance' },
           { text: 'History', link: '/history' },
@@ -31,13 +33,6 @@ module.exports = {
     secondaryLinks: [
       { text: 'Privacy policy', link: '/privacy' },
       { text: 'Latest updates', link: '/updates' },
-    ],
-    categories: [
-      {
-        slug: 'test-cat',
-        label: 'Test Category',
-        description: 'Test Category Description for information context.',
-      },
     ],
 
     // Search.gov configuration
@@ -86,20 +81,28 @@ module.exports = {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `resource`,
-        path: `${__dirname}/src/content/resources`,
+        path: `${__dirname}/src/content/resource`,
       },
     },
     {
       resolve: `gatsby-source-filesystem`,
       options: {
-        name: `contentpage`,
-        path: `${__dirname}/src/content/content-pages`,
+        name: `use-case`,
+        path: `${__dirname}/src/content/use-case`,
+      },
+    },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `content-page`,
+        path: `${__dirname}/src/content/content-page`,
       },
     },
     {
       resolve: `gatsby-plugin-mdx`,
       options: {
         extensions: [`.md`, `.mdx`],
+        remarkPlugins: [require('remark-slug')],
       },
     },
     {
