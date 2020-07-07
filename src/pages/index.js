@@ -51,7 +51,9 @@ const IndexPage = () => {
             Featured Use Cases
           </div>
           <div className="grid-col-6 use-case-header__link">
-            <Button variant="link"> View All Use Cases</Button>
+            <Button url="/use-case" variant="link">
+              View All Use Cases
+            </Button>
           </div>
         </div>
         {[1, 2].map((item) => (
