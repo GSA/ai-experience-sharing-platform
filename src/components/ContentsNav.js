@@ -1,9 +1,9 @@
 import React from 'react';
 
 const ListItems = ({ items = [] }) =>
-  items.map((item) => (
+  items.map((item, i) => (
     <>
-      <li className="ContentNav__item">
+      <li className="ContentNav__item" key={`content-nav-${i}`}>
         <a className="ContentNav__link" href={item.url}>
           {item.title}
         </a>

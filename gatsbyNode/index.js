@@ -63,16 +63,20 @@ module.exports.createPageType = async ({
       path: `${rootPath}/${paramCase(node.fields.name)}`,
       component,
     };
-
+    const cleanType = cleanString(type);
     // build root page context
     if (typeof context === 'function') {
       pageProps.context = context(node);
     } else if (context & (typeof context !== 'function')) {
       console.warn(`${type}: "context" is not a function.`);
     } else {
-      pageProps.context = node.fields;
+      pageProps.context = {
+        ...node.fields,
+        [cleanType]: true,
+        dataKey: cleanType,
+      };
     }
-    pageProps.context[type] = true;
+    console.log(pageProps);
     createPage(pageProps);
   });
 
@@ -105,7 +109,6 @@ module.exports.createPageType = async ({
     // clean root type of any non-alphanumber characters
     // GQL doesn't like them...
     const cleanRoot = cleanString(type);
-
     createPage({
       path: collectionPath,
       component: collectionComp,

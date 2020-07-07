@@ -2,14 +2,15 @@ import React from 'react';
 import { graphql } from 'gatsby';
 import Primary from 'templates/layouts/primary';
 import Mdx from 'components/Mdx';
+import ArticleDetails from 'components/ArticleDetails';
 import ContentNav from 'components/ContentsNav';
 
 const UseCase = ({
   data: {
     mdx: {
       body,
-      tableOfContents: { items = [] } = {},
-      frontmatter: { title } = {},
+      tableOfContents: { items: contents = [] } = {},
+      frontmatter: { title, ...details } = {},
     } = {},
   } = {},
 }) => {
@@ -19,14 +20,14 @@ const UseCase = ({
         <div className="grid-row">
           <div className="grid-col-2">
             <h4>Sections</h4>
-            <ContentNav items={items} />
+            <ContentNav items={contents} />
           </div>
-          <div className="grid-col-8">
+          <div className="grid-col-8 padding-right-4">
             <h1>{title}</h1>
             <Mdx>{body}</Mdx>
           </div>
           <div className="grid-col-2">
-            <h4>Details</h4>
+            <ArticleDetails title="Details" items={details} />
           </div>
         </div>
       </div>
