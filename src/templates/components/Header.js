@@ -1,5 +1,5 @@
 import React from 'react';
-import { useStaticQuery, graphql } from 'gatsby';
+import { useStaticQuery, graphql, Link } from 'gatsby';
 import PropTypes from 'prop-types';
 
 const Header = ({ children }) => {
@@ -20,9 +20,9 @@ const Header = ({ children }) => {
       <div className="usa-navbar">
         <div className="usa-logo" id="extended-logo">
           <em className="usa-logo__text">
-            <a href="/" title="Home" aria-label="Home">
+            <Link to="/" title="Home" aria-label="Home">
               {title}
-            </a>
+            </Link>
           </em>
         </div>
         <button className="usa-menu-btn">Menu</button>
