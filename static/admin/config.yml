@@ -3,7 +3,7 @@ backend:
   repo: GSA/ai-experience-sharing-platform
   base_url: https://github.com
   auth_endpoint: external/auth/github
-  branch: master
+  branch: develop
   preview_context: federalist/build
 
 media_folder: static/images
@@ -21,7 +21,7 @@ collections:
     delete: true
     preview_path: '{{slug}}'
     editor:
-      preview: true
+      preview: false
     fields:
       - { label: 'Title', name: 'title', widget: 'string' }
       - { label: 'Body', name: 'body', widget: 'markdown' }
@@ -33,14 +33,14 @@ collections:
     create: true
     preview_path: '{{slug}}'
     editor:
-      preview: true
+      preview: false
     fields:
       - { label: 'Title', name: 'title', widget: 'string' }
-      - { label: 'Date', name: 'date', widget: 'string' }
+      - { label: 'Date', name: 'date', widget: 'datetime' }
       - { label: 'Participant', name: 'participant', widget: 'string' }
-      - { label: 'Patterns', name: 'patterns', widget: 'string' }
-      - { label: 'Solutions', name: 'solutions', widget: 'string' }
-      - { label: 'Tags', name: 'tags', widget: 'string' }
+      - { label: 'Patterns', name: 'patterns', widget: 'list' }
+      - { label: 'Solutions', name: 'solutions', widget: 'list' }
+      - { label: 'Tags', name: 'tags', widget: 'list' }
       - { label: 'Body', name: 'body', widget: 'markdown' }
   - name: resource
     extension: md
@@ -50,10 +50,10 @@ collections:
     create: true
     preview_path: '{{slug}}'
     editor:
-      preview: true
+      preview: false
     fields:
       - { label: 'Title', name: 'title', widget: 'string' }
-      - { label: 'Date', name: 'date', widget: 'string' }
+      - { label: 'Date', name: 'date', widget: 'datetime' }
       - { label: 'Category', name: 'category', widget: 'string' }
-      - { label: 'Tags', name: 'tags', widget: 'string' }
+      - { label: 'Tags', name: 'tags', widget: 'list' }
       - { label: 'Body', name: 'body', widget: 'markdown' }

@@ -1,3 +1,5 @@
-# Privacy Policy
+---
+title: Privacy Policy
+---
 
 <Content chunks={10} />
