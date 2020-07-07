@@ -41,6 +41,12 @@ collections:
       - { label: 'Patterns', name: 'patterns', widget: 'list' }
       - { label: 'Solutions', name: 'solutions', widget: 'list' }
       - { label: 'Tags', name: 'tags', widget: 'list' }
+      - {
+          label: 'Featured',
+          name: 'featured',
+          widget: 'boolean',
+          default: false,
+        }
       - { label: 'Body', name: 'body', widget: 'markdown' }
   - name: resource
     extension: md
