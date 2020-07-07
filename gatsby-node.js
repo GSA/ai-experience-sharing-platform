@@ -36,6 +36,7 @@ exports.createPages = async ({ actions, graphql }) => {
     createPage,
     graphql,
     type: 'content-page',
+    template: './src/templates/layouts/content-page.js',
   });
 
   await createPageType({

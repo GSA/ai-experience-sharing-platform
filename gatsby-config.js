@@ -12,6 +12,7 @@ module.exports = {
       { text: 'Use Cases', link: '/use-case' },
       {
         text: 'Resources',
+        link: '/resource',
         items: [
           { text: 'Playbooks', link: '/resource/playbooks' },
           { text: 'Whitepapers', link: '/resource/whitepapers' },
@@ -21,6 +22,7 @@ module.exports = {
       },
       {
         text: 'About',
+        link: '/about',
         items: [
           { text: 'Governance', link: '/governance' },
           { text: 'History', link: '/history' },

@@ -76,7 +76,6 @@ module.exports.createPageType = async ({
         dataKey: cleanType,
       };
     }
-    console.log(pageProps);
     createPage(pageProps);
   });
 
