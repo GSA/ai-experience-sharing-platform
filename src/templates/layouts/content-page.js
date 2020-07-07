@@ -2,8 +2,6 @@ import React from 'react';
 import { graphql } from 'gatsby';
 import Primary from 'templates/layouts/primary';
 import Mdx from 'components/Mdx';
-import ArticleDetails from 'components/ArticleDetails';
-import ContentNav from 'components/ContentsNav';
 
 const ContentPage = ({
   data: {
