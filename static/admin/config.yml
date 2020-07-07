@@ -1,9 +1,9 @@
 backend:
   name: github
   repo: GSA/ai-experience-sharing-platform
-  base_url: https://federalistapp.18f.gov
+  base_url: https://github.com
   auth_endpoint: external/auth/github
-  branch: develop
+  branch: master
   preview_context: federalist/build
 
 media_folder: static/images
@@ -12,14 +12,48 @@ publish_mode: editorial_workflow
 logo_url: https://federalist.18f.gov/assets/images/federalist-logo.png
 
 collections:
-  - name: pages
+  - name: page
+    extension: md
     label: Pages
     label_singular: Page
-    folder: src/pages
+    folder: src/content/content-page
+    create: true
+    delete: true
+    preview_path: '{{slug}}'
+    editor:
+      preview: true
+    fields:
+      - { label: 'Title', name: 'title', widget: 'string' }
+      - { label: 'Body', name: 'body', widget: 'markdown' }
+  - name: use-case
+    extension: md
+    label: Use Cases
+    label_singular: Use Case
+    folder: src/content/use-case
     create: true
     preview_path: '{{slug}}'
     editor:
-      preview: false
+      preview: true
     fields:
       - { label: 'Title', name: 'title', widget: 'string' }
+      - { label: 'Date', name: 'date', widget: 'string' }
+      - { label: 'Participant', name: 'participant', widget: 'string' }
+      - { label: 'Patterns', name: 'patterns', widget: 'string' }
+      - { label: 'Solutions', name: 'solutions', widget: 'string' }
+      - { label: 'Tags', name: 'tags', widget: 'string' }
+      - { label: 'Body', name: 'body', widget: 'markdown' }
+  - name: resource
+    extension: md
+    label: Resources
+    label_singular: Resource
+    folder: src/content/resource
+    create: true
+    preview_path: '{{slug}}'
+    editor:
+      preview: true
+    fields:
+      - { label: 'Title', name: 'title', widget: 'string' }
+      - { label: 'Date', name: 'date', widget: 'string' }
+      - { label: 'Category', name: 'category', widget: 'string' }
+      - { label: 'Tags', name: 'tags', widget: 'string' }
       - { label: 'Body', name: 'body', widget: 'markdown' }
