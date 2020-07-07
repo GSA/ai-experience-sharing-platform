@@ -4,13 +4,13 @@ import Primary from './primary';
 import Article from 'components/ArticleExcerpt';
 
 export const Taxonomy = ({ pageContext, data = {} }) => {
-  console.log(data);
-  const title = pageContext.slug;
-  const { type, dataKey } = pageContext;
+  const { name, field, type, dataKey } = pageContext;
   const { edges } = data[dataKey];
-
+  const title = `${type}${field ? ` / ${field}` : ''}${
+    name ? ` / ${name}` : ''
+  }`;
   return (
-    <Primary title={`${type}`}>
+    <Primary title={title}>
       <div className="grid-container">
         <div className="grid-row margin-top-4">
           <div className="grid-col-12">

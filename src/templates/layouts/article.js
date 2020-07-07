@@ -14,7 +14,7 @@ const UseCase = ({
   } = {},
 }) => {
   return (
-    <Primary>
+    <Primary title={title}>
       <div className="grid-container">
         <div className="grid-row">
           <div className="grid-col-2">

@@ -1,4 +1,3 @@
-
 const { paginate } = require('gatsby-awesome-pagination');
 const { createPageType } = require('./gatsbyNode/index.js');
 
@@ -37,8 +36,6 @@ exports.createPages = async ({ actions, graphql }) => {
     createPage,
     graphql,
     type: 'content-page',
-    path: '',
-    taxonomies: [],
   });
 
   await createPageType({
@@ -46,7 +43,10 @@ exports.createPages = async ({ actions, graphql }) => {
     graphql,
     type: 'resource',
     path: 'resource',
-    taxonomies: [{name: 'tags'}, {name: 'category'}],
+    collection: {
+      path: 'resource',
+    },
+    taxonomies: [{ name: 'tags' }, { name: 'category' }],
   });
 
   await createPageType({
@@ -54,7 +54,14 @@ exports.createPages = async ({ actions, graphql }) => {
     graphql,
     type: 'use-case',
     path: 'use-case',
-    taxonomies: [{name: 'participant'}, {name: 'patterns'}, {name:'solutions'}, {name:'tags'}],
+    collection: {
+      path: 'use-case',
+    },
+    taxonomies: [
+      { name: 'participant' },
+      { name: 'patterns' },
+      { name: 'solutions' },
+      { name: 'tags' },
+    ],
   });
 };
-
