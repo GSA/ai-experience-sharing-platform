@@ -5,7 +5,6 @@ import SEO from 'templates/components/Seo';
 import Banner from 'templates/components/Banner';
 import Footer from 'templates/components/Footer';
 import Header from 'templates/components/Header';
-import Nav from 'templates/components/PrimaryNav';
 
 const Primary = ({ title, children }) => {
   return (
@@ -16,9 +15,7 @@ const Primary = ({ title, children }) => {
       </a>
       <Banner />
       <div className="usa-overlay" />
-      <Header>
-        <Nav />
-      </Header>
+      <Header />
       {children}
       <Footer />
     </>

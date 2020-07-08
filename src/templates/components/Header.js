@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useStaticQuery, graphql, Link } from 'gatsby';
 import PropTypes from 'prop-types';
+import Button from 'components/Button';
+import Nav from 'templates/components/PrimaryNav';
 
 const Header = ({ children }) => {
   const data = useStaticQuery(graphql`
@@ -14,7 +16,11 @@ const Header = ({ children }) => {
   `);
 
   const { title } = data.site.siteMetadata;
+  const [isOpen, setOpen] = useState(false);
 
+  const handleClick = () => {
+    setOpen((state) => !state);
+  };
   return (
     <header className="usa-header usa-header--extended" role="banner">
       <div className="usa-navbar">
@@ -25,9 +31,9 @@ const Header = ({ children }) => {
             </Link>
           </em>
         </div>
-        <button className="usa-menu-btn">Menu</button>
+        <Button onClick={handleClick}>Menu</Button>
       </div>
-      {children}
+      <Nav onClick={handleClick} isOpen={isOpen} />
     </header>
   );
 };

@@ -1,11 +1,13 @@
 import { Link } from 'gatsby';
 import React from 'react';
 import { useStaticQuery, graphql } from 'gatsby';
+import classnames from 'classnames';
 
 import close from 'uswds/dist/img/close.svg';
+import Button from 'components/Button';
 import SearchForm from 'templates/components/SearchForm';
 
-const Nav = () => {
+const Nav = ({ onClick, isOpen }) => {
   const data = useStaticQuery(graphql`
     query NavQuery {
       site {
@@ -29,11 +31,14 @@ const Nav = () => {
 
   const { navigation, secondaryLinks } = data.site.siteMetadata;
   return (
-    <nav role="navigation" className="usa-nav">
+    <nav
+      role="navigation"
+      className={classnames({ 'usa-nav': true, 'is-visible': isOpen })}
+    >
       <div className="usa-nav__inner">
-        <button className="usa-nav__close">
+        <Button variant="link" onClick={onClick} className="usa-nav__close">
           <img src={close} alt="close" />
-        </button>
+        </Button>
         <ul className="usa-accordion usa-nav__primary">
           {navigation.map((nav, idx) => {
             const { text, link, items } = nav;

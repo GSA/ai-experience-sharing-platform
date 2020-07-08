@@ -14,10 +14,12 @@ const ListItems = ({ items = [] }) =>
 
 const Sublist = ({ items }) => <ListItems items={items} />;
 
-const ContentNav = ({ items }) => (
-  <ul className="ContentNav">
-    <ListItems items={items} />
-  </ul>
-);
+const ContentNav = ({ items }) => {
+  return (
+    <ul className="ContentNav">
+      <ListItems items={items} />
+    </ul>
+  );
+};
 
 export default ContentNav;

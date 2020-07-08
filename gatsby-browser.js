@@ -4,13 +4,12 @@
  * See: https://www.gatsbyjs.org/docs/browser-apis/
  */
 import './src/styles/index.scss';
-import 'uswds';
 
 import { siteMetadata } from './gatsby-config';
 
 let loaded = false;
 
-const dap = pathname => {
+const dap = (pathname) => {
   window.gas && window.gas('send', 'pageview', pathname);
 };
 
