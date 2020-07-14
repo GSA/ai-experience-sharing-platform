@@ -13,3 +13,5 @@ This is some dummy content!
 ### This is a sub headers!
 
 And some more content!
+
+![test](/images/screen-shot-2020-06-28-at-2.28.31-pm.png "test")
