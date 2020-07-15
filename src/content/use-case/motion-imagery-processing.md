@@ -19,7 +19,7 @@ featured: false
 ---
 CBP is in constant pursuit of innovative technologies that can increase the efficiency and effectiveness of existing procedures to monitor and process both people and cargo that enter the country. With the widespread use of still and full motion imagery at ports of entry, the ability to process and interpret the content contained in such imagery is a time consuming process, and there is a real challenge in balancing accuracy and performance.
 
-## Data
+## Data Approach
 
 Data is captured through points of entry by snapping a picture of people as they go through the customs process and maintained in CBP database. The U.S. Passport and Visa database also serves as a source of data for large numbers of images of faces.
 
