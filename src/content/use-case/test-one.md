@@ -16,8 +16,6 @@ tags:
   - Grants Management
 featured: true
 ---
-## Background
-
 The new AI-based “Suggest Reviewer” tool replaced a legacy process where NSF program staff across the agency were involved in manually identifying reviewers. It significantly reduced the administrative burden on NSF staff, provided support for evidence-based decision making, introduced the culture for NSF staff to learn to work alongside AI and promoted the practice of continuous innovation.
 
 ## Data and Data Management
