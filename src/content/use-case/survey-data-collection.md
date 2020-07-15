@@ -17,7 +17,7 @@ tags:
   - Survey Processing
 featured: false
 ---
-## Data
+## Data Approach
 
 The data that will be used is Summary of Benefits and Coverage (SBC) documents in PDF format along with tabular data of the contents of those documents collected through the National Compensation Survey. Currently, in exploratory research, we are using publically available SBC documents and tabular data downloaded from data.healthcare.gov. Data management, at this point, consists of folder storage on a shared drive.
 
