@@ -2,11 +2,11 @@
 title: Clause Recommendations for Contracts
 date: 2020-07-15T17:44:54.634Z
 participant: David Gill
-patterns:
+techniques:
   - Recommendation
   - Personalization
   - Classification Modeling
-solutions:
+benefits:
   - Decrease Cycle Time
   - Increase Accuracy
   - Increase Compliance
