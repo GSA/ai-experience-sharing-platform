@@ -16,7 +16,7 @@ tags:
   - Information Technology
 featured: true
 ---
-## Data
+## Data Approach
 
 This is an infrastructure as a service, helps NSF data scientists to learn, apply and practice data science using NSF data sets.
 
