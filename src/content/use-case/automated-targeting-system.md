@@ -2,13 +2,12 @@
 title: Automated Targeting System
 date: 2020-07-15T18:40:37.032Z
 participant: ACUS
-patterns:
+techniques:
   - Predictive Analytics
   - Decision Making
-solutions:
+benefits:
   - Increase Accuracy
   - Increase Compliance
-  - ""
 tags:
   - In Pilot
   - DHS
