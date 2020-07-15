@@ -1,16 +1,18 @@
 {
-  "name": "ai-experience-sharing-platform",
-  "description": "AI Experience Sharing Platform",
+  "name": "federalist-uswds-gatsby",
+  "description": "A Federalist template using USWDS 2.0 + Gatsby",
   "version": "1.0.0",
   "scripts": {
-    "clean": "rimraf gatsby/.cache gatsby/public gatsby/_site app/build",
-    "content:build": "cd gatsby && npm ci && gatsby build",
-    "app:build": "cd app && npm run build",
-    "content:copy": "cp gatsby/content.json app/public",
-    "start": "npm run content:build && cd app && npm start",
+    "clean": "rimraf .cache public _site",
+    "build": "gatsby build",
+    "reset": "npx rimraf .git",
+    "develop": "gatsby develop",
+    "format": "prettier --write \"**/*.{js,jsx,json,md}\"",
+    "start": "npm run develop",
+    "serve": "gatsby serve",
     "federalist": "npm run federalist:build && npm run federalist:copy",
-    "federalist:build": "npm run content:build && npm run content:copy && npm run app:build",
-    "federalist:copy": "mkdir -p _site && rm -rf _site/* && cp -r app/build/* _site/"
+    "federalist:build": "gatsby build --prefix-paths",
+    "federalist:copy": "mkdir -p _site && rm -rf _site/* && cp -r public/* _site/"
   },
   "dependencies": {
     "@mdx-js/mdx": "^1.6.6",
