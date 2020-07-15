@@ -1,5 +1,5 @@
 ---
-title: About AI
+title: "About Artificial Intelligence "
 ---
 Artificial intelligence (AI) refers to computer science techniques that attempt to simulate human cognitive capabilities. AI will bring about transformative change to most, if not every aspect of humanity, which presents a range of challenges and opportunities. It has already revolutionized the business world and its application across the U.S. Federal government is fundamentally changing the way agencies meet their mission. Government must take these challenges and opportunities head on to stay on the leading edge, sustain a competitive advantage on the global stage, and ensure the long term prosperity of the United States. This guide intends to help government decision makers develop clarity about what AI means for them and their agencies.
 
