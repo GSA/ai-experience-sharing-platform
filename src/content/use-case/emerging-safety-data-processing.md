@@ -12,7 +12,6 @@ solutions:
   - Increase Compliance
 tags:
   - In Pilot
-  - HHS
   - FDA
   - Reports Data Processing
 featured: false
@@ -27,7 +26,7 @@ The Federal Adverse Event Reporting System (FAERS) database contains “adverse 
 
 FDA did a number of experiments. 1) Use of NLP (text mining and topic modeling) to model relationships between drugs and a single medical condition, hepatic (i.e., liver) failure. 2) Use of text-based rules, decision trees using text clustering inputs, and a simple neural network to predict serious drug related adverse outcomes. 3) Use of structured features and expert derived terms from unstructured text to predict these ground truth labels. Then trained various supervised models (RF & SVM).
 
-## Results
+## Lessons Learned
 
 Data limitations (including the nature of the data and reporting on a negative outcome) can make it difficult to uncover a causal relationship.
 
@@ -39,7 +38,7 @@ Business Function - Reports Data Processing
 
 Production Status - In Pilot
 
-Agency - Department of Health and Human Services, Food and Drug Administration
+Agency - Food and Drug Administration
 
 POC Name - ACUS: Government by Algorithm: Artificial Intelligence in Federal Administrative Agencies
 
