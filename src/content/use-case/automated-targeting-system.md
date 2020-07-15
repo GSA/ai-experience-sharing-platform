@@ -1,11 +1,14 @@
 ---
-title: Automated Targeting System
-date: 2020-07-15T18:40:37.032Z
-participant: ACUS
 techniques:
   - Predictive Analytics
   - Decision Making
-benefits:
+title: Automated Targeting System
+date: 2020-07-15T18:40:37.032Z
+participant: ACUS
+patterns:
+  - Predictive Analytics
+  - Decision Making
+solutions:
   - Increase Accuracy
   - Increase Compliance
 tags:
@@ -14,10 +17,13 @@ tags:
   - CBP
   - Risk Prediction Modeling
 featured: false
+benefits:
+  - Increase Accuracy
+  - Increase Compliance
 ---
 Risk prediction modeling uses statistical methods to assess particularized future risks, such as the probability that an individual will develop a specific illness. To assess the potential security risks posed by each of the hundreds of millions of people, vehicles, and containers crossing U.S. borders, CBP employs a bundle of programs termed Government by Algorithm: Artificial Intelligence in Federal Administrative Agencies the Automated Targeting System.
 
-## Data
+## Data Methodology
 
 Data collected from across DHS including Advanced Passenger Information System, Nonimmigrant Information System, Enforcement Integrated Database, the FBI Terrorist Screening Database and the DOJ National Crime Information Center. The program also leverages commercial data including billing and email address, payment information, in-flight seat locations, meal preferences and baggage data directly from airline carriers.
 
