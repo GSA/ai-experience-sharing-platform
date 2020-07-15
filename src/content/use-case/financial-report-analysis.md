@@ -15,7 +15,7 @@ featured: false
 ---
 There are over 7,000 corporate issuers of securities who must submit financial statements (i.e. annual 10-K, quarterly 10-Q forms) for oversight. Each report can be hundreds of pages long and include general information about the business, risk factors, financial data and MD&As. Analyzing these reports is a very time intensive process. CIRA’s goal is to help more efficiently utilize SECs limited resources by identifying corporate filters that warrant additional investigation.
 
-## Data
+## Data Approach
 
 The tool is trained on historical datasets of past issuer filings.
 
