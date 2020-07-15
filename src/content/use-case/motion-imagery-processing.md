@@ -11,6 +11,7 @@ solutions:
   - Improve Customer Service
   - Increase Compliance
 tags:
+  - DHS
   - CPB
   - In Pilot
   - Image Processing
@@ -32,7 +33,7 @@ Business Function - Image processing
 
 Production Status - In Pilot
 
-Agency - United States Customs and Borer Protection
+Agency - Department of Homeland Security, United States Customs and Borer Protection
 
 POC Name - ACUS: Government by Algorithm: Artificial Intelligence in Federal Administrative Agencies
 
