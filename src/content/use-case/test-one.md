@@ -18,7 +18,7 @@ featured: true
 ---
 The new AI-based “Suggest Reviewer” tool replaced a legacy process where NSF program staff across the agency were involved in manually identifying reviewers. It significantly reduced the administrative burden on NSF staff, provided support for evidence-based decision making, introduced the culture for NSF staff to learn to work alongside AI and promoted the practice of continuous innovation.
 
-## Data
+## Data Approach
 
 The data used for this service include the research proposals that are submitted to National Science Foundation, the National Science Foundation researcher profile databases and third-party data such as research publications. The training set used in this Machine Learning algorithm includes a list of condensed scientific terminologies from the above data sets.
 
