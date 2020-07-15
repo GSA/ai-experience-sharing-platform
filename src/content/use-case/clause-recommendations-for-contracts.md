@@ -29,7 +29,7 @@ FedRAMP certified cloud infrastructure enabled the small business vendor to rapi
 
 The acquisition trait classification models work as follows. Components are designed as a configurable algorithms. Classification algorithms are customized for each agency or component. An entry contains the name of the rule, an unlimited, variable-length list of highly customized regular expressions (regexes) for finding relevant text in the document, and a minimum threshold of unique matches to be met before the classification is deemed true.
 
-## Results
+## Lessons Learned
 
 Use technology that can be rapidly deployed in your agency's IT environment.
 
