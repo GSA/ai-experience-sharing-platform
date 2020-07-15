@@ -20,7 +20,7 @@ featured: false
 ---
 The United States Patent and Trademark Office (USPTO) employs 8,185 patent examiners and 579 trademark attorneys in 2018. The USPTO has a substantive backlog receiving 100’s of thousands of patent and trademark applications annually with an average turnaround time for patents from receipt to first action of 15.8 months (more the .4 months greater than target). In 2018, The Patent and Trademark Office received 643,349 patent files and 638,847 trademark filings in 2018.
 
-## Data
+## Data Approach
 
 There are different types of data used in the USPTO models. The models all use applicants data that can be in unstructured and structured data as well as images and terms. For the patents and trademarks, USPTO uses classification codes to identify categories of patents and trademarks based on specifications, claims and drawing. The deep learning models use visual depictions as inputs and search through databases of historical images compares the images to generate a list of similar images.
 
