@@ -18,17 +18,15 @@ featured: false
 ---
 Better understand and identify trading-based market misconduct, specifically insider trading. ARTEMIS aims to identify serial cheaters while ATLAS evaluates the data for first-time offenders.
 
-## Data
+## Data Approach
 
 Data collected from submitted forms, manual generation of “bluesheet” (aggregated data) and database of all previous “bluesheets”.
 
 ## Tools and Technology
 
-1) Identification of suspected offenders. Use of NLP tool (bag of words) to analyze submitted 8-K forms to classify documents according to significance of an event, language changes in the disclosures, scheduled/unscheduled earnings announcements and events not related to earnings. Output = labeled data (continued below).
-
-2) Supervised learning model: identify trigger events and market changes that may warrant investigation. 
-
-3) Human examiner reviews the results--supports basis for investigation.
+1. Identification of suspected offenders. Use of NLP tool (bag of words) to analyze submitted 8-K forms to classify documents according to significance of an event, language changes in the disclosures, scheduled/unscheduled earnings announcements and events not related to earnings. Output = labeled data (continued below).
+2. Supervised learning model: identify trigger events and market changes that may warrant investigation. 
+3. Human examiner reviews the results--supports basis for investigation.
 
 ## Lessons Learned
 
