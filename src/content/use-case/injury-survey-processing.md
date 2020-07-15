@@ -12,7 +12,7 @@ tags:
   - Survey Processing
 featured: false
 ---
-## Data
+## Data Approach
 
 The data consists of hundreds of thousands of written narratives describing work related injuries and illnesses in the U.S. These narratives are copied from OSHA record keeping logs and contain text fields describing: job title, what the worker was doing, what happened, what was injured, and what was the object or substance that caused the injury. Each of these is assigned 6 codes indicating various characteristics of the incident. The data is stored in an Oracle database.
 
