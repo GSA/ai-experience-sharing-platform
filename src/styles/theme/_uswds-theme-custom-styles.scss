@@ -176,3 +176,9 @@ ul.schema-fields li {
   margin-bottom: 1.25rem;
   margin-top: 0.25rem;
 }
+
+.usa-navbar .usa-button {
+  @include at-media($theme-navigation-width) {
+    display: none;
+  }
+}

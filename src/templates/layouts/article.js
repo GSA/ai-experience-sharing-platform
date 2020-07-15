@@ -1,19 +1,36 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { graphql } from 'gatsby';
+import { useParams } from 'react-router-dom';
 import Primary from 'templates/layouts/primary';
 import Mdx from 'components/Mdx';
 import ArticleDetails from 'components/ArticleDetails';
 import ContentNav from 'components/ContentsNav';
 
-const UseCase = ({
-  data: {
-    mdx: {
-      body,
-      tableOfContents: { items: contents = [] } = {},
-      frontmatter: { title, ...details } = {},
-    } = {},
-  } = {},
-}) => {
+export const Article = ({ pageContext }) => {
+  const { name = '' } = useParams();
+  const { dataKey } = pageContext;
+  const [data, setData] = useState({});
+  useEffect(() => {
+    fetch('/library.json')
+      .then((response) => response.text())
+      .then((text) => {
+        const raw = JSON.parse(text);
+        const items = raw.data[dataKey].edges.map((item) => item.node);
+        const json = items.find((item) => item.fields.name === name);
+
+        if (JSON.stringify(json) !== JSON.stringify(data)) {
+          setData((state) => ({ ...state, ...json }));
+        }
+      });
+  });
+  const {
+    body,
+    tableOfContents: { items: contents = [] } = {},
+    frontmatter: { title = '', ...details } = {},
+  } = data;
+  if (!body) {
+    return <h1>LOADING</h1>;
+  }
   return (
     <Primary title={title}>
       <div className="grid-container">
@@ -24,7 +41,7 @@ const UseCase = ({
           </div>
           <div className="grid-col-8 padding-right-4">
             <h1>{title}</h1>
-            <Mdx>{body}</Mdx>
+            {body && <Mdx>{body}</Mdx>}
           </div>
           <div className="grid-col-2">
             <ArticleDetails title="Details" items={details} />
@@ -56,4 +73,4 @@ export const pageQuery = graphql`
   }
 `;
 
-export default UseCase;
+export default Article;

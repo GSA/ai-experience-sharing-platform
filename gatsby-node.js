@@ -1,5 +1,5 @@
 const { paginate } = require('gatsby-awesome-pagination');
-const { createPageType } = require('./gatsbyNode/index.js');
+const { createPageType, generateJSON } = require('./gatsbyNode/index.js');
 
 exports.onCreateNode = ({ node, getNode, actions }) => {
   const { createNodeField } = actions;
@@ -8,9 +8,7 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
   if (node.internal.type !== 'Mdx') {
     return;
   }
-
   const fileNode = getNode(node.parent);
-
   createNodeField({
     node,
     name: 'sourceName',
@@ -22,41 +20,31 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
     name: 'name',
     value: fileNode.name,
   });
+
   createNodeField({
     node,
     name: 'pagePath',
-    value: `/${fileNode.sourceInstanceName}/${fileNode.name}`,
+    value: `${fileNode.sourceInstanceName}/${fileNode.name}`,
   });
 };
 
-exports.createPages = async ({ actions, graphql }) => {
-  const { createPage } = actions;
-
+exports.createPages = async (options) => {
   await createPageType({
-    createPage,
-    graphql,
+    options,
     type: 'content-page',
     template: './src/templates/layouts/content-page.js',
   });
 
-  await createPageType({
-    createPage,
-    graphql,
-    type: 'resource',
-    path: 'resource',
-    collection: {
-      path: 'resource',
-    },
-    taxonomies: [{ name: 'tags' }, { name: 'category' }],
-  });
+  await generateJSON(options.graphql);
+};
 
-  await createPageType({
-    createPage,
-    graphql,
-    type: 'use-case',
-    path: 'use-case',
-    collection: {
-      path: 'use-case',
-    },
-  });
+exports.onCreatePage = async (options) => {
+  const { page, actions: { createPage } = {} } = options;
+  if (page.path.match(/^\/library/)) {
+    // page.matchPath is a special key that's used for matching pages
+    // with corresponding routes only on the client.
+    page.matchPath = '/library/*';
+    // Update the page.
+    createPage(page);
+  }
 };

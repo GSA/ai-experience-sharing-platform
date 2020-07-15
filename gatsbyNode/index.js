@@ -7,15 +7,16 @@ const fs = require('fs');
 const { paramCase } = require('param-case');
 
 module.exports.createPageType = async ({
-  createPage,
-  graphql,
+  options,
   type,
   path,
   template,
   context,
+  protected = '',
   collection = {},
   taxonomies = [],
 }) => {
+  const { actions: { createPage } = {}, graphql } = options;
   const defaultTaxTemplate = './src/templates/layouts/taxonomy.js';
   const defaultTemplate = './src/templates/layouts/article.js';
   // This function will...
@@ -229,4 +230,52 @@ const markdownQuery = async (graphql, source, tax) => {
   }
 
   return result;
+};
+module.exports.generateJSON = async (graphql) => {
+  const data = await graphql(`
+    {
+      usecase: allMdx(filter: { fields: { sourceName: { eq: "use-case" } } }) {
+        edges {
+          node {
+            fields {
+              pagePath
+              name
+              sourceName
+            }
+            frontmatter {
+              title
+              date
+              participant
+              patterns
+              solutions
+              tags
+            }
+            body
+            tableOfContents
+          }
+        }
+      }
+      resource: allMdx(filter: { fields: { sourceName: { eq: "resource" } } }) {
+        edges {
+          node {
+            fields {
+              pagePath
+              name
+              sourceName
+            }
+            frontmatter {
+              title
+              date
+              category
+              tags
+            }
+            body
+            tableOfContents
+          }
+        }
+      }
+    }
+  `);
+  const path = nodepath.join(__dirname, '../static/library.json');
+  fs.writeFileSync(path, JSON.stringify(data));
 };

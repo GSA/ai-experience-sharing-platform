@@ -1,11 +1,49 @@
 import { Link } from 'gatsby';
-import React from 'react';
+import React, { useState } from 'react';
 import { useStaticQuery, graphql } from 'gatsby';
 import classnames from 'classnames';
 
 import close from 'uswds/dist/img/close.svg';
 import Button from 'components/Button';
 import SearchForm from 'templates/components/SearchForm';
+
+const NavItem = ({ key, text, link, items }) => {
+  const [isOpen, toggleOpen] = useState(false);
+  const handleClick = (e) => {
+    console.log(e);
+    toggleOpen((state) => !state);
+  };
+  return (
+    <li key={key} className="usa-nav__primary-item">
+      {Array.isArray(items) ? (
+        <div onClick={handleClick} onBlur={handleClick}>
+          <button
+            className={`usa-accordion__button usa-nav__link`}
+            aria-controls={`extended-nav-section-${key}`}
+            aria-expanded={isOpen}
+          >
+            <span>{text}</span>
+          </button>
+          <ul
+            id={`extended-nav-section-${key}`}
+            className="usa-accordion__content usa-nav__submenu"
+            hidden={!isOpen}
+          >
+            {items.map((item, idx) => (
+              <li key={idx} className="usa-nav__submenu-item">
+                <Link to={item.link}>{item.text}</Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ) : (
+        <Link className="usa-nav__link" activeClassName="usa-current" to={link}>
+          <span>{text}</span>
+        </Link>
+      )}
+    </li>
+  );
+};
 
 const Nav = ({ onClick, isOpen }) => {
   const data = useStaticQuery(graphql`
@@ -41,49 +79,24 @@ const Nav = ({ onClick, isOpen }) => {
         </Button>
         <ul className="usa-accordion usa-nav__primary">
           {navigation.map((nav, idx) => {
-            const { text, link, items } = nav;
+            const { text = '', link = '', items = [] } = nav;
             return (
-              <li key={idx} className="usa-nav__primary-item">
-                {Array.isArray(items) ? (
-                  <>
-                    <button
-                      className={`usa-accordion__button usa-nav__link ${
-                        idx === 0 ? 'usa-current' : ''
-                      }`}
-                      aria-controls={`extended-nav-section-${idx}`}
-                      aria-expanded={false}
-                    >
-                      <span>{text}</span>
-                    </button>
-                    <ul
-                      id={`extended-nav-section-${idx}`}
-                      className="usa-accordion__content usa-nav__submenu"
-                      hidden
-                    >
-                      {items.map((item, idx) => (
-                        <li key={idx} className="usa-nav__submenu-item">
-                          <Link to={item.link}>{item.text}</Link>
-                        </li>
-                      ))}
-                    </ul>
-                  </>
-                ) : (
-                  <Link
-                    className="usa-nav__link"
-                    activeClassName="usa-current"
-                    to={link}
-                  >
-                    <span>{text}</span>
-                  </Link>
-                )}
-              </li>
+              <NavItem
+                key={`usa-nav-item-${idx}`}
+                text={text}
+                link={link}
+                items={items}
+              />
             );
           })}
         </ul>
         <div className="usa-nav__secondary">
           <ul className="usa-nav__secondary-links">
             {secondaryLinks.map((secondaryLink, idx) => (
-              <li key={idx} className="usa-nav__secondary-item">
+              <li
+                key={`usa-nav-item-secondary-${idx}`}
+                className="usa-nav__secondary-item"
+              >
                 <Link to={secondaryLink.link}>{secondaryLink.text}</Link>
               </li>
             ))}

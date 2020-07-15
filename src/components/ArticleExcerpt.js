@@ -1,13 +1,14 @@
 import React from 'react';
 import Content from 'components/Content';
-import Button from 'components/Button';
+import { Link } from 'react-router-dom';
 
 const ArticleExcerpt = ({ title, date, path, excerpt }) => {
+  console.log(path);
   return (
     <div className="ArticleExcerpt">
-      <Button className="ArticleExcerpt__title" variant="link" url={path}>
+      <Link className="ArticleExcerpt__title" to={path}>
         <h5>{title}</h5>
-      </Button>
+      </Link>
       <div className="ArticleExcerpt__date">Published {date}</div>
       <Content chunks={1} chunkSize={8} />
     </div>

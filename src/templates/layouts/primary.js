@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
+import Auth from 'templates/components/Login';
 import SEO from 'templates/components/Seo';
 import Banner from 'templates/components/Banner';
 import Footer from 'templates/components/Footer';

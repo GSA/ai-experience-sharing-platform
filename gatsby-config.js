@@ -9,15 +9,15 @@ module.exports = {
         'Sharing Artificial Intelligence use cases across the federal government',
     },
     navigation: [
-      { text: 'Use Cases', link: '/use-case' },
+      { text: 'Use Cases', link: 'library/use-case' },
       {
         text: 'Resources',
-        link: '/resource',
+        link: 'library/resource',
         items: [
-          { text: 'Playbooks', link: '/resource/playbooks' },
-          { text: 'Whitepapers', link: '/resource/whitepapers' },
-          { text: 'Guides', link: '/resource/guides' },
-          { text: 'All Resources', link: '/resource' },
+          { text: 'Playbooks', link: 'library/resource/playbooks' },
+          { text: 'Whitepapers', link: 'library/resource/whitepapers' },
+          { text: 'Guides', link: 'library/resource/guides' },
+          { text: 'All Resources', link: 'library/resource' },
         ],
       },
       {
@@ -62,6 +62,7 @@ module.exports = {
       options: {
         aliases: {
           styles: 'src/styles',
+          state: 'src/state',
           components: 'src/components',
           templates: 'src/templates',
           utils: 'src/utils',
