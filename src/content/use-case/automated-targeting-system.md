@@ -26,7 +26,7 @@ Data collected from across DHS including Advanced Passenger Information System, 
 
 Automated Targeting System-- a bundle of private machine learning solutions that leverage both government and non-government data to predict if an individual poses a particular risk upon entry to the country.
 
-## Results
+## Lessons Learned
 
 Ethics and oversight are important yet challenging.
 
