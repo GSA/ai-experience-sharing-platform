@@ -5,7 +5,7 @@ Following the February 2019 Executive Order on Maintaining American Leadership i
 
 The mission of the TTS AI Portfolio is to help Federal agencies deliver better services and experiences and achieve their respective missions through the investment in, and appropriate application of, artificial intelligence. This Executive’s Guide to AI in Government is one early product of a broader array of products and platforms, along with the TTS Artificial Intelligence Community of Practice (AI CoP). The AI Portfolio continues to provide resources and build products and platforms that contribute to the larger TTS AI Portfolio mission. The TTS AI Portfolio is the destination where the U.S. federal government engages each other on the application of AI in government.
 
-# About
+# Artificial Intelligence
 
 Artificial intelligence (AI) refers to computer science techniques that attempt to simulate human cognitive capabilities. AI will bring about transformative change to most, if not every aspect of humanity, which presents a range of challenges and opportunities. It has already revolutionized the business world and its application across the U.S. Federal government is fundamentally changing the way agencies meet their mission. Government must take these challenges and opportunities head on to stay on the leading edge, sustain a competitive advantage on the global stage, and ensure the long term prosperity of the United States. This guide intends to help government decision makers develop clarity about what AI means for them and their agencies.
 
