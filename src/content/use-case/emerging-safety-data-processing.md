@@ -18,7 +18,7 @@ featured: false
 ---
 FDA is piloting of AI/ML techniques to identify emerging safety concerns in reports made to its Federal Adverse Event Reporting System (FAERS). Because preapproval studies cannot identify all possible side effects or problems with a drug or therapeutic biological product, the FDA maintains a system of postmarket surveillance and risk assessment centered on analysis of a growing pool of data about adverse events and medication error reports.
 
-## Data
+## Data Approach
 
 The Federal Adverse Event Reporting System (FAERS) database contains “adverse event reports, medication error reports and product quality complaints resulting in adverse events that were submitted to FDA.” Given the sheer volume of data contained in FAERS, and the varied types of data—both structured and unstructured—the FDA has sought more efficient ways to extract and use this information.
 
