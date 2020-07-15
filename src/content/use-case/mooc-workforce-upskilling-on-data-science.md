@@ -20,7 +20,7 @@ NSF piloted the use of MOOC for upskilling federal staff in Data Science and Ana
 
 Business Function - Human resources
 
-Production Status - In pilto
+Production Status - In pilot
 
 Agency - National Science Foundation
 
