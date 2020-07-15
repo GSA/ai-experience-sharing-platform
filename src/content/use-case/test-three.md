@@ -22,7 +22,7 @@ featured: true
 ---
 We are eager to partner with more organizations, envision scaling this tool to be a federal government-wide shared service for identifying overlapping and duplicative research grants.
 
-## Data
+## Data Approach
 
 The data used for this service include the research proposals that are submitted to National Science Foundation and National Institute of Health. The training set used in this Machine Learning algorithm includes a list of condensed scientific terminologies from the above data.
 
