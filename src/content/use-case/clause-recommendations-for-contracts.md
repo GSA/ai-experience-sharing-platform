@@ -1,25 +1,33 @@
 ---
-title: Clause Recommendations for Contracts
-date: 2020-07-15T17:44:54.634Z
-participant: David Gill
 techniques:
   - Recommendation
   - Personalization
   - Classification Modeling
-benefits:
+title: Clause Recommendations for Contracts
+date: 2020-07-15T17:44:54.634Z
+participant: David Gill
+patterns:
+  - Recommendation
+  - Personalization
+  - Classification Modeling
+solutions:
   - Decrease Cycle Time
   - Increase Accuracy
   - Increase Compliance
-  - ""
 tags:
   - In Production
   - IRS
   - Contract Classification
 featured: false
+benefits:
+  - Decrease Cycle Time
+  - Increase Accuracy
+  - Increase Compliance
+  - ""
 ---
 Contract clauses implement many critical contracting policies in areas such as security, background investigations, invoice payment, and tax compliance. Inserting clauses with traditional contract writing information systems is time consuming because users must manually select each clause that is applicable to a solicitation or contract. Due to difficultly identifying all clauses applicable to a specific acquisition - many contracts were being awarded with legal drafting errors.
 
-## Data
+## Data Approach
 
 The traits of an acquisition are extracted from a user-uploaded solicitation or contract document. The traits of a specific contract action (e.g. staff-like access, funding agency, etc.) and logic from the Federal Acquisition Regulations. The user receives a report with recommended clause language corrections. Clause statistics for each document are aggregated into an interactive dashboard displaying policy compliance across the organization.
 
