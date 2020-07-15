@@ -12,11 +12,11 @@ tags:
   - Survey Processing
 featured: false
 ---
-## Data and Data Management
+## Data
 
 The data consists of hundreds of thousands of written narratives describing work related injuries and illnesses in the U.S. These narratives are copied from OSHA record keeping logs and contain text fields describing: job title, what the worker was doing, what happened, what was injured, and what was the object or substance that caused the injury. Each of these is assigned 6 codes indicating various characteristics of the incident. The data is stored in an Oracle database.
 
-## Technical Solution, Tools and Technology
+## Tools and Technology
 
 The current technical solution is a deep neural network with character-level convolutions, followed by a bidirectional LSTM with separate attention layers in 6 output modules, one for each coding task. The solution is implemented in tensorflow keras and trained using an NVIDIA Titxan X Pascal GPU. During inference the model is run on a large server with dozens of cores and more than 100 GB of RAM. Source code is available at [Github](https://github.com/USDepartmentofLabor/soii_neural_autocoder). 
 
