@@ -17,6 +17,8 @@ tags:
   - Contract Classification
 featured: false
 ---
+Contract clauses implement many critical contracting policies in areas such as security, background investigations, invoice payment, and tax compliance. Inserting clauses with traditional contract writing information systems is time consuming because users must manually select each clause that is applicable to a solicitation or contract. Due to difficultly identifying all clauses applicable to a specific acquisition - many contracts were being awarded with legal drafting errors.
+
 ## Data
 
 The traits of an acquisition are extracted from a user-uploaded solicitation or contract document. The traits of a specific contract action (e.g. staff-like access, funding agency, etc.) and logic from the Federal Acquisition Regulations. The user receives a report with recommended clause language corrections. Clause statistics for each document are aggregated into an interactive dashboard displaying policy compliance across the organization.
