@@ -9,6 +9,33 @@ const slugLink = require("remark-autolink-headings");
 const extractToc = require("remark-extract-toc");
 const yaml = require("yaml").parse;
 
+const parseHeading = (item, data = []) => {
+  data.push({ text: item.value, url: `#${item.data.id}` });
+};
+
+const parseToc = (items, data) => {
+  items.forEach((item) => {
+    parseHeading(item, data);
+    if (item.children) {
+      parseToc(item.children, data);
+    }
+  });
+};
+
+const remark = markdown()
+  .use(parse)
+  .use(frontmatter)
+  .use(extractFm, { name: "frontmatter", yaml })
+  .use(slug)
+  .use(slugLink);
+
+const remarkToc = markdown()
+  .use(parse)
+  .use(frontmatter)
+  .use(slug)
+  .use(slugLink)
+  .use(extractToc, { keys: ["data"] });
+
 const contentPath = path.join(__dirname);
 
 const folders = fs
@@ -22,26 +49,21 @@ const files = folders.reduce((content, type) => {
 
   const contents = fs
     .readdirSync(type)
-    .filter((file) => file.includes(".md"))
-    .reduce((acc, file) => {
-      const name = file.replace(/\.md/, "");
+    .filter((filename) => filename.includes(".md"))
+    .reduce((acc, filename) => {
+      const file = fs.readFileSync(path.join(type, filename), "utf-8");
+      const name = filename.replace(/\.md/, "");
+      const toc = [];
 
-      return [...acc, { name, type }];
+      const body = remark.processSync(file).toString();
+
+      const node = remarkToc.parse(file);
+      const headings = remarkToc.runSync(node);
+      parseToc(headings, toc);
+      const mdFile = { name, type, toc, body };
+      return [...acc, mdFile];
     }, []);
   return [...content, ...contents];
 }, []);
 
-const testFile = fs.readFileSync(`${files[0].type}/${files[0].name}.md`);
-
-const remark = markdown()
-  .use(parse)
-  .use(frontmatter)
-  .use(extractFm, { name: "frontmatter", yaml })
-  .use(slug)
-  .use(slugLink)
-  .use(extractToc, { keys: ["id"] });
-
-const node = remark.parse(testFile);
-const headings = remark.runSync(node);
-
-console.log(node, headings);
+fs.writeFileSync(path.join(contentPath, "content.json"), JSON.stringify(files));
