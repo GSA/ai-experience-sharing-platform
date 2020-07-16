@@ -55,12 +55,13 @@ const files = folders.reduce((content, type) => {
       const name = filename.replace(/\.md/, "");
       const toc = [];
 
-      const body = remark.processSync(file).toString();
-
+      const process = remark.processSync(file);
+      const fields = process.data.frontmatter;
+      const body = process.toString();
       const node = remarkToc.parse(file);
       const headings = remarkToc.runSync(node);
       parseToc(headings, toc);
-      const mdFile = { name, type, toc, body };
+      const mdFile = { name, type, fields, toc, body };
       return [...acc, mdFile];
     }, []);
   return [...content, ...contents];
