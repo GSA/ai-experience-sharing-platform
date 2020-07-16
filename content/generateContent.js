@@ -67,4 +67,7 @@ const files = folders.reduce((content, type) => {
   return [...content, ...contents];
 }, []);
 
-fs.writeFileSync(path.join(contentPath, "content.json"), JSON.stringify(files));
+fs.writeFileSync(
+  path.join(contentPath, "../public", "content.json"),
+  JSON.stringify(files)
+);
