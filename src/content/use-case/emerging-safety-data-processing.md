@@ -24,7 +24,13 @@ The Federal Adverse Event Reporting System (FAERS) database contains “adverse 
 
 ## Tools and Technology
 
-FDA did a number of experiments. 1) Use of NLP (text mining and topic modeling) to model relationships between drugs and a single medical condition, hepatic (i.e., liver) failure. 2) Use of text-based rules, decision trees using text clustering inputs, and a simple neural network to predict serious drug related adverse outcomes. 3) Use of structured features and expert derived terms from unstructured text to predict these ground truth labels. Then trained various supervised models (RF & SVM).
+FDA did a number of experiments. 
+
+1) Use of NLP (text mining and topic modeling) to model relationships between drugs and a single medical condition, hepatic (i.e., liver) failure. 
+
+2) Use of text-based rules, decision trees using text clustering inputs, and a simple neural network to predict serious drug related adverse outcomes. 
+
+3) Use of structured features and expert derived terms from unstructured text to predict these ground truth labels. Then trained various supervised models (RF & SVM).
 
 ## Lessons Learned
 
