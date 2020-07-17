@@ -1,3 +1,4 @@
+import Homepage from "./Homepage";
 import Taxonomy from "./Taxonomy";
 
-export default [Taxonomy];
+export default [Homepage, Taxonomy];
