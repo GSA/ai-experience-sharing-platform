@@ -39,7 +39,10 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "content": "node generateContent.js"
+    "content": "node generateContent.js",
+    "federalist": "npm run federalist:build && npm run federalist:copy",
+    "federalist:build": "npm run content && npm run build",
+    "federalist:copy": "mkdir -p _site && rm -rf _site/* && cp -r build/* _site/"
   },
   "eslintConfig": {
     "extends": "react-app"

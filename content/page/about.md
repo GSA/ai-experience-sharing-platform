@@ -4,7 +4,7 @@ title: About
 
 # heading 1
 
-<Content chunks={10} />
+How are we going to get an excerpt out of this thing?
 
 ## heading 2
 

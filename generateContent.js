@@ -27,13 +27,22 @@ const removeFm = () => (tree = []) => ({
   children: tree.children.filter(({ type }) => type !== "yaml"),
 });
 
+const excerpt = () => (tree = [], vfile) => {
+  let excerpt = tree.children.find((item) => item.type === "paragraph");
+  if (excerpt) {
+    vfile.data.excerpt = excerpt.children[0].value;
+  }
+  return tree;
+};
+
 const remark = markdown()
   .use(parse)
   .use(frontmatter)
   .use(extractFm, { name: "frontmatter", yaml })
   .use(removeFm)
   .use(slug)
-  .use(slugLink);
+  .use(slugLink)
+  .use(excerpt, { test: "test" });
 
 const remarkToc = markdown()
   .use(parse)
@@ -61,7 +70,10 @@ const files = folders.reduce((content, type) => {
       const name = filename.replace(/\.md/, "");
       const toc = [];
       const process = remark.processSync(file);
-      const { title, date, ...fields } = process.data.frontmatter;
+      const {
+        excerpt,
+        frontmatter: { title, date, ...fields } = {},
+      } = process.data;
       const body = process.toString();
       const node = remarkToc.parse(file);
       const headings = remarkToc.runSync(node);
@@ -69,7 +81,8 @@ const files = folders.reduce((content, type) => {
       const mdFile = {
         name,
         type,
-        path: `${type}/${name}`,
+        excerpt,
+        path: `/${type}/${name}`,
         title,
         date,
         fields,
@@ -90,14 +103,3 @@ fs.copyFileSync(
   path.join(contentPath, "site.json"),
   path.join(__dirname, "public", "site.json")
 );
-
-const stuff = [
-  {
-    data: { frontmatter: { title: "About" } },
-    messages: [],
-    history: [],
-    cwd: "/Users/tplummer/ai-experience-sharing-platform",
-    contents:
-      "---\ntitle: About\n---\n\n# [](#heading-1)heading 1\n\n<Content chunks={10} />\n\n## [](#heading-2)heading 2\n\n<Content chunks={3} />\n\n### [](#heading-3)heading 3\n\n<Content chunks={3} />\n\n#### [](#heading-4)heading 4\n",
-  },
-];

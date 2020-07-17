@@ -53,6 +53,7 @@ export const Taxonomy = ({ pageContext }) => {
                       title={item.title}
                       date={item.date}
                       path={item.path}
+                      excerpt={item.excerpt}
                     />
                   </div>
                 );
