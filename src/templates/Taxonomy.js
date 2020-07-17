@@ -1,75 +1,82 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
 import PropTypes from "prop-types";
-import Primary from "./primary";
 import Article from "components/ArticleExcerpt";
 import Login from "templates/Login";
+import {
+  resourceList,
+  usecaseList,
+  getAllUsecase,
+  getAllResource,
+} from "app/contentSlice";
+
+const types = {
+  usecase: { selector: usecaseList, thunk: getAllUsecase, title: "Use Cases" },
+  resource: {
+    selector: resourceList,
+    thunk: getAllResource,
+    title: "Resources",
+  },
+};
 
 export const Taxonomy = ({ pageContext }) => {
-  const { name, field, type, dataKey } = pageContext;
-  const [data, setData] = useState({});
+  const dispatch = useDispatch();
+  const { type } = useParams();
+  const { selector, thunk, title } = types[type];
+  const { pending = false, data = [] } = useSelector(selector);
   useEffect(() => {
-    const response = fetch("/library.json")
-      .then((response) => response.text())
-      .then((text) => {
-        const raw = JSON.parse(text);
-        const json = raw.data[dataKey];
+    dispatch(thunk);
+  }, [dispatch, type, thunk]);
 
-        if (JSON.stringify(json) !== JSON.stringify(data)) {
-          setData((state) => ({ ...state, ...json }));
-        }
-      });
-  });
-  const edges = "edges" in data ? data.edges : [];
-  const title = `${type}${field ? ` / ${field}` : ""}${
-    name ? ` / ${name}` : ""
-  }`;
   return (
-    <Primary title={title}>
-      <Login>
-        <div className="grid-container">
-          <div className="grid-row margin-top-4">
-            <div className="grid-col-12">
-              <div className="grid-row align-items-center padding-bottom-4">
-                <div className="grid-col-8">
-                  <h3 className="margin-0">{title}</h3>
-                </div>
-                <div className="grid-col-4" style={{ textAlign: "right" }}>
-                  <label
-                    className="usa-labelmargin-0 display-inline-block"
-                    htmlFor="sort"
-                  >
-                    Sort By:
-                  </label>
-                  <select
-                    className="usa-select display-inline-block padding-y-0 margin-0 border-none width-auto height-auto"
-                    style={{ border: "none" }}
-                    name="options"
-                    id="sort"
-                  >
-                    <option value="value1">Publish Date (newest)</option>
-                    <option value="value2">Option B</option>
-                    <option value="value3">Option C</option>
-                  </select>
-                </div>
+    <Login>
+      <div className="grid-container">
+        <div className="grid-row margin-top-4">
+          <div className="grid-col-12">
+            <div className="grid-row align-items-center padding-bottom-4">
+              <div className="grid-col-8">
+                <h3 className="margin-0">{title}</h3>
               </div>
+              <div className="grid-col-4" style={{ textAlign: "right" }}>
+                <label
+                  className="usa-labelmargin-0 display-inline-block"
+                  htmlFor="sort"
+                >
+                  Sort By:
+                </label>
+                <select
+                  className="usa-select display-inline-block padding-y-0 margin-0 border-none width-auto height-auto"
+                  style={{ border: "none" }}
+                  name="options"
+                  id="sort"
+                >
+                  <option value="value1">Publish Date (newest)</option>
+                  <option value="value2">Option B</option>
+                  <option value="value3">Option C</option>
+                </select>
+              </div>
+            </div>
 
-              {edges.map((edge, i) => {
-                const { node = {} } = edge;
+            {pending ? (
+              <h1>Loading</h1>
+            ) : (
+              data.map((item, i) => {
                 return (
-                  <div key={`article-${i}`} className="margin-bottom-5">
+                  <div key={`article-${item.name}`} className="margin-bottom-5">
                     <Article
-                      title={node.frontmatter.title}
-                      date={node.frontmatter.date}
-                      path={node.fields.pagePath}
+                      title={item.title}
+                      date={item.date}
+                      path={item.path}
                     />
                   </div>
                 );
-              })}
-            </div>
+              })
+            )}
           </div>
         </div>
-      </Login>
-    </Primary>
+      </div>
+    </Login>
   );
 };
 Taxonomy.propTypes = {

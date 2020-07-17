@@ -1,34 +1,16 @@
 import React from "react";
 import PropTypes from "prop-types";
-
 import { Link } from "react-router-dom";
-import { FontAwesomeIcon as Fa } from "@fortawesome/react-fontawesome";
-import { faExternalLinkAlt } from "@fortawesome/free-solid-svg-icons";
+import classnames from "classnames";
 
 const nodes = {
-  a: ({ url, children, type, ...props }) => (
-    <a {...props} href={url} target="_blank" rel="noopener noreferrer">
+  a: ({ to, children, type, ...props }) => (
+    <a {...props} href={to} target="_blank" rel="noopener noreferrer">
       {children}
     </a>
   ),
-  b: ({ url, type = "button", ...props }) => <button type={type} {...props} />,
-  l: ({ type, url, ...props }) => <Link to={url} {...props} />,
-};
-
-const buildClass = ({
-  color = "primary",
-  variant,
-  raised = false,
-  fullwidth = false,
-}) => {
-  if (variant === "link") {
-    return "usa-button--unstyled";
-  }
-  return `usa-button--${color}${variant ? `-${variant}` : ""} ${
-    raised ? "usa-button--raised" : ""
-  } ${fullwidth ? "usa-button--fullwidth" : ""} ${
-    variant === "media" ? "usa-button--unstyled" : ""
-  }`;
+  b: ({ to, type = "button", ...props }) => <button type={type} {...props} />,
+  link: ({ type, ...props }) => <Link {...props} />,
 };
 
 export const Button = ({
@@ -37,29 +19,29 @@ export const Button = ({
   color,
   variant,
   raised,
-  url,
+  to,
   onClick,
   external,
   forceExternalOff,
   fullwidth,
   type,
+  ...props
 }) => {
-  const varClass = buildClass({ variant, color, raised, fullwidth });
-  const isExternal =
-    external || (typeof url === "string" && url.includes("://"));
+  const classes = classnames({
+    "usa-button": true,
+    [`usa-button--${color}`]: color,
+    [`usa-button--${color}-${variant}`]: variant,
+    "usa-button--fullwidth": fullwidth,
+    "usa-button--raised": raised,
+    [className]: className,
+  });
+
+  const url = typeof to === "string" ? to : "";
   const Node =
-    onClick || type ? nodes["b"] : isExternal ? nodes["a"] : nodes["l"];
+    onClick || type ? nodes["b"] : external ? nodes["a"] : nodes["link"];
   return (
-    <Node
-      url={url}
-      type={type}
-      onClick={onClick}
-      className={`usa-button ${varClass} ${className ? className : ""}`}
-    >
+    <Node to={url} type={type} onClick={onClick} {...props} className={classes}>
       {children}
-      {isExternal && !forceExternalOff && (
-        <Fa className="usa-button__external" icon={faExternalLinkAlt} />
-      )}
     </Node>
   );
 };

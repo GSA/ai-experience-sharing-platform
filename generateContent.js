@@ -55,12 +55,21 @@ const files = folders.reduce((content, type) => {
       const name = filename.replace(/\.md/, "");
       const toc = [];
       const process = remark.processSync(file);
-      const fields = process.data.frontmatter;
+      const { title, date, ...fields } = process.data.frontmatter;
       const body = process.toString();
       const node = remarkToc.parse(file);
       const headings = remarkToc.runSync(node);
       parseToc(headings, toc);
-      const mdFile = { name, type, fields, toc, body };
+      const mdFile = {
+        name,
+        type,
+        path: `${type}/${name}`,
+        title,
+        date,
+        fields,
+        toc,
+        body,
+      };
       return [...acc, mdFile];
     }, []);
   return [...content, ...contents];
@@ -69,4 +78,9 @@ const files = folders.reduce((content, type) => {
 fs.writeFileSync(
   path.join(__dirname, "public", "content.json"),
   JSON.stringify(files)
+);
+
+fs.copyFileSync(
+  path.join(contentPath, "site.json"),
+  path.join(__dirname, "public", "site.json")
 );

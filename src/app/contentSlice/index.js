@@ -42,7 +42,7 @@ export const getAllPage = createAsyncThunk(
   async () => await context.getAllByContentType("page")
 );
 
-export const counterSlice = createSlice({
+export const contentSlice = createSlice({
   name: "content",
   initialState,
   extraReducers: {
@@ -122,4 +122,4 @@ export const page = (state) => state.content.page.data;
 export const usecase = (state) => state.content.usecase.data;
 export const resource = (state) => state.content.resource.data;
 
-export default counterSlice.reducer;
+export default contentSlice.reducer;
