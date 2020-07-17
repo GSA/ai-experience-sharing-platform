@@ -1,5 +1,5 @@
 import React from "react";
-import { MDXProvider } from "@mdx-js/react";
+import MDX from "@mdx-js/runtime";
 import Button from "components/Button";
 import Card from "components/Card";
 import Content from "components/Content";
@@ -16,8 +16,12 @@ export const shortcodes = {
   Tagline,
 };
 
-const Mdx = ({ children }) => {
-  return <MDXProvider components={shortcodes}>{children}</MDXProvider>;
+const Mdx = ({ children, scope }) => {
+  return (
+    <MDX components={shortcodes} scope={scope}>
+      {children}
+    </MDX>
+  );
 };
 
 export default Mdx;

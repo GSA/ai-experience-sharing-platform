@@ -28,10 +28,10 @@
       { "text": "Latest updates", "link": "/updates" }
     ],
     "footer": [
-      { "text": "Use Cases", "link": "/usecase" },
+      { "text": "Use Cases", "link": "/library/usecase" },
       {
         "text": "Resources",
-        "link": "/resource"
+        "link": "/library/resource"
       },
       {
         "text": "About",

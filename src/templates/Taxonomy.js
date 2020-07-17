@@ -4,30 +4,15 @@ import { useParams } from "react-router-dom";
 import PropTypes from "prop-types";
 import Article from "components/ArticleExcerpt";
 import Login from "templates/Login";
-import {
-  resourceList,
-  usecaseList,
-  getAllUsecase,
-  getAllResource,
-} from "app/contentSlice";
-
-const types = {
-  usecase: { selector: usecaseList, thunk: getAllUsecase, title: "Use Cases" },
-  resource: {
-    selector: resourceList,
-    thunk: getAllResource,
-    title: "Resources",
-  },
-};
+import { list, getList } from "app/contentSlice";
 
 export const Taxonomy = ({ pageContext }) => {
   const dispatch = useDispatch();
   const { type } = useParams();
-  const { selector, thunk, title } = types[type];
-  const { pending = false, data = [] } = useSelector(selector);
+  const { pending = false, data = [] } = useSelector(list);
   useEffect(() => {
-    dispatch(thunk);
-  }, [dispatch, type, thunk]);
+    dispatch(getList(type));
+  }, [dispatch, type]);
 
   return (
     <Login>
@@ -36,7 +21,7 @@ export const Taxonomy = ({ pageContext }) => {
           <div className="grid-col-12">
             <div className="grid-row align-items-center padding-bottom-4">
               <div className="grid-col-8">
-                <h3 className="margin-0">{title}</h3>
+                <h3 className="margin-0">{type}</h3>
               </div>
               <div className="grid-col-4" style={{ textAlign: "right" }}>
                 <label

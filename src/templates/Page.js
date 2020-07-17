@@ -1,28 +1,28 @@
-import React from "react";
-import Primary from "templates/layouts/primary";
+import React, { useEffect } from "react";
 import Mdx from "components/Mdx";
+import { useSelector, useDispatch } from "react-redux";
+import { page, getPage } from "app/contentSlice";
+import { useParams } from "react-router-dom";
+import { Grid, Row, Col } from "components/Grid";
 
-const ContentPage = ({
-  data: {
-    mdx: {
-      body,
-      tableOfContents: { items: contents = [] } = {},
-      frontmatter: { title } = {},
-    } = {},
-  } = {},
-}) => {
+const Page = () => {
+  const dispatch = useDispatch();
+  const { page: name } = useParams();
+  const { data } = useSelector(page);
+  const { title, body } = data;
+  useEffect(() => {
+    dispatch(getPage({ type: "page", name }));
+  }, [name, dispatch]);
   return (
-    <Primary title={title}>
-      <div className="grid-container">
-        <div className="grid-row">
-          <div className="grid-col-12">
-            <h1>{title}</h1>
-            <Mdx>{body}</Mdx>
-          </div>
-        </div>
-      </div>
-    </Primary>
+    <Grid className="grid-container">
+      <Row>
+        <Col size={12}>
+          <h1>{title}</h1>
+          <Mdx>{body}</Mdx>
+        </Col>
+      </Row>
+    </Grid>
   );
 };
 
-export default ContentPage;
+export default Page;

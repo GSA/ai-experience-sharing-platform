@@ -4,7 +4,7 @@ export const getAllByContentType = async (type) => {
   return data.filter((item) => item.type === type);
 };
 
-export const getContentTypeBySlug = async (type, slug) => {
+export const getContentTypeByName = async (type, slug) => {
   const response = await fetch("/content.json");
   const data = await response.json();
   return data.find((item) => item.name === slug && item.type === type);

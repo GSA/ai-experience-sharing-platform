@@ -22,10 +22,16 @@ const parseToc = (items, data) => {
   });
 };
 
+const removeFm = () => (tree = []) => ({
+  ...tree,
+  children: tree.children.filter(({ type }) => type !== "yaml"),
+});
+
 const remark = markdown()
   .use(parse)
   .use(frontmatter)
   .use(extractFm, { name: "frontmatter", yaml })
+  .use(removeFm)
   .use(slug)
   .use(slugLink);
 
@@ -84,3 +90,14 @@ fs.copyFileSync(
   path.join(contentPath, "site.json"),
   path.join(__dirname, "public", "site.json")
 );
+
+const stuff = [
+  {
+    data: { frontmatter: { title: "About" } },
+    messages: [],
+    history: [],
+    cwd: "/Users/tplummer/ai-experience-sharing-platform",
+    contents:
+      "---\ntitle: About\n---\n\n# [](#heading-1)heading 1\n\n<Content chunks={10} />\n\n## [](#heading-2)heading 2\n\n<Content chunks={3} />\n\n### [](#heading-3)heading 3\n\n<Content chunks={3} />\n\n#### [](#heading-4)heading 4\n",
+  },
+];
