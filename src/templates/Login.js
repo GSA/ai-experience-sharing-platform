@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from 'react';
-import PropTypes from 'prop-types';
-import Button from 'components/Button';
-import { login, isAuth } from 'state/modules/Auth';
+import React from "react";
+import Button from "components/Button";
+import { login, isAuth } from "app/authSlice";
+import { useDispatch, useSelector } from "react-redux";
 
 const Auth = ({ children }) => {
-  const [isAuthN, setAuthN] = useState(isAuth());
+  const dispatch = useDispatch();
+  const isAuthN = useSelector(isAuth);
   const handleSubmit = (e) => {
     e.preventDefault();
     const {
@@ -13,21 +14,19 @@ const Auth = ({ children }) => {
         password: { value: password },
       },
     } = e;
-    console.log(username, password);
-    login({ username, password });
-    setAuthN(isAuth());
+    dispatch(login({ username, password }));
   };
 
   return isAuthN ? (
     children
   ) : (
-    <div style={{ textAlign: 'center' }}>
+    <div style={{ textAlign: "center" }}>
       <form
         onSubmit={handleSubmit}
         style={{
-          display: 'inline-block',
-          margin: '40px auto',
-          textAlign: 'right',
+          display: "inline-block",
+          margin: "40px auto",
+          textAlign: "right",
         }}
       >
         <div>
