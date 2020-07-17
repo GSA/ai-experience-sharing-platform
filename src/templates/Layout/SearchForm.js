@@ -1,5 +1,5 @@
 import React from "react";
-
+import { FontAwesomeIcon as Fa } from "@fortawesome/react-fontawesome";
 const SearchForm = ({ navigation, secondaryLinks }) => {
   const data = {};
   const { site: { pathPrefix, affiliate, endpoint, inline } = {} } = data;
@@ -31,6 +31,7 @@ const SearchForm = ({ navigation, secondaryLinks }) => {
           autoComplete="off"
         />
         <button className="usa-button" type="submit">
+          <Fa icon="search" />
           <span className="usa-sr-only">Search</span>
         </button>
       </div>

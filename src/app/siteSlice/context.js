@@ -1,4 +1,5 @@
 export const getSiteData = async () => {
   const data = await fetch("/site.json");
-  return data.json();
+  const text = await data.text();
+  return JSON.parse(text);
 };

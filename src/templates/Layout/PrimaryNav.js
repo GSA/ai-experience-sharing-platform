@@ -1,31 +1,30 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import classnames from "classnames";
+import React from "react";
+import { useSelector } from "react-redux";
+
+import { Link, NavLink } from "react-router-dom";
 
 import close from "uswds/dist/img/close.svg";
 import Button from "components/Button";
 import SearchForm from "./SearchForm";
+import { primaryNav, secondaryNav } from "app/siteSlice";
+import "uswds";
 
-const NavItem = ({ key, text, link, items }) => {
-  const [isOpen, toggleOpen] = useState(false);
-  const handleClick = (e) => {
-    toggleOpen((state) => !state);
-  };
+const NavItem = ({ id, text, link, items = [] }) => {
   return (
-    <li key={key} className="usa-nav__primary-item">
-      {Array.isArray(items) ? (
-        <div onClick={handleClick} onBlur={handleClick}>
+    <li className="usa-nav__primary-item">
+      {items.length ? (
+        <div>
           <button
             className={`usa-accordion__button usa-nav__link`}
-            aria-controls={`extended-nav-section-${key}`}
-            aria-expanded={isOpen}
+            aria-controls={`extended-nav-section-${id}`}
+            aria-expanded={false}
           >
             <span>{text}</span>
           </button>
           <ul
-            id={`extended-nav-section-${key}`}
+            id={`extended-nav-section-${id}`}
             className="usa-accordion__content usa-nav__submenu"
-            hidden={!isOpen}
+            hidden
           >
             {items.map((item, idx) => (
               <li key={idx} className="usa-nav__submenu-item">
@@ -35,32 +34,33 @@ const NavItem = ({ key, text, link, items }) => {
           </ul>
         </div>
       ) : (
-        <Link className="usa-nav__link" activeClassName="usa-current" to={link}>
+        <NavLink
+          className="usa-nav__link"
+          activeClassName="usa-current"
+          to={link}
+        >
           <span>{text}</span>
-        </Link>
+        </NavLink>
       )}
     </li>
   );
 };
 
-const Nav = ({ onClick, isOpen }) => {
-  const data = {};
-  const { site: { navigation = [], secondaryLinks = [] } = {} } = data;
+const Nav = () => {
+  const primary = useSelector(primaryNav);
+  const secondary = useSelector(secondaryNav);
   return (
-    <nav
-      role="navigation"
-      className={classnames({ "usa-nav": true, "is-visible": isOpen })}
-    >
+    <nav role="navigation" className="usa-nav">
       <div className="usa-nav__inner">
-        <Button variant="link" onClick={onClick} className="usa-nav__close">
+        <Button variant="link" className="usa-nav__close">
           <img src={close} alt="close" />
         </Button>
         <ul className="usa-accordion usa-nav__primary">
-          {navigation.map((nav, idx) => {
-            const { text = "", link = "", items = [] } = nav;
+          {primary.map(({ text = "", link = "", items = [] }, idx) => {
             return (
               <NavItem
                 key={`usa-nav-item-${idx}`}
+                id={idx}
                 text={text}
                 link={link}
                 items={items}
@@ -70,7 +70,7 @@ const Nav = ({ onClick, isOpen }) => {
         </ul>
         <div className="usa-nav__secondary">
           <ul className="usa-nav__secondary-links">
-            {secondaryLinks.map((secondaryLink, idx) => (
+            {secondary.map((secondaryLink, idx) => (
               <li
                 key={`usa-nav-item-secondary-${idx}`}
                 className="usa-nav__secondary-item"

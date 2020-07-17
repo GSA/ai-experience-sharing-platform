@@ -1,18 +1,14 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import Button from "components/Button";
 import Nav from "./PrimaryNav";
+import { useSelector } from "react-redux";
+import { siteMeta } from "app/siteSlice";
 
 const Header = ({ children }) => {
-  const data = {};
+  const { title } = useSelector(siteMeta);
 
-  const { site: { title } = {} } = data;
-  const [isOpen, setOpen] = useState(false);
-
-  const handleClick = () => {
-    setOpen((state) => !state);
-  };
   return (
     <header className="usa-header usa-header--extended" role="banner">
       <div className="usa-navbar">
@@ -23,9 +19,9 @@ const Header = ({ children }) => {
             </Link>
           </em>
         </div>
-        <Button onClick={handleClick}>Menu</Button>
+        <Button className="usa-menu-btn">Menu</Button>
       </div>
-      <Nav onClick={handleClick} isOpen={isOpen} />
+      <Nav />
     </header>
   );
 };

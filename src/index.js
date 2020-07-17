@@ -5,8 +5,12 @@ import "./index.css";
 import App from "./App";
 import store from "./app/store";
 import { Provider } from "react-redux";
-import * as serviceWorker from "./serviceWorker";
 
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { far } from "@fortawesome/free-regular-svg-icons";
+import { fas } from "@fortawesome/free-solid-svg-icons";
+import * as serviceWorker from "./serviceWorker";
+library.add(fas, far);
 ReactDOM.render(
   <React.StrictMode>
     <Router>

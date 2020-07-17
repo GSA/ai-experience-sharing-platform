@@ -4,20 +4,18 @@
   "description": "Agency Name (EAC) Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean et sapien a leo auctor scelerisque quis nec magna. Sed dictum ante a risus vehicula facilisis.",
   "navigation": {
     "primary": [
-      { "text": "Use Cases", "link": "/usecase" },
+      { "text": "Use Cases", "link": "/library/usecase" },
       {
         "text": "Resources",
-        "link": "/resource",
         "items": [
-          { "text": "Playbooks", "link": "/resource/playbooks" },
-          { "text": "Whitepapers", "link": "/resource/whitepapers" },
-          { "text": "Guides", "link": "/resource/guides" },
-          { "text": "All Resources", "link": "/resource" }
+          { "text": "Playbooks", "link": "/library/resource/playbooks" },
+          { "text": "Whitepapers", "link": "/library/resource/whitepapers" },
+          { "text": "Guides", "link": "/library/resource/guides" },
+          { "text": "All Resources", "link": "/library/resource" }
         ]
       },
       {
         "text": "About",
-        "link": "/about",
         "items": [
           { "text": "Governance", "link": "/governance" },
           { "text": "History", "link": "/history" },

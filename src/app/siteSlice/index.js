@@ -19,10 +19,10 @@ const initialState = {
   dapAgency: "",
 };
 
-export const siteData = createAsyncThunk("site/getSiteData", async () => {
-  const data = await context.getSiteData();
-  return await data.json();
-});
+export const siteData = createAsyncThunk(
+  "site/getSiteData",
+  async () => await context.getSiteData()
+);
 
 export const siteSlice = createSlice({
   name: "site",

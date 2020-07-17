@@ -8,7 +8,7 @@ const Homepage = () => {
   const data = [];
 
   return (
-    <Route path="/" exact strict>
+    <Route path="/" exact>
       <Grid className="grid-container">
         <Row className="grid-row use-case-header">
           <Col className="grid-col-6 use-case-header__title">
@@ -16,7 +16,7 @@ const Homepage = () => {
           </Col>
           <Col className="grid-col-6 use-case-header__link">
             <Button url="/library/usecase" variant="link">
-                View All Use Cases
+              View All Use Cases
             </Button>
           </Col>
         </Row>

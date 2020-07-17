@@ -33,6 +33,7 @@ export const Button = ({
     [`usa-button--${color}-${variant}`]: variant,
     "usa-button--fullwidth": fullwidth,
     "usa-button--raised": raised,
+    "usa-button--unstyled": variant === "link",
     [className]: className,
   });
 
