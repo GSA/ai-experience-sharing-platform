@@ -1,31 +1,13 @@
-import React from 'react';
-import logo from 'uswds/dist/img/logo-img.png';
-import { useStaticQuery, graphql } from 'gatsby';
-import Button from '../../components/Button';
+import React from "react";
+import logo from "uswds/dist/img/logo-img.png";
+import Button from "components/Button";
 
 const Footer = () => {
-  const data = useStaticQuery(graphql`
-    query FooterQuery {
-      site {
-        siteMetadata {
-          title
-          navigation {
-            text
-            link
-          }
-        }
-      }
-    }
-  `);
-
-  const {
-    site: {
-      siteMetadata: { navigation = [], title = '' },
-    },
-  } = data;
+  const data = {};
+  const { site: { navigation = [], title = "" } = {} } = data;
 
   const handleScroll = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
   return (
     <footer className="usa-footer site-footer" role="contentinfo">

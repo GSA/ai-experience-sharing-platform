@@ -1,5 +1,5 @@
-import React from 'react';
-import { Link } from 'gatsby';
+import React from "react";
+import { Link } from "react-router-dom";
 
 const ListItems = (items) =>
   items.map((item) => (

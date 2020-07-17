@@ -1,10 +1,9 @@
-import React from 'react';
-import { useStaticQuery, graphql, Link } from 'gatsby';
-import Layout from 'templates/layouts/primary';
-import Button from 'components/Button';
-import Card from 'components/Card';
-import Content from 'components/Content';
-import Hero from 'components/Hero';
+import React from "react";
+import Layout from "templates/layouts/primary";
+import Button from "components/Button";
+import Card from "components/Card";
+import Content from "components/Content";
+import Hero from "components/Hero";
 
 const MockCard = ({ title, url }) => (
   <Card
@@ -22,7 +21,7 @@ const MockCard = ({ title, url }) => (
 const IndexPage = ({ data }) => {
   const {
     site: {
-      siteMetadata: { title = '', hero: { title: heroTitle = '' } = {} } = {},
+      siteMetadata: { title = "", hero: { title: heroTitle = "" } = {} } = {},
     } = {},
     usecasefeatured: { edges = [] } = {},
   } = data;
@@ -56,22 +55,5 @@ const IndexPage = ({ data }) => {
     </Layout>
   );
 };
-
-export const pageQuery = graphql`
-  query FeaturedUseCases(
-    $featured: Boolean = true
-    $type: String = "use-case"
-  ) {
-    ...UseCaseFeatured @include(if: $featured)
-    site {
-      siteMetadata {
-        title
-        hero {
-          title
-        }
-      }
-    }
-  }
-`;
 
 export default IndexPage;

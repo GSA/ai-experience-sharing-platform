@@ -1,17 +1,16 @@
-import React, { useState, useEffect } from 'react';
-import { graphql } from 'gatsby';
-import { useParams } from 'react-router-dom';
-import Primary from 'templates/layouts/primary';
-import Mdx from 'components/Mdx';
-import ArticleDetails from 'components/ArticleDetails';
-import ContentNav from 'components/ContentsNav';
+import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+import Primary from "templates/layouts/primary";
+import Mdx from "components/Mdx";
+import ArticleDetails from "components/ArticleDetails";
+import ContentNav from "components/ContentsNav";
 
 export const Article = ({ pageContext }) => {
-  const { name = '' } = useParams();
+  const { name = "" } = useParams();
   const { dataKey } = pageContext;
   const [data, setData] = useState({});
   useEffect(() => {
-    fetch('/library.json')
+    fetch("/library.json")
       .then((response) => response.text())
       .then((text) => {
         const raw = JSON.parse(text);
@@ -26,7 +25,7 @@ export const Article = ({ pageContext }) => {
   const {
     body,
     tableOfContents: { items: contents = [] } = {},
-    frontmatter: { title = '', ...details } = {},
+    frontmatter: { title = "", ...details } = {},
   } = data;
   if (!body) {
     return <h1>LOADING</h1>;
@@ -51,26 +50,5 @@ export const Article = ({ pageContext }) => {
     </Primary>
   );
 };
-
-export const pageQuery = graphql`
-  query(
-    $name: String!
-    $sourceName: String!
-    $usecase: Boolean = false
-    $resource: Boolean = false
-  ) {
-    mdx(fields: { sourceName: { eq: $sourceName }, name: { eq: $name } }) {
-      body
-      tableOfContents
-      frontmatter {
-        ...UseCaseFx @include(if: $usecase)
-        ...ResourceFx @include(if: $resource)
-      }
-      fields {
-        ...NodeFields
-      }
-    }
-  }
-`;
 
 export default Article;

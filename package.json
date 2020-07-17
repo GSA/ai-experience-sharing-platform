@@ -33,10 +33,11 @@
     "yaml": "^1.10.0"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "npm run content && react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "content": "node generateContent.js"
   },
   "eslintConfig": {
     "extends": "react-app"

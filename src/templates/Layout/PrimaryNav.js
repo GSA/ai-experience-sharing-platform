@@ -1,16 +1,14 @@
-import { Link } from 'gatsby';
-import React, { useState } from 'react';
-import { useStaticQuery, graphql } from 'gatsby';
-import classnames from 'classnames';
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import classnames from "classnames";
 
-import close from 'uswds/dist/img/close.svg';
-import Button from 'components/Button';
-import SearchForm from 'templates/components/SearchForm';
+import close from "uswds/dist/img/close.svg";
+import Button from "components/Button";
+import SearchForm from "./SearchForm";
 
 const NavItem = ({ key, text, link, items }) => {
   const [isOpen, toggleOpen] = useState(false);
   const handleClick = (e) => {
-    console.log(e);
     toggleOpen((state) => !state);
   };
   return (
@@ -46,32 +44,12 @@ const NavItem = ({ key, text, link, items }) => {
 };
 
 const Nav = ({ onClick, isOpen }) => {
-  const data = useStaticQuery(graphql`
-    query NavQuery {
-      site {
-        siteMetadata {
-          navigation {
-            text
-            link
-            items {
-              text
-              link
-            }
-          }
-          secondaryLinks {
-            text
-            link
-          }
-        }
-      }
-    }
-  `);
-
-  const { navigation, secondaryLinks } = data.site.siteMetadata;
+  const data = {};
+  const { site: { navigation = [], secondaryLinks = [] } = {} } = data;
   return (
     <nav
       role="navigation"
-      className={classnames({ 'usa-nav': true, 'is-visible': isOpen })}
+      className={classnames({ "usa-nav": true, "is-visible": isOpen })}
     >
       <div className="usa-nav__inner">
         <Button variant="link" onClick={onClick} className="usa-nav__close">
@@ -79,7 +57,7 @@ const Nav = ({ onClick, isOpen }) => {
         </Button>
         <ul className="usa-accordion usa-nav__primary">
           {navigation.map((nav, idx) => {
-            const { text = '', link = '', items = [] } = nav;
+            const { text = "", link = "", items = [] } = nav;
             return (
               <NavItem
                 key={`usa-nav-item-${idx}`}

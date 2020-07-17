@@ -1,21 +1,13 @@
-import React, { useState } from 'react';
-import { useStaticQuery, graphql, Link } from 'gatsby';
-import PropTypes from 'prop-types';
-import Button from 'components/Button';
-import Nav from 'templates/components/PrimaryNav';
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
+import Button from "components/Button";
+import Nav from "./PrimaryNav";
 
 const Header = ({ children }) => {
-  const data = useStaticQuery(graphql`
-    query HeaderQuery {
-      site {
-        siteMetadata {
-          title
-        }
-      }
-    }
-  `);
+  const data = {};
 
-  const { title } = data.site.siteMetadata;
+  const { site: { title } = {} } = data;
   const [isOpen, setOpen] = useState(false);
 
   const handleClick = () => {

@@ -1,10 +1,9 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import Auth from 'templates/components/Login';
-import SEO from 'templates/components/Seo';
-import Banner from 'templates/components/Banner';
-import Footer from 'templates/components/Footer';
-import Header from 'templates/components/Header';
+import React from "react";
+import PropTypes from "prop-types";
+import SEO from "./Seo";
+import Banner from "./Banner";
+import Footer from "./Footer";
+import Header from "./Header";
 
 const Primary = ({ title, children }) => {
   return (

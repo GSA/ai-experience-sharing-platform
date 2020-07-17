@@ -36,25 +36,24 @@ const remarkToc = markdown()
   .use(slugLink)
   .use(extractToc, { keys: ["data"] });
 
-const contentPath = path.join(__dirname);
-
+const contentPath = path.join(__dirname, "content");
 const folders = fs
   .readdirSync(contentPath)
-  .filter((file) => fs.statSync(file).isDirectory());
+  .filter((file) => fs.statSync(path.join(contentPath, file)).isDirectory());
 
 const files = folders.reduce((content, type) => {
-  if (!fs.statSync(type).isDirectory()) {
+  const typePath = path.join(contentPath, type);
+  if (!fs.statSync(typePath).isDirectory()) {
     return content;
   }
 
   const contents = fs
-    .readdirSync(type)
+    .readdirSync(typePath)
     .filter((filename) => filename.includes(".md"))
     .reduce((acc, filename) => {
-      const file = fs.readFileSync(path.join(type, filename), "utf-8");
+      const file = fs.readFileSync(path.join(typePath, filename), "utf-8");
       const name = filename.replace(/\.md/, "");
       const toc = [];
-
       const process = remark.processSync(file);
       const fields = process.data.frontmatter;
       const body = process.toString();
@@ -68,6 +67,6 @@ const files = folders.reduce((content, type) => {
 }, []);
 
 fs.writeFileSync(
-  path.join(contentPath, "../public", "content.json"),
+  path.join(__dirname, "public", "content.json"),
   JSON.stringify(files)
 );

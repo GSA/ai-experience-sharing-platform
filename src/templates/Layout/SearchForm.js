@@ -1,31 +1,15 @@
-import React from 'react';
-import { useStaticQuery, graphql } from 'gatsby';
-import { navigate } from '@reach/router';
+import React from "react";
 
 const SearchForm = ({ navigation, secondaryLinks }) => {
-  const { site } = useStaticQuery(
-    graphql`
-      query {
-        site {
-          pathPrefix
-          siteMetadata {
-            searchgov {
-              affiliate
-              endpoint
-              inline
-            }
-          }
-        }
-      }
-    `
-  );
-  const { affiliate, endpoint, inline } = site.siteMetadata.searchgov;
+  const data = {};
+  const { site: { pathPrefix, affiliate, endpoint, inline } = {} } = data;
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const query = e.currentTarget.query.value;
     if (inline) {
-      navigate(`${site.pathPrefix}/search?query=${query}`);
+      // TODO nav somewhere
+      console.log(pathPrefix);
     } else {
       window.location.replace(
         `${endpoint}/search?utf8=✓&affiliate=${affiliate}&query=${query}`

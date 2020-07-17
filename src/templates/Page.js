@@ -1,7 +1,6 @@
-import React from 'react';
-import { graphql } from 'gatsby';
-import Primary from 'templates/layouts/primary';
-import Mdx from 'components/Mdx';
+import React from "react";
+import Primary from "templates/layouts/primary";
+import Mdx from "components/Mdx";
 
 const ContentPage = ({
   data: {
@@ -25,21 +24,5 @@ const ContentPage = ({
     </Primary>
   );
 };
-
-export const pageQuery = graphql`
-  query($name: String!, $sourceName: String!) {
-    mdx(fields: { sourceName: { eq: $sourceName }, name: { eq: $name } }) {
-      body
-      tableOfContents
-      frontmatter {
-        title
-        date
-      }
-      fields {
-        ...NodeFields
-      }
-    }
-  }
-`;
 
 export default ContentPage;
