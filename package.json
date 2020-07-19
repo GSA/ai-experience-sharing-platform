@@ -36,7 +36,7 @@
     "yaml": "^1.10.0"
   },
   "scripts": {
-    "patchEnv": "npx node-env-run generateEnv.js",
+    "patchEnv": "node generateEnv.js",
     "start": "npm run patchEnv && npm run content && react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
