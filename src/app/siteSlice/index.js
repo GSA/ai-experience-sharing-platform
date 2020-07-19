@@ -5,11 +5,7 @@ const initialState = {
   author: "",
   title: "",
   description: "",
-  navigation: {
-    primary: [],
-    secondary: [],
-    footer: [],
-  },
+  navigation: [],
   searchgov: {
     endpoint: "",
     affiliate: "",
@@ -34,9 +30,12 @@ export const siteSlice = createSlice({
   },
 });
 
-export const primaryNav = (state) => state.site.navigation.primary;
-export const secondaryNav = (state) => state.site.navigation.secondary;
-export const footerNav = (state) => state.site.navigation.footer;
+export const primaryNav = (state) =>
+  state.site.navigation.find(({ name }) => name === "primary");
+export const secondaryNav = (state) =>
+  state.site.navigation.find(({ name }) => name === "secondary");
+export const footerNav = (state) =>
+  state.site.navigation.find(({ name }) => name === "footer");
 export const siteMeta = ({ site: { title, author, description } = {} }) => ({
   title,
   author,
