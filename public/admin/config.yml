@@ -62,6 +62,7 @@ collections:
                     widget: string
       - name: searchgov
         label: Search.gov Settings
+        widget: object
         fields:
           - name: endpoint
             label: Endpoint
