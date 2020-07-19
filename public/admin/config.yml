@@ -11,20 +11,6 @@ public_folder: /images
 publish_mode: editorial_workflow
 logo_url: https://federalist.18f.gov/assets/images/federalist-logo.png
 
-definitions:
-  fields:
-    - label: Text
-      name: text
-      widget: string
-    - label: link
-      name: Link
-      widget: string
-    - label: Items
-      name: items
-      widget: list
-      fields:
-        $ref: "#/definitions/navitem"
-
 collections:
   - name: site
     extension: json
@@ -69,14 +55,14 @@ collections:
                 widget: list
                 fields:
                   - label: Text
-                  name: text
-                  widget: string
+                    name: text
+                    widget: string
                   - label: link
                     name: Link
                     widget: string
       - name: searchgov
         label: Search.gov Settings
-        fields: 
+        fields:
           - name: endpoint
             label: Endpoint
             widget: string
