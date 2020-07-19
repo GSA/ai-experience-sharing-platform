@@ -1,207 +1,68 @@
-[![Dependabot Status](https://api.dependabot.com/badges/status?host=github&repo=18F/federalist-uswds-gatsby)](https://dependabot.com)
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) template.
 
-# Federalist + U.S. Web Design System + Gatsby
+## Available Scripts
 
-This site is developed using the [U.S. Web Design System v 2.0](https://v2.designsystem.digital.gov) and is focused on providing developers a starter kit and reference implementation for Federalist websites.
+In the project directory, you can run:
 
-This code uses the [Gatsby](https://www.gatsbyjs.org/) framework and built with Javascript and [React](https://reactjs.org/). If you prefer to use Ruby, check out [federalist-uswds-jekyll](https://github.com/18F/federalist-uswds-jekyll), which uses [Jekyll](https://jekyllrb.com) site engine.
+### `npm start`
 
-This project assumes that you are comfortable editing source code. If you prefer to launch a website without editing any source code, checkout [uswds-jekyll](https://github.com/18F/uswds-jekyll), which allows you to change the layout and content with configuration files.
+Runs the app in the development mode.<br />
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-This project strives to be compliant with requirements set by [21st Century IDEA Act](https://www.meritalk.com/articles/senate-passes-idea-act/). The standards require that a website or digital service:
+The page will reload if you make edits.<br />
+You will also see any lint errors in the console.
 
-- is accessible to individuals with disabilities;
-- has a consistent appearance;
-- does not duplicate any legacy websites (the legislation also requires agencies to ensure that legacy websites are regularly reviewed, removed, and consolidated);
-- has a search function;
-- uses an industry standard secure connection;
-- “is designed around user needs with data-driven analysis influencing management and development decisions, using qualitative and quantitative data to determine user goals, needs, and behaviors, and continually test the website, web-based form, web-based application, or digital service to ensure that user needs are addressed;”
-- allows for user customization; and
-- is mobile-friendly.
+### `npm test`
 
-## 🖐Previous Versions 🖐
+Launches the test runner in the interactive watch mode.<br />
+See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-If you're looking for the original starter that included a more integrated approach to using USWDS with React, it is still available [here](https://github.com/18F/federalist-uswds-gatsby/tree/v1), but will not be maintained.
+### `npm run build`
 
-## Features
+Builds the app for production to the `build` folder.<br />
+It correctly bundles React in production mode and optimizes the build for the best performance.
 
-✅ [USWDS v2](https://v2.designsystem.digital.gov) javascript, styles, images, and fonts are included by default. Styles can be customized with either SASS or CSS in `src/styles/index.scss`.
+The build is minified and the filenames include the hashes.<br />
+Your app is ready to be deployed!
 
-✅ Publish blog posts using Markdown. Any markdown files in the `src/blog-posts` directory will be turned into pages at `/blog/<path>` in the application using the `src/templates/blog-post.js` template, where `<path>` is specified in the frontmatter of the file. An index of all posts will be displayed at `/blog` using the `src/templates/blog.js` template.
+See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-✅ Publish documentation pages using Markdown. Any markdown files in the `src/documentation-pages` directory will be turned into pages at `/<path>` in the application using the `src/templates/documentation-page.js` template, where `<path>` is specified in the frontmatter of the file. Side navigation for documentation pages can be controlled by setting `sidenav: true` or `sidenav: false` to your page front matter.
+### `npm run eject`
 
-✅ Publish custom pages using React. Any javascript files in the `src/pages` directory will be turned into pages at `/<filename>.html`, where `<filename>` is the actualy name of the file.
+**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
 
-✅ Customize SEO information for each page by adding the `src/components/seo.js` component to any page or template and providing the desired information. Ex. [Home page](https://github.com/18F/federalist-uswds-gatsby/blob/master/src/pages/index.js#L11).
+If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-✅ [Search.gov](https://search.gov) integration - Once you have registered and configured Search.gov for your site by following [these instructions](https://federalist.18f.gov/documentation/search/), add your "affiliate" and "access key" to `gatsby-config.js`. Ex.
+Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
 
-```
-searchgov: {
-  endpoint: 'https://search.usa.gov', // You should not change this.
-  affiliate: 'federalist-uswds-example', // replace this with your search.gov account
-  access_key: 'xX1gtb2RcnLbIYkHAcB6IaTRr4ZfN-p16ofcyUebeko=', // This is placeholder. Not private.
-  inline: true, // this renders the results on the same domain. Otherwise, it will render the results in the search.gov domain
-}
-```
+You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-The logic for using Search.gov can be found in the `src/components/search-form.js` component and supports displaying the results inline or sending the user to Search.gov the view the results. This setting defaults to "inline" but can be changed by setting `searchgov: { inline: false }` in `gatsby-config.js`.
+## Learn More
 
-✅ [Digital Analytics Program (DAP)](https://digital.gov/services/dap/) integration - Once you have registered your site with DAP add your "agency" to the `dapAgency` key in `gatsby-config.js`. Ex.
+You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-```
-dapAgency: 'GSA',
-```
+To learn React, check out the [React documentation](https://reactjs.org/).
 
-✅ Out-of-the-box performant caching strategy following [Gatsby recommended practices](https://www.gatsbyjs.org/docs/caching/) via `federalist.json`. See [Federalist Documentation](https://federalist.18f.gov/documentation/) for more information on `federalist.json`.
+### Code Splitting
 
-## Getting Started
+This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
 
-### Easy mode
+### Analyzing the Bundle Size
 
-#### From Federalist
+This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
 
-This will create a copy of this repo in a Github repository of your choice and add it to your Federalist dashboard.
+### Making a Progressive Web App
 
-- From [Federalist](https://federalistapp-staging.18f.gov/sites) click the "+ Add Site" button.
-- Click the "Use this template" button for the appropriate template
-- Follow the instructions
+This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
 
-#### From Github
+### Advanced Configuration
 
-This will create a copy of this repo in a Github repository of your choice but you will need to add it your [Federalist dashbord](https://federalistapp-staging.18f.gov/sites/new).
+This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
 
-- Click the "Use this template" button above or [here](https://github.com/18F/federalist-uswds-gatsby/generate).
-- Follow the instructions
-- Return to [Federalist](https://federalistapp-staging.18f.gov/sites/new) and add the repository.
+### Deployment
 
-### Hard mode
+This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
 
-#### With `npx` (requires node)
+### `npm run build` fails to minify
 
-    $ npx degit https://github.com/18F/federalist-uswds-gatsby <destination-folder>
-    $ cd <destination-folder>
-
-#### Push to your Github repository
-
-- [Create a new Github repository](https://help.github.com/en/github/getting-started-with-github/create-a-repo).
-- Follow the instructions form Github or
-
-```
-    $ git init
-    $ git add . && git commit -m 'Initial commit'
-    $ git remote add origin git@github.com:<your-org>/<your-repo>.git
-    (Make sure to replace `<your-org>` and `<your-repo>` above with the correct values)
-    $ git push -u origin master
-```
-
-## Page Types
-
-Pages in this site are generated through a semi-automated process. With the goal to maintain composable and visual consistency, a workflow has been established to make components as reusable as possible.
-
-The workflow is briefly defined as...
-
-1.  Define a source via `gatsby-source-filesystem`
-2.  Define the Page Type in `gatsby-node.js` via the `gatsby.createPages` hook using the `createPageType` function
-3.
-
-#### createPageType(_options_)
-
-Envoking this function within gatsby.createPages hook will...
-
-1. Create **Type Pages** (/item or /type/item)
-2. Create **Type Collection Page** (/type)
-3. Create **Type Taxonomy Pages** (/type/taxonomy)
-
-Each Page Type created with this function requires an associated `gatsby-source-filesystem` definition. The `name` of the source must match the `type` options field.
-
-#### _options_
-
-| field      | type           | required | description                                                                                                                                                                                                                                                                                                    |
-| ---------- | -------------- | -------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| createPage | function       | true     | forwarded from `gatsby.createPages` hook actions.                                                                                                                                                                                                                                                              |
-| graphql    | function       | true     | forwarded from `gatsby.createPages` hook.                                                                                                                                                                                                                                                                      |
-| type       | string         | true     | the name of the page type. This value must have a matching definition in the gatsby plugins.                                                                                                                                                                                                                   |
-| path       | string         | false    | the root path or endpoint used to create child/taxonomy pages for the page type. It is recommended to only have one Custom Page Type with no path as it can cause collisions between default Gatsby pages and other Custom Page Types. If this is not supplied, Collection and Taxonomy Pages will be ignored. |
-| template   | string         | false    | the path from src to use render the page.                                                                                                                                                                                                                                                                      |
-| taxonomies | array(object)  | false    | an array of taxonomy objects. the defined taxonomies will be grouped from the MDX query and a taxonomy page will be created for each defined taxonomy value.                                                                                                                                                   |
-| context    | function(node) | false    | used to build the context passed to the page template.                                                                                                                                                                                                                                                         |
-
-### Installation for development
-
-    $ git clone https://github.com/18F/federalist-uswds-gatsby
-    $ cd federalist-uswds-gatsby
-
-### Running the application
-
-#### With locally installed `node`
-
-    $ npm install
-    $ npm run develop
-
-To build but not serve the site, run `npm run build`.
-
-#### With Docker
-
-    $ docker-compose run node npm install
-    $ docker-compose up
-
-To build but not serve the site, run:
-
-```
-docker-compose run node npm run build
-```
-
-.
-
-Note that when built by Federalist, `npm run federalist` is used instead of
-`npm run build`.
-
-Open your web browser to [localhost:8000](http://localhost:8000/) to view your
-site.
-
-_Note: You'll also see a second link: _`http://localhost:8000/___graphql`_. This is a tool you can use to experiment with querying your data. Learn more about using this tool in the [Gatsby tutorial](https://www.gatsbyjs.org/tutorial/part-five/#introducing-graphiql)._
-
-Note that when built by Federalist, `npm run federalist` is used instead of the
-`build` script.
-
-## Technologies you should be familiarize yourself with
-
-- [Gatsby](https://www.gatsbyjs.org/) - The framework that does all the magic
-- [React](https://reactjs.org/) - The view library
-- [GraphQL](https://graphql.org/) - The data layer used by Gatsby
-- [node](https://nodejs.org/en/) - Javascript runtime
-- [npm](https://www.npmjs.com/) - Javascript dependency manager
-- [U.S. Web Design System v 2.0](https://v2.designsystem.digital.gov)
-
-### 🎓 Learning Gatsby
-
-Looking for more guidance? Full documentation for Gatsby lives [on the website](https://www.gatsbyjs.org/). Here are some places to start:
-
-- **For most developers, we recommend starting with our [in-depth tutorial for creating a site with Gatsby](https://www.gatsbyjs.org/tutorial/).** It starts with zero assumptions about your level of ability and walks through every step of the process.
-
-- **To dive straight into code samples, head [to our documentation](https://www.gatsbyjs.org/docs/).** In particular, check out the _Guides_, _API Reference_, and _Advanced Tutorials_ sections in the sidebar.
-
-## Things to Note
-
-- The Federalist script runs the Gatsby build with the `--prefix-paths` flag. This is necessary to make sure all internal internal links point to the correct path for preview deployments.
-- Always use the `Link` component provided by Gatsby for internal links, see previous note.
-- Importing USWDS images can be done straight from their local location in `node_modules`. See [Banner.js](https://github.com/18F/federalist-uswds-gatsby/blob/master/src/components/banner.js) for an example.
-- This is built from the default [Gatsby default starter](https://www.gatsbyjs.org/starters/gatsbyjs/gatsby-starter-default/), you can view the documentation there to see more of what is included.
-
-## Contributing
-
-See [CONTRIBUTING](CONTRIBUTING.md) for additional information.
-
-## Public domain
-
-This project is in the worldwide [public domain](LICENSE). As stated in [CONTRIBUTING](CONTRIBUTING.md):
-
-> This project is in the public domain within the United States, and copyright
-> and related rights in the work worldwide are waived through the [CC0 1.0
-> Universal public domain dedication](https://creativecommons.org/publicdomain/zero/1.0/).
->
-> All contributions to this project will be released under the CC0 dedication.
-> By submitting a pull request, you are agreeing to comply with this waiver of
-> copyright interest.
+This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify

@@ -1,0 +1,9 @@
+.usa-card {
+  &__container {
+    @include u-shadow(2);
+    .usa-card--flat & {
+      box-shadow: none;
+      background-color: transparent;
+    }
+  }
+}

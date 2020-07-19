@@ -1,0 +1,106 @@
+backend:
+  name: github
+  repo: GSA/ai-experience-sharing-platform
+  base_url: https://github.com
+  auth_endpoint: external/auth/github
+  branch: develop
+  preview_context: federalist/build
+
+media_folder: public/images
+public_folder: /images
+publish_mode: editorial_workflow
+logo_url: https://federalist.18f.gov/assets/images/federalist-logo.png
+
+definitions:
+  fields:
+    - label: Text
+      name: text
+      widget: string
+    - label: link
+      name: Link
+      widget: string
+    - label: Items
+      name: items
+      widget: list
+      fields:
+        $ref: "#/definitions/navitem"
+
+collections:
+  - name: site
+    extension: json
+    publish: false
+    label: Site Settings
+    label_singular: Site Settings
+    folder: content/settings
+    create: false
+    delete: false
+    preview_path: "{{slug}}"
+    editor:
+      preview: false
+    fields:
+      - label: Title
+        name: title
+        widget: string
+      - label: Navigation
+        name: nav
+        widget: list
+        fields:
+          - name: key
+            label: Key
+            widget: string
+          - name: items
+            label: Items
+            widget: list
+            $ref: "#/definitions/fields"
+
+  - name: page
+    extension: md
+    label: Pages
+    label_singular: Page
+    folder: content/page
+    create: true
+    delete: true
+    preview_path: "{{slug}}"
+    editor:
+      preview: false
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Body", name: "body", widget: "markdown" }
+  - name: usecase
+    extension: md
+    label: Use Cases
+    label_singular: Use Case
+    folder: content/usecase
+    create: true
+    preview_path: "{{slug}}"
+    editor:
+      preview: false
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Date", name: "date", widget: "datetime" }
+      - { label: "Participant", name: "participant", widget: "string" }
+      - { label: "Patterns", name: "patterns", widget: "list" }
+      - { label: "Solutions", name: "solutions", widget: "list" }
+      - { label: "Tags", name: "tags", widget: "list" }
+      - {
+          label: "Featured",
+          name: "featured",
+          widget: "boolean",
+          default: false,
+        }
+      - { label: "Body", name: "body", widget: "markdown" }
+  - name: resource
+    extension: md
+    label: Resources
+    label_singular: Resource
+    folder: content/resource
+    create: true
+    preview_path: "{{slug}}"
+    editor:
+      preview: false
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Date", name: "date", widget: "datetime" }
+      - { label: "Category", name: "category", widget: "string" }
+      - { label: "Tags", name: "tags", widget: "list" }
+      - { label: "Body", name: "body", widget: "markdown" }
