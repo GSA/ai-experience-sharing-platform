@@ -37,8 +37,8 @@ collections:
         name: navigation
         widget: list
         fields:
-          - name: name
-            label: Name
+          - name: key
+            label: Key
             widget: string
           - name: items
             label: Items
@@ -57,8 +57,8 @@ collections:
                   - label: Text
                     name: text
                     widget: string
-                  - label: link
-                    name: Link
+                  - label: Link
+                    name: link
                     widget: string
       - name: searchgov
         label: Search.gov Settings
