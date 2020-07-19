@@ -47,8 +47,8 @@ collections:
               - label: Text
                 name: text
                 widget: string
-              - label: link
-                name: Link
+              - label: Link
+                name: link
                 widget: string
               - label: Items
                 name: items
