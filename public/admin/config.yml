@@ -34,11 +34,11 @@ collections:
         name: author
         widget: string
       - label: Navigation
-        name: nav
+        name: navigation
         widget: list
         fields:
-          - name: key
-            label: Key
+          - name: name
+            label: Name
             widget: string
           - name: items
             label: Items
