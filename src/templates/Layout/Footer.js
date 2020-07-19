@@ -29,7 +29,7 @@ const Footer = () => {
         <div className="grid-container">
           <div className="grid-row">
             <div className="tablet:grid-col">
-              {footer.map((item, i) => (
+              {footer.items.map((item, i) => (
                 <a
                   key={`footer-nav-${i}`}
                   className="usa-footer__link"

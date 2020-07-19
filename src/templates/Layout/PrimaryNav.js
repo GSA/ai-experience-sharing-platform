@@ -56,7 +56,7 @@ const Nav = () => {
           <img src={close} alt="close" />
         </Button>
         <ul className="usa-accordion usa-nav__primary">
-          {primary.map(({ text = "", link = "", items = [] }, idx) => {
+          {primary.items.map(({ text = "", link = "", items = [] }, idx) => {
             return (
               <NavItem
                 key={`usa-nav-item-${idx}`}
@@ -70,7 +70,7 @@ const Nav = () => {
         </ul>
         <div className="usa-nav__secondary">
           <ul className="usa-nav__secondary-links">
-            {secondary.map((secondaryLink, idx) => (
+            {secondary.items.map((secondaryLink, idx) => (
               <li
                 key={`usa-nav-item-secondary-${idx}`}
                 className="usa-nav__secondary-item"

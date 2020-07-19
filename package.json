@@ -14,6 +14,7 @@
     "@testing-library/user-event": "^7.2.1",
     "front-matter": "^4.0.2",
     "netlify-cms-app": "^2.12.18",
+    "node-env-run": "^3.0.2",
     "node-sass": "^4.14.1",
     "prop-types": "^15.7.2",
     "react": "^16.13.1",
@@ -35,13 +36,14 @@
     "yaml": "^1.10.0"
   },
   "scripts": {
-    "start": "npm run content && react-scripts start",
+    "patchEnv": "npx node-env-run generateEnv.js",
+    "start": "npm run patchEnv && npm run content && react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "content": "node generateContent.js",
     "federalist": "npm run federalist:build && npm run federalist:copy",
-    "federalist:build": "npm run content && npm run build",
+    "federalist:build": "npm run patchEnv && npm run content && npm run build",
     "federalist:copy": "mkdir -p _site && rm -rf _site/* && cp -r build/* _site/"
   },
   "eslintConfig": {
