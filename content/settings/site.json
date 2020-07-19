@@ -4,7 +4,7 @@
   "description": "Agency Name (EAC) Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean et sapien a leo auctor scelerisque quis nec magna. Sed dictum ante a risus vehicula facilisis.",
   "navigation": [
     {
-      "name": "primary",
+      "key": "primary",
       "items": [
         { "text": "Use Cases", "link": "/library/usecase" },
         {
@@ -27,14 +27,14 @@
       ]
     },
     {
-      "name": "secondary",
+      "key": "secondary",
       "items": [
         { "text": "Privacy policy", "link": "/privacy" },
         { "text": "Latest updates", "link": "/updates" }
       ]
     },
     {
-      "name": "footer",
+      "key": "footer",
       "items": [
         { "text": "Use Cases", "link": "/library/usecase" },
         {
