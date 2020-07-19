@@ -31,7 +31,7 @@ collections:
     publish: false
     label: Site Settings
     label_singular: Site Settings
-    folder: content
+    folder: content/settings
     create: false
     delete: false
     preview_path: "{{slug}}"
