@@ -100,6 +100,6 @@ fs.writeFileSync(
 );
 
 fs.copyFileSync(
-  path.join(contentPath, "site.json"),
+  path.join(contentPath, "settings", "site.json"),
   path.join(__dirname, "public", "site.json")
 );
