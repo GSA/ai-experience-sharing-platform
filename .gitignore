@@ -23,5 +23,6 @@ yarn-debug.log*
 yarn-error.log*
 
 /public/content.json
+/public/site.json
 /src/app/site.json
 _site
