@@ -26,12 +26,12 @@ definitions:
         $ref: "#/definitions/navitem"
 
 collections:
-  - name: settings
+  - name: site
     extension: json
     publish: false
     label: Site Settings
     label_singular: Site Settings
-    folder: content/resource
+    folder: content
     create: false
     delete: false
     preview_path: "{{slug}}"
