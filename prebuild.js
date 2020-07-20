@@ -34,9 +34,12 @@ const remarkToc = markdown()
   .use(slug)
   .use(slugLink)
   .use(extractToc, { keys: ["data"] });
+
 const prepareContent = () => {
   const contentPath = path.join(__dirname, "public", "content");
-
+  if (!fs.existsSync(contentPath)) {
+    return;
+  }
   const folders = fs
     .readdirSync(contentPath)
     .filter((file) => fs.statSync(path.join(contentPath, file)).isDirectory());
