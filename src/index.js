@@ -11,9 +11,10 @@ import { far } from "@fortawesome/free-regular-svg-icons";
 import { fas } from "@fortawesome/free-solid-svg-icons";
 import * as serviceWorker from "./serviceWorker";
 library.add(fas, far);
+const basename = process.env.PUBLIC_URL || "/";
 ReactDOM.render(
   <React.StrictMode>
-    <Router>
+    <Router basename={basename}>
       <Provider store={store}>
         <App />
       </Provider>
