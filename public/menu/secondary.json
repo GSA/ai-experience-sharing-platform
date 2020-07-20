@@ -1,0 +1,7 @@
+{
+  "key": "secondary",
+  "items": [
+    { "text": "Privacy policy", "link": "/privacy" },
+    { "text": "Latest updates", "link": "/updates" }
+  ]
+}

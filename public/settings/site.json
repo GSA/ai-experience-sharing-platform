@@ -1,0 +1,12 @@
+{
+  "author": "GSA.gov",
+  "title": "ai.digital.gov",
+  "description": "Agency Name (EAC) Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean et sapien a leo auctor scelerisque quis nec magna. Sed dictum ante a risus vehicula facilisis.",
+  "searchgov": {
+    "endpoint": "https://search.usa.gov",
+    "affiliate": "federalist-uswds-example",
+    "access_key": "xX1gtb2RcnLbIYkHAcB6IaTRr4ZfN-p16ofcyUebeko=",
+    "inline": true
+  },
+  "dapAgency": "GSA"
+}

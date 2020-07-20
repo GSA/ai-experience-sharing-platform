@@ -12,12 +12,12 @@ publish_mode: editorial_workflow
 logo_url: https://federalist.18f.gov/assets/images/federalist-logo.png
 
 collections:
-  - name: site
+  - name: settings
     extension: json
     publish: false
     label: Site Settings
     label_singular: Site Settings
-    folder: content/settings
+    folder: public/settings
     create: false
     delete: false
     preview_path: "{{slug}}"
@@ -33,33 +33,6 @@ collections:
       - label: Author
         name: author
         widget: string
-      - label: Navigation
-        name: navigation
-        widget: list
-        fields:
-          - name: key
-            label: Key
-            widget: string
-          - name: items
-            label: Items
-            widget: list
-            fields:
-              - label: Text
-                name: text
-                widget: string
-              - label: Link
-                name: link
-                widget: string
-              - label: Items
-                name: items
-                widget: list
-                fields:
-                  - label: Text
-                    name: text
-                    widget: string
-                  - label: Link
-                    name: link
-                    widget: string
       - name: searchgov
         label: Search.gov Settings
         widget: object
@@ -77,12 +50,44 @@ collections:
             label: inline
             widget: boolean
             default: true
-
+  - name: menu
+    extension: json
+    label: Menus
+    label_singular: Menu
+    folder: public/menu
+    create: true
+    delete: true
+    editor:
+      preview: false
+    fields:
+      - name: name
+        label: Name
+        widget: string
+      - name: items
+        label: Items
+        widget: list
+        fields:
+          - label: Text
+            name: text
+            widget: string
+          - label: Link
+            name: link
+            widget: string
+          - label: Items
+            name: items
+            widget: list
+            fields:
+              - label: Text
+                name: text
+                widget: string
+              - label: Link
+                name: link
+                widget: string
   - name: page
-    extension: md
+    extension: json
     label: Pages
     label_singular: Page
-    folder: content/page
+    folder: public/content/page
     create: true
     delete: true
     preview_path: "{{slug}}"
@@ -95,8 +100,9 @@ collections:
     extension: md
     label: Use Cases
     label_singular: Use Case
-    folder: content/usecase
+    folder: public/content/usecase
     create: true
+    delete: true
     preview_path: "{{slug}}"
     editor:
       preview: false
@@ -115,11 +121,12 @@ collections:
         }
       - { label: "Body", name: "body", widget: "markdown" }
   - name: resource
-    extension: md
+    extension: json
     label: Resources
     label_singular: Resource
-    folder: content/resource
+    folder: public/content/resource
     create: true
+    delete: true
     preview_path: "{{slug}}"
     editor:
       preview: false
