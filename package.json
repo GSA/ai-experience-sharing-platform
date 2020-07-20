@@ -38,11 +38,10 @@
   "scripts": {
     "prebuild": "node prebuild.js",
     "start": "npm run prebuild && react-scripts start",
-    "build": "react-scripts build",
+    "build": "npm run prebuild && react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "federalist": "npm run federalist:build && npm run federalist:copy",
-    "federalist:build": "npm run prebuild && npm run build",
+    "federalist": "npm run build && npm run federalist:copy",
     "federalist:copy": "mkdir -p _site && rm -rf _site/* && cp -r build/* _site/"
   },
   "eslintConfig": {
