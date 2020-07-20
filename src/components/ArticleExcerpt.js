@@ -2,7 +2,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const ArticleExcerpt = ({ title, date, path, excerpt }) => {
-  console.log(path);
   return (
     <div className="ArticleExcerpt">
       <Link className="ArticleExcerpt__title" to={path}>

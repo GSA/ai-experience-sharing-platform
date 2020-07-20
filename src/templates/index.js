@@ -3,7 +3,7 @@ import Layout from "templates/layouts/primary";
 import Button from "components/Button";
 import Card from "components/Card";
 import Content from "components/Content";
-import Hero from "components/Hero";
+import Hero from "features/Hero";
 
 const MockCard = ({ title, url }) => (
   <Card

@@ -22,37 +22,26 @@ export const getList = createAsyncThunk(
   async (type) => await context.getAllByContentType(type)
 );
 
+const pending = (key, state, action) => ({
+  ...state,
+  [key]: { ...state[key], pending: true },
+});
+const fulfilled = (key, state, action) => ({
+  ...state,
+  [key]: { pending: false, data: action.payload },
+});
+
 export const contentSlice = createSlice({
   name: "content",
   initialState,
   extraReducers: {
-    [getPage.pending]: (state) => {
-      return { ...state, page: { ...state.page, pending: true } };
-    },
-    [getPage.fulfilled]: (state, action) => {
-      return {
-        ...state,
-        page: { pending: false, data: action.payload },
-      };
-    },
-    [getList.pending]: (state) => {
-      return { ...state, list: { ...state.page, pending: true } };
-    },
-    [getList.fulfilled]: (state, action) => {
-      return {
-        ...state,
-        list: { pending: false, data: action.payload },
-      };
-    },
-    [getTaxonomy.pending]: (state) => {
-      return { ...state, taxonomy: { ...state.taxonomy, pending: true } };
-    },
-    [getTaxonomy.fulfilled]: (state, action) => {
-      return {
-        ...state,
-        taxonomy: { pending: false, data: action.payload },
-      };
-    },
+    [getPage.pending]: (state) => pending("page", state),
+    [getPage.fulfilled]: (state, action) => fulfilled("page", state, action),
+    [getList.pending]: (state) => pending("list", state),
+    [getList.fulfilled]: (state, action) => fulfilled("list", state, action),
+    [getTaxonomy.pending]: (state) => pending("taxonomy", state),
+    [getTaxonomy.fulfilled]: (state, action) =>
+      fulfilled("taxonomy", state, action),
   },
 });
 

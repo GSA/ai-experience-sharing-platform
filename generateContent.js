@@ -82,7 +82,7 @@ const files = folders.reduce((content, type) => {
         name,
         type,
         excerpt,
-        path: `/${type}/${name}`,
+        path: `/${type !== "page" ? `${type}/` : ""}${name}`,
         title,
         date,
         fields,

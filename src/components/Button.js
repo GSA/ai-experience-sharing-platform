@@ -19,7 +19,7 @@ export const Button = ({
   color,
   variant,
   raised,
-  to,
+  url,
   onClick,
   external,
   forceExternalOff,
@@ -37,11 +37,11 @@ export const Button = ({
     [className]: className,
   });
 
-  const url = typeof to === "string" ? to : "";
+  const to = typeof url === "string" ? url : "";
   const Node =
     onClick || type ? nodes["b"] : external ? nodes["a"] : nodes["link"];
   return (
-    <Node to={url} type={type} onClick={onClick} {...props} className={classes}>
+    <Node to={to} type={type} onClick={onClick} {...props} className={classes}>
       {children}
     </Node>
   );
