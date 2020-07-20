@@ -10,9 +10,15 @@
         {
           "text": "Resources",
           "items": [
-            { "text": "Playbooks", "link": "/library/resource/playbooks" },
-            { "text": "Whitepapers", "link": "/library/resource/whitepapers" },
-            { "text": "Guides", "link": "/library/resource/guides" },
+            {
+              "text": "Playbooks",
+              "link": "/library/resource#category=playbooks"
+            },
+            {
+              "text": "Whitepapers",
+              "link": "/library/resource#category=whitepapers"
+            },
+            { "text": "Guides", "link": "/library/resource#category=guides" },
             { "text": "All Resources", "link": "/library/resource" }
           ]
         },

@@ -1,29 +1,34 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useParams, useLocation } from "react-router-dom";
 import PropTypes from "prop-types";
 import Article from "components/ArticleExcerpt";
 import Login from "templates/Login";
 import { list, getList } from "app/contentSlice";
+import { Grid, Row, Col } from "components/Grid";
 
-export const Taxonomy = ({ pageContext }) => {
+export const Taxonomy = ({ match: { url } }) => {
   const dispatch = useDispatch();
+
+  const { hash } = useLocation();
+  const [key, value] = hash.replace("#", "").split("=");
   const { type } = useParams();
   const { pending = false, data = [] } = useSelector(list);
   useEffect(() => {
     dispatch(getList(type));
-  }, [dispatch, type]);
-
+  }, [dispatch, hash, type]);
+  const items = key ? data.filter((item) => item.fields[key] === value) : data;
+  const title = `${type}${key ? ` / ${key} / ${value}` : ""}`;
   return (
     <Login>
-      <div className="grid-container">
-        <div className="grid-row margin-top-4">
-          <div className="grid-col-12">
-            <div className="grid-row align-items-center padding-bottom-4">
-              <div className="grid-col-8">
-                <h3 className="margin-0">{type}</h3>
-              </div>
-              <div className="grid-col-4" style={{ textAlign: "right" }}>
+      <Grid>
+        <Row className="margin-top-4">
+          <Col size="12">
+            <Row className="align-items-center padding-bottom-4">
+              <Col size="8">
+                <h3 className="margin-0">{title}</h3>
+              </Col>
+              <Col size="4" style={{ textAlign: "right" }}>
                 <label
                   className="usa-labelmargin-0 display-inline-block"
                   htmlFor="sort"
@@ -40,28 +45,28 @@ export const Taxonomy = ({ pageContext }) => {
                   <option value="value2">Option B</option>
                   <option value="value3">Option C</option>
                 </select>
-              </div>
-            </div>
+              </Col>
+            </Row>
 
             {pending ? (
               <h1>Loading</h1>
             ) : (
-              data.map((item, i) => {
+              items.map((item, i) => {
                 return (
                   <div key={`article-${item.name}`} className="margin-bottom-5">
                     <Article
                       title={item.title}
                       date={item.date}
-                      path={item.path}
+                      path={`${url}/${item.name}`}
                       excerpt={item.excerpt}
                     />
                   </div>
                 );
               })
             )}
-          </div>
-        </div>
-      </div>
+          </Col>
+        </Row>
+      </Grid>
     </Login>
   );
 };

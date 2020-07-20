@@ -1,11 +1,11 @@
-import React from 'react';
+import React from "react";
 
 const ListItems = ({ items = [] }) =>
   items.map((item, i) => (
     <>
       <li className="ContentNav__item" key={`content-nav-${i}`}>
         <a className="ContentNav__link" href={item.url}>
-          {item.title}
+          {item.text}
         </a>
       </li>
       {item.items && <Sublist items={item.items} />}

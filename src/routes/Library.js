@@ -1,11 +1,13 @@
 import React from "react";
-import { Switch, Route } from "react-router-dom";
+import { Route } from "react-router-dom";
 import Taxonomy from "./Taxonomy";
 import Article from "./Article";
 
-export default () => (
-  <Switch>
-    <Route path="/:type" component={Taxonomy} exact />
-    <Route path="/:type/:name" component={Article} exact />{" "}
-  </Switch>
-);
+export default ({ match: { path } }) => {
+  return (
+    <>
+      <Route path={`${path}/:type`} exact component={Taxonomy} />
+      <Route path={`${path}/:type/:name`} exact component={Article} />
+    </>
+  );
+};
