@@ -55,7 +55,7 @@ const Nav = () => {
   return (
     <nav role="navigation" className="usa-nav">
       <div className="usa-nav__inner">
-        <Button variant="link" className="usa-nav__close">
+        <Button type="button" variant="link" className="usa-nav__close">
           <img src={close} alt="close" />
         </Button>
         <ul className="usa-accordion usa-nav__primary">

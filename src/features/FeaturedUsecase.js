@@ -24,7 +24,7 @@ const FeaturedUsecase = (props) => {
               title={item.title}
               excerpt={item.excerpt}
               footer={
-                <Button url={item.path} fullwidth>
+                <Button url={`/library${item.path}`} fullwidth>
                   View
                 </Button>
               }

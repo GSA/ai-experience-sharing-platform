@@ -31,6 +31,8 @@ const authSlice = createSlice({
   extraReducers: {
     [login.pending]: (state) => ({
       ...state,
+      error: "",
+      token: "",
       pending: true,
     }),
     [login.fulfilled]: (state, action) => {
