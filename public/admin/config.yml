@@ -54,7 +54,7 @@ collections:
     extension: json
     label: Menus
     label_singular: Menu
-    folder: public/menu
+    folder: public/settings/menu
     create: true
     delete: true
     editor:
