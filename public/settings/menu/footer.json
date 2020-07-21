@@ -1,5 +1,5 @@
 {
-  "key": "footer",
+  "name": "footer",
   "items": [
     { "text": "Use Cases", "link": "/library/usecase" },
     {

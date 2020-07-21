@@ -2,12 +2,13 @@ import React from "react";
 import logo from "uswds/dist/img/logo-img.png";
 import Button from "components/Button";
 import { useSelector } from "react-redux";
-import { siteMeta, footerNav } from "app/siteSlice";
+import { siteMeta, menu } from "app/siteSlice";
 import { Link } from "react-router-dom";
+import { Grid, Row, Col } from "components/Grid";
 
 const Footer = () => {
   const { title } = useSelector(siteMeta);
-  const footer = useSelector(footerNav);
+  const footer = useSelector(menu("footer"));
 
   const handleScroll = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -15,20 +16,20 @@ const Footer = () => {
   return (
     <footer className="usa-footer site-footer" role="contentinfo">
       <div className="usa-footer__top">
-        <div className="grid-container">
-          <div className="grid-row">
-            <div className="tablet:grid-col">
+        <Grid>
+          <Row>
+            <Col size={12}>
               <Button onClick={handleScroll} variant="link">
                 Scroll to top
               </Button>
-            </div>
-          </div>
-        </div>
+            </Col>
+          </Row>
+        </Grid>
       </div>
       <div className="usa-footer__navigation">
-        <div className="grid-container">
-          <div className="grid-row">
-            <div className="tablet:grid-col">
+        <Grid>
+          <Row>
+            <Col size={12}>
               {footer.items.map((item, i) => (
                 <a
                   key={`footer-nav-${i}`}
@@ -38,23 +39,23 @@ const Footer = () => {
                   {item.text}
                 </a>
               ))}
-            </div>
-          </div>
-        </div>
+            </Col>
+          </Row>
+        </Grid>
       </div>
       <div className="usa-footer__bottom">
-        <div className="grid-container">
-          <div className="grid-row">
-            <div className="tablet:grid-col">
+        <Grid>
+          <Row>
+            <Col size={12}>
               <div className="logo-links">
                 <Link className="usa-footer__title" to="/">
                   <img src={logo} width="50" alt="Agency logo" />
                   {title}
                 </Link>
               </div>
-            </div>
-          </div>
-        </div>
+            </Col>
+          </Row>
+        </Grid>
       </div>
     </footer>
   );

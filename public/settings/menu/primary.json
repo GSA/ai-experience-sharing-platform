@@ -1,5 +1,5 @@
 {
-  "key": "primary",
+  "name": "primary",
   "items": [
     { "text": "Use Cases", "link": "/library/usecase" },
     {

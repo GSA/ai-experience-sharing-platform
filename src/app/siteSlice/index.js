@@ -5,11 +5,7 @@ const initialState = {
   author: "",
   title: "",
   description: "",
-  navigation: [
-    { key: "primary", items: [] },
-    { key: "secondary", items: [] },
-    { key: "footer", items: [] },
-  ],
+  menus: [],
   searchgov: {
     endpoint: "",
     affiliate: "",
@@ -24,22 +20,29 @@ export const siteData = createAsyncThunk(
   async () => await context.getSiteData()
 );
 
+export const getMenus = createAsyncThunk(
+  "site/getMenus",
+  async () => await context.getMenus()
+);
+
 export const siteSlice = createSlice({
   name: "site",
   initialState,
   extraReducers: {
     [siteData.fulfilled]: (state, action) => {
-      return action.payload;
+      return { ...state, ...action.payload };
+    },
+    [getMenus.fulfilled]: (state, action) => {
+      return { ...state, menus: action.payload };
     },
   },
 });
 
-export const primaryNav = (state) =>
-  state.site.navigation.find(({ key }) => key === "primary");
-export const secondaryNav = (state) =>
-  state.site.navigation.find(({ key }) => key === "secondary");
-export const footerNav = (state) =>
-  state.site.navigation.find(({ key }) => key === "footer");
+export const menu = (menuName) => (state) => {
+  const found = state.site.menus.find(({ name }) => name === menuName);
+  return Boolean(found) ? found : { name: menuName, items: [] };
+};
+
 export const siteMeta = ({ site: { title, author, description } = {} }) => ({
   title,
   author,

@@ -6,7 +6,7 @@ import { Link, NavLink } from "react-router-dom";
 import close from "uswds/dist/img/close.svg";
 import Button from "components/Button";
 import SearchForm from "./SearchForm";
-import { primaryNav, secondaryNav } from "app/siteSlice";
+import { menu } from "app/siteSlice";
 import "uswds";
 
 const NavItem = ({ id, text, link, items = [] }) => {
@@ -47,8 +47,8 @@ const NavItem = ({ id, text, link, items = [] }) => {
 };
 
 const Nav = () => {
-  const primary = useSelector(primaryNav);
-  const secondary = useSelector(secondaryNav);
+  const primary = useSelector(menu("primary"));
+  const secondary = useSelector(menu("secondary"));
   return (
     <nav role="navigation" className="usa-nav">
       <div className="usa-nav__inner">

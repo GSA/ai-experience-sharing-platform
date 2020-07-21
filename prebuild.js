@@ -29,6 +29,7 @@ const excerpt = () => (tree = [], vfile) => {
 
 const remark = markdown().use(parse).use(slug).use(slugLink).use(excerpt);
 
+// separate because extractToc doesn't play nice.
 const remarkToc = markdown()
   .use(parse)
   .use(slug)
@@ -55,7 +56,7 @@ const prepareContent = () => {
       .readdirSync(typePath)
       .filter((filename) => filename.includes(".json"));
 
-    contents.forEach((filename) => {
+    const indexData = contents.map((filename) => {
       const file = fs.readFileSync(path.join(typePath, filename), "utf-8");
 
       const fileData = JSON.parse(file);
@@ -77,8 +78,36 @@ const prepareContent = () => {
         path.join(__dirname, "public", "content", type, filename),
         JSON.stringify(fileData)
       );
+      return fileData;
     });
+    fs.writeFileSync(
+      path.join(__dirname, "public", "content", type, "index.json"),
+      JSON.stringify(indexData)
+    );
   });
+};
+
+const indexMenus = () => {
+  const menuPath = path.join(__dirname, "public", "settings", "menu");
+
+  if (!fs.statSync(menuPath).isDirectory()) {
+    return;
+  }
+
+  const contents = fs
+    .readdirSync(menuPath)
+    .filter((filename) => filename.includes(".json"));
+
+  const indexData = contents.map((filename) => {
+    const file = fs.readFileSync(path.join(menuPath, filename), "utf-8");
+
+    return JSON.parse(file);
+  });
+
+  fs.writeFileSync(
+    path.join(menuPath, "index.json"),
+    JSON.stringify(indexData)
+  );
 };
 
 const prepareEnv = () => {
@@ -99,3 +128,4 @@ const prepareEnv = () => {
 
 prepareEnv();
 prepareContent();
+indexMenus();
