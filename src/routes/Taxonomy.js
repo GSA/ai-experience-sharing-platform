@@ -7,6 +7,17 @@ import Login from "templates/Login";
 import { list, getList } from "app/contentSlice";
 import { Grid, Row, Col } from "components/Grid";
 
+const Title = ({ items }) =>
+  items.map(
+    (item, i) =>
+      item && (
+        <span key={i} style={{ textTransform: "capitalize" }}>
+          {i ? " / " : ""}
+          {item}
+        </span>
+      )
+  );
+
 export const Taxonomy = ({ match: { url } }) => {
   const dispatch = useDispatch();
 
@@ -21,10 +32,12 @@ export const Taxonomy = ({ match: { url } }) => {
   const items = key
     ? data.filter(({ fields = [] }) => {
         const item = fields.find((i) => i.key === key);
+        if (!item) {
+          return false;
+        }
         return item.value === value;
       })
     : data;
-  const title = `${type}${key ? ` / ${key} / ${value}` : ""}`;
   return (
     <Login>
       <Grid>
@@ -32,7 +45,9 @@ export const Taxonomy = ({ match: { url } }) => {
           <Col size="12">
             <Row className="align-items-center padding-bottom-4">
               <Col size="8">
-                <h3 className="margin-0">{title}</h3>
+                <h3 className="margin-0">
+                  <Title items={[type, key, value]} />
+                </h3>
               </Col>
               <Col size="4" style={{ textAlign: "right" }}>
                 <label
