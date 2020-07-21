@@ -84,6 +84,7 @@ const prepareContent = () => {
       path.join(__dirname, "public", "content", type, "index.json"),
       JSON.stringify(indexData)
     );
+    console.log(`PREBUILD: "${type}" indexed as ${typePath}/index.js`);
   });
 };
 
@@ -108,6 +109,7 @@ const indexMenus = () => {
     path.join(menuPath, "index.json"),
     JSON.stringify(indexData)
   );
+  console.log(`PREBUILD: "menus" indexed as ${menuPath}/index.js`);
 };
 
 const prepareEnv = () => {
