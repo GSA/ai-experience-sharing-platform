@@ -1,12 +1,1 @@
-{
-  "date": "2020-07-21T17:52:09.101Z",
-  "title": "Test Resource 3",
-  "category": "guides",
-  "tags": [
-    "tag3",
-    "tag5",
-    "tag7",
-    "tag9"
-  ],
-  "body": "<Content chunks={2} />"
-}
+{"date":"2020-07-21T17:52:09.101Z","title":"Test Resource 3","category":"guides","tags":["tag3","tag5","tag7","tag9"],"body":"<Content chunks={2} />\n","name":"test-resource-3","path":"/resource/test-resource-3","toc":[]}

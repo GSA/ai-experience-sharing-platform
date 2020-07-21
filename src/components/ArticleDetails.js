@@ -1,8 +1,16 @@
 import React from "react";
-import PropTypes from "prop-types";
+import Date from "components/Date";
+
+const Format = ({ name, value }) => {
+  console.log("KEY", name);
+  if (name === "date") {
+    console.log("DATE", value);
+    return <Date>{value}</Date>;
+  }
+  return Array.isArray(value) ? value.join(", ") : value;
+};
 
 const ArticleDetails = ({ id, title, items }) => {
-  console.log(items);
   return (
     <div className="ArticleDetails">
       {title && (
@@ -14,7 +22,7 @@ const ArticleDetails = ({ id, title, items }) => {
         <div key={key} className="ArticleDetails__item">
           <span className="ArticleDetails__item-title">{title}</span>
           <span className="ArticleDetails__text">
-            {Array.isArray(value) ? value.join(", ") : value}
+            <Format name={key} value={value} />
           </span>
         </div>
       ))}

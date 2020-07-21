@@ -1,11 +1,1 @@
-{
-  "date": "2020-07-21T17:51:06.793Z",
-  "title": "Test Resource 2",
-  "category": "whitepapers",
-  "tags": [
-    "tag1",
-    "tag4",
-    "tag5"
-  ],
-  "body": "<Content chunks={2} />"
-}
+{"date":"2020-07-21T17:51:06.793Z","title":"Test Resource 2","category":"whitepapers","tags":["tag1","tag4","tag5"],"body":"<Content chunks={2} />\n","name":"test-resource-2","path":"/resource/test-resource-2","toc":[]}
