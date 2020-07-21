@@ -1,0 +1,11 @@
+{
+  "date": "2020-07-21T17:53:00.871Z",
+  "title": "Test Resource 4",
+  "category": "guides",
+  "tags": [
+    "tag2",
+    "tag4",
+    "tag6"
+  ],
+  "body": "<Content chunks={2} />"
+}
