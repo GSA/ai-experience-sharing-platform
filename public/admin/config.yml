@@ -97,7 +97,7 @@ collections:
       - { label: "Title", name: "title", widget: "string" }
       - { label: "Body", name: "body", widget: "markdown" }
   - name: usecase
-    extension: md
+    extension: json
     label: Use Cases
     label_singular: Use Case
     folder: public/content/usecase
