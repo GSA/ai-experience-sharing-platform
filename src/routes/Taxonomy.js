@@ -17,7 +17,9 @@ export const Taxonomy = ({ match: { url } }) => {
   useEffect(() => {
     dispatch(getList(type));
   }, [dispatch, hash, type]);
-  const items = key ? data.filter((item) => item.fields[key] === value) : data;
+  const items = key
+    ? data.filter(({ fields = {} }) => fields[key] === value)
+    : data;
   const title = `${type}${key ? ` / ${key} / ${value}` : ""}`;
   return (
     <Login>

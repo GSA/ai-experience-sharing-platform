@@ -22,7 +22,7 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-/public/content.json
-/public/site.json
-/src/app/site.json
+/public/content/**/index.json
+/public/settings/menu/index.json
+
 _site

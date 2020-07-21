@@ -107,19 +107,32 @@ collections:
     editor:
       preview: false
     fields:
-      - { label: "Title", name: "title", widget: "string" }
-      - { label: "Date", name: "date", widget: "datetime" }
-      - { label: "Participant", name: "participant", widget: "string" }
-      - { label: "Patterns", name: "patterns", widget: "list" }
-      - { label: "Solutions", name: "solutions", widget: "list" }
-      - { label: "Tags", name: "tags", widget: "list" }
-      - {
-          label: "Featured",
-          name: "featured",
-          widget: "boolean",
-          default: false,
-        }
-      - { label: "Body", name: "body", widget: "markdown" }
+      - label: Title
+        name: title
+        widget: string
+      - label: Date
+        name: date
+        widget: datetime
+      - name: fields
+        label: Fields
+        widget: list
+        fields:
+          - label: Key
+            name: key
+            widget: string
+          - label: Title
+            name: title
+            widget: string
+          - label: Value
+            name: value
+            widget: string
+      - label: Featured
+        name: featured
+        widget: boolean
+        default: false
+      - label: Body
+        name: body
+        widget: markdown
   - name: resource
     extension: json
     label: Resources
