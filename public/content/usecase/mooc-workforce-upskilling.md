@@ -1,7 +1,7 @@
 ---
 title: MOOC Workforce Upskilling
 date: 2020-07-21T17:43:50.426Z
-featured: false
+featured: true
 ---
 ## Tools and Technology
 
