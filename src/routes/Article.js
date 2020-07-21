@@ -29,7 +29,13 @@ export const Article = () => {
           {body && <Mdx>{body}</Mdx>}
         </Col>
         <Col size={2}>
-          <ArticleDetails title="Details" items={{ date, ...fields }} />
+          <ArticleDetails
+            title="Details"
+            items={[
+              { key: "date", title: "Published", value: date },
+              ...fields,
+            ]}
+          />
         </Col>
       </Row>
     </Grid>

@@ -54,32 +54,34 @@ const prepareContent = () => {
 
     const contents = fs
       .readdirSync(typePath)
-      .filter((filename) => filename.includes(".json") && filename !== "index.json");
+      .filter(
+        (filename) => filename.includes(".json") && filename !== "index.json"
+      );
 
     const indexData = contents.map((filename) => {
-        const file = fs.readFileSync(path.join(typePath, filename), "utf-8");
+      const file = fs.readFileSync(path.join(typePath, filename), "utf-8");
 
-        const fileData = JSON.parse(file);
-        const name = filename.replace(/\.json/, "");
-        fileData.name = name;
-        fileData.path = `/${type !== "page" ? `${type}/` : ""}${name}`;
+      const fileData = JSON.parse(file);
+      const name = filename.replace(/\.json/, "");
+      fileData.name = name;
+      fileData.path = `/${type !== "page" ? `${type}/` : ""}${name}`;
 
-        const process = remark.processSync(fileData.body);
+      const process = remark.processSync(fileData.body);
 
-        fileData.excerpt = process.data.excerpt;
-        fileData.body = process.toString();
+      fileData.excerpt = process.data.excerpt;
+      fileData.body = process.toString();
 
-        const node = remarkToc.parse(file);
-        const headings = remarkToc.runSync(node);
-        fileData.toc = [];
-        parseToc(headings, fileData.toc);
-
-        fs.writeFileSync(
-          path.join(__dirname, "public", "content", type, filename),
-          JSON.stringify(fileData)
-        );
-        return fileData;
-      });
+      const node = remarkToc.parse(fileData.body);
+      const headings = remarkToc.runSync(node);
+      const toc = [];
+      parseToc(headings, toc);
+      fileData.toc = toc;
+      fs.writeFileSync(
+        path.join(__dirname, "public", "content", type, filename),
+        JSON.stringify(fileData)
+      );
+      return fileData;
+    });
     fs.writeFileSync(
       path.join(__dirname, "public", "content", type, "index.json"),
       JSON.stringify(indexData)
