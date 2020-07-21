@@ -59,8 +59,8 @@ const prepareContent = () => {
       const file = fs.readFileSync(path.join(typePath, filename), "utf-8");
 
       const fileData = JSON.parse(file);
-
-      fileData.name = filename.replace(/\.json/, "");
+      const name = filename.replace(/\.json/, "");
+      fileData.name = name;
       fileData.path = `/${type !== "page" ? `${type}/` : ""}${name}`;
 
       const process = remark.processSync(fileData.body);
