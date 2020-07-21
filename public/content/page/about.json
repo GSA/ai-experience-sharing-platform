@@ -1,0 +1,4 @@
+{
+  "title": "About",
+  "body": "# heading 1\n\nHow are we going to get an excerpt out of this thing?\n\n## heading 2\n\n<Content chunks={3} />\n\n### heading 3\n\n<Content chunks={3} />\n\n#### heading 4\n"
+}
