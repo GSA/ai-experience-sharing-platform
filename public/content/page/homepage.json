@@ -1,6 +1,6 @@
 {
   "title": "Homepage",
-  "body": "<Hero />\n\n<Grid >\n\n<Row className=\"use-case-header\">\n\n<Col size={12} desktop={6} className=\"use-case-header__title\">\n\nFeatured Use Cases\n\n</Col>\n\n<Col size={12} desktop={6} className=\"use-case-header__link\">\n\n<Button url=\"/library/usecase\" variant=\"link\">\n\nView All Use Cases\n\n</Button>\n\n</Col>\n\n</Row>\n\n<Row>\n\n<Featured />\n\n</Row>\n\n</Grid>\n",
+  "body": "<Hero background=\"/images/test.jpg\">This is the hero text.</Hero>\n\n<Grid >\n\n<Row className=\"use-case-header\">\n\n<Col size={12} desktop={6} className=\"use-case-header__title\">\n\nFeatured Use Cases\n\n</Col>\n\n<Col size={12} desktop={6} className=\"use-case-header__link\">\n\n<Button url=\"/library/usecase\" variant=\"link\">\n\nView All Use Cases\n\n</Button>\n\n</Col>\n\n</Row>\n\n<Row>\n\n<Featured />\n\n</Row>\n\n</Grid>",
   "name": "homepage",
   "path": "/homepage",
   "excerpt": "Featured Use Cases",
