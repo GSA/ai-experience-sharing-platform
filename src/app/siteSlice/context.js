@@ -9,6 +9,5 @@ export const getMenus = async () => {
     `${process.env.PUBLIC_URL}/settings/menu/index.json`
   );
   const data = await response.json();
-  console.log(data);
   return data;
 };

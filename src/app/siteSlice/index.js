@@ -33,7 +33,6 @@ export const siteSlice = createSlice({
       return { ...state, ...action.payload };
     },
     [getMenus.fulfilled]: (state, action) => {
-      console.log(action);
       return { ...state, menus: action.payload };
     },
   },
