@@ -1,1 +1,1 @@
-{"date":"2020-07-21T17:50:10.083Z","category":"playbooks","tags":["tag1","tag2"],"title":"Test Resource 1","body":"<Content chunks={2} />\n","name":"test-resource-1","path":"/resource/test-resource-1","toc":[]}
+{"date":"2020-07-21T17:50:10.083Z","fields":[{"key":"category","title":"Category","value":"playbooks"},{"key":"tags","title":"Tags","value":"tag1,tag2"}],"title":"Test Resource 1","body":"<Content chunks={2} />\n","name":"test-resource-1","path":"/resource/test-resource-1","toc":[]}

@@ -17,8 +17,12 @@ export const Taxonomy = ({ match: { url } }) => {
   useEffect(() => {
     dispatch(getList(type));
   }, [dispatch, hash, type]);
+  console.log(data);
   const items = key
-    ? data.filter(({ fields = {} }) => fields[key] === value)
+    ? data.filter(({ fields = [] }) => {
+        const item = fields.find((i) => i.key === key);
+        return item.value === value;
+      })
     : data;
   const title = `${type}${key ? ` / ${key} / ${value}` : ""}`;
   return (
