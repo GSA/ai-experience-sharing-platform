@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams, useLocation } from "react-router-dom";
 import PropTypes from "prop-types";
 import Article from "components/ArticleExcerpt";
-import Login from "templates/Login";
+import Login from "features/Login";
 import { list, getList } from "app/contentSlice";
 import { Grid, Row, Col } from "components/Grid";
 

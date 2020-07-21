@@ -19,7 +19,9 @@ const Header = ({ children }) => {
             </Link>
           </em>
         </div>
-        <Button className="usa-menu-btn">Menu</Button>
+        <Button type="button" className="usa-menu-btn">
+          Menu
+        </Button>
       </div>
       <Nav />
     </header>

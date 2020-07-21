@@ -12,6 +12,7 @@
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
+    "classnames": "^2.2.6",
     "front-matter": "^4.0.2",
     "netlify-cms-app": "^2.12.18",
     "node-env-run": "^3.0.2",
