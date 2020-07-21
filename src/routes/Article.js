@@ -14,7 +14,7 @@ export const Article = () => {
   useEffect(() => {
     dispatch(getPage({ type, name }));
   }, [type, name, dispatch]);
-  const { title, date, body, toc = [], fields = {} } = data;
+  const { title, date, body, toc = [], fields = [] } = data;
   return (
     <Grid>
       <Row>
