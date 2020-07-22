@@ -1,1 +1,25 @@
-{"title":"About","body":"# [](#heading-1)[](#heading-1)[](#heading-1)[](#heading-1)heading 1\n\nHow are we going to get an excerpt out of this thing?\n\n## [](#heading-2)[](#heading-2)[](#heading-2)[](#heading-2)heading 2\n\n<Content chunks={3} />\n\n### [](#heading-3)[](#heading-3)[](#heading-3)[](#heading-3)heading 3\n\n<Content chunks={3} />\n\n#### [](#heading-4)[](#heading-4)[](#heading-4)[](#heading-4)heading 4\n","name":"about","path":"/about","excerpt":"How are we going to get an excerpt out of this thing?","toc":[{"text":"heading 1","url":"#heading-1"},{"text":"heading 2","url":"#heading-2"},{"text":"heading 3","url":"#heading-3"},{"text":"heading 4","url":"#heading-4"}]}
+{
+  "title": "About",
+  "body": "AI Sharing Platform is a centralized resource for practitioners, scientists and leaders to explore AI solutions, collaborate and develop as a community and grow an AI-ready government workforce.\n\n# AI Use Case Library\n\nThrough sharing the story of an AI project at both  intra-organizational and inter-agency levels, government teams can learn about successful ways to approach business challenges with AI. \n\n# AI In Government Body of Knowledge\n\nThe guide is for agency senior leaders and decision makers. Users could be non-technical decision makers who must determine the level of investment required, and where and how those investments will be deployed.\n\n# AI Community of Practice\n\nThrough sharing the story of an AI project at both  intra-organizational and inter-agency levels, government teams can learn about successful ways to approach business challenges with AI.\n\n# AI Learning Path\n\nInvesting time and money in a platform that will target the educational needs of the government  workforce will drive their ability to start applying new skills and become educated members of an AI team",
+  "name": "about",
+  "path": "/about",
+  "excerpt": "How are we going to get an excerpt out of this thing?",
+  "toc": [
+    {
+      "text": "heading 1",
+      "url": "#heading-1"
+    },
+    {
+      "text": "heading 2",
+      "url": "#heading-2"
+    },
+    {
+      "text": "heading 3",
+      "url": "#heading-3"
+    },
+    {
+      "text": "heading 4",
+      "url": "#heading-4"
+    }
+  ]
+}
