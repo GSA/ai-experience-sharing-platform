@@ -1,11 +1,11 @@
 .ArticleExcerpt {
-  @include u-text('base');
+  @include u-text("base");
   &__title {
-    text-decoration: none;
-    h5 {
-      margin: 0;
-      @include u-font('sans', 'md');
-      @include u-margin-bottom(1);
+    margin: 0;
+    @include u-font("sans", "md");
+    @include u-margin-bottom(1);
+    a {
+      text-decoration: none;
     }
   }
   &__date {
