@@ -20,7 +20,7 @@ const FeaturedUsecase = (props) => {
         return (
           <Col key={item.name} size={6} className="padding-bottom-4">
             <Card
-              className="MockCard"
+              className="FeaturedCard"
               title={item.title}
               excerpt={item.excerpt}
               footer={
