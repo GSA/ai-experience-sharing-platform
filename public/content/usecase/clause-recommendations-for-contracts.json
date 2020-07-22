@@ -25,6 +25,11 @@
       "value": "Decrease Cycle Time, Increase Accuracy, Increase Compliance"
     },
     {
+      "key": "business_function",
+      "title": "Business Function",
+      "value": "Contract Classification"
+    },
+    {
       "key": "production_status",
       "title": "Production Status",
       "value": "Production"
