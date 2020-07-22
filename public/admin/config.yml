@@ -3,7 +3,7 @@ backend:
   repo: GSA/ai-experience-sharing-platform
   base_url: https://github.com
   auth_endpoint: external/auth/github
-  branch: develop
+  branch: content
   preview_context: federalist/build
 
 media_folder: public/images
@@ -144,8 +144,25 @@ collections:
     editor:
       preview: false
     fields:
-      - { label: "Title", name: "title", widget: "string" }
-      - { label: "Date", name: "date", widget: "datetime" }
-      - { label: "Category", name: "category", widget: "string" }
-      - { label: "Tags", name: "tags", widget: "list" }
-      - { label: "Body", name: "body", widget: "markdown" }
+      - label: "Title"
+        name: "title"
+        widget: "string"
+      - label: "Date"
+        name: "date"
+        widget: "datetime"
+      - name: fields
+        label: Fields
+        widget: list
+        fields:
+          - label: Key
+            name: key
+            widget: string
+          - label: Title
+            name: title
+            widget: string
+          - label: Value
+            name: value
+            widget: string
+      - label: "Body"
+        name: "body"
+        widget: "markdown"

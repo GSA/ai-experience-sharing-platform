@@ -2,9 +2,7 @@ import React from "react";
 import Date from "components/Date";
 
 const Format = ({ name, value }) => {
-  console.log("KEY", name);
   if (name === "date") {
-    console.log("DATE", value);
     return <Date>{value}</Date>;
   }
   return Array.isArray(value) ? value.join(", ") : value;

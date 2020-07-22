@@ -4,18 +4,19 @@ import * as context from "./context";
 const initialState = {
   isAuth: false,
   token: "",
+  error: "",
   pending: false,
 };
 
 export const login = createAsyncThunk(
   "auth/login",
   async ({ username, password }) => {
-    const { token = "" } = await context.postAuthCredentials({
+    const payload = await context.postAuthCredentials({
       username,
       password,
     });
 
-    return token;
+    return payload;
   }
 );
 
@@ -30,14 +31,18 @@ const authSlice = createSlice({
   extraReducers: {
     [login.pending]: (state) => ({
       ...state,
+      error: "",
+      token: "",
       pending: true,
     }),
-    [login.fulfilled]: (state, action) => ({
-      ...state,
-      pending: false,
-      token: action.payload,
-      isAuth: Boolean(action.payload),
-    }),
+    [login.fulfilled]: (state, action) => {
+      console.log(action);
+      return {
+        ...action.payload,
+        pending: false,
+        isAuth: Boolean(action.payload.token),
+      };
+    },
     [logout.pending]: (state) => ({
       ...state,
       pending: true,
@@ -51,6 +56,6 @@ const authSlice = createSlice({
   },
 });
 
-export const isAuth = (state) => state.auth.isAuth;
+export const auth = (state) => state.auth;
 
 export default authSlice.reducer;

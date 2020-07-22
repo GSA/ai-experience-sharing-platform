@@ -9,7 +9,7 @@ const FeaturedUsecase = (props) => {
   const dispatch = useDispatch();
   const reload = false;
   const data = useSelector((state) =>
-    state.content.list.data.filter((item) => item.fields.featured)
+    state.content.list.data.filter((item) => item.featured)
   );
   useEffect(() => {
     dispatch(getList("usecase"));
@@ -24,7 +24,7 @@ const FeaturedUsecase = (props) => {
               title={item.title}
               excerpt={item.excerpt}
               footer={
-                <Button url={item.path} fullwidth>
+                <Button url={`/library${item.path}`} fullwidth>
                   View
                 </Button>
               }
