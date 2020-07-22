@@ -1,7 +1,7 @@
 name: Content Merge
 on:
   push:
-    branchs:
+    branches:
       - "content"
 jobs:
   pull-request:
