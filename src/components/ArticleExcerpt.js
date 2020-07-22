@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Date from "components/Date";
 
-const ArticleExcerpt = ({ title, date, path }) => {
+const ArticleExcerpt = ({ title, date, path, excerpt }) => {
   return (
     <div className="ArticleExcerpt">
       <Link className="ArticleExcerpt__title" to={path}>
