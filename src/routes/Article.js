@@ -5,7 +5,7 @@ import Login from "features/Login";
 import ArticleDetails from "components/ArticleDetails";
 import ContentNav from "components/ContentsNav";
 import { useDispatch, useSelector } from "react-redux";
-import { getPage, page } from "app/contentSlice";
+import { getPage, page, clearPage } from "app/contentSlice";
 import { Grid, Row, Col } from "components/Grid";
 
 export const Article = () => {
@@ -14,6 +14,9 @@ export const Article = () => {
   const { data = {} } = useSelector(page);
   useEffect(() => {
     dispatch(getPage({ type, name }));
+    return () => {
+      dispatch(clearPage());
+    };
   }, [type, name, dispatch]);
   const { title, date, body, toc = [], fields = [] } = data;
   return (
