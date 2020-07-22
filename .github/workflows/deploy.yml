@@ -1,7 +1,8 @@
 name: Content Merge
 on:
   push:
-    bramch: content
+    bramchs:
+      - "content"
 jobs:
   pull-request:
     runs-on: ubuntu-latest
@@ -9,8 +10,6 @@ jobs:
       matrix:
         node-version: [12.x]
     steps:
-      - run: echo "::set-env name=PUBLIC_URL::/${GITHUB_REPOSITORY##*/}/${GITHUB_REF#refs/heads/}"
-      - run: echo "::set-env name=TARGET_FOLDER::${GITHUB_REF#refs/heads/}"
       - uses: actions/checkout@v2
       - name: pull-request
         uses: repo-sync/pull-request@v2
