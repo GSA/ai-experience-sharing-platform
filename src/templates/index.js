@@ -5,9 +5,9 @@ import Card from "components/Card";
 import Content from "components/Content";
 import Hero from "features/Hero";
 
-const MockCard = ({ title, url }) => (
+const FeaturedCard = ({ title, url }) => (
   <Card
-    className="MockCard"
+    className="FeaturedCard"
     title={title}
     excerpt={<Content chunks={1} chunkSize={4} lineSize={10} />}
     footer={
@@ -44,7 +44,7 @@ const IndexPage = ({ data }) => {
         <div className="grid-row grid-gap-6 padding-x-8">
           {edges.map(({ node }) => (
             <div key={node.fields.name} className="grid-col-6 padding-bottom-4">
-              <MockCard
+              <FeaturedCard
                 title={node.frontmatter.title}
                 url={node.fields.pagePath}
               />

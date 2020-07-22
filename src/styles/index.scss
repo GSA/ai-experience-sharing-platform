@@ -1,7 +1,7 @@
 // Edit the theme files to customize USWDS
 // https://designsystem.digital.gov/documentation/developers/#sass-and-theme-settings
 
-@import 'theme/styles.scss';
+@import "theme/styles.scss";
 
 // Your custom SASS/CSS goes here
 @media screen and (min-width: 640px) {
@@ -28,14 +28,5 @@
   }
   .paginate-button {
     display: block;
-  }
-}
-
-.MockCard {
-  height: 100%;
-  h2 {
-    p {
-      margin: 0;
-    }
   }
 }

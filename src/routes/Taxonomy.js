@@ -4,7 +4,7 @@ import { useParams, useLocation } from "react-router-dom";
 import PropTypes from "prop-types";
 import Article from "components/ArticleExcerpt";
 import Login from "features/Login";
-import { list, getList } from "app/contentSlice";
+import { list, getList, clearList } from "app/contentSlice";
 import { Grid, Row, Col } from "components/Grid";
 
 const Title = ({ items }) =>
@@ -27,8 +27,10 @@ export const Taxonomy = ({ match: { url } }) => {
   const { pending = false, data = [] } = useSelector(list);
   useEffect(() => {
     dispatch(getList(type));
+    return () => {
+      dispatch(clearList());
+    };
   }, [dispatch, hash, type]);
-  console.log(data);
   const items = key
     ? data.filter(({ fields = [] }) => {
         const item = fields.find((i) => i.key === key);

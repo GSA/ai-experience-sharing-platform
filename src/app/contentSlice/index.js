@@ -34,6 +34,10 @@ const fulfilled = (key, state, action) => ({
 export const contentSlice = createSlice({
   name: "content",
   initialState,
+  reducers: {
+    clearPage: (state) => ({ ...state, page: initialState.page }),
+    clearList: (state) => ({ ...state, list: initialState.list }),
+  },
   extraReducers: {
     [getPage.pending]: (state) => pending("page", state),
     [getPage.fulfilled]: (state, action) => fulfilled("page", state, action),
@@ -44,6 +48,9 @@ export const contentSlice = createSlice({
       fulfilled("taxonomy", state, action),
   },
 });
+
+export const clearPage = contentSlice.actions.clearPage;
+export const clearList = contentSlice.actions.clearList;
 
 export const list = (state) => state.content.list;
 export const page = (state) => state.content.page;

@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import Mdx from "features/Mdx";
 import { useSelector, useDispatch } from "react-redux";
-import { page, getPage } from "app/contentSlice";
+import { page, getPage, clearPage } from "app/contentSlice";
 import { useParams } from "react-router-dom";
 import { Grid, Row, Col } from "components/Grid";
 
@@ -12,6 +12,9 @@ const Page = () => {
   const { title, body } = data;
   useEffect(() => {
     dispatch(getPage({ type: "page", name }));
+    return () => {
+      dispatch(clearPage());
+    };
   }, [name, dispatch]);
   return (
     <Grid>

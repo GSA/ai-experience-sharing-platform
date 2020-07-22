@@ -1,8 +1,1 @@
-{
-  "title": "Homepage",
-  "body": "<Hero background=\"test.jpg\">\n<Grid>\n<Row>\n<Col size={12} tablet={4} className=\"text-align-left\"><h1 className=\"text-white\">Sharing Artificial Intelligence use cases across the federal government</h1></Col>\n</Row>\n</Grid>\n</Hero>\n<Grid>\n<Row className=\"use-case-header\">\n<Col size={12} desktop={6} className=\"use-case-header__title\">Featured Use Cases</Col>\n<Col size={12} desktop={6} className=\"use-case-header__link\">\n<Button url=\"/library/usecase\" variant=\"link\">View All Use Cases</Button>\n</Col>\n</Row>\n<Row>\n<Featured />\n</Row>\n</Grid>",
-  "name": "homepage",
-  "path": "/homepage",
-  "excerpt": "Featured Use Cases",
-  "toc": []
-}
+{"title":"Homepage","body":"<Hero background=\"test.jpg\">\n<Grid>\n<Row>\n<Col size={12} tablet={4} className=\"text-align-left\"><h1 className=\"text-white\">Sharing Artificial Intelligence use cases across the federal government</h1></Col>\n</Row>\n</Grid>\n</Hero>\n<Grid>\n<Row className=\"use-case-header\">\n<Col size={12} desktop={6} className=\"use-case-header__title\">Featured Use Cases</Col>\n<Col size={12} desktop={6} className=\"use-case-header__link\">\n<Button url=\"/library/usecase\" variant=\"link\">View All Use Cases</Button>\n</Col>\n</Row>\n<Row>\n<Featured />\n</Row>\n</Grid>\n","name":"homepage","path":"/homepage","toc":[]}
