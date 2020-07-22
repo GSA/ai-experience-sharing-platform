@@ -1,0 +1,38 @@
+{
+  "featured": false,
+  "date": "2020-07-22T16:36:26.485Z",
+  "title": "MOOC Workforce Upskilling",
+  "fields": [
+    {
+      "key": "agency",
+      "title": "Agency",
+      "value": "National Science Foundation"
+    },
+    {
+      "key": "participant",
+      "title": "Participant",
+      "value": "Dorothy Aronson"
+    },
+    {
+      "key": "techniques",
+      "title": "Techniques",
+      "value": "Data Science"
+    },
+    {
+      "key": "benefits",
+      "title": "Benefits",
+      "value": "Workforce Upskilling"
+    },
+    {
+      "key": "business_function",
+      "title": "Business Function",
+      "value": "Human Resources"
+    },
+    {
+      "key": "production_status",
+      "title": "Production Status",
+      "value": "Pilot"
+    }
+  ],
+  "body": "## Tools and Technology\n\nNSF piloted the use of MOOC for upskilling federal staff in Data Science and Analytics. NSF partnered with the CIO Council to offer Udacity Nanodegree Courses, including data analytics and data scientist training for federal staff. Staff must pass a brief aptitude assessment to qualify for the courses. Staff are then assigned to a course and begin an ~ 8 hour a week, 6-month long program of virtual learning. The tool offers participants virtual mentors and helps monitor participants' progress.\n\n## Contact Information\n\nDorothy Aronson\n\ndaronson@nsf.gov"
+}
