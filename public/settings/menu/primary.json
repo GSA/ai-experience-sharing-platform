@@ -31,16 +31,12 @@
       "text": "About",
       "items": [
         {
-          "text": "Governance",
+          "text": "AI in Government",
           "link": "/about-artificial-intelligence"
         },
         {
           "text": "History",
           "link": "/history"
-        },
-        {
-          "text": "Requirements",
-          "link": "/requirements"
         }
       ],
       "link": "/about"
