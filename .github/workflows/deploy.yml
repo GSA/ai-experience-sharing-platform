@@ -1,0 +1,22 @@
+name: Content Merge
+on:
+  push:
+    bramch: content
+jobs:
+  pull-request:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [12.x]
+    steps:
+      - run: echo "::set-env name=PUBLIC_URL::/${GITHUB_REPOSITORY##*/}/${GITHUB_REF#refs/heads/}"
+      - run: echo "::set-env name=TARGET_FOLDER::${GITHUB_REF#refs/heads/}"
+      - uses: actions/checkout@v2
+      - name: pull-request
+        uses: repo-sync/pull-request@v2
+        with:
+          destination_branch: "master"
+          pr_title: "Deploy Content ${{ github.ref }}"
+          pr_label: "content-deploy"
+          pr_allow_empty: false
+          github_token: ${{ github.token }}

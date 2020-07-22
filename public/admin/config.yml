@@ -3,7 +3,7 @@ backend:
   repo: GSA/ai-experience-sharing-platform
   base_url: https://github.com
   auth_endpoint: external/auth/github
-  branch: develop
+  branch: content
   preview_context: federalist/build
 
 media_folder: public/images
