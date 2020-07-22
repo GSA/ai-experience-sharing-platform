@@ -9,16 +9,16 @@
       "text": "Resources",
       "items": [
         {
-          "text": "Playbooks",
-          "link": "/library/resource#category=playbooks"
+          "text": "Terminology",
+          "link": "/library/resource#category=terminology"
         },
         {
-          "text": "Whitepapers",
-          "link": "/library/resource#category=whitepapers"
+          "text": "Framework",
+          "link": "/library/resource#category=framework"
         },
         {
-          "text": "Guides",
-          "link": "/library/resource#category=guides"
+          "text": "Processes",
+          "link": "/library/resource#category=processes"
         },
         {
           "text": "All Resources",
