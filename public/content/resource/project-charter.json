@@ -1,0 +1,17 @@
+{
+  "date": "2020-07-22T21:11:44.183Z",
+  "title": "Project Charter",
+  "fields": [
+    {
+      "key": "category",
+      "title": "Category",
+      "value": "processes"
+    },
+    {
+      "key": "tags",
+      "title": "Tags",
+      "value": "AI Development Process"
+    }
+  ],
+  "body": "A properly designed project charter can mitigate many risks and help ensure the successful implementation of an AI project. The main elements of a charter should include the following:\n\n* Problem/mission statement: What is the problem that needs to be solved? What impact would a successful solution have?\n* Clear deliverables and success criteria: How exactly will success be measured? \n* Well-defined scope: What is within the scope of the project and what is outside the scope?\n* Techstack: What tools and technologies will be used in the project?\n* Data assets: What data will be accessible and what are the access, storage, and sharing protocols? Are there relevant data inventories and data dictionaries? \n* Realistic timeline: What does the work plan with chronological elements and milestones look like?\n* Stakeholders: Who are the key stakeholders and what are their roles?\n* Constraints: What kind of constraints exist in regard to budget, data, deadlines, compliance, etc. and how will they impact the project?\n* Potential risks and mitigants: What risks does the project face or pose and how are the risks being addressed?\n* Dependencies: What other factors and dynamics may impact the deliverables or constraints of the project?"
+}
