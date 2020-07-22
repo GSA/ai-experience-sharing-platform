@@ -1,0 +1,17 @@
+{
+  "date": "2020-07-22T20:49:37.208Z",
+  "title": "Managing Data Science",
+  "fields": [
+    {
+      "key": "category",
+      "title": "Category",
+      "value": "framework"
+    },
+    {
+      "key": "tags",
+      "title": "Tags",
+      "value": "AI Success"
+    }
+  ],
+  "body": "Different processes and results may emerge depending on who manages analytics and data science within an agency or working area. Should it be business people with management skills or senior data scientists who understand AI techniques and capabilities? Below are some considerations when evaluating this question.\n\n### Business Leader\n\n* Needs to know enough about analytics to guide the team.\n* Will not be hands on.\n* Will excel in communication and management skills.\n* Will require more senior data scientists on the team.\n\n### Senior data scientist\n\n* Needs management skills to lead the team.\n* Will be more hands-on.\n* May be challenging to find data scientists who want to manage.\n* Can lead smaller teams or teams with only junior data scientists.\n\n## Roles needed to support AI\n\nWhen agencies are planning AI projects, it’s important to narrow in on the sponsors and individuals required to execute key components of projects. Roles that support data science teams should include:\n\n* Project sponsor: Helps identify and approve opportunities and make go/no go decisions. \n* Business user: Helps identify opportunities and provides business and workflow understanding.\n* Project manager: Ensures day-to-day progress and communicates with stakeholders and vendors.\n* Business analyst: Provides business, financial, and data understanding.\n* Data engineer: Supports data needs and provides data expertise.\n\nThe roles above may need to liaise between data science, IT, and business needs of mission areas. The number of most of these roles may vary depending on the size of the initiative."
+}

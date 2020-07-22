@@ -1,0 +1,17 @@
+{
+  "date": "2020-07-22T21:00:53.647Z",
+  "title": "Innovating with AI",
+  "fields": [
+    {
+      "key": "category",
+      "title": "Category",
+      "value": "framework"
+    },
+    {
+      "key": "tags",
+      "title": "Tags",
+      "value": "AI Success"
+    }
+  ],
+  "body": "AI is a great tool for improving existing operations, products, and services. But AI can provide even greater benefits when viewed as an innovation pathway. The most successful AI-driven organizations don’t just use AI and analytics to improve existing products and services, but to identify new products and services. \n\nBuilding a culture of data literacy and collaboration across boundaries is a foundational step for innovation and digital transformation. Below are some ideas to consider for educating and empowering teams to embrace the innovation mindset.  \n\n**Learn from others in government and share use cases:** There is no need to reinvent the wheel for every AI solution. Irrespective of the size of a project or method of development, there are critical lessons to be learned. Through sharing the story of an AI project at both  intra-organizational and inter-agency levels, government teams can learn about successful ways to approach business challenges with AI. This means sharing the technical journey, but also the business journey. What was the business problem? What tools did you use to solve it?  How did you write the solicitation and what clauses did you include to ensure successful delivery? \n\n**Courses and certifications:** The learning and training space for data science, machine learning and AI is overwhelming. But as discussed in the previous section, investing time and money in a platform that will target the educational needs of your workforce will drive their ability to start applying new skills and become educated members of an AI team.\n\n**Encourage experimentation and learn by doing:** Creating a culture and space for teams to explore, discover, and experiment will empower them to be informed builders and buyers of AI. If there are concerns about experimenting, try starting in smaller ways or in an area that is lower risk. This may be an entirely internal effort or could involve a contractor or vendor. It also means increasing access to data science tools and data sets across the organization."
+}

@@ -9,16 +9,16 @@
       "text": "Resources",
       "items": [
         {
-          "text": "Playbooks",
-          "link": "/library/resource#category=playbooks"
+          "text": "Terminology",
+          "link": "/library/resource#category=terminology"
         },
         {
-          "text": "Whitepapers",
-          "link": "/library/resource#category=whitepapers"
+          "text": "Framework for AI Success",
+          "link": "/library/resource#category=framework"
         },
         {
-          "text": "Guides",
-          "link": "/library/resource#category=guides"
+          "text": "AI Project Processes",
+          "link": "/library/resource#category=processes"
         },
         {
           "text": "All Resources",
@@ -31,16 +31,12 @@
       "text": "About",
       "items": [
         {
-          "text": "Governance",
+          "text": "AI in Government",
           "link": "/about-artificial-intelligence"
         },
         {
           "text": "History",
           "link": "/history"
-        },
-        {
-          "text": "Requirements",
-          "link": "/requirements"
         }
       ],
       "link": "/about"

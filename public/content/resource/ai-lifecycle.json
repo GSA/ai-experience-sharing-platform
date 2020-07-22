@@ -1,0 +1,17 @@
+{
+  "date": "2020-07-22T21:08:05.772Z",
+  "title": "AI Lifecycle",
+  "fields": [
+    {
+      "key": "category",
+      "title": "Category",
+      "value": "processes"
+    },
+    {
+      "key": "tags",
+      "title": "Tags",
+      "value": "AI Development Process"
+    }
+  ],
+  "body": "The most widely used model for operationalizing analytics is the cross-industry standard process for data mining, or CRISP-DM. This methodology is broadly applicable to almost any government AI or data science project and consists of the following six steps, which should be repeated iteratively:\n\n1. Business understanding: Depending on how AI is organized at an agency, the business goals for AI may be driven by senior leadership, operational divisions, or data science teams. This first step is all about converging on an understanding of project objectives and requirements from a business perspective and then framing this into a data analytics problem with a preliminary plan.\n2. Data understanding: This step deals with initial data collection and data evaluation to obtain understanding of the relevant data. This includes identifying data quality problems and deriving initial insights into the data and perspectives on a data plan.\n3. Data preparation: The data preparation phase covers all activities to construct the working data set from the initial raw data.\n4. Modeling: Modeling techniques are selected and applied at this stage.  Since some techniques, like neural nets, have specific requirements regarding the form of the data, there can be a loop back here to data prep.\n5. Evaluation: Once one or more models have been built that appear to perform well based on relevant evaluation metrics, the models need to be tested on new data to ensure they generalize well and meet the business goals. As this step is particularly critical, this is discussed in much greater detail in the test and evaluation section.\n6. Deployment: At this stage, the best performing models will be deployed. The model should be regularly checked to make sure its performance is consistent with the requirements. Iteration loops going back to the first step of business understanding should be ongoing.\n\n### Common AI process challenges\n\nWhile the CRISP-DM process has become the industry standard, it is not without limitations in practice. CRISP-DM, along with any data science process, can run into challenges that leaders and practitioners should be careful to avoid:\n\n* The problem is ill-defined.\n* Allowing scope creep.\n* Not involving the right domain experts from the start.\n* Underestimating the time necessary for data acquisition and cleaning.\n* Not securing an appropriate IT budget for implementation.\n* Lacking a project sponsor with the right influence or authority.\n* Lack of clarity about workflows to be derived from the model outputs.\n\nMany of these pitfalls can be avoided or resolved by creating a project charter as early as possible in the life of the project."
+}
