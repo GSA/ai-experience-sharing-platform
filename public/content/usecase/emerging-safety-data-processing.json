@@ -1,0 +1,38 @@
+{
+  "featured": true,
+  "date": "2020-07-22T14:36:26.567Z",
+  "title": "Emerging Safety Data Processing",
+  "fields": [
+    {
+      "key": "agency",
+      "title": "Agency",
+      "value": "Department of Health and Human Services, Food and Drug Administration"
+    },
+    {
+      "key": "participant",
+      "title": "Participant",
+      "value": "ACUS"
+    },
+    {
+      "key": "techniques",
+      "title": "Techniques",
+      "value": "Text Mining, Neuro-Linguistic Programming"
+    },
+    {
+      "key": "benefits",
+      "title": "Benefits",
+      "value": "Decrease Cycle Time, Increase Outputs, Improve Customer Service, Increase Compliance"
+    },
+    {
+      "key": "production_status",
+      "title": "Production Status",
+      "value": "Pilot"
+    },
+    {
+      "key": "business_function",
+      "title": "Business Function",
+      "value": "Reports Data Processing"
+    }
+  ],
+  "body": "FDA is piloting of AI/ML techniques to identify emerging safety concerns in reports made to its Federal Adverse Event Reporting System (FAERS). Because preapproval studies cannot identify all possible side effects or problems with a drug or therapeutic biological product, the FDA maintains a system of postmarket surveillance and risk assessment centered on analysis of a growing pool of data about adverse events and medication error reports.\n\n## Data Approach\n\nThe Federal Adverse Event Reporting System (FAERS) database contains “adverse event reports, medication error reports and product quality complaints resulting in adverse events that were submitted to FDA.” Given the sheer volume of data contained in FAERS, and the varied types of data—both structured and unstructured—the FDA has sought more efficient ways to extract and use this information.\n\n## Tools and Technology\n\nFDA did a number of experiments. \n\n1. Use of NLP (text mining and topic modeling) to model relationships between drugs and a single medical condition, hepatic (i.e., liver) failure. \n2. Use of text-based rules, decision trees using text clustering inputs, and a simple neural network to predict serious drug related adverse outcomes. \n3. Use of structured features and expert derived terms from unstructured text to predict these ground truth labels. Then trained various supervised models (RF & SVM).\n\n## Lessons Learned\n\nData limitations (including the nature of the data and reporting on a negative outcome) can make it difficult to uncover a causal relationship.\n\nNLP algorithms are continually improving. However, as NLP technology currently stands, without some expert input, it may not be well-suited to critical tasks in which inaccurate predictions could have severe life-or-death consequences. NLP’s shortcomings are almost certain to be magnified in an environment where the text is both unstructured and highly technical and where precision and expertise are at an absolute premium. Ultimately, the models did not generate outputs accurate enough for deployment.\n\n## Contact Information\n\nACUS: Government by Algorithm: Artificial Intelligence in Federal Administrative Agencies\n\nkrista.kinnard@gsa.gov"
+}
