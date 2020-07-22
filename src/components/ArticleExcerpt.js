@@ -5,9 +5,9 @@ import Date from "components/Date";
 const ArticleExcerpt = ({ title, date, path, excerpt }) => {
   return (
     <div className="ArticleExcerpt">
-      <Link className="ArticleExcerpt__title" to={path}>
-        <h5>{title}</h5>
-      </Link>
+      <h5 className="ArticleExcerpt__title">
+        <Link to={path}>{title}</Link>
+      </h5>
       <div className="ArticleExcerpt__date">
         Published <Date>{date}</Date>
       </div>
