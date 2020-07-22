@@ -20,24 +20,25 @@ i.e.
 ----------------------------------------
 */
 
-@import 'components/preview-banner';
-@import 'components/banner';
-@import 'components/button';
-@import 'components/contacts';
-@import 'components/demo';
-@import 'components/digital';
-@import 'components/footer';
-@import 'components/forms';
-@import 'components/global';
-@import 'components/glossary';
-@import 'components/header';
-@import 'components/hero';
-@import 'components/icons';
-@import 'components/sidenav';
-@import 'components/typography';
-@import 'components/articleExcerpt';
-@import 'components/articleDetails';
-@import 'components/contentNav';
+@import "components/preview-banner";
+@import "components/banner";
+@import "components/button";
+@import "components/card";
+@import "components/contacts";
+@import "components/demo";
+@import "components/digital";
+@import "components/footer";
+@import "components/forms";
+@import "components/global";
+@import "components/glossary";
+@import "components/header";
+@import "components/hero";
+@import "components/icons";
+@import "components/sidenav";
+@import "components/typography";
+@import "components/articleExcerpt";
+@import "components/articleDetails";
+@import "components/contentNav";
 
 .usa-prose table.vertical-headings th {
   font-weight: normal;
@@ -53,7 +54,7 @@ i.e.
 .usa-prose table.vertical-headings td:nth-child(1),
 .table-schema td:nth-child(1) {
   font-weight: bold;
-  background-color: color('gray-5');
+  background-color: color("gray-5");
 }
 
 table {
@@ -134,18 +135,18 @@ ul.schema-fields li {
 .field-optional:before,
 .field-required .field-optional:before,
 .field-required-if-applicable .field-optional:before {
-  content: '◌ ';
+  content: "◌ ";
   color: MidnightBlue;
 }
 
 .field-required:before {
-  content: '● ';
+  content: "● ";
   color: DarkRed;
 }
 
 .field-required-if-applicable:before,
 .field-required .field-required-if-applicable:before {
-  content: '◎ ';
+  content: "◎ ";
   color: DarkMagenta;
 }
 
@@ -169,10 +170,16 @@ ul.schema-fields li {
   color: #5b616b;
   border-top: 0.15rem solid #5b616b;
   padding-top: 0.25rem;
-  @include u-font('sans', 'md');
+  @include u-font("sans", "md");
 }
 
 .resource-markdown-metadata p {
   margin-bottom: 1.25rem;
   margin-top: 0.25rem;
+}
+
+.usa-navbar .usa-button {
+  @include at-media($theme-navigation-width) {
+    display: none;
+  }
 }

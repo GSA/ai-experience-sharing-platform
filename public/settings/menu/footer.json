@@ -1,0 +1,14 @@
+{
+  "name": "footer",
+  "items": [
+    { "text": "Use Cases", "link": "/library/usecase" },
+    {
+      "text": "Resources",
+      "link": "/library/resource"
+    },
+    {
+      "text": "About",
+      "link": "/about"
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+---
+title: History
+---
+Following the February 2019 Executive Order on Maintaining American Leadership in Artificial Intelligence and the September 2019 White House Summit on AI in Government, the U.S. GSA’s Technology Transformation Service (TTS), the organization that improves the lives of the public and public servants by transforming how the government uses technology,has established a team focused on AI in government.
+
+The mission of the TTS AI Portfolio is to help Federal agencies deliver better services and experiences and achieve their respective missions through the investment in, and appropriate application of, artificial intelligence. This Executive’s Guide to AI in Government is one early product of a broader array of products and platforms, along with the TTS Artificial Intelligence Community of Practice (AI CoP). The AI Portfolio continues to provide resources and build products and platforms that contribute to the larger TTS AI Portfolio mission. The TTS AI Portfolio is the destination where the U.S. federal government engages each other on the application of AI in government.

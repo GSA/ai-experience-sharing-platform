@@ -1,34 +1,16 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-
-import { Link } from 'gatsby';
-import { FontAwesomeIcon as Fa } from '@fortawesome/react-fontawesome';
-import { faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
+import React from "react";
+import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
+import classnames from "classnames";
 
 const nodes = {
-  a: ({ url, children, type, ...props }) => (
-    <a {...props} href={url} target="_blank" rel="noreferrer">
+  a: ({ to, children, type, ...props }) => (
+    <a {...props} href={to} target="_blank" rel="noopener noreferrer">
       {children}
     </a>
   ),
-  b: ({ url, type = 'button', ...props }) => <button type={type} {...props} />,
-  l: ({ type, url, ...props }) => <Link to={url} {...props} />,
-};
-
-const buildClass = ({
-  color = 'primary',
-  variant,
-  raised = false,
-  fullwidth = false,
-}) => {
-  if (variant === 'link') {
-    return 'usa-button--unstyled';
-  }
-  return `usa-button--${color}${variant ? `-${variant}` : ''} ${
-    raised ? 'usa-button--raised' : ''
-  } ${fullwidth ? 'usa-button--fullwidth' : ''} ${
-    variant === 'media' ? 'usa-button--unstyled' : ''
-  }`;
+  b: ({ to, type = "button", ...props }) => <button type={type} {...props} />,
+  link: ({ type, ...props }) => <Link {...props} />,
 };
 
 export const Button = ({
@@ -43,29 +25,30 @@ export const Button = ({
   forceExternalOff,
   fullwidth,
   type,
+  ...props
 }) => {
-  const varClass = buildClass({ variant, color, raised, fullwidth });
-  const isExternal =
-    external || (typeof url === 'string' && url.includes('://'));
+  const classes = classnames({
+    "usa-button": true,
+    [`usa-button--${color}`]: color,
+    [`usa-button--${color}-${variant}`]: variant,
+    "usa-button--fullwidth": fullwidth,
+    "usa-button--raised": raised,
+    "usa-button--unstyled": variant === "link",
+    [className]: className,
+  });
+
+  const to = typeof url === "string" ? url : "";
   const Node =
-    onClick || type ? nodes['b'] : isExternal ? nodes['a'] : nodes['l'];
+    onClick || type ? nodes["b"] : external ? nodes["a"] : nodes["link"];
   return (
-    <Node
-      url={url}
-      type={type}
-      onClick={onClick}
-      className={`usa-button ${varClass} ${className ? className : ''}`}
-    >
+    <Node to={to} type={type} onClick={onClick} {...props} className={classes}>
       {children}
-      {isExternal && !forceExternalOff && (
-        <Fa className="usa-button__external" icon={faExternalLinkAlt} />
-      )}
     </Node>
   );
 };
 
 Button.defaultProps = {
-  color: 'primary',
+  color: "primary",
   forceExternalOff: false,
 };
 Button.propTypes = {
@@ -79,13 +62,13 @@ Button.propTypes = {
   className: PropTypes.string,
   /** defines the component base color */
   color: PropTypes.oneOf([
-    'primary',
-    'secondary',
-    'accent-warm',
-    'accent-cool',
+    "primary",
+    "secondary",
+    "accent-warm",
+    "accent-cool",
   ]),
   /** sets variant button type */
-  variant: PropTypes.oneOf(['link', 'media', 'outline', 'white']),
+  variant: PropTypes.oneOf(["link", "media", "outline", "white"]),
   /** describes the location for the <Link> or <a> render */
   to: PropTypes.string,
   /** sets button type for the <button> render */

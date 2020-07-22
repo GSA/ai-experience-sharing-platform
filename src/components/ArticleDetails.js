@@ -1,5 +1,12 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from "react";
+import Date from "components/Date";
+
+const Format = ({ name, value }) => {
+  if (name === "date") {
+    return <Date>{value}</Date>;
+  }
+  return Array.isArray(value) ? value.join(", ") : value;
+};
 
 const ArticleDetails = ({ id, title, items }) => {
   return (
@@ -9,11 +16,11 @@ const ArticleDetails = ({ id, title, items }) => {
           {title}
         </h4>
       )}
-      {Object.entries(items).map(([key, value]) => (
+      {items.map(({ key, title, value }) => (
         <div key={key} className="ArticleDetails__item">
-          <span className="ArticleDetails__item-title">{key}</span>
+          <span className="ArticleDetails__item-title">{title}</span>
           <span className="ArticleDetails__text">
-            {Array.isArray(value) ? value.join(', ') : value}
+            <Format name={key} value={value} />
           </span>
         </div>
       ))}

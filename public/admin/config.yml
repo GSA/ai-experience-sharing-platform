@@ -1,0 +1,168 @@
+backend:
+  name: github
+  repo: GSA/ai-experience-sharing-platform
+  base_url: https://github.com
+  auth_endpoint: external/auth/github
+  branch: content
+  preview_context: federalist/build
+
+media_folder: public/images
+public_folder: /images
+publish_mode: editorial_workflow
+logo_url: https://federalist.18f.gov/assets/images/federalist-logo.png
+
+collections:
+  - name: settings
+    extension: json
+    publish: false
+    label: Site Settings
+    label_singular: Site Settings
+    folder: public/settings
+    create: false
+    delete: false
+    preview_path: "{{slug}}"
+    editor:
+      preview: false
+    fields:
+      - label: Title
+        name: title
+        widget: string
+      - label: Description
+        name: description
+        widget: string
+      - label: Author
+        name: author
+        widget: string
+      - name: searchgov
+        label: Search.gov Settings
+        widget: object
+        fields:
+          - name: endpoint
+            label: Endpoint
+            widget: string
+          - name: affiliate
+            label: Affiliate
+            widget: string
+          - name: access_key
+            label: Access Key
+            widget: string
+          - name: inline
+            label: inline
+            widget: boolean
+            default: true
+  - name: menu
+    extension: json
+    label: Menus
+    label_singular: Menu
+    folder: public/settings/menu
+    create: true
+    delete: true
+    editor:
+      preview: false
+    fields:
+      - name: name
+        label: Name
+        widget: string
+      - name: items
+        label: Items
+        widget: list
+        fields:
+          - label: Text
+            name: text
+            widget: string
+          - label: Link
+            name: link
+            widget: string
+          - label: Items
+            name: items
+            widget: list
+            fields:
+              - label: Text
+                name: text
+                widget: string
+              - label: Link
+                name: link
+                widget: string
+  - name: page
+    extension: json
+    label: Pages
+    label_singular: Page
+    folder: public/content/page
+    create: true
+    delete: true
+    preview_path: "{{slug}}"
+    editor:
+      preview: false
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Body", name: "body", widget: "markdown" }
+  - name: usecase
+    extension: json
+    label: Use Cases
+    label_singular: Use Case
+    folder: public/content/usecase
+    create: true
+    delete: true
+    preview_path: "{{slug}}"
+    editor:
+      preview: false
+    fields:
+      - label: Title
+        name: title
+        widget: string
+      - label: Date
+        name: date
+        widget: datetime
+      - name: fields
+        label: Fields
+        widget: list
+        fields:
+          - label: Key
+            name: key
+            widget: string
+          - label: Title
+            name: title
+            widget: string
+          - label: Value
+            name: value
+            widget: string
+      - label: Featured
+        name: featured
+        widget: boolean
+        default: false
+      - label: Body
+        name: body
+        widget: markdown
+  - name: resource
+    extension: json
+    label: Resources
+    label_singular: Resource
+    folder: public/content/resource
+    create: true
+    delete: true
+    preview_path: "{{slug}}"
+    editor:
+      preview: false
+    fields:
+      - label: "Title"
+        name: "title"
+        widget: "string"
+      - label: "Date"
+        name: "date"
+        widget: "datetime"
+      - name: fields
+        label: Fields
+        widget: list
+        fields:
+          - label: Key
+            name: key
+            widget: string
+          - label: Title
+            name: title
+            widget: string
+          - label: Value
+            name: value
+            widget: string
+      - label: "Body"
+        name: "body"
+        widget: "markdown"

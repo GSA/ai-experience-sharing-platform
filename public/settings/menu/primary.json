@@ -1,0 +1,49 @@
+{
+  "name": "primary",
+  "items": [
+    {
+      "text": "Use Cases",
+      "link": "/library/usecase"
+    },
+    {
+      "text": "Resources",
+      "items": [
+        {
+          "text": "Playbooks",
+          "link": "/library/resource#category=playbooks"
+        },
+        {
+          "text": "Whitepapers",
+          "link": "/library/resource#category=whitepapers"
+        },
+        {
+          "text": "Guides",
+          "link": "/library/resource#category=guides"
+        },
+        {
+          "text": "All Resources",
+          "link": "/library/resource"
+        }
+      ],
+      "link": "/resource"
+    },
+    {
+      "text": "About",
+      "items": [
+        {
+          "text": "Governance",
+          "link": "/about-artificial-intelligence"
+        },
+        {
+          "text": "History",
+          "link": "/history"
+        },
+        {
+          "text": "Requirements",
+          "link": "/requirements"
+        }
+      ],
+      "link": "/about"
+    }
+  ]
+}
