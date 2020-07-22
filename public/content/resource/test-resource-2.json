@@ -1,1 +1,20 @@
-{"date":"2020-07-21T17:51:06.793Z","title":"Test Resource 2","fields":[{"key":"category","title":"Category","value":"whitepapers"},{"key":"tags","title":"Tags","value":"tag1,tag4,tag5"}],"body":"<Content chunks={2} />\n","name":"test-resource-2","path":"/resource/test-resource-2","toc":[]}
+{
+  "date": "2020-07-21T17:51:06.793Z",
+  "title": "Test Resource 2",
+  "fields": [
+    {
+      "key": "category",
+      "title": "Category",
+      "value": "framework"
+    },
+    {
+      "key": "tags",
+      "title": "Tags",
+      "value": "tag1,tag4,tag5"
+    }
+  ],
+  "body": "<Content chunks={2} />\n",
+  "name": "test-resource-2",
+  "path": "/resource/test-resource-2",
+  "toc": []
+}
