@@ -1,7 +1,7 @@
 {
   "author": "GSA.gov",
   "title": "ai.digital.gov",
-  "description": "Agency Name (EAC) Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean et sapien a leo auctor scelerisque quis nec magna. Sed dictum ante a risus vehicula facilisis.",
+  "description": "Our AI Sharing Platform is a centralized resource for practitioners, scientists and leaders to explore AI solutions, collaborate and develop as a community and grow an AI-ready government workforce.",
   "searchgov": {
     "endpoint": "https://search.usa.gov",
     "affiliate": "federalist-uswds-example",
