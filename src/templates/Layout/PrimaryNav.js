@@ -1,8 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
-
 import { Link, NavLink } from "react-router-dom";
-
 import close from "uswds/dist/img/close.svg";
 import Button from "components/Button";
 import SearchForm from "./SearchForm";
