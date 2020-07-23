@@ -31,13 +31,13 @@ const Footer = () => {
           <Row>
             <Col size={12}>
               {footer.items.map((item, i) => (
-                <a
+                <Link
                   key={`footer-nav-${i}`}
                   className="usa-footer__link"
-                  href={item.link}
+                  to={item.link}
                 >
                   {item.text}
-                </a>
+                </Link>
               ))}
             </Col>
           </Row>
