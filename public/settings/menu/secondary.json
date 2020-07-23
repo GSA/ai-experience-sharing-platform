@@ -2,11 +2,11 @@
   "name": "secondary",
   "items": [
     {
-      "text": "Privacy policy",
+      "text": "Privacy Policy",
       "link": "/privacy-policy"
     },
     {
-      "text": "Contact us",
+      "text": "Contact Us",
       "link": "/updates"
     }
   ]
