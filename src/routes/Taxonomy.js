@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams, useLocation } from "react-router-dom";
 import PropTypes from "prop-types";
@@ -14,6 +14,8 @@ import {
 import { Grid, Row, Col } from "components/Grid";
 import Button from "components/Button";
 import Select from "components/Select";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Card from "components/Card";
 
 const Title = ({ items }) =>
   items.map(
@@ -26,12 +28,40 @@ const Title = ({ items }) =>
       )
   );
 
+const Layout = ({ layout, onClick }) => {
+  return (
+    <ul class="usa-button-group usa-button-group--segmented flex-justify-end">
+      <li class="usa-button-group__item">
+        <Button
+          onClick={onClick}
+          variant={layout === "list" ? "primary" : "outline"}
+          value="list"
+        >
+          <FontAwesomeIcon icon="list" />
+        </Button>
+      </li>
+      <li class="usa-button-group__item">
+        <Button
+          onClick={onClick}
+          variant={layout === "card" ? "primary" : "outline"}
+          value="card"
+        >
+          <FontAwesomeIcon icon="grip-horizontal" />
+        </Button>
+      </li>
+    </ul>
+  );
+};
+
 export const Taxonomy = ({ match: { url } }) => {
+  const [layout, setLayout] = useState("list");
+  const [filter, setFilter] = useState({ key: "", value: "" });
+
   const dispatch = useDispatch();
   const { hash } = useLocation();
   const [key, value] = hash.replace("#", "").split("=");
   const { type } = useParams();
-  const { pending = false, data = [] } = useSelector(list);
+  const { pending = false, data: listData = [] } = useSelector(list);
   const { data: taxonomyList = [] } = useSelector(taxonomy);
 
   useEffect(() => {
@@ -41,6 +71,22 @@ export const Taxonomy = ({ match: { url } }) => {
       dispatch(clearList());
     };
   }, [dispatch, hash, type]);
+
+  const handleLayout = (e, data) => {
+    console.log(e.currentTarget.value);
+    setLayout(e.currentTarget.value);
+  };
+  const handleFilter = (e) => {
+    const { id: key, value } = e.currentTarget;
+    setFilter({ key: !value ? "" : key, value });
+  };
+  console.log(filter);
+  const data = filter.key
+    ? listData.filter(
+        ({ fields }) => fields && fields[filter.key] === filter.value
+      )
+    : listData;
+
   const items = key
     ? data.filter(({ fields = [] }) => {
         const item = fields.find((i) => i.key === key);
@@ -53,21 +99,32 @@ export const Taxonomy = ({ match: { url } }) => {
   return (
     <Login>
       <Grid>
+        <Row>
+          <Col size="12" className="text-right">
+            <Layout onClick={handleLayout} layout={layout} />
+          </Col>
+        </Row>
         <Row className="margin-top-4">
           <Col size="3" className="padding-right-4">
             {type === "usecase" && (
-              <div className="padding-2 bg-primary-light text-center margin-top-6">
+              <div className="padding-2 bg-primary-light text-center margin-top-7 margin-bottom-4">
                 <Button type="button">Submit a Use Case</Button>
               </div>
             )}
-            <h3>Filter By</h3>
+            <h3 className="margin-0">Filter By</h3>
             {taxonomyList.map(({ key, items, title }) => (
               <div>
-                <Select name={key} id={key} placeholder={title} items={items} />
+                <Select
+                  name={key}
+                  id={key}
+                  placeholder={title}
+                  onChange={handleFilter}
+                  items={items}
+                />
               </div>
             ))}
           </Col>
-          <Col size={type === "usecase" ? "9" : "12"}>
+          <Col size="9">
             <Row className="align-items-center padding-bottom-4">
               <Col size="6">
                 <h3 className="margin-0">
@@ -93,23 +150,40 @@ export const Taxonomy = ({ match: { url } }) => {
                 </select>
               </Col>
             </Row>
-
-            {pending ? (
-              <h1>Loading</h1>
-            ) : (
-              items.map((item, i) => {
-                return (
-                  <div key={`article-${item.name}`} className="margin-bottom-5">
-                    <Article
-                      title={item.title}
-                      date={item.date}
-                      path={`${url}/${item.name}`}
-                      excerpt={item.excerpt}
-                    />
-                  </div>
-                );
-              })
-            )}
+            <Row gap="2">
+              {pending ? (
+                <h1>Loading</h1>
+              ) : (
+                items.map((item, i) =>
+                  layout === "list" ? (
+                    <div
+                      key={`article-${item.name}`}
+                      className="margin-bottom-5"
+                    >
+                      <Article
+                        title={item.title}
+                        date={item.date}
+                        path={`${url}/${item.name}`}
+                        excerpt={item.excerpt}
+                      />
+                    </div>
+                  ) : (
+                    <Col size="6" className="margin-bottom-4">
+                      <Card
+                        className="FeaturedCard"
+                        title={item.title}
+                        excerpt={item.excerpt}
+                        footer={
+                          <Button url={item.path} fullwidth>
+                            View
+                          </Button>
+                        }
+                      />
+                    </Col>
+                  )
+                )
+              )}
+            </Row>
           </Col>
         </Row>
       </Grid>
