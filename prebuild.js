@@ -58,6 +58,7 @@ const prepareContent = () => {
         (filename) => filename.includes(".json") && filename !== "index.json"
       );
 
+    let taxonomyData = [];
     const indexData = contents.map((filename) => {
       const file = fs.readFileSync(path.join(typePath, filename), "utf-8");
 
@@ -80,13 +81,44 @@ const prepareContent = () => {
         path.join(__dirname, "public", "content", type, filename),
         JSON.stringify(fileData)
       );
+      if ("fields" in fileData) {
+        fileData.fields.forEach((cur) => {
+          const { key, title, value } = cur;
+
+          // check if key already exists in acc
+          const find = taxonomyData.find((a) => a.key === cur.key);
+
+          // if not, add a new object to array
+          if (!Boolean(find)) {
+            taxonomyData = [...taxonomyData, { key, title, items: [value] }];
+            return;
+          }
+          // objects value should be an array
+          if (!find.items.includes(value)) {
+            const items = taxonomyData.filter((item) => item.key !== key);
+            taxonomyData = [
+              ...items,
+              { ...find, items: [...find.items, value] },
+            ];
+          }
+          return;
+        });
+      }
+
       return fileData;
     });
     fs.writeFileSync(
       path.join(__dirname, "public", "content", type, "index.json"),
       JSON.stringify(indexData)
     );
-    console.log(`PREBUILD: "${type}" indexed as ${typePath}/index.js`);
+    console.log(`PREBUILD: "${type}" indexed as ${typePath}/index.json`);
+    if (taxonomyData.length) {
+      fs.writeFileSync(
+        path.join(__dirname, "public", "content", type, "taxonomy.json"),
+        JSON.stringify(taxonomyData)
+      );
+      console.log(`PREBUILD: "${type}" indexed as ${typePath}/taxonomy.json`);
+    }
   });
 };
 
@@ -113,7 +145,7 @@ const indexMenus = () => {
     path.join(menuPath, "index.json"),
     JSON.stringify(indexData)
   );
-  console.log(`PREBUILD: "menus" indexed as ${menuPath}/index.js`);
+  console.log(`PREBUILD: "menus" indexed as ${menuPath}/index.json`);
 };
 
 const prepareEnv = () => {
