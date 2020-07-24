@@ -16,6 +16,8 @@ import Button from "components/Button";
 import Select from "components/Select";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Card from "components/Card";
+import { Loading } from "components/Loading";
+import { auth } from "app/authSlice";
 
 const Title = ({ items }) =>
   items.map(
@@ -63,14 +65,17 @@ export const Taxonomy = ({ match: { url } }) => {
   const { type } = useParams();
   const { pending = false, data: listData = [] } = useSelector(list);
   const { data: taxonomyList = [] } = useSelector(taxonomy);
+  const { isAuth } = useSelector(auth);
 
   useEffect(() => {
-    dispatch(getList(type));
-    dispatch(getTaxonomy(type));
+    if (isAuth) {
+      dispatch(getList(type));
+      dispatch(getTaxonomy(type));
+    }
     return () => {
       dispatch(clearList());
     };
-  }, [dispatch, hash, type]);
+  }, [dispatch, hash, type, isAuth]);
 
   const handleLayout = (e, data) => {
     console.log(e.currentTarget.value);
@@ -80,7 +85,6 @@ export const Taxonomy = ({ match: { url } }) => {
     const { id: key, value } = e.currentTarget;
     setFilter({ key: !value ? "" : key, value });
   };
-  console.log(filter);
   const data = filter.key
     ? listData.filter(
         ({ fields }) => fields && fields[filter.key] === filter.value
@@ -98,95 +102,97 @@ export const Taxonomy = ({ match: { url } }) => {
     : data;
   return (
     <Login>
-      <Grid>
-        <Row>
-          <Col size="12" className="text-right">
-            <Layout onClick={handleLayout} layout={layout} />
-          </Col>
-        </Row>
-        <Row className="margin-top-4">
-          <Col size="3" className="padding-right-4">
-            {type === "usecase" && (
-              <div className="padding-2 bg-primary-light text-center margin-top-7 margin-bottom-4">
-                <Button type="button">Submit a Use Case</Button>
-              </div>
-            )}
-            <h3 className="margin-0">Filter By</h3>
-            {taxonomyList.map(({ key, items, title }) => (
-              <div>
-                <Select
-                  name={key}
-                  id={key}
-                  placeholder={title}
-                  onChange={handleFilter}
-                  items={items}
-                />
-              </div>
-            ))}
-          </Col>
-          <Col size="9">
-            <Row className="align-items-center padding-bottom-4">
-              <Col size="6">
-                <h3 className="margin-0">
-                  <Title items={[type, key, value]} />
-                </h3>
-              </Col>
-              <Col size="6" style={{ textAlign: "right" }}>
-                <label
-                  className="usa-labelmargin-0 display-inline-block"
-                  htmlFor="sort"
-                >
-                  Sort By:
-                </label>
-                <select
-                  className="usa-select display-inline-block padding-y-0 margin-0 border-none width-auto height-auto"
-                  style={{ border: "none" }}
-                  name="options"
-                  id="sort"
-                >
-                  <option value="value1">Publish Date (newest)</option>
-                  <option value="value2">Option B</option>
-                  <option value="value3">Option C</option>
-                </select>
-              </Col>
-            </Row>
-            <Row gap="2">
-              {pending ? (
-                <h1>Loading</h1>
-              ) : (
-                items.map((item, i) =>
-                  layout === "list" ? (
-                    <div
-                      key={`article-${item.name}`}
-                      className="margin-bottom-5"
-                    >
-                      <Article
-                        title={item.title}
-                        date={item.date}
-                        path={`${url}/${item.name}`}
-                        excerpt={item.excerpt}
-                      />
-                    </div>
-                  ) : (
-                    <Col size="6" className="margin-bottom-4">
-                      <Card
-                        className="FeaturedCard"
-                        title={item.title}
-                        excerpt={item.excerpt}
-                        footer={
-                          <Button url={item.path} fullwidth>
-                            View
-                          </Button>
-                        }
-                      />
-                    </Col>
-                  )
-                )
+      <Loading isLoading={pending}>
+        <Grid>
+          <Row>
+            <Col size="12" className="text-right">
+              <Layout onClick={handleLayout} layout={layout} />
+            </Col>
+          </Row>
+          <Row className="margin-top-4">
+            <Col size="3" className="padding-right-4">
+              {type === "usecase" && (
+                <div className="padding-2 bg-primary-light text-center margin-top-7 margin-bottom-4">
+                  <Button type="button">Submit a Use Case</Button>
+                </div>
               )}
-            </Row>
-          </Col>
-        </Row>
-      </Grid>
+              <h3 className="margin-0">Filter By</h3>
+              {taxonomyList.map(({ key, items, title }) => (
+                <div>
+                  <Select
+                    name={key}
+                    id={key}
+                    placeholder={title}
+                    onChange={handleFilter}
+                    items={items}
+                  />
+                </div>
+              ))}
+            </Col>
+            <Col size="9">
+              <Row className="align-items-center padding-bottom-4">
+                <Col size="6">
+                  <h3 className="margin-0">
+                    <Title items={[type, key, value]} />
+                  </h3>
+                </Col>
+                <Col size="6" style={{ textAlign: "right" }}>
+                  <label
+                    className="usa-labelmargin-0 display-inline-block"
+                    htmlFor="sort"
+                  >
+                    Sort By:
+                  </label>
+                  <select
+                    className="usa-select display-inline-block padding-y-0 margin-0 border-none width-auto height-auto"
+                    style={{ border: "none" }}
+                    name="options"
+                    id="sort"
+                  >
+                    <option value="value1">Publish Date (newest)</option>
+                    <option value="value2">Option B</option>
+                    <option value="value3">Option C</option>
+                  </select>
+                </Col>
+              </Row>
+              <Row gap="2">
+                {pending ? (
+                  <h1>Loading</h1>
+                ) : (
+                  items.map((item, i) =>
+                    layout === "list" ? (
+                      <div
+                        key={`article-${item.name}`}
+                        className="margin-bottom-5"
+                      >
+                        <Article
+                          title={item.title}
+                          date={item.date}
+                          path={`${url}/${item.name}`}
+                          excerpt={item.excerpt}
+                        />
+                      </div>
+                    ) : (
+                      <Col size="6" className="margin-bottom-4">
+                        <Card
+                          className="FeaturedCard"
+                          title={item.title}
+                          excerpt={item.excerpt}
+                          footer={
+                            <Button url={item.path} fullwidth>
+                              View
+                            </Button>
+                          }
+                        />
+                      </Col>
+                    )
+                  )
+                )}
+              </Row>
+            </Col>
+          </Row>
+        </Grid>
+      </Loading>
     </Login>
   );
 };

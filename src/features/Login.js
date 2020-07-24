@@ -2,10 +2,11 @@ import React from "react";
 import Button from "components/Button";
 import { login, auth } from "app/authSlice";
 import { useDispatch, useSelector } from "react-redux";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const Auth = ({ children }) => {
   const dispatch = useDispatch();
-  const { isAuth, error } = useSelector(auth);
+  const { isAuth, pending, error } = useSelector(auth);
   const handleSubmit = (e) => {
     e.preventDefault();
     const {
@@ -20,7 +21,7 @@ const Auth = ({ children }) => {
   return isAuth ? (
     children
   ) : (
-    <div style={{ textAlign: "center" }}>
+    <div className="text-center">
       <form
         onSubmit={handleSubmit}
         style={{
@@ -56,7 +57,13 @@ const Auth = ({ children }) => {
           />
         </div>
         <Button type="submit" fullwidth>
-          Login
+          {pending ? (
+            <span>
+              <FontAwesomeIcon icon="spinner" spin /> Loading...
+            </span>
+          ) : (
+            "Login"
+          )}
         </Button>
       </form>
     </div>
