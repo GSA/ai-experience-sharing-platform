@@ -1,17 +1,1 @@
-{
-  "date": "2020-07-22T20:21:39.396Z",
-  "title": "Data Science",
-  "fields": [
-    {
-      "key": "category",
-      "title": "Category",
-      "value": "terminology"
-    },
-    {
-      "key": "tags",
-      "title": "Tags",
-      "value": "AI terminology"
-    }
-  ],
-  "body": "Once there is a basic understanding of analytics and machine learning, it is a natural progression to move to the discipline of data science. When we speak of “doing AI,” what we are really talking about is using data science methodologies to produce applications that can simulate human cognitive capabilities.\n\nData science is the practice and methodology of implementing analytics or machine learning techniques, in combination with subject matter expertise, to provide meaningful information about a problem. \n\nIn practice, data science is a cross-functional discipline that combines elements of computer science, mathematics, statistics, and subject matter understanding. The goal of data science is to produce data-driven insights and processes that can help solve business, operational, and strategic problems for different kinds of organizations. Here are some important things to know about data science:\n\n* Data science is a team sport.\n* Data science teams combine a variety of individual skill sets to solve complex problems.\n* Recruiting and retaining data science talent is a key component of developing AI capabilities.\n* Data science teams do especially well if they have “translators” -- people who can bridge different functional areas.\n* Data science management is a strategic capability for organizations that want to be effective at delivering their mission in the evolving technological landscape"
-}
+{"date":"2020-07-22T20:21:39.396Z","title":"Data Science","fields":[{"key":"category","title":"Category","value":"terminology"},{"key":"tags","title":"Tags","value":"AI terminology"}],"body":"Once there is a basic understanding of analytics and machine learning, it is a natural progression to move to the discipline of data science. When we speak of “doing AI,” what we are really talking about is using data science methodologies to produce applications that can simulate human cognitive capabilities.\n\nData science is the practice and methodology of implementing analytics or machine learning techniques, in combination with subject matter expertise, to provide meaningful information about a problem. \n\nIn practice, data science is a cross-functional discipline that combines elements of computer science, mathematics, statistics, and subject matter understanding. The goal of data science is to produce data-driven insights and processes that can help solve business, operational, and strategic problems for different kinds of organizations. Here are some important things to know about data science:\n\n-   Data science is a team sport.\n-   Data science teams combine a variety of individual skill sets to solve complex problems.\n-   Recruiting and retaining data science talent is a key component of developing AI capabilities.\n-   Data science teams do especially well if they have “translators” -- people who can bridge different functional areas.\n-   Data science management is a strategic capability for organizations that want to be effective at delivering their mission in the evolving technological landscape\n","name":"data-science","path":"/resource/data-science","excerpt":"Once there is a basic understanding of analytics and machine learning, it is a natural progression to move to the discipline of data science. When we speak of “doing AI,” what we are really talking about is using data science methodologies to produce applications that can simulate human cognitive capabilities.","toc":[]}
