@@ -1,0 +1,9 @@
+{
+  "name": "test menu",
+  "items": [
+    {
+      "text": "test",
+      "link": "/test"
+    }
+  ]
+}
