@@ -23,6 +23,8 @@ yarn-debug.log*
 yarn-error.log*
 
 /public/content/**/index.json
+
+/public/content/**/taxonomy.json
 /public/settings/menu/index.json
 
 _site
