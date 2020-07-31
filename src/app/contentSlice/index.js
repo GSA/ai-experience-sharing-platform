@@ -4,7 +4,7 @@ import * as context from "./context";
 const initialState = {
   list: { pending: false, data: [] },
   page: { pending: false, data: {} },
-  taxonomies: { pending: false, data: [] },
+  taxonomy: { pending: false, data: [] },
 };
 
 export const getPage = createAsyncThunk(
@@ -14,7 +14,7 @@ export const getPage = createAsyncThunk(
 );
 export const getTaxonomy = createAsyncThunk(
   "content/getTaxonomy",
-  async () => await context.getAllTaxonomy()
+  async (type) => await context.getTaxonomyByContentType(type)
 );
 
 export const getList = createAsyncThunk(
@@ -54,5 +54,6 @@ export const clearList = contentSlice.actions.clearList;
 
 export const list = (state) => state.content.list;
 export const page = (state) => state.content.page;
+export const taxonomy = (state) => state.content.taxonomy;
 
 export default contentSlice.reducer;
