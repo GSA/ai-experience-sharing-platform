@@ -24,10 +24,10 @@ jobs:
         with:
           node-version: 12
       # Runs a single command using the runners shell
-      - name: Run a one-line script
+      - name: Install and build
         run: |
-          yarn install
-          yarn build
+          npm ci
+          npm run build
   deploy:
     needs: build
     name: "Terraform"
