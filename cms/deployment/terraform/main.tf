@@ -46,6 +46,7 @@ resource "cloudfoundry_app" "strapi-api-host" {
   service_binding {
     service_instance = cloudfoundry_service_instance.strapi-image-bucket.id
   }
+  depends_on = [data.archive_file.strapi-image-zip]
 }
 
 resource "cloudfoundry_route" "strapi-api-host" {
