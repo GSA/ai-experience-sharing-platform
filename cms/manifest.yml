@@ -1,0 +1,7 @@
+---
+applications:
+  - name: strapi-api-host
+    random-route: true
+    buildpacks:
+      - nodejs_buildpack
+    memory: 128M
