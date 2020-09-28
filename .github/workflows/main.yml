@@ -53,7 +53,7 @@ jobs:
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v1
         with:
-          terraform_version: 0.13.2
+          terraform_version: 0.13.3
 
       - name: Terraform Init
         run: terraform init -input=false
