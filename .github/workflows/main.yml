@@ -56,8 +56,8 @@ jobs:
       - name: Terraform Init
         run: terraform init -input=false deployment/terraform
 
-      - name: Terraform Format
-        run: terraform fmt -check deployment/terraform
+      # - name: Terraform Format
+      #   run: terraform fmt -check deployment/terraform
 
       - name: Terraform Plan
         id: plan
