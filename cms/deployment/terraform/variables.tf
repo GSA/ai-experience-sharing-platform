@@ -1,8 +1,5 @@
 variable "cf_api_url" {default = "https://api.fr.cloud.gov"}
 
-variable "s3_terraform_region" {}
-variable "s3_terraform_bucket" {}
-
 variable "cf_env" {default = "dev"}
 variable "cf_org" {default = "sandbox-gsa"}
 variable "cf_space" {default = "taylor.zajicek"}
