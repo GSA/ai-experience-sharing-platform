@@ -7,7 +7,7 @@
     "develop": "strapi develop",
     "start": "strapi start",
     "build": "strapi build",
-    "strapi": "strapi",
+    "strapi": "strapi"
   },
   "devDependencies": {
     "webpack": "^4.44.2",
