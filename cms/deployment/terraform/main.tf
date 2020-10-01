@@ -39,14 +39,13 @@ resource "cloudfoundry_app" "strapi-api-host" {
   space = data.cloudfoundry_space.space.id
   path = "./deployment/strapi-build-image.zip"
   memory = 128
-  source_code_hash = filesha256("./deployment/strapi-build-image.zip")
+  source_code_hash = data.archive_file.strapi-image-zip.output_base64sha256
   service_binding {
     service_instance = cloudfoundry_service_instance.strapi-api-db.id
   }
   service_binding {
     service_instance = cloudfoundry_service_instance.strapi-image-bucket.id
   }
-  depends_on = [data.archive_file.strapi-image-zip]
 }
 
 resource "cloudfoundry_route" "strapi-api-host" {
