@@ -54,8 +54,8 @@ module.exports = async () => {
       oauth: 2,
       access_url: 'https://idp.int.identitysandbox.gov/api/openid_connect/token',
       token_endpoint_auth_method: 'private_key_jwt',
-      public_key: fs.readFileSync(path.join(__dirname, 'logingov-cert.pem'), 'utf-8'),
-      private_key: fs.readFileSync(path.join(__dirname, 'logingov-key.pem'), 'utf-8'),
+      public_key: proces.env.LOGINGOV_CERT,
+      private_key: process.env.LOGINGOV_KEY,
     },
     facebook: {
       enabled: false,
