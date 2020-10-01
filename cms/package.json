@@ -15,6 +15,7 @@
   },
   "dependencies": {
     "css-loader": "^4.3.0",
+    "grant": "github:taylor-work/grant",
     "knex": "<0.20.0",
     "pg": "^8.3.3",
     "pm2": "^4.4.1",
