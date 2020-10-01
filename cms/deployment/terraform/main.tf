@@ -34,6 +34,12 @@ resource "cloudfoundry_service_instance" "strapi-image-bucket" {
   service_plan = data.cloudfoundry_service.s3.service_plans[var.cf_s3_strapi_image_plan]
 }
 
+resource "cloudfoundry_route" "strapi-api-host" {
+  domain = data.cloudfoundry_domain.app.id
+  space = data.cloudfoundry_space.space.id
+  hostname = "strapi-api-host-${var.cf_env}"
+}
+
 resource "cloudfoundry_app" "strapi-api-host" {
   name = "strapi-api-host-${var.cf_env}"
   space = data.cloudfoundry_space.space.id
@@ -51,13 +57,7 @@ resource "cloudfoundry_app" "strapi-api-host" {
   environment = {
     URL = "https://strapi-api-host-${var.cf_env}"
   }
-}
-
-resource "cloudfoundry_route" "strapi-api-host" {
-  domain = data.cloudfoundry_domain.app.id
-  space = data.cloudfoundry_space.space.id
-  hostname = "strapi-api-host-${var.cf_env}"
-  target {
-    app = cloudfoundry_app.strapi-api-host.id
+  routes {
+    route = cloudfoundry_route.strapi-api-host.id
   }
 }
