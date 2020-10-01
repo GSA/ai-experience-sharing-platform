@@ -45,6 +45,8 @@ jobs:
 
       - name: Build Strapi
         run: npm run build
+        env:
+          NODE_ENV: production
 
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v1
