@@ -54,7 +54,7 @@ module.exports = async () => {
       oauth: 2,
       access_url: 'https://idp.int.identitysandbox.gov/api/openid_connect/token',
       token_endpoint_auth_method: 'private_key_jwt',
-      public_key: proces.env.LOGINGOV_CERT,
+      public_key: process.env.LOGINGOV_CERT,
       private_key: process.env.LOGINGOV_KEY,
     },
     facebook: {
