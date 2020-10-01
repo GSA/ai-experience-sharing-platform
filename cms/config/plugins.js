@@ -1,4 +1,4 @@
-const cloudFoundryServiceConfig = require('./cloud-foundry-data');
+const cloudFoundryServiceConfig = require('./cloud-foundry-data').getServiceConfig;
 const cloudFoundryConfig = cloudFoundryServiceConfig();
 
 module.exports = ({ env }) => {

@@ -1,3 +1,6 @@
+const cloudFoundryApplicationConfig = require('./cloud-foundry-data').getApplicationConfig;
+const cloudApplicationConfig = cloudFoundryApplicationConfig();
+
 module.exports = ({ env }) => ({
   host: env('HOST', '0.0.0.0'),
   port: env.int('PORT', 1337),
@@ -6,5 +9,5 @@ module.exports = ({ env }) => ({
       secret: env('ADMIN_JWT_SECRET', '52559dccdff6424f12c8bb1f6c6dd69a'),
     },
   },
-  url: env('URL', ''),
+  url: env('URL', cloudApplicationConfig.application_uris[0]),
 });
