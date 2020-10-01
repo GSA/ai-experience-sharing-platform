@@ -46,7 +46,7 @@ resource "cloudfoundry_app" "strapi-api-host" {
   service_binding {
     service_instance = cloudfoundry_service_instance.strapi-image-bucket.id
   }
-  environment {
+  environment = {
     HOST = "strapi-api-host-${var.cf_env}"
   }
 }
