@@ -112,3 +112,5 @@ license.txt
 exports
 .cache
 build
+
+extensions/users-permissions/config/functions/logingov-*
