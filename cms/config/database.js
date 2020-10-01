@@ -1,34 +1,9 @@
-module.exports = ({ env }) => {
-  const serviceDetailsConfig = process.env.VCAP_SERVICES ? JSON.parse(process.env.VCAP_SERVICES) : {
-     "aws-rds": [
-       {
-         "binding_name": null,
-         "credentials": {
-           "db_name": "",
-           "host": "",
-           "name": "",
-           "password": "",
-           "port": "5432",
-           "uri": "",
-           "username": ""
-         },
-         "instance_name": "",
-         "label": "aws-rds",
-         "name": "strapi-api-db-dev",
-         "plan": "",
-         "provider": null,
-         "syslog_drain_url": null,
-         "tags": [
-           "database",
-           "RDS"
-         ],
-         "volume_mounts": []
-       }
-     ]
-  };
+const cloudFoundryServiceConfig = require('./cloud-foundry-data');
+const cloudFoundryConfig = cloudFoundryServiceConfig();
 
+module.exports = ({ env }) => {
   return {
-    defaultConnection: 'pg', //(process.env.VCAP_SERVICES ? 'pg' : 'default'),
+    defaultConnection: cloudFoundryConfig.isLocal ? 'default' : 'pg',
     connections: {
       default: {
         connector: 'bookshelf',
@@ -44,12 +19,13 @@ module.exports = ({ env }) => {
         connector: 'bookshelf',
         settings: {
           client: 'postgres',
-          host: env('DATABASE_HOST', serviceDetailsConfig['aws-rds'][0].credentials['host']),
-          port: env.int('DATABASE_PORT', serviceDetailsConfig['aws-rds'][0].credentials['port']),
-          database: env('DATABASE_NAME', serviceDetailsConfig['aws-rds'][0].credentials['db_name']),
-          username: env('DATABASE_USERNAME', serviceDetailsConfig['aws-rds'][0].credentials['username']),
-          password: env('DATABASE_PASSWORD', serviceDetailsConfig['aws-rds'][0].credentials['password']),
+          host: env('DATABASE_HOST', cloudFoundryConfig['aws-rds'][0].credentials['host']),
+          port: env.int('DATABASE_PORT', cloudFoundryConfig['aws-rds'][0].credentials['port']),
+          database: env('DATABASE_NAME', cloudFoundryConfig['aws-rds'][0].credentials['db_name']),
+          username: env('DATABASE_USERNAME', cloudFoundryConfig['aws-rds'][0].credentials['username']),
+          password: env('DATABASE_PASSWORD', cloudFoundryConfig['aws-rds'][0].credentials['password']),
         },
+        options: {},
       }
     },
   };
