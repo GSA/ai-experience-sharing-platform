@@ -40,12 +40,6 @@ resource "cloudfoundry_route" "strapi-api-host" {
   hostname = "strapi-api-host-${var.cf_env}"
 }
 
-resource "cloudfoundry_route" "strapi-api-host" {
-  domain = data.cloudfoundry_domain.app.id
-  space = data.cloudfoundry_space.space.id
-  hostname = "strapi-api-host-${var.cf_env}"
-}
-
 resource "cloudfoundry_app" "strapi-api-host" {
   name = "strapi-api-host-${var.cf_env}"
   space = data.cloudfoundry_space.space.id
