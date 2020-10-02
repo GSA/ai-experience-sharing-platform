@@ -8,8 +8,8 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  deploy:
-    name: "Terraform"
+  buildanddeploy:
+    name: "Build and deploy"
     runs-on: ubuntu-latest
 
     defaults:
@@ -79,4 +79,4 @@ jobs:
             })
       - name: Terraform Apply
         if: github.ref == 'refs/heads/main' && github.event_name == 'push'
-        run: terraform apply -input=false -auto-approve deployment/terraform
+        run: terraform apply -input=false -auto-approve -var="cf_strapi_logingov_key=${{ secrets.LOGINGOV_KEY }}" deployment/terraform

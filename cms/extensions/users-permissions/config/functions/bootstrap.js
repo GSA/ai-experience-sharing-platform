@@ -47,8 +47,8 @@ module.exports = async () => {
     logingov: {
       enabled: true,
       icon: 'discord',
-      key: '',
-      secret: '',
+      key: process.env.LOGINGOV_ISSUER,
+      secret: process.env.LOGINGOV_ISSUER, //Not used but makes the strapi admin ui happy
       callback: `${strapi.config.server.url}/auth/logingov/callback`,
       scope: ['identify', 'email'],
       oauth: 2,
