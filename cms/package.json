@@ -1,8 +1,8 @@
 {
-  "name": "my-project",
+  "name": "ai-experience-sharing-platform-cms",
   "private": true,
-  "version": "0.1.0",
-  "description": "A Strapi application",
+  "version": "0.1.1",
+  "description": "A CMS that has public and private content, initially focused on AI Use Case sharing.",
   "scripts": {
     "develop": "strapi develop",
     "start": "strapi start",

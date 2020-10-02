@@ -1,10 +1,5 @@
 const isLocalOverride = !!process.env.CF_FAKE;
 
-const cloudFoundryApplicationConfig = {
-  isLocal: isLocalOverride ? false : true,
-  application_uris: [""],
-};
-
 const cloudFoundryServiceConfig = {
   isLocal: isLocalOverride ? false : true,
   "aws-rds": [
@@ -68,19 +63,6 @@ module.exports = {
         return serviceConfig;
       } else {
         return cloudFoundryServiceConfig;
-      }
-    }
-  },
-  getApplicationConfig: ( env ) => {
-    if (env) {
-      return {};
-    } else {
-      if (process.env.VCAP_APPLICATION) {
-        const applicationConfig = JSON.parse(process.env.VCAP_APPLICATION);
-        applicationConfig.isLocal = false;
-        return applicationConfig;
-      } else {
-        return cloudFoundryApplicationConfig;
       }
     }
   },

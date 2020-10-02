@@ -57,4 +57,7 @@ resource "cloudfoundry_app" "strapi-api-host" {
   routes {
     route = cloudfoundry_route.strapi-api-host.id
   }
+  environment = {
+    CMSURL = "https://strapi-api-host-${var.cf_env}.${data.cloudfoundry_domain.app.name}"
+  }
 }
