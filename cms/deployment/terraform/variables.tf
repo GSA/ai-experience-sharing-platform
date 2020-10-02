@@ -9,14 +9,14 @@ variable "cf_s3_strapi_image_plan" {default = "basic-public-sandbox"}
 variable "cf_strapi_logingov_key" {default = ""}
 
 variable "cf_strapi_logingov_issuer" {
-  type = "map"
+  type = map
   default = {
     dev = "urn:gov:gsa:openidconnect.profiles:sp:sso:gsa:ai_experience"
   }
 }
 
 variable "cf_strapi_logingov_cert" {
-  type = "map"
+  type = map
   default = {
     dev = <<EOF
 -----BEGIN CERTIFICATE-----

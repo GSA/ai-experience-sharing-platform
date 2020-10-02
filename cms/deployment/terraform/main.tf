@@ -62,5 +62,6 @@ resource "cloudfoundry_app" "strapi-api-host" {
     LOGINGOV_CERT = lookup(var.cf_strapi_logingov_cert, var.cf_env)}
     LOGINGOV_KEY = var.cf_strapi_logingov_key
     LOGINGOV_ISSUER = lookup(var.cf_strapi_logingov_issuer, var.cf_env)}
+
   }
 }
