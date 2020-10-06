@@ -8,8 +8,87 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  buildanddeploy:
-    name: "Build and deploy"
+  build_frontend:
+    name: "Build frontend"
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: ui
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Use Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12
+
+      - name: Cache node_modules
+        id: cache-node_modules
+        uses: actions/cache@v2
+        with:
+          path: ui/node_modules
+          key: ${{ runner.os }}-ui-node_modules-${{ hashFiles('ui/package-lock.json') }}
+
+      - name: Install dependencies
+        if: steps.cache-node_modules.outputs.cache-hit != 'true'
+        run: npm ci
+
+      - name: Build frontend
+        run: npm run build
+        env:
+          NODE_ENV: production
+
+      - name: Upload built frontend
+        uses: actions/upload-artifact@v2
+        with:
+          name: ui-artifact
+          path: frontend
+
+  build_backend:
+    name: "Build backend"
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: cms
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Use Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12
+
+      - name: Cache node_modules
+        id: cache-node_modules
+        uses: actions/cache@v2
+        with:
+          path: cms/node_modules
+          key: ${{ runner.os }}-cms-node_modules-${{ hashFiles('cms/package-lock.json') }}
+
+      - name: Install dependencies
+        if: steps.cache-node_modules.outputs.cache-hit != 'true'
+        run: npm ci
+
+      - name: Build Strapi
+        run: npm run build
+        env:
+          NODE_ENV: production
+
+      - name: Upload built Strapi
+        uses: actions/upload-artifact@v2
+        with:
+          name: cms-artifact
+          path: cms
+
+  deploy:
+    name: "Deploy to cloud.gov"
+    needs: [build_frontend, build_backend]
     runs-on: ubuntu-latest
 
     defaults:
@@ -27,26 +106,19 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name: Use Node.js
-        uses: actions/setup-node@v1
+      - name: Download frontend artifact
+        uses: actions/download-artifact@v2
         with:
-          node-version: 12
+          name: ui-artifact
 
-      - name: Cache node_modules
-        id: cache-node_modules
-        uses: actions/cache@v2
+      - name: Download Strapi artifact
+        uses: actions/download-artifact@v2
         with:
-          path: cms/node_modules
-          key: ${{ runner.os }}-node_modules-${{ hashFiles('cms/package-lock.json') }}
+          name: cms-artifact
 
-      - name: Install dependencies
-        if: steps.cache-node_modules.outputs.cache-hit != 'true'
-        run: npm ci
-
-      - name: Build Strapi
-        run: npm run build
-        env:
-          NODE_ENV: production
+      - name: Copy built frontend to CMS working directory
+        shell: bash
+        run: npm run frontend:copy
 
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v1
