@@ -1,7 +1,7 @@
 const isLocalOverride = !!process.env.CF_FAKE;
 
 const cloudFoundryServiceConfig = {
-  isLocal: !process.env.VCAP_SERVICES && !isLocalOverride,
+  isLocal: isLocalOverride ? false : true,
   "aws-rds": [
     {
       "binding_name": null,

@@ -7,14 +7,9 @@
     "develop": "strapi develop",
     "start": "strapi start",
     "build": "strapi build",
-    "strapi": "strapi",
-    "frontend:copy": "mkdir -p ./public && rm -rf ./public/* && cp -r ../ui/build/* ./public/",
-    "test": "DATABASE_FILENAME=\":memory:\" jest --forceExit --detectOpenHandles"
+    "strapi": "strapi"
   },
   "devDependencies": {
-    "jest": "^26.4.2",
-    "sqlite3": "^5.0.0",
-    "supertest": "^5.0.0",
     "webpack": "^4.44.2",
     "webpack-cli": "^3.3.12"
   },
@@ -28,6 +23,7 @@
     "pm2": "^4.4.1",
     "serialize-javascript": ">=3.1.0",
     "slugify": "^1.4.5",
+    "sqlite3": "latest",
     "strapi": "3.1.4",
     "strapi-admin": "3.1.4",
     "strapi-connector-bookshelf": "3.1.4",
@@ -43,14 +39,6 @@
     "name": "A Strapi developer"
   },
   "strapi": {},
-  "jest": {
-    "testPathIgnorePatterns": [
-      "/node_modules/",
-      ".tmp",
-      ".cache"
-    ],
-    "testEnvironment": "node"
-  },
   "engines": {
     "node": "12.x",
     "npm": "6.x"
