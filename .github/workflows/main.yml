@@ -103,10 +103,6 @@ jobs:
     needs: [build_frontend, build_backend]
     runs-on: ubuntu-latest
 
-    defaults:
-      run:
-        working-directory: cms
-
     env:
       AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
       AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
@@ -122,6 +118,7 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: cms-artifact
+          path: cms
 
       - name: Download frontend artifact
         uses: actions/download-artifact@v2
@@ -130,16 +127,8 @@ jobs:
           path: cms/public
 
       - name: Display structure of cwd
-        run: ls -al
+        run: ls -R
         working-directory: .
-
-      - name: Display structure of cms
-        run: ls -al
-        working-directory: cms
-
-      - name: Display structure of cms/public
-        run: ls -al
-        working-directory: cms/public
 
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v1
@@ -147,14 +136,14 @@ jobs:
           terraform_version: 0.13.4
 
       - name: Terraform Init
-        run: terraform init -input=false deployment/terraform
+        run: terraform init -input=false cms/deployment/terraform
 
       # - name: Terraform Format
-      #   run: terraform fmt -check deployment/terraform
+      #   run: terraform fmt -check cms/deployment/terraform
 
       - name: Terraform Plan
         id: plan
-        run: terraform plan -input=false -no-color deployment/terraform
+        run: terraform plan -input=false -no-color cms/deployment/terraform
 
       - name: Create Plan Comment
         uses: actions/github-script@0.9.0
@@ -173,4 +162,4 @@ jobs:
 
       - name: Terraform Apply
         if: github.ref == 'refs/heads/main' && github.event_name == 'push'
-        run: terraform apply -input=false -auto-approve -var="cf_strapi_logingov_key=${{ secrets.LOGINGOV_KEY }}" deployment/terraform
+        run: terraform apply -input=false -auto-approve -var="cf_strapi_logingov_key=${{ secrets.LOGINGOV_KEY }}" cms/deployment/terraform
