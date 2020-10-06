@@ -129,9 +129,17 @@ jobs:
           name: ui-artifact
           path: cms/public
 
-      - name: Copy built frontend to CMS working directory
-        shell: bash
-        run: npm run frontend:copy
+      - name: Display structure of cwd
+        run: ls -al
+        working-directory: .
+
+      - name: Display structure of cms
+        run: ls -al
+        working-directory: cms
+
+      - name: Display structure of cms/public
+        run: ls -al
+        working-directory: cms/public
 
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v1
