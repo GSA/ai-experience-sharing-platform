@@ -41,11 +41,11 @@ jobs:
         env:
           NODE_ENV: production
 
-      - name: Upload built frontend
+      - name: Upload frontend artifact
         uses: actions/upload-artifact@v2
         with:
           name: ui-artifact
-          path: frontend
+          path: ui/build
 
   build_backend:
     name: "Build backend"
@@ -80,11 +80,17 @@ jobs:
         env:
           NODE_ENV: production
 
-      - name: Upload built Strapi
+      - name: Upload backend artifact
         uses: actions/upload-artifact@v2
         with:
           name: cms-artifact
-          path: cms
+          path: |
+            cms
+            !cms/.cache
+            !cms/.tmp
+            !cms/bin
+            !cms/deployment
+            !cms/node_modules
 
   deploy:
     name: "Deploy to cloud.gov"
@@ -149,6 +155,7 @@ jobs:
               repo: context.repo.repo,
               body: process.env.STDOUT
             })
+
       - name: Terraform Apply
         if: github.ref == 'refs/heads/main' && github.event_name == 'push'
         run: terraform apply -input=false -auto-approve -var="cf_strapi_logingov_key=${{ secrets.LOGINGOV_KEY }}" deployment/terraform
