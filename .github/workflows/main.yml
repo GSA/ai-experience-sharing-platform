@@ -128,13 +128,13 @@ jobs:
         run: ls -R
         working-directory: .
 
+      - name: Refresh cloud.gov space
+        run: deployment/deploy.sh setup
+
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v1
         with:
           terraform_version: 0.13.4
-
-      - name: Terraform Init
-        run: terraform init -input=false deployment/terraform
 
       # - name: Terraform Format
       #   run: terraform fmt -check deployment/terraform

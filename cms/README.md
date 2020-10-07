@@ -1,3 +1,3 @@
-# Strapi application
+# Strapi backend
 
-A quick description of your strapi application
+This is the headless CMS backend.
