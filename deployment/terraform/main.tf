@@ -22,6 +22,11 @@ data "archive_file" "strapi-image-zip" {
   excludes    = concat(["**/.git"], split("\n", file(".cfignore")))
 }
 
+data "cloudfoundry_user_provided_service" "login-gov" {
+  name  = "login-gov"
+  space = data.cloudfoundry_space.space.id
+}
+
 resource "cloudfoundry_service_instance" "strapi-api-db" {
   name         = "strapi-api-db-${var.cf_env}"
   space        = data.cloudfoundry_space.space.id
@@ -53,6 +58,9 @@ resource "cloudfoundry_app" "strapi-api-host" {
   }
   service_binding {
     service_instance = cloudfoundry_service_instance.strapi-image-bucket.id
+  }
+  service_binding {
+    service_instance = data.cloudfoundry_user_provided_service.login-gov.id
   }
   routes {
     route = cloudfoundry_route.strapi-api-host.id

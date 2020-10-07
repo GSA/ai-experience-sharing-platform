@@ -7,6 +7,7 @@
 ORGANIZATION_NAME=sandbox-gsa
 SPACE_NAME=taylor.zajicek
 
+LOGIN_GOV_SERVICE=login-gov
 TERRAFORM_SERVICE=terraform-user
 TERRAFORM_STORAGE_SERVICE=terraform-storage
 
@@ -27,34 +28,58 @@ export_terraform_storage_key() {
 }
 
 if [ "$1" = "setup" ] ; then echo
-    if space_exists "${SPACE_NAME}" ; then
-      echo space "${SPACE_NAME}" already created
-    else
-      cf create-space ${SPACE_NAME} -o ${ORGANIZATION_NAME}
-    fi
+  if space_exists "${SPACE_NAME}" ; then
+    echo space "${SPACE_NAME}" already created
+  else
+    cf create-space ${SPACE_NAME} -o ${ORGANIZATION_NAME}
+  fi
+fi
 
-  cf target -o ${ORGANIZATION_NAME} -s ${SPACE_NAME}
+cf target -o ${ORGANIZATION_NAME} -s ${SPACE_NAME}
 
-    if service_exists "${TERRAFORM_SERVICE}" ; then
-      echo ${TERRAFORM_SERVICE} already created
-    else
-      cf create-service cloud-gov-service-account space-deployer ${TERRAFORM_SERVICE}
-      cf create-service-key ${TERRAFORM_SERVICE} ${TERRAFORM_SERVICE}-key
-      echo "to get the CF_USERNAME and CF_PASSWORD, execute './bin/cloudgov.sh print-service-key'"
-    fi
+if [ "$1" = "setup" ] ; then echo
+  if service_exists "${TERRAFORM_SERVICE}" ; then
+    echo ${TERRAFORM_SERVICE} already created
+  else
+    cf create-service cloud-gov-service-account space-deployer ${TERRAFORM_SERVICE}
+    cf create-service-key ${TERRAFORM_SERVICE} ${TERRAFORM_SERVICE}-key
+    echo "to get the CF_USERNAME and CF_PASSWORD, execute './bin/cloudgov.sh print-service-key'"
+  fi
 
-    if service_exists "${TERRAFORM_STORAGE_SERVICE}" ; then
-      echo space "${TERRAFORM_STORAGE_SERVICE}" already created
-    else
-        cf create-service s3 basic-sandbox ${TERRAFORM_STORAGE_SERVICE}
-        cf create-service-key ${TERRAFORM_STORAGE_SERVICE} ${TERRAFORM_STORAGE_SERVICE}-key
-        export_terraform_storage_key
-        aws s3api put-bucket-versioning --bucket $BUCKET_NAME --versioning-configuration Status=Enabled
-    fi
+  if service_exists "${TERRAFORM_STORAGE_SERVICE}" ; then
+    echo space "${TERRAFORM_STORAGE_SERVICE}" already created
+  else
+      cf create-service s3 basic-sandbox ${TERRAFORM_STORAGE_SERVICE}
+      cf create-service-key ${TERRAFORM_STORAGE_SERVICE} ${TERRAFORM_STORAGE_SERVICE}-key
+      export_terraform_storage_key
+      aws s3api put-bucket-versioning --bucket $BUCKET_NAME --versioning-configuration Status=Enabled
+  fi
+
+  if service_exists "${LOGIN_GOV_SERVICE}" ; then
+    echo space "${LOGIN_GOV_SERVICE}" already created
+  else
+    CERT=`openssl req \
+      -newkey rsa:2048 \
+      -new \
+      -nodes \
+      -x509 \
+      -days 3650 \
+      -subj "/C=US/O=General Services Administration/OU=TTS/CN=gsa.gov"`
+
+    PRIVATE_KEY=`echo "${CERT}" | grep -FB 99999 "END PRIVATE KEY" | jq -aRs`
+    PUBLIC_KEY=`echo "${CERT}" | grep -FA 99999 "BEGIN CERTIFICATE" | jq -aRs`
+    cf create-user-provided-service "${LOGIN_GOV_SERVICE}" -p "{\"private\": ${PRIVATE_KEY}, \"public\": ${PUBLIC_KEY}}"
+  fi
 fi
 
 if [ "$1" = "print-service-key" ] ; then echo
   cf service-key terraform-user ${TERRAFORM_SERVICE}-key
+fi
+
+if [ "$1" = "print-bucket-details" ] ; then echo
+  export_terraform_storage_key
+  aws s3api get-bucket-encryption --bucket $BUCKET_NAME
+  aws s3api get-bucket-policy --bucket $BUCKET_NAME
 fi
 
 if [ "$1" = "print-terraform-storage-key" ] ; then echo
@@ -69,10 +94,4 @@ if [ "$1" = "export-service-key" ] ; then echo
   SERVICE_KEY=$(cf service-key terraform-user ${TERRAFORM_SERVICE}-key | tail -n +2)
   export CF_USER=$(echo $SERVICE_KEY | jq -r .username)
   export CF_PASSWORD=$(echo $SERVICE_KEY | jq -r .password)
-fi
-
-if [ "$1" = "deploy" ] ; then echo
-    # Push to cloud.gov sandbox
-    cf target -o ${ORGANIZATION_NAME} -s ${SPACE_NAME}
-    cf push
 fi
