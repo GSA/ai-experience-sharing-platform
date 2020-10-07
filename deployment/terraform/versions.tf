@@ -5,7 +5,7 @@ terraform {
     template = "~> 2.0"
     null     = "~> 2.0"
     cloudfoundry = {
-      source = "cloudfoundry-community/cloudfoundry"
+      source  = "cloudfoundry-community/cloudfoundry"
       version = "0.12.4"
     }
   }
