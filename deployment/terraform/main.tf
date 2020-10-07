@@ -18,7 +18,7 @@ data "cloudfoundry_domain" "app" {
 data "archive_file" "strapi-image-zip" {
   type        = "zip"
   source_dir  = "./cms"
-  output_path = "./terraform/strapi-build-image.zip"
+  output_path = "./deployment/strapi-build-image.zip"
   excludes    = concat(["**/.git"], split("\n", file(".cfignore")))
 }
 
@@ -43,7 +43,7 @@ resource "cloudfoundry_route" "strapi-api-host" {
 resource "cloudfoundry_app" "strapi-api-host" {
   name             = "strapi-api-host-${var.cf_env}"
   space            = data.cloudfoundry_space.space.id
-  path             = "./terraform/strapi-build-image.zip"
+  path             = "./deployment/strapi-build-image.zip"
   memory           = 128
   source_code_hash = data.archive_file.strapi-image-zip.output_base64sha256
   strategy         = "blue-green"
