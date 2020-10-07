@@ -2,7 +2,6 @@ import React from "react";
 import MDX from "@mdx-js/runtime";
 import Button from "components/Button";
 import Card from "components/Card";
-import Content from "components/Content";
 import Date from "components/Date";
 import Hero from "features/Hero";
 import Highlights from "components/Highlights";
@@ -13,7 +12,6 @@ import Featured from "./FeaturedUsecase";
 export const shortcodes = {
   Button,
   Card,
-  Content,
   Date,
   Hero,
   Highlights,

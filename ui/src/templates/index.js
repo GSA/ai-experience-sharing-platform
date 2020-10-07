@@ -2,14 +2,13 @@ import React from "react";
 import Layout from "templates/layouts/primary";
 import Button from "components/Button";
 import Card from "components/Card";
-import Content from "components/Content";
 import Hero from "features/Hero";
 
 const FeaturedCard = ({ title, url }) => (
   <Card
     className="FeaturedCard"
     title={title}
-    excerpt={<Content chunks={1} chunkSize={4} lineSize={10} />}
+    excerpt=""
     footer={
       <Button url={url} fullwidth>
         View
