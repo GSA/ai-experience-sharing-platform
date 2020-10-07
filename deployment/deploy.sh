@@ -49,27 +49,27 @@ if [ "$1" = "setup" ] ; then echo
   if service_exists "${TERRAFORM_STORAGE_SERVICE}" ; then
     echo space "${TERRAFORM_STORAGE_SERVICE}" already created
   else
-      cf create-service s3 basic-sandbox ${TERRAFORM_STORAGE_SERVICE}
-      cf create-service-key ${TERRAFORM_STORAGE_SERVICE} ${TERRAFORM_STORAGE_SERVICE}-key
-      export_terraform_storage_key
-      aws s3api put-bucket-versioning --bucket $BUCKET_NAME --versioning-configuration Status=Enabled
+    cf create-service s3 basic-sandbox ${TERRAFORM_STORAGE_SERVICE}
+    cf create-service-key ${TERRAFORM_STORAGE_SERVICE} ${TERRAFORM_STORAGE_SERVICE}-key
+    export_terraform_storage_key
+    aws s3api put-bucket-versioning --bucket $BUCKET_NAME --versioning-configuration Status=Enabled
   fi
 
-  if service_exists "${LOGIN_GOV_SERVICE}" ; then
-    echo space "${LOGIN_GOV_SERVICE}" already created
-  else
-    CERT=`openssl req \
-      -newkey rsa:2048 \
-      -new \
-      -nodes \
-      -x509 \
-      -days 3650 \
-      -subj "/C=US/O=General Services Administration/OU=TTS/CN=gsa.gov"`
+  # if service_exists "${LOGIN_GOV_SERVICE}" ; then
+  #   echo space "${LOGIN_GOV_SERVICE}" already created
+  # else
+  #   CERT=`openssl req \
+  #     -newkey rsa:2048 \
+  #     -new \
+  #     -nodes \
+  #     -x509 \
+  #     -days 3650 \
+  #     -subj "/C=US/O=General Services Administration/OU=TTS/CN=gsa.gov"`
 
-    PRIVATE_KEY=`echo "${CERT}" | grep -FB 99999 "END PRIVATE KEY" | jq -aRs`
-    PUBLIC_KEY=`echo "${CERT}" | grep -FA 99999 "BEGIN CERTIFICATE" | jq -aRs`
-    cf create-user-provided-service "${LOGIN_GOV_SERVICE}" -p "{\"private\": ${PRIVATE_KEY}, \"public\": ${PUBLIC_KEY}}"
-  fi
+  #   PRIVATE_KEY=`echo "${CERT}" | grep -FB 99999 "END PRIVATE KEY" | jq -aRs`
+  #   PUBLIC_KEY=`echo "${CERT}" | grep -FA 99999 "BEGIN CERTIFICATE" | jq -aRs`
+  #   cf create-user-provided-service "${LOGIN_GOV_SERVICE}" -p "{\"private\": ${PRIVATE_KEY}, \"public\": ${PUBLIC_KEY}}"
+  # fi
 fi
 
 if [ "$1" = "print-service-key" ] ; then echo
