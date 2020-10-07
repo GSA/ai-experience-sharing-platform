@@ -4,7 +4,7 @@ name: Build and deploy to CF
 
 on:
   push:
-    branches: [main]
+    branches: [main, develop]
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -94,8 +94,6 @@ jobs:
             cms
             !cms/.cache
             !cms/.tmp
-            !cms/bin
-            !cms/deployment
             !cms/node_modules
 
   deploy:
@@ -136,14 +134,14 @@ jobs:
           terraform_version: 0.13.4
 
       - name: Terraform Init
-        run: terraform init -input=false cms/deployment/terraform
+        run: terraform init -input=false deployment/terraform
 
       # - name: Terraform Format
-      #   run: terraform fmt -check cms/deployment/terraform
+      #   run: terraform fmt -check deployment/terraform
 
       - name: Terraform Plan
         id: plan
-        run: terraform plan -input=false -no-color cms/deployment/terraform
+        run: terraform plan -input=false -no-color deployment/terraform
 
       - name: Create Plan Comment
         uses: actions/github-script@0.9.0
@@ -162,4 +160,4 @@ jobs:
 
       - name: Terraform Apply
         if: github.ref == 'refs/heads/main' && github.event_name == 'push'
-        run: terraform apply -input=false -auto-approve -var="cf_strapi_logingov_key=${{ secrets.LOGINGOV_KEY }}" cms/deployment/terraform
+        run: terraform apply -input=false -auto-approve -var="cf_strapi_logingov_key=${{ secrets.LOGINGOV_KEY }}" deployment/terraform
