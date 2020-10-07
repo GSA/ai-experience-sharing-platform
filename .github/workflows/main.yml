@@ -133,6 +133,9 @@ jobs:
         with:
           terraform_version: 0.13.4
 
+      - name: Terraform Init
+        run: terraform init -input=false deployment/terraform
+
       # - name: Terraform Format
       #   run: terraform fmt -check deployment/terraform
 
