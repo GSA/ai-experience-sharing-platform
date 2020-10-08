@@ -48,7 +48,7 @@ export const menu = (menuName) => (state) => {
   return Boolean(found) ? found : { name: menuName, items: [] };
 };
 
-export const siteMeta = ({ site: { title, author, description } = {} }) => ({
+export const siteMeta = ({ site: { title, author, description } }) => ({
   title,
   author,
   description,
