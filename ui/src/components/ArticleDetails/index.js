@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import Date from "components/Date";
 
 const Format = ({ name, value }) => {
@@ -28,6 +29,22 @@ const ArticleDetails = ({ id, title, items }) => {
   );
 };
 
-ArticleDetails.propTypes = {};
+ArticleDetails.defaultProps = {
+  id: "",
+  title: "",
+  items: [],
+};
+
+ArticleDetails.propTypes = {
+  id: PropTypes.string,
+  title: PropTypes.string,
+  items: PropTypes.arrayOf(
+    PropTypes.shape({
+      title: PropTypes.string,
+      key: PropTypes.string,
+      value: PropTypes.string,
+    })
+  ),
+};
 
 export default ArticleDetails;
