@@ -63,9 +63,12 @@ export const Col = ({
   return (
     <div
       className={classnames({
-        [`grid-col-${size}`]: size,
-        [`tablet:grid-col-${tablet}`]: tablet,
-        [`desktop:grid-col-${desktop}`]: desktop,
+        [`grid-col`]: size === "auto",
+        [`grid-col-${size}`]: size && size !== "auto",
+        [`tablet:grid-col-${tablet}`]: tablet && tablet !== "auto",
+        [`tablet:grid-col`]: tablet === "auto",
+        [`desktop:grid-col-${desktop}`]: desktop && desktop !== "auto",
+        [`desktop:grid-col`]: desktop === "auto",
         [className]: className,
         [`grid-offset-${offset}`]: offset,
       })}
@@ -75,13 +78,11 @@ export const Col = ({
     </div>
   );
 };
-
 Col.defaultProps = {
-  size: "12",
+  size: "auto",
 };
-
-const colSizes = computeSizes();
-
+const computedSizes = computeSizes();
+const colSizes = [...computedSizes, "auto"];
 Col.propTypes = {
   className: PropTypes.string,
   children: PropTypes.node,

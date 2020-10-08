@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import * as context from "./context";
+import context from "./context";
 
 const initialState = {
   isAuth: false,
