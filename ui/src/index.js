@@ -2,8 +2,10 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter as Router } from "react-router-dom";
 import "./index.css";
-import App from "./App";
-import store from "./app/store";
+
+import Layout from "templates/Primary";
+import Routes from "routes";
+import store from "app";
 import { Provider } from "react-redux";
 
 import { library } from "@fortawesome/fontawesome-svg-core";
@@ -16,7 +18,9 @@ ReactDOM.render(
   <React.StrictMode>
     <Router basename={basename}>
       <Provider store={store}>
-        <App />
+        <Layout>
+          <Routes />
+        </Layout>
       </Provider>
     </Router>
   </React.StrictMode>,

@@ -1,3 +1,5 @@
+/* istanbul ignore file */
+
 export const getSiteData = async () => {
   const data = {};
   return data;

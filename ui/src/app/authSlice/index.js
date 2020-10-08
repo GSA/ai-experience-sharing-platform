@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import context from "./context";
 
-const initialState = {
+export const initialState = {
   isAuth: false,
   token: "",
   error: "",
@@ -36,7 +36,6 @@ const authSlice = createSlice({
       pending: true,
     }),
     [login.fulfilled]: (state, action) => {
-      console.log(action);
       return {
         ...action.payload,
         pending: false,

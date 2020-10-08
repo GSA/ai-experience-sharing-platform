@@ -41,8 +41,7 @@ export const Button = ({
       className={classnames({
         "usa-button": variant !== "link",
         [`usa-button--${color}`]: color && variant !== "link",
-        [`usa-button--${color}-${variant}`]:
-          color && variant && variant !== "link",
+        [`usa-button--${color}-${variant}`]: color && variant !== "link",
         "usa-button--fullwidth": fullwidth,
         "usa-button--raised": raised,
         "usa-button--unstyled": variant === "link",

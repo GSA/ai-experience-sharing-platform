@@ -1,16 +1,35 @@
-const ROOT_URL = "http://localhost:1337";
+/* istanbul ignore file */
 
-export const getAllByContentType = async (type) => {
-  const data = [];
-  return data;
+const testData = [{}, {}];
+const testTax = [{}];
+
+export const getAllByContentType = async (props) => {
+  if (props.type === "error") {
+    throw new Error("Invalid Type.");
+  }
+  if (props.type === "project") {
+    return projectData;
+  }
+  return testData;
 };
 
-export const getContentTypeByName = async (type, slug) => {
-  const data = {};
-  return data;
+export const getContentTypeByName = async (props) => {
+  if (props.type === "error") {
+    throw new Error("Invalid Type.");
+  }
+  if (!props.name) {
+    throw new Error("Invalid Name.");
+  }
+  if (props.name === "error") {
+    throw new Error("Invalid Name.");
+  }
+
+  return testData[0];
 };
 
-export const getTaxonomyByContentType = async (type) => {
-  const data = [];
-  return data;
+export const getTaxonomyByContentType = async (props) => {
+  if (props.type === "error") {
+    throw new Error("Invalid Type.");
+  }
+  return testTax;
 };

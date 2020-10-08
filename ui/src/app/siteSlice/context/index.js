@@ -1,3 +1,5 @@
+/* istanbul ignore file */
+
 import * as test from "./test";
 import * as strapi from "./strapi";
 

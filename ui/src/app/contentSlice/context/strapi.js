@@ -1,3 +1,4 @@
+/* istanbul ignore file */
 const ROOT_URL = "http://localhost:1337";
 
 const timeout = (t = 1000) => {

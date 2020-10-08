@@ -47,5 +47,29 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "jest": {
+    "collectCoverageFrom": [
+      "src/components/**/*.js",
+      "src/app/**/*.js",
+      "src/features/**/*.js",
+      "src/routes/**/*.js",
+      "!src/app/index.js",
+      "!src/**/context.js",
+      "!src/test/**/*.js",
+      "!src/routes/index.js"
+    ],
+    "coverageThreshold": {
+      "global": {
+        "branches": 90,
+        "functions": 90,
+        "lines": 90,
+        "statements": 90
+      }
+    }
+  },
+  "devDependencies": {
+    "enzyme": "^3.11.0",
+    "enzyme-adapter-react-16": "^1.15.5"
   }
 }

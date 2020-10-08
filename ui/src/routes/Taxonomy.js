@@ -78,7 +78,6 @@ export const Taxonomy = ({ match: { url } }) => {
   }, [dispatch, hash, type, isAuth]);
 
   const handleLayout = (e, data) => {
-    console.log(e.currentTarget.value);
     setLayout(e.currentTarget.value);
   };
   const handleFilter = (e) => {

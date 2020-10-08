@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import context from "./context";
 
-const initialState = {
+export const initialState = {
   author: "",
   title: "",
   description: "",

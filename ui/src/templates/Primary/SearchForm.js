@@ -9,7 +9,6 @@ const SearchForm = ({ navigation, secondaryLinks }) => {
     const query = e.currentTarget.query.value;
     if (inline) {
       // TODO nav somewhere
-      console.log(pathPrefix);
     } else {
       window.location.replace(
         `${endpoint}/search?utf8=✓&affiliate=${affiliate}&query=${query}`

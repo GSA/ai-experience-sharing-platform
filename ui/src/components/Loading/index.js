@@ -1,5 +1,5 @@
 import React from "react";
-import { Grid, Row, Col } from "./Grid";
+import { Grid, Row, Col } from "components/Grid";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export const Loading = ({ isLoading, children }) => {

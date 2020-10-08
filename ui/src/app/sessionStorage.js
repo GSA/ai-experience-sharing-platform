@@ -1,7 +1,8 @@
+/* istanbul ignore file */
+
 export const loadState = (key) => {
   try {
     const serializedState = sessionStorage.getItem(key);
-
     if (serializedState === null) {
       return undefined;
     }

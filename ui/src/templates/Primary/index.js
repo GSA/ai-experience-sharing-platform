@@ -4,8 +4,15 @@ import SEO from "./Seo";
 import Banner from "./Banner";
 import Footer from "./Footer";
 import Header from "./Header";
+import { useDispatch } from "react-redux";
+import { siteData, getMenus } from "app/siteSlice";
 
 const Primary = ({ title, children }) => {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(siteData());
+    dispatch(getMenus());
+  });
   return (
     <>
       <SEO title={title} />

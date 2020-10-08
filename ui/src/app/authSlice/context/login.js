@@ -1,3 +1,5 @@
+/* istanbul ignore file */
+
 const timeout = (t = 1000) => {
   return new Promise((resolve) => setTimeout(resolve, t));
 };
