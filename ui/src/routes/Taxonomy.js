@@ -11,7 +11,6 @@ import Select from "components/Select";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Card from "components/Card";
 import { Loading } from "components/Loading";
-import { auth } from "app/AuthModule";
 
 const Title = ({ items }) =>
   items.map(

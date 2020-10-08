@@ -5,7 +5,7 @@ import Login from "features/Login";
 import ArticleDetails from "components/ArticleDetails";
 import ContentNav from "components/ContentsNav";
 import { useDispatch, useSelector } from "react-redux";
-import { getPage, clearPage } from "app/contentSlice";
+import { getPage, clearPage } from "app/ContentModule";
 import { Grid, Row, Col } from "components/Grid";
 import { Loading } from "components/Loading";
 

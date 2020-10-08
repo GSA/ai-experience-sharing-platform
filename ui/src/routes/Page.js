@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import Mdx from "features/Mdx";
 import { useSelector, useDispatch } from "react-redux";
-import { getPage, clearPage } from "app/contentSlice";
+import { getPage, clearPage } from "app/ContentModule";
 import { useParams } from "react-router-dom";
 import { Grid, Row, Col } from "components/Grid";
 import { Loading } from "components/Loading";

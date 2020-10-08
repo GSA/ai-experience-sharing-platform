@@ -3,7 +3,7 @@ import { Row, Col } from "components/Grid";
 import { useSelector, useDispatch } from "react-redux";
 import Card from "components/Card";
 import Button from "components/Button";
-import { getList } from "app/contentSlice";
+import { getList } from "app/ContentModule";
 import { Loading } from "components/Loading";
 
 const FeaturedUsecase = (props) => {

@@ -25,8 +25,8 @@ Relative image file path
 ----------------------------------------
 */
 
-$theme-image-path: '~uswds/src/img';
-$theme-custom-image-path: '~styles/theme/img';
+$theme-image-path: "~uswds/src/img";
+$theme-custom-image-path: "~styles/theme/img";
 
 /*
 ----------------------------------------
@@ -39,8 +39,8 @@ Show updates and notifications.
 ----------------------------------------
 */
 
-$theme-show-compile-warnings: true;
-$theme-show-notifications: true;
+$theme-show-compile-warnings: false;
+$theme-show-notifications: false;
 
 /*
 ----------------------------------------
@@ -49,12 +49,12 @@ Namespace
 */
 
 $theme-namespace: (
-  'grid': (
-    namespace: 'grid-',
+  "grid": (
+    namespace: "grid-",
     output: true,
   ),
-  'utility': (
-    namespace: 'u-',
+  "utility": (
+    namespace: "u-",
     output: false,
   ),
 );
@@ -88,7 +88,7 @@ Focus styles
 ----------------------------------------
 */
 
-$theme-focus-color: 'blue-40v';
+$theme-focus-color: "blue-40v";
 $theme-focus-offset: 0;
 $theme-focus-style: solid;
 $theme-focus-width: 0.5;

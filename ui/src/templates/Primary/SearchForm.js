@@ -2,7 +2,7 @@ import React from "react";
 import { FontAwesomeIcon as Fa } from "@fortawesome/react-fontawesome";
 const SearchForm = ({ navigation, secondaryLinks }) => {
   const data = {};
-  const { site: { pathPrefix, affiliate, endpoint, inline } = {} } = data;
+  const { site: { affiliate, endpoint, inline } = {} } = data;
 
   const handleSubmit = (e) => {
     e.preventDefault();

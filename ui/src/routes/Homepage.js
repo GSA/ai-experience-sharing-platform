@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { getPage, clearPage } from "app/contentSlice";
+import { getPage, clearPage } from "app/ContentModule";
 import Mdx from "features/Mdx";
 import { Loading } from "components/Loading";
 

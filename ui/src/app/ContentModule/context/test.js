@@ -7,9 +7,6 @@ export const getAllByContentType = async (props) => {
   if (props.type === "error") {
     throw new Error("Invalid Type.");
   }
-  if (props.type === "project") {
-    return projectData;
-  }
   return testData;
 };
 

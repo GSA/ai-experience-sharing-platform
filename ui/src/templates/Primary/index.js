@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import PropTypes from "prop-types";
 import SEO from "./Seo";
 import Banner from "./Banner";
@@ -6,6 +6,7 @@ import Footer from "./Footer";
 import Header from "./Header";
 import { useDispatch } from "react-redux";
 import { siteData, getMenus } from "app/SiteModule";
+import "styles/index.scss";
 
 const Primary = ({ title, children }) => {
   const dispatch = useDispatch();
