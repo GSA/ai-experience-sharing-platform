@@ -4,14 +4,14 @@ import { useParams, useLocation } from "react-router-dom";
 import PropTypes from "prop-types";
 import Article from "components/ArticleExcerpt";
 import Login from "features/Login";
-import { getList, clearList, getTaxonomy } from "app/contentSlice";
+import { getList, clearList, getTaxonomy } from "app/ContentModule";
 import { Grid, Row, Col } from "components/Grid";
 import Button from "components/Button";
 import Select from "components/Select";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Card from "components/Card";
 import { Loading } from "components/Loading";
-import { auth } from "app/authSlice";
+import { auth } from "app/AuthModule";
 
 const Title = ({ items }) =>
   items.map(

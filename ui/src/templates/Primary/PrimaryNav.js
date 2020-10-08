@@ -4,7 +4,7 @@ import { Link, NavLink } from "react-router-dom";
 import close from "uswds/dist/img/close.svg";
 import Button from "components/Button";
 import SearchForm from "./SearchForm";
-import { menu } from "app/siteSlice";
+import { menu } from "app/SiteModule";
 import Logout from "features/Logout";
 import "uswds";
 

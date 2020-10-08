@@ -1,6 +1,6 @@
 import React from "react";
 import Button from "components/Button";
-import { login } from "app/authSlice";
+import { login } from "app/AuthModule";
 import { useDispatch, useSelector } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 

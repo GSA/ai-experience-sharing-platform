@@ -10,7 +10,7 @@ import reducer, {
 
 const store = configureStore({ reducer });
 
-describe("siteSlice", () => {
+describe("SiteModule", () => {
   describe("initialState", () => {
     beforeEach(async () => await store.dispatch(reset()));
     it("should load the initial state", async () => {

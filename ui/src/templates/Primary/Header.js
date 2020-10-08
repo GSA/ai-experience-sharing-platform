@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import Button from "components/Button";
 import Nav from "./PrimaryNav";
 import { useSelector } from "react-redux";
-import { siteMeta } from "app/siteSlice";
+import { siteMeta } from "app/SiteModule";
 
 const Header = ({ children }) => {
   const { title } = useSelector(siteMeta);

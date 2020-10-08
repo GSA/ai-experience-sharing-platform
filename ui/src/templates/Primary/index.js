@@ -5,7 +5,7 @@ import Banner from "./Banner";
 import Footer from "./Footer";
 import Header from "./Header";
 import { useDispatch } from "react-redux";
-import { siteData, getMenus } from "app/siteSlice";
+import { siteData, getMenus } from "app/SiteModule";
 
 const Primary = ({ title, children }) => {
   const dispatch = useDispatch();

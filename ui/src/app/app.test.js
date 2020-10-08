@@ -1,7 +1,7 @@
 import app from "./index.js";
-import { initialState as auth } from "app/authSlice";
-import { initialState as content } from "app/contentSlice";
-import { initialState as site } from "app/siteSlice";
+import { initialState as auth } from "app/AuthModule";
+import { initialState as content } from "app/ContentModule";
+import { initialState as site } from "app/SiteModule";
 
 const combinedState = {
   auth,

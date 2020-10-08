@@ -1,7 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
-import auth from "app/authSlice";
-import content from "app/contentSlice";
-import site from "app/siteSlice";
+import auth from "app/AuthModule";
+import content from "app/ContentModule";
+import site from "app/SiteModule";
 
 const storeKey = "AI_SESSION_STORE";
 

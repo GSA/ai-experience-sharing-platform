@@ -25,7 +25,7 @@ export const logout = createAsyncThunk(
   async () => await context.endSession()
 );
 
-const authSlice = createSlice({
+const AuthModule = createSlice({
   name: "auth",
   initialState,
   reducers: {
@@ -58,6 +58,6 @@ const authSlice = createSlice({
   },
 });
 
-export const { reset } = authSlice.actions;
+export const { reset } = AuthModule.actions;
 
-export default authSlice.reducer;
+export default AuthModule.reducer;

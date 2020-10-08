@@ -11,7 +11,7 @@ import reducer, {
 
 const store = configureStore({ reducer });
 
-describe("contentSlice", () => {
+describe("ContentModule", () => {
   describe("initialState", () => {
     beforeEach(async () => await store.dispatch(reset()));
     it("should load the initial state", async () => {

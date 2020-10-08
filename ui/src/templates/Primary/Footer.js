@@ -2,7 +2,7 @@ import React from "react";
 import logo from "uswds/dist/img/logo-img.png";
 import Button from "components/Button";
 import { useSelector } from "react-redux";
-import { siteMeta, menu } from "app/siteSlice";
+import { siteMeta, menu } from "app/SiteModule";
 import { Link } from "react-router-dom";
 import { Grid, Row, Col } from "components/Grid";
 

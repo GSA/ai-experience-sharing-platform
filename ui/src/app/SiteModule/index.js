@@ -25,7 +25,7 @@ export const getMenus = createAsyncThunk(
   async () => await context.getMenus()
 );
 
-export const siteSlice = createSlice({
+export const SiteModule = createSlice({
   name: "site",
   initialState,
   reducers: {
@@ -41,7 +41,7 @@ export const siteSlice = createSlice({
   },
 });
 
-export const { reset } = siteSlice.actions;
+export const { reset } = SiteModule.actions;
 
 export const menu = (menuName) => (state) => {
   const found = state.site.menus.find(({ name }) => name === menuName);
@@ -54,4 +54,4 @@ export const siteMeta = ({ site: { title, author, description } }) => ({
   description,
 });
 
-export default siteSlice.reducer;
+export default SiteModule.reducer;

@@ -41,7 +41,7 @@ const rejected = (key, state, action) => {
   };
 };
 
-export const contentSlice = createSlice({
+export const ContentModule = createSlice({
   name: "content",
   initialState,
   reducers: {
@@ -64,6 +64,6 @@ export const contentSlice = createSlice({
   },
 });
 
-export const { reset, clearPage, clearList } = contentSlice.actions;
+export const { reset, clearPage, clearList } = ContentModule.actions;
 
-export default contentSlice.reducer;
+export default ContentModule.reducer;
