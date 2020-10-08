@@ -5,7 +5,7 @@ import Login from "features/Login";
 import ArticleDetails from "components/ArticleDetails";
 import ContentNav from "components/ContentsNav";
 import { useDispatch, useSelector } from "react-redux";
-import { getPage, page, clearPage } from "app/contentSlice";
+import { getPage, clearPage } from "app/contentSlice";
 import { Grid, Row, Col } from "components/Grid";
 import { auth } from "app/authSlice";
 import { Loading } from "components/Loading";
@@ -13,7 +13,7 @@ import { Loading } from "components/Loading";
 export const Article = () => {
   const dispatch = useDispatch();
   const { type, name } = useParams();
-  const { pending, data = {} } = useSelector(page);
+  const { pending, data = {} } = useSelector((state) => state.content.page);
   const { isAuth } = useSelector(auth);
   useEffect(() => {
     if (isAuth) {

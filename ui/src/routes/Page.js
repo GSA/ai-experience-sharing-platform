@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import Mdx from "features/Mdx";
 import { useSelector, useDispatch } from "react-redux";
-import { page, getPage, clearPage } from "app/contentSlice";
+import { getPage, clearPage } from "app/contentSlice";
 import { useParams } from "react-router-dom";
 import { Grid, Row, Col } from "components/Grid";
 import { Loading } from "components/Loading";
@@ -9,7 +9,7 @@ import { Loading } from "components/Loading";
 const Page = () => {
   const dispatch = useDispatch();
   const { name } = useParams();
-  const { pending, data = {} } = useSelector(page);
+  const { pending, data = {} } = useSelector((state) => state.content.page);
   const { title, body } = data;
   useEffect(() => {
     dispatch(getPage({ type: "page", name }));

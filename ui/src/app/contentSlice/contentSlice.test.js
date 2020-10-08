@@ -4,13 +4,11 @@ import reducer, {
   getPage,
   getList,
   getTaxonomy,
-  page,
-  list,
-  taxonomy,
+  reset,
   clearPage,
   clearList,
-  reset,
 } from "./index";
+console.log(clearPage, clearList);
 
 const store = configureStore({ reducer });
 
@@ -89,25 +87,7 @@ describe("contentSlice", () => {
       await store.dispatch(getList({ type: "page" }));
       await store.dispatch(clearList());
       const data = await store.getState();
-      expect(data.taxonomy.error.message).toBe("Invalid Type.");
-    });
-
-    it("should load page data", async () => {
-      await store.dispatch(getTaxonomy({ type: "error" }));
-      const data = await store.getState();
-      expect(data.taxonomy.error.message).toBe("Invalid Type.");
-    });
-
-    it("should load list data", async () => {
-      await store.dispatch(getTaxonomy({ type: "error" }));
-      const data = await store.getState();
-      expect(data.taxonomy.error.message).toBe("Invalid Type.");
-    });
-
-    it("should load taxonomy data", async () => {
-      await store.dispatch(getTaxonomy({ type: "error" }));
-      const data = await store.getState();
-      expect(data.taxonomy.error.message).toBe("Invalid Type.");
+      expect(data.list.data.length).toBe(0);
     });
   });
 });

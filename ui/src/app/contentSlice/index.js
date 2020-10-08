@@ -46,6 +46,8 @@ export const contentSlice = createSlice({
   initialState,
   reducers: {
     reset: () => initialState,
+    clearPage: (state) => ({ ...state, page: initialState.page }),
+    clearList: (state) => ({ ...state, list: initialState.list }),
   },
   extraReducers: {
     [getPage.pending]: (state) => pending("page", state),
@@ -63,9 +65,5 @@ export const contentSlice = createSlice({
 });
 
 export const { reset, clearPage, clearList } = contentSlice.actions;
-
-export const list = (state) => state.content.list;
-export const page = (state) => state.content.page;
-export const taxonomy = (state) => state.content.taxonomy;
 
 export default contentSlice.reducer;

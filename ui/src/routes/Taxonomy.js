@@ -4,13 +4,7 @@ import { useParams, useLocation } from "react-router-dom";
 import PropTypes from "prop-types";
 import Article from "components/ArticleExcerpt";
 import Login from "features/Login";
-import {
-  list,
-  getList,
-  clearList,
-  getTaxonomy,
-  taxonomy,
-} from "app/contentSlice";
+import { getList, clearList, getTaxonomy } from "app/contentSlice";
 import { Grid, Row, Col } from "components/Grid";
 import Button from "components/Button";
 import Select from "components/Select";
@@ -63,8 +57,12 @@ export const Taxonomy = ({ match: { url } }) => {
   const { hash } = useLocation();
   const [key, value] = hash.replace("#", "").split("=");
   const { type } = useParams();
-  const { pending = false, data: listData = [] } = useSelector(list);
-  const { data: taxonomyList = [] } = useSelector(taxonomy);
+  const { pending = false, data: listData = [] } = useSelector(
+    (state) => state.content.list
+  );
+  const { data: taxonomyList = [] } = useSelector(
+    (state) => state.content.taxonomy
+  );
   const { isAuth } = useSelector(auth);
 
   useEffect(() => {

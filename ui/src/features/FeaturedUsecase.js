@@ -3,13 +3,13 @@ import { Row, Col } from "components/Grid";
 import { useSelector, useDispatch } from "react-redux";
 import Card from "components/Card";
 import Button from "components/Button";
-import { getList, list } from "app/contentSlice";
+import { getList } from "app/contentSlice";
 import { Loading } from "components/Loading";
 
 const FeaturedUsecase = (props) => {
   const dispatch = useDispatch();
   const reload = false;
-  const { pending, data } = useSelector(list);
+  const { pending, data } = useSelector((state) => state.content.list);
   const listData = data.filter((item) => item.featured).slice(0, 4);
 
   useEffect(() => {

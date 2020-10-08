@@ -1,19 +1,18 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter as Router } from "react-router-dom";
-import "./index.css";
-
-import Layout from "templates/Primary";
+import { Provider } from "react-redux";
 import Routes from "routes";
 import store from "app";
-import { Provider } from "react-redux";
+import registerFontAwesome from "utils/registerFontAwesome";
+import Layout from "templates/Primary";
 
-import { library } from "@fortawesome/fontawesome-svg-core";
-import { far } from "@fortawesome/free-regular-svg-icons";
-import { fas } from "@fortawesome/free-solid-svg-icons";
 import * as serviceWorker from "./serviceWorker";
-library.add(fas, far);
+
 const basename = process.env.PUBLIC_URL || "/";
+
+registerFontAwesome();
+
 ReactDOM.render(
   <React.StrictMode>
     <Router basename={basename}>
