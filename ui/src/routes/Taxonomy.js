@@ -63,7 +63,7 @@ export const Taxonomy = ({ match: { url } }) => {
   const { data: taxonomyList = [] } = useSelector(
     (state) => state.content.taxonomy
   );
-  const { isAuth } = useSelector(auth);
+  const { isAuth } = useSelector((state) => state.auth);
 
   useEffect(() => {
     if (isAuth) {

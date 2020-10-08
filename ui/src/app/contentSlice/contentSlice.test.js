@@ -8,7 +8,6 @@ import reducer, {
   clearPage,
   clearList,
 } from "./index";
-console.log(clearPage, clearList);
 
 const store = configureStore({ reducer });
 

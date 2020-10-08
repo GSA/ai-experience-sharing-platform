@@ -7,14 +7,13 @@ import ContentNav from "components/ContentsNav";
 import { useDispatch, useSelector } from "react-redux";
 import { getPage, clearPage } from "app/contentSlice";
 import { Grid, Row, Col } from "components/Grid";
-import { auth } from "app/authSlice";
 import { Loading } from "components/Loading";
 
 export const Article = () => {
   const dispatch = useDispatch();
   const { type, name } = useParams();
   const { pending, data = {} } = useSelector((state) => state.content.page);
-  const { isAuth } = useSelector(auth);
+  const { isAuth } = useSelector((state) => state.auth);
   useEffect(() => {
     if (isAuth) {
       dispatch(getPage({ type, name }));

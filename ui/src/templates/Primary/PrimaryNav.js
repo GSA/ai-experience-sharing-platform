@@ -5,7 +5,6 @@ import close from "uswds/dist/img/close.svg";
 import Button from "components/Button";
 import SearchForm from "./SearchForm";
 import { menu } from "app/siteSlice";
-import { auth } from "app/authSlice";
 import Logout from "features/Logout";
 import "uswds";
 
@@ -49,7 +48,7 @@ const NavItem = ({ id, text, link, items = [] }) => {
 const Nav = () => {
   const primary = useSelector(menu("primary"));
   const secondary = useSelector(menu("secondary"));
-  const { isAuth } = useSelector(auth);
+  const { isAuth } = useSelector((state) => state.auth);
   return (
     <nav role="navigation" className="usa-nav">
       <div className="usa-nav__inner">

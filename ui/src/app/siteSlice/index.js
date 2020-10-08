@@ -28,6 +28,9 @@ export const getMenus = createAsyncThunk(
 export const siteSlice = createSlice({
   name: "site",
   initialState,
+  reducers: {
+    reset: () => initialState,
+  },
   extraReducers: {
     [siteData.fulfilled]: (state, action) => {
       return { ...state, ...action.payload };
@@ -37,6 +40,8 @@ export const siteSlice = createSlice({
     },
   },
 });
+
+export const { reset } = siteSlice.actions;
 
 export const menu = (menuName) => (state) => {
   const found = state.site.menus.find(({ name }) => name === menuName);

@@ -1,3 +1,5 @@
+/*istanbul ignore file */
+
 export const postAuthCredentials = async ({ username, password }) => {
   if (username === "jarvis" && password === "vision") {
     return {

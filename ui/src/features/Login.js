@@ -1,12 +1,12 @@
 import React from "react";
 import Button from "components/Button";
-import { login, auth } from "app/authSlice";
+import { login } from "app/authSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const Auth = ({ children }) => {
   const dispatch = useDispatch();
-  const { isAuth, pending, error } = useSelector(auth);
+  const { isAuth, pending, error } = useSelector((state) => state.auth);
   const handleSubmit = (e) => {
     e.preventDefault();
     const {
