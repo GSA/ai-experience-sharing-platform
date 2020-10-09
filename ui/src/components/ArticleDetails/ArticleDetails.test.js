@@ -9,10 +9,10 @@ describe("<ArticleDetails />", () => {
       const id = "test-id";
       const title = "test title";
       const items = [
-        { key: "test", title: "ABC", value: "123" },
+        { key: "test1", title: "ABC", value: "123" },
         { key: "date", title: "Date", value: "01/01/202" },
 
-        { key: "test", title: "ABC", value: ["1", "2", "3"] },
+        { key: "test2", title: "ABC", value: ["1", "2", "3"] },
       ];
       const wrapper = mount(
         <TestProvider>
