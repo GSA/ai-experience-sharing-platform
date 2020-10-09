@@ -18,3 +18,5 @@ export const Loading = ({ isLoading, children }) => {
   }
   return children;
 };
+
+export default Loading;
