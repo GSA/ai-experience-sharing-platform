@@ -1,9 +1,5 @@
 import React from "react";
 
-/*
-  This will be displayed on the homepage. Ideally, you want to highlight key goals of the website
-*/
-
 const Hero = ({ children, background }) => {
   const style = {};
   if (background) {
