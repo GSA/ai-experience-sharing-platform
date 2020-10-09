@@ -6,7 +6,7 @@ import Date from "components/Date";
 import Hero from "features/Hero";
 import Tagline from "components/Tagline";
 import { Grid, Row, Col } from "components/Grid";
-import Featured from "./FeaturedUsecase";
+import Featured from "../FeaturedUsecase";
 
 export const shortcodes = {
   Button,

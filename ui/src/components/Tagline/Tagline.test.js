@@ -7,11 +7,9 @@ describe("<Tagline />", () => {
   describe("default render", () => {
     it("should render", () => {
       const wrapper = mount(
-        <TestProvider>
-          <Tagline title="check">
-            <span className="test-tagline">test</span>
-          </Tagline>
-        </TestProvider>
+        <Tagline title="check">
+          <span className="test-tagline">test</span>
+        </Tagline>
       );
       expect(wrapper.find(".test-tagline").length).toBe(1);
     });

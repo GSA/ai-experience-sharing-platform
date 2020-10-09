@@ -1,6 +1,15 @@
 /* istanbul ignore file */
 
-const testData = [{}, {}];
+const testData = [
+  {
+    featured: true,
+    name: "test",
+    title: "Test",
+    excerpt: "test",
+    path: "test",
+  },
+  {},
+];
 const testTax = [{}];
 
 export const getAllByContentType = async (props) => {

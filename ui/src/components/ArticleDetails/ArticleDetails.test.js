@@ -15,9 +15,7 @@ describe("<ArticleDetails />", () => {
         { key: "test2", title: "ABC", value: ["1", "2", "3"] },
       ];
       const wrapper = mount(
-        <TestProvider>
-          <ArticleDetails id={id} title={title} items={items} />
-        </TestProvider>
+        <ArticleDetails id={id} title={title} items={items} />
       );
       const render = wrapper.find("h4");
       expect(render.text()).toBe(title);

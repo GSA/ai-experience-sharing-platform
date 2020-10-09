@@ -10,11 +10,7 @@ const items = [
 describe("<ContentsNav />", () => {
   describe("default render", () => {
     it("should render", () => {
-      const wrapper = mount(
-        <TestProvider>
-          <ContentsNav items={items} />
-        </TestProvider>
-      );
+      const wrapper = mount(<ContentsNav items={items} />);
       expect(wrapper.find(".ContentNav__item").length).toBe(2);
     });
   });
