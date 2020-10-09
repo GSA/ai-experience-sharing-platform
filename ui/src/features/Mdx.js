@@ -4,7 +4,6 @@ import Button from "components/Button";
 import Card from "components/Card";
 import Date from "components/Date";
 import Hero from "features/Hero";
-import Highlights from "components/Highlights";
 import Tagline from "components/Tagline";
 import { Grid, Row, Col } from "components/Grid";
 import Featured from "./FeaturedUsecase";
@@ -14,7 +13,6 @@ export const shortcodes = {
   Card,
   Date,
   Hero,
-  Highlights,
   Tagline,
   Grid,
   Row,
