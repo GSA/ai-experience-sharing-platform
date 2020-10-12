@@ -7,7 +7,17 @@ const testData = [
     title: "Test",
     excerpt: "test",
     path: "test",
-    toc: [{}, {}],
+    type: "usecase",
+    toc: [
+      {
+        text: "test",
+        url: "test",
+      },
+      {
+        text: "test",
+        url: "test",
+      },
+    ],
   },
   {
     featured: true,
@@ -15,6 +25,7 @@ const testData = [
     title: "Test",
     excerpt: "test",
     path: "test",
+    type: "usecase",
     toc: [
       {
         text: "test",

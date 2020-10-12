@@ -15,7 +15,7 @@ export const Article = () => {
   const { type, name } = useParams();
   const { pending, data, error } = useSelector((state) => state.content.page);
   const { isAuth } = useSelector((state) => state.auth);
-  console.log("DATA", data);
+
   useEffect(() => {
     if (isAuth) {
       dispatch(getPage({ type, name }));
