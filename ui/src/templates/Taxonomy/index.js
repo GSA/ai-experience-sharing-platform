@@ -192,6 +192,11 @@ export const Taxonomy = ({ match: { url } }) => {
     </Login>
   );
 };
+
+Taxonomy.defaultProps = {
+  match: {},
+};
+
 Taxonomy.propTypes = {
   pageContext: PropTypes.object,
   data: PropTypes.object,

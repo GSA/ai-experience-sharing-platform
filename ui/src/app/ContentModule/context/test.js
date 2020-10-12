@@ -7,8 +7,28 @@ const testData = [
     title: "Test",
     excerpt: "test",
     path: "test",
+    toc: [{}, {}],
   },
-  {},
+  {
+    featured: true,
+    name: "test",
+    title: "Test",
+    excerpt: "test",
+    path: "test",
+    toc: [
+      {
+        text: "test",
+        url: "test",
+      },
+    ],
+    fields: [
+      {
+        title: "test",
+        key: "test",
+        value: "test",
+      },
+    ],
+  },
 ];
 const testTax = [{}];
 
@@ -28,6 +48,9 @@ export const getContentTypeByName = async (props) => {
   }
   if (props.name === "error") {
     throw new Error("Invalid Name.");
+  }
+  if (props.type === "usecase") {
+    return testData[1];
   }
 
   return testData[0];

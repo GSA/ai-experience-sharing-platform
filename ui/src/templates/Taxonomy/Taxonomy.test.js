@@ -1,6 +1,6 @@
 import React from "react";
 import { mount } from "enzyme";
-import Taxonomy from "routes/Taxonomy";
+import Taxonomy from "templates/Taxonomy";
 import TestProvider from "test/TestProvider";
 
 describe("<Taxonomy />", () => {

@@ -2,7 +2,6 @@ import React from "react";
 import { Switch, Route } from "react-router-dom";
 import Homepage from "./Homepage";
 import Page from "./Page";
-import Library from "./Library";
 
 export default ({ location }) => (
   <Switch location={location}>

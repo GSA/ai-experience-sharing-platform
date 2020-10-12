@@ -14,7 +14,7 @@ describe("<FeaturedUsecase />", () => {
       );
 
       await runAsyncRender(wrapper);
-      expect(wrapper.find("h3").length).toBe(1);
+      expect(wrapper.find("h3").length).toBe(2);
     });
   });
 });

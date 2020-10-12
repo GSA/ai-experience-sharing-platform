@@ -19,7 +19,7 @@ export const login = createAsyncThunk(
 
 export const logout = createAsyncThunk(
   "auth/logout",
-  async () => await context.endSession()
+  async (state) => await context.endSession(state)
 );
 
 const AuthModule = createSlice({

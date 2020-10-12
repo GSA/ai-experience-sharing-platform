@@ -1,22 +1,24 @@
 import React, { useEffect } from "react";
 import Mdx from "features/Mdx";
 import { useSelector, useDispatch } from "react-redux";
-import { getPage, clearPage } from "app/ContentModule";
+import { getPage } from "app/ContentModule";
 import { useParams } from "react-router-dom";
 import { Grid, Row, Col } from "components/Grid";
 import { Loading } from "components/Loading";
+import FourOhFour from "templates/FourOhFour";
 
 const Page = () => {
   const dispatch = useDispatch();
   const { name } = useParams();
-  const { pending, data = {} } = useSelector((state) => state.content.page);
+  const { pending, data, error } = useSelector((state) => state.content.page);
   const { title, body } = data;
   useEffect(() => {
     dispatch(getPage({ type: "page", name }));
-    return () => {
-      dispatch(clearPage());
-    };
   }, [name, dispatch]);
+
+  if (error) {
+    return <FourOhFour />;
+  }
   return (
     <Loading isLoading={pending}>
       <Grid>
