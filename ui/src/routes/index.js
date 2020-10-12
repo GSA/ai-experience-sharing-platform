@@ -8,6 +8,5 @@ export default ({ location }) => (
   <Switch location={location}>
     <Route key="homepage" path="/" component={Homepage} exact />
     <Route key="page" path="/:name" component={Page} exact />
-    <Route key="library" path="/library" component={Library} />
   </Switch>
 );

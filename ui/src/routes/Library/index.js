@@ -1,7 +1,7 @@
 import React from "react";
 import { Route } from "react-router-dom";
-import Taxonomy from "./Taxonomy";
-import Article from "./Article";
+import Taxonomy from "routes/Taxonomy";
+import Article from "routes/Article";
 
 export default ({ match: { path } }) => {
   return (
