@@ -39,13 +39,13 @@ validate_parameters()
   fi
 
   if [ -z ${organization_name+x} ]; then
-    printf "${RED}Please an organization name.\n${NC}"
+    printf "${RED}Please provide an organization name.\n${NC}"
     usage
     exit 1
   fi
 
   if [ -z ${space_name+x} ]; then
-    printf "${RED}Please a space name.\n${NC}"
+    printf "${RED}Please provide a space name.\n${NC}"
     usage
     exit 1
   fi
