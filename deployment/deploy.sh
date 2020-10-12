@@ -27,6 +27,12 @@ export_terraform_storage_key() {
   export BUCKET_NAME=$(echo $TERRAFORM_STORAGE_SERVICE_KEY | jq -r .bucket)
 }
 
+export_service_key() {
+  SERVICE_KEY=$(cf service-key terraform-user ${TERRAFORM_SERVICE}-key | tail -n +2)
+  export CF_USER=$(echo $SERVICE_KEY | jq -r .username)
+  export CF_PASSWORD=$(echo $SERVICE_KEY | jq -r .password)
+}
+
 if [ "$1" = "setup" ] ; then echo
   if space_exists "${SPACE_NAME}" ; then
     echo space "${SPACE_NAME}" already created
@@ -91,7 +97,11 @@ if [ "$1" = "export-terraform-storage-key" ] ; then echo
 fi
 
 if [ "$1" = "export-service-key" ] ; then echo
-  SERVICE_KEY=$(cf service-key terraform-user ${TERRAFORM_SERVICE}-key | tail -n +2)
-  export CF_USER=$(echo $SERVICE_KEY | jq -r .username)
-  export CF_PASSWORD=$(echo $SERVICE_KEY | jq -r .password)
+  export_service_key
+fi
+
+if [ "$1" = "deploy" ] ; then echo
+  export_terraform_storage_key
+  export_service_key
+  terraform apply deployment/terraform
 fi
