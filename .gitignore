@@ -1,3 +1,5 @@
+.terraform
+
 *.sublime-project
 *.sublime-workspace
 
