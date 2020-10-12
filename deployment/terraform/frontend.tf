@@ -9,20 +9,6 @@ resource "cloudfoundry_service_key" "frontend-bucket-key" {
   service_instance = cloudfoundry_service_instance.frontend-bucket.id
 }
 
-# locals {
-#   cors_policy = <<POLICY
-# {
-#   "CORSRules": [
-#     {
-#       "AllowedOrigins": ["$${domain}"],
-#       "AllowedHeaders": ["*"],
-#       "AllowedMethods": ["HEAD", "GET"],
-#       "ExposeHeaders": ["ETag"]
-#     }
-#   ]
-# }
-# POLICY
-
 resource "null_resource" "frontend-assets-bucket-website" {
   triggers = {
     src_hash = sha256(file("deployment/terraform/frontend-bucket-website.json"))
