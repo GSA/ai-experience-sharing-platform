@@ -4,12 +4,52 @@
 # environment, to be managed via Terraform.
 #
 
-ORGANIZATION_NAME=sandbox-gsa
-SPACE_NAME=daniel.naab
-
 LOGIN_GOV_SERVICE=login-gov
 TERRAFORM_SERVICE=terraform-user
 TERRAFORM_STORAGE_SERVICE=terraform-storage
+
+usage()
+{
+    cat << EOF
+Manage a cloud.gov deployment environment.
+
+Usage: manage.sh <OPERATION> -o <cloud.gov organization name> -s <cloud.gov space name>
+
+OPERATION:
+    print-service-key
+    print-bucket-details
+    print-terraform-storage-key
+    export-terraform-storage-key
+    export-service-key
+    deploy
+
+Options:
+  -o, --organization organization_name   Cloud.gov organization name
+  -s, --space space_name                 Cloud.gov space name
+  -h                                     Print usage
+EOF
+}
+
+validate_parameters()
+{
+  if [ -z ${operation+x} ]; then
+    printf "${RED}Please supply an operation.\n${NC}"
+    usage
+    exit 1
+  fi
+
+  if [ -z ${organization_name+x} ]; then
+    printf "${RED}Please an organization name.\n${NC}"
+    usage
+    exit 1
+  fi
+
+  if [ -z ${space_name+x} ]; then
+    printf "${RED}Please a space name.\n${NC}"
+    usage
+    exit 1
+  fi
+}
 
 space_exists() {
   cf space "$1" >/dev/null 2>&1
@@ -33,17 +73,13 @@ export_service_key() {
   export CF_PASSWORD=$(echo $SERVICE_KEY | jq -r .password)
 }
 
-if [ "$1" = "setup" ] ; then echo
-  if space_exists "${SPACE_NAME}" ; then
-    echo space "${SPACE_NAME}" already created
+setup() {
+  if space_exists "${space_name}" ; then
+    echo space "${space_name}" already created
   else
-    cf create-space ${SPACE_NAME} -o ${ORGANIZATION_NAME}
+    cf create-space ${space_name} -o ${organization_name}
   fi
-fi
 
-cf target -o ${ORGANIZATION_NAME} -s ${SPACE_NAME}
-
-if [ "$1" = "setup" ] ; then echo
   if service_exists "${TERRAFORM_SERVICE}" ; then
     echo ${TERRAFORM_SERVICE} already created
   else
@@ -76,32 +112,68 @@ if [ "$1" = "setup" ] ; then echo
   #   PUBLIC_KEY=`echo "${CERT}" | grep -FA 99999 "BEGIN CERTIFICATE" | jq -aRs`
   #   cf create-user-provided-service "${LOGIN_GOV_SERVICE}" -p "{\"private\": ${PRIVATE_KEY}, \"public\": ${PUBLIC_KEY}}"
   # fi
-fi
+}
 
-if [ "$1" = "print-service-key" ] ; then echo
+print_service_key() {
   cf service-key terraform-user ${TERRAFORM_SERVICE}-key
-fi
+}
 
-if [ "$1" = "print-bucket-details" ] ; then echo
+print_bucket_details() {
   export_terraform_storage_key
   aws s3api get-bucket-encryption --bucket $BUCKET_NAME
   aws s3api get-bucket-policy --bucket $BUCKET_NAME
-fi
+}
 
-if [ "$1" = "print-terraform-storage-key" ] ; then echo
+print_terraform_storage_key() {
   cf service-key ${TERRAFORM_STORAGE_SERVICE} ${TERRAFORM_STORAGE_SERVICE}-key
-fi
+}
 
-if [ "$1" = "export-terraform-storage-key" ] ; then echo
-  export_terraform_storage_key
-fi
-
-if [ "$1" = "export-service-key" ] ; then echo
-  export_service_key
-fi
-
-if [ "$1" = "deploy" ] ; then echo
+deploy() {
   export_terraform_storage_key
   export_service_key
   terraform apply deployment/terraform/workspaces/development
-fi
+}
+
+while [ "$1" != "" ]; do
+  case $1 in
+    setup | print-service-key | print-bucket-details | print-terraform-storage-key | export-terraform-storage-key | export-service-key | deploy )  operation=$1
+                                ;;
+    -o | --organization )       shift
+                                organization_name=$1
+                                ;;
+    -s | --space )              shift
+                                space_name=$1
+                                ;;
+    -h | --help )               usage
+                                exit
+                                ;;
+    * )                         usage
+                                exit 1
+  esac
+  shift
+done
+
+validate_parameters
+
+# Target all operations to the provided organization/space pair.
+cf target -o ${organization_name} -s ${space_name}
+
+case $operation in
+  setup )                         setup
+                                  ;;
+  print-service-key )             print_service_key
+                                  ;;
+  print-bucket-details )          print_bucket_details
+                                  ;;
+  print-terraform-storage-key )   print_terraform_storage_key
+                                  ;;
+  export-terraform-storage-key )  export_terraform_storage_key
+                                  ;;
+  export-service-key )            export_service_key
+                                  ;;
+  deploy                          ) deploy
+                                  ;;
+  * )                             usage
+                                  exit 1
+esac
+
