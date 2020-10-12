@@ -5,6 +5,7 @@ variable "cf_org" { default = "sandbox-gsa" }
 variable "cf_space" { default = "taylor.zajicek" }
 variable "cf_rds_strapi_db_service_plan" { default = "shared-psql" }
 variable "cf_s3_strapi_image_plan" { default = "basic-public-sandbox" }
+variable "cf_s3_frontend_plan" { default = "basic-public-sandbox" }
 
 variable "cf_strapi_logingov_key" { default = "" }
 
