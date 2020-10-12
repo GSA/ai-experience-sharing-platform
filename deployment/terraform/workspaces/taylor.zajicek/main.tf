@@ -1,25 +1,33 @@
-variable "cf_api_url" { default = "https://api.fr.cloud.gov" }
-
-variable "cf_env" { default = "dev" }
-variable "cf_org" { default = "sandbox-gsa" }
-variable "cf_space" { default = "taylor.zajicek" }
-variable "cf_rds_strapi_db_service_plan" { default = "shared-psql" }
-variable "cf_s3_strapi_image_plan" { default = "basic-public-sandbox" }
-variable "cf_s3_frontend_plan" { default = "basic-public-sandbox" }
-
-variable "cf_strapi_logingov_key" { default = "" }
-
-variable "cf_strapi_logingov_issuer" {
-  type = map
-  default = {
-    dev = "urn:gov:gsa:openidconnect.profiles:sp:sso:gsa:ai_experience"
+terraform {
+  required_providers {
+    cloudfoundry = {
+      source  = "cloudfoundry-community/cloudfoundry"
+      version = "0.12.6"
+    }
+  }
+  backend "s3" {
+    bucket = "cg-6092672a-785e-407e-894f-c0ed2cb2448e"
+    key    = "terraform/state/strapi-api-host"
+    region = "us-gov-west-1"
   }
 }
 
-variable "cf_strapi_logingov_cert" {
-  type = map
-  default = {
-    dev = <<EOF
+provider "cloudfoundry" {
+  api_url      = "https://api.fr.cloud.gov"
+  app_logs_max = 30
+}
+
+module "ai_experience_environment" {
+  source                        = "../../modules/space"
+  cf_env                        = "dev"
+  cf_org                        = "sandbox-gsa"
+  cf_space                      = "taylor.zajicek"
+  cf_rds_strapi_db_service_plan = "shared-psql"
+  cf_s3_strapi_image_plan       = "basic-public-sandbox"
+  cf_s3_frontend_plan           = "basic-public-sandbox"
+  cf_strapi_logingov_key        = ""
+  strapi_login_gov_issuer       = "urn:gov:gsa:openidconnect.profiles:sp:sso:gsa:ai_experience"
+  strapi_login_gov_cert         = <<EOF
 -----BEGIN CERTIFICATE-----
 MIICljCCAX4CCQDvdsQ06oVuUzANBgkqhkiG9w0BAQsFADANMQswCQYDVQQGEwJ1
 czAeFw0yMDA5MzAxNjI1NDhaFw0zMDA5MjgxNjI1NDhaMA0xCzAJBgNVBAYTAnVz
@@ -37,5 +45,4 @@ iq1ZlImeCHPLnX1PYBksZWFC2TAN/vaLRDHptLCyG4O071RM1fqgdQv99gC1p3S0
 MiSNpUfbIAUmKFVARq4+e0SOiFVlbVBLGvrHIa4qm7Xd5vJxlLzfisYA
 -----END CERTIFICATE-----
 EOF
-  }
 }

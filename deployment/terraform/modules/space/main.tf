@@ -9,9 +9,9 @@ resource "cloudfoundry_user_provided_service" "login-gov" {
   name  = "login-gov"
   space = data.cloudfoundry_space.space.id
   credentials = {
-    certificate = lookup(var.cf_strapi_logingov_cert, var.cf_env)
+    certificate = var.cf_strapi_logingov_cert
     public_key  = var.cf_strapi_logingov_key
-    issuer      = lookup(var.cf_strapi_logingov_issuer, var.cf_env)
+    issuer      = var.cf_strapi_logingov_issuer
   }
 }
 
@@ -55,8 +55,8 @@ resource "cloudfoundry_app" "strapi-api-host" {
   }
   environment = {
     CMSURL          = "https://strapi-api-host-${var.cf_env}.${data.cloudfoundry_domain.app.name}"
-    LOGINGOV_CERT   = lookup(var.cf_strapi_logingov_cert, var.cf_env)
+    LOGINGOV_CERT   = var.cf_strapi_logingov_cert,
     LOGINGOV_KEY    = var.cf_strapi_logingov_key
-    LOGINGOV_ISSUER = lookup(var.cf_strapi_logingov_issuer, var.cf_env)
+    LOGINGOV_ISSUER = var.cf_strapi_logingov_issuer
   }
 }

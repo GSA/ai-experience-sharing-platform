@@ -5,7 +5,7 @@
 #
 
 ORGANIZATION_NAME=sandbox-gsa
-SPACE_NAME=taylor.zajicek
+SPACE_NAME=daniel.naab
 
 LOGIN_GOV_SERVICE=login-gov
 TERRAFORM_SERVICE=terraform-user
@@ -103,5 +103,5 @@ fi
 if [ "$1" = "deploy" ] ; then echo
   export_terraform_storage_key
   export_service_key
-  terraform apply deployment/terraform
+  terraform apply deployment/terraform/workspaces/development
 fi
