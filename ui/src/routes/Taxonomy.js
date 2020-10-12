@@ -25,8 +25,8 @@ const Title = ({ items }) =>
 
 const Layout = ({ layout, onClick }) => {
   return (
-    <ul class="usa-button-group usa-button-group--segmented flex-justify-end">
-      <li class="usa-button-group__item">
+    <ul className="usa-button-group usa-button-group--segmented flex-justify-end">
+      <li className="usa-button-group__item">
         <Button
           onClick={onClick}
           variant={layout === "list" ? "primary" : "outline"}
@@ -35,7 +35,7 @@ const Layout = ({ layout, onClick }) => {
           <FontAwesomeIcon icon="list" />
         </Button>
       </li>
-      <li class="usa-button-group__item">
+      <li className="usa-button-group__item">
         <Button
           onClick={onClick}
           variant={layout === "card" ? "primary" : "outline"}

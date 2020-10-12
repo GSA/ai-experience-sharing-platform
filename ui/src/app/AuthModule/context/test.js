@@ -5,8 +5,9 @@ export const postAuthCredentials = async ({ username, password }) => {
     return {
       token: "some-fake-token",
     };
+  } else {
+    throw new Error("Inalid Credentials.");
   }
-  return { token: "", error: "Authentication Failed." };
 };
 
 export const endSession = async () => {

@@ -4,20 +4,17 @@ import context from "./context";
 export const initialState = {
   isAuth: false,
   token: "",
-  error: "",
+  error: null,
   pending: false,
 };
 
 export const login = createAsyncThunk(
   "auth/login",
-  async ({ username, password }) => {
-    const payload = await context.postAuthCredentials({
+  async ({ username, password }) =>
+    await context.postAuthCredentials({
       username,
       password,
-    });
-
-    return payload;
-  }
+    })
 );
 
 export const logout = createAsyncThunk(
@@ -33,28 +30,36 @@ const AuthModule = createSlice({
   },
   extraReducers: {
     [login.pending]: (state) => ({
-      ...state,
-      error: "",
-      token: "",
+      ...initialState,
       pending: true,
     }),
     [login.fulfilled]: (state, action) => {
-      return {
-        ...action.payload,
-        pending: false,
+      const newState = {
+        ...initialState,
         isAuth: Boolean(action.payload.token),
+        token: action.payload.token,
+      };
+      return newState;
+    },
+    [login.rejected]: (state, action) => {
+      return {
+        ...initialState,
+        error: action.error.message,
       };
     },
     [logout.pending]: (state) => ({
-      ...state,
+      ...initialState,
       pending: true,
     }),
     [logout.fulfilled]: (state, action) => ({
-      ...state,
-      pending: false,
-      token: "",
-      isAuth: false,
+      ...initialState,
     }),
+    [logout.rejected]: (state, action) => {
+      return {
+        ...initialState,
+        error: action.error.message,
+      };
+    },
   },
 });
 
