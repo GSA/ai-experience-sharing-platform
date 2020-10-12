@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 #
 # This script will bootstrap the creation of a cloud.gov deployment
 # environment, to be managed via Terraform.
@@ -131,7 +131,7 @@ print_terraform_storage_key() {
 deploy() {
   export_terraform_storage_key
   export_service_key
-  terraform apply deployment/terraform/workspaces/development
+  terraform apply deployment/workspaces/${space_name}
 }
 
 while [ "$1" != "" ]; do
@@ -171,7 +171,7 @@ case $operation in
                                   ;;
   export-service-key )            export_service_key
                                   ;;
-  deploy                          ) deploy
+  deploy )                        deploy
                                   ;;
   * )                             usage
                                   exit 1

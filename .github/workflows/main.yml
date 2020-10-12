@@ -134,14 +134,14 @@ jobs:
           terraform_version: 0.13.4
 
       - name: Terraform Init
-        run: terraform init -input=false deployment/terraform
+        run: terraform init -input=false deployment/workspaces/taylor.zajicek
 
       # - name: Terraform Format
-      #   run: terraform fmt -check deployment/terraform
+      #   run: terraform fmt -check deployment/workspaces/taylor.zajicek
 
       - name: Terraform Plan
         id: plan
-        run: terraform plan -input=false -no-color deployment/terraform
+        run: terraform plan -input=false -no-color deployment/workspaces/taylor.zajicek
 
       - name: Create Plan Comment
         uses: actions/github-script@0.9.0
@@ -160,4 +160,4 @@ jobs:
 
       - name: Terraform Apply
         if: github.ref == 'refs/heads/main' && github.event_name == 'push'
-        run: terraform apply -input=false -auto-approve -var="cf_strapi_logingov_key=${{ secrets.LOGINGOV_KEY }}" deployment/terraform
+        run: terraform apply -input=false -auto-approve -var="cf_strapi_logingov_key=${{ secrets.LOGINGOV_KEY }}" deployment/workspaces/taylor.zajicek
