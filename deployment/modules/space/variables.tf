@@ -1,7 +1,3 @@
-variable "cf_env" {
-  description = "Shorthand dentifier for this environment"
-}
-
 variable "cf_org" {
   description = "cloud.gov organization for the deployment environment"
 }
@@ -22,14 +18,6 @@ variable "cf_s3_frontend_plan" {
   description = "Service plan for S3 storage for frontend web assets"
 }
 
-variable "cf_strapi_logingov_key" {
-  description = "Private key for login.gov certificate"
-}
-
-variable "cf_strapi_logingov_issuer" {
-  description = "OpenID Connect issuer namespace for login.gov"
-}
-
-variable "cf_strapi_logingov_cert" {
-  description = "Public key of login.gov certificate"
+variable "strapi_hostname" {
+  description = "Cloud.gov app/host name"
 }

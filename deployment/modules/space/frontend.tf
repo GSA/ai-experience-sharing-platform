@@ -1,15 +1,15 @@
 resource "cloudfoundry_service_instance" "frontend-bucket" {
-  name         = "frontend-bucket-${var.cf_env}"
+  name         = "frontend-bucket"
   space        = data.cloudfoundry_space.space.id
   service_plan = data.cloudfoundry_service.s3.service_plans[var.cf_s3_frontend_plan]
 }
 
 resource "cloudfoundry_service_key" "frontend-bucket-key" {
-  name             = "frontend-bucket-key-${var.cf_env}"
+  name             = "frontend-bucket-key"
   service_instance = cloudfoundry_service_instance.frontend-bucket.id
 }
 
-resource "null_resource" "frontend-assets-bucket-website" {
+resource "null_resource" "frontend-assets-bucket-website-hosting-mode" {
   triggers = {
     src_hash = sha256(file("${path.module}/frontend-bucket-website.json"))
   }

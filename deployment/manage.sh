@@ -4,9 +4,13 @@
 # environment, to be managed via Terraform.
 #
 
+#set -eo pipefail
+
 LOGIN_GOV_SERVICE=login-gov
 TERRAFORM_SERVICE=terraform-user
+TERRAFORM_SERVICE_KEY=${TERRAFORM_SERVICE}-key
 TERRAFORM_STORAGE_SERVICE=terraform-storage
+TERRAFORM_STORAGE_SERVICE_KEY=${TERRAFORM_STORAGE_SERVICE}-key
 
 usage()
 {
@@ -16,12 +20,10 @@ Manage a cloud.gov deployment environment.
 Usage: manage.sh <OPERATION> -o <cloud.gov organization name> -s <cloud.gov space name>
 
 OPERATION:
-    print-service-key
-    print-bucket-details
-    print-terraform-storage-key
-    export-terraform-storage-key
-    export-service-key
-    deploy
+    setup   - create a new cloud.gov space and login.gov certificate
+    show    - show Terraform S3 and cloud.gov credentials
+    export  - when used with `source`, exports credentials to the environment
+    deploy  - deploy the locally-built application via Terraform
 
 Options:
   -o, --organization organization_name   Cloud.gov organization name
@@ -59,8 +61,14 @@ service_exists() {
   cf service "$1" >/dev/null 2>&1
 }
 
+service_key_exists() {
+  cf service-key "$1" "$2" >/dev/null 2>&1
+}
+
 export_terraform_storage_key() {
-  TERRAFORM_STORAGE_SERVICE_KEY=$(cf service-key ${TERRAFORM_STORAGE_SERVICE} ${TERRAFORM_STORAGE_SERVICE}-key | tail -n +2)
+  echo "Querying for ${TERRAFORM_STORAGE_SERVICE}..."
+  TERRAFORM_STORAGE_SERVICE_KEY=$(cf service-key ${TERRAFORM_STORAGE_SERVICE} ${TERRAFORM_STORAGE_SERVICE_KEY} | tail -n +2)
+  echo "Exporting ${TERRAFORM_STORAGE_SERVICE} S3 AWS credentials..."
   export AWS_ACCESS_KEY_ID=$(echo $TERRAFORM_STORAGE_SERVICE_KEY | jq -r .access_key_id)
   export AWS_SECRET_ACCESS_KEY=$(echo $TERRAFORM_STORAGE_SERVICE_KEY | jq -r .secret_access_key)
   export AWS_DEFAULT_REGION=$(echo $TERRAFORM_STORAGE_SERVICE_KEY | jq -r .region)
@@ -68,9 +76,16 @@ export_terraform_storage_key() {
 }
 
 export_service_key() {
-  SERVICE_KEY=$(cf service-key terraform-user ${TERRAFORM_SERVICE}-key | tail -n +2)
+  echo "Querying for ${TERRAFORM_SERVICE_KEY}..."
+  SERVICE_KEY=$(cf service-key terraform-user ${TERRAFORM_SERVICE_KEY} | tail -n +2)
+  echo "Exporting ${TERRAFORM_SERVICE_KEY} CF_USER, CF_PASSWORD..."
   export CF_USER=$(echo $SERVICE_KEY | jq -r .username)
   export CF_PASSWORD=$(echo $SERVICE_KEY | jq -r .password)
+}
+
+export_environment() {
+  export_terraform_storage_key
+  export_service_key
 }
 
 setup() {
@@ -84,38 +99,59 @@ setup() {
     echo ${TERRAFORM_SERVICE} already created
   else
     cf create-service cloud-gov-service-account space-deployer ${TERRAFORM_SERVICE}
-    cf create-service-key ${TERRAFORM_SERVICE} ${TERRAFORM_SERVICE}-key
-    echo "to get the CF_USERNAME and CF_PASSWORD, execute './bin/cloudgov.sh print-service-key'"
   fi
 
   if service_exists "${TERRAFORM_STORAGE_SERVICE}" ; then
     echo space "${TERRAFORM_STORAGE_SERVICE}" already created
   else
     cf create-service s3 basic-sandbox ${TERRAFORM_STORAGE_SERVICE}
-    cf create-service-key ${TERRAFORM_STORAGE_SERVICE} ${TERRAFORM_STORAGE_SERVICE}-key
-    export_terraform_storage_key
-    aws s3api put-bucket-versioning --bucket $BUCKET_NAME --versioning-configuration Status=Enabled
   fi
 
-  # if service_exists "${LOGIN_GOV_SERVICE}" ; then
-  #   echo space "${LOGIN_GOV_SERVICE}" already created
-  # else
-  #   CERT=`openssl req \
-  #     -newkey rsa:2048 \
-  #     -new \
-  #     -nodes \
-  #     -x509 \
-  #     -days 3650 \
-  #     -subj "/C=US/O=General Services Administration/OU=TTS/CN=gsa.gov"`
+  setup_keys
 
-  #   PRIVATE_KEY=`echo "${CERT}" | grep -FB 99999 "END PRIVATE KEY" | jq -aRs`
-  #   PUBLIC_KEY=`echo "${CERT}" | grep -FA 99999 "BEGIN CERTIFICATE" | jq -aRs`
-  #   cf create-user-provided-service "${LOGIN_GOV_SERVICE}" -p "{\"private\": ${PRIVATE_KEY}, \"public\": ${PUBLIC_KEY}}"
-  # fi
+  export_environment
+  aws s3api put-bucket-versioning --bucket $BUCKET_NAME --versioning-configuration Status=Enabled
+
+  if service_exists "${LOGIN_GOV_SERVICE}" ; then
+    echo space "${LOGIN_GOV_SERVICE}" already created
+  else
+    openssl req \
+      -newkey rsa:2048 \
+      -new \
+      -nodes \
+      -x509 \
+      -days 3650 \
+      -subj "/C=US/O=General Services Administration/OU=TTS/CN=gsa.gov" \
+      -keyout deployment/login-gov-${organization_name}-${space_name}-key.pem \
+      -out deployment/login-gov-${organization_name}-${space_name}-cert.pem
+
+    PRIVATE_KEY=`cat deployment/login-gov-${organization_name}-${space_name}-key.pem | jq -aRs`
+    CERTIFICATE=`cat deployment/login-gov-${organization_name}-${space_name}-cert.pem | jq -aRs`
+    ISSUER="urn:gov:gsa:openidconnect.profiles:sp:sso:gsa:ai_experience"
+    cf create-user-provided-service "${LOGIN_GOV_SERVICE}" -p "{\"issuer\": \"${ISSUER}\", \"privateKey\": ${PRIVATE_KEY}, \"certificate\": ${CERTIFICATE}}"
+  fi
+}
+
+setup_keys() {
+  if service_key_exists "${TERRAFORM_SERVICE}" "${TERRAFORM_SERVICE_KEY}" ; then
+    echo ${TERRAFORM_SERVICE_KEY} already created
+  else
+    echo "Creating ${TERRAFORM_SERVICE_KEY}..."
+    cf create-service-key ${TERRAFORM_SERVICE} ${TERRAFORM_SERVICE_KEY}
+  fi
+
+  if service_key_exists "${TERRAFORM_STORAGE_SERVICE}" "${TERRAFORM_STORAGE_SERVICE_KEY}" ; then
+    echo ${TERRAFORM_STORAGE_SERVICE_KEY} already created
+  else
+    echo "Creating ${TERRAFORM_STORAGE_SERVICE_KEY}..."
+    cf create-service-key ${TERRAFORM_STORAGE_SERVICE} ${TERRAFORM_STORAGE_SERVICE_KEY}
+  fi
+
+  echo "To see service keys, execute './deployment/manage.sh'"
 }
 
 print_service_key() {
-  cf service-key terraform-user ${TERRAFORM_SERVICE}-key
+  cf service-key terraform-user ${TERRAFORM_SERVICE_KEY}
 }
 
 print_bucket_details() {
@@ -125,18 +161,23 @@ print_bucket_details() {
 }
 
 print_terraform_storage_key() {
-  cf service-key ${TERRAFORM_STORAGE_SERVICE} ${TERRAFORM_STORAGE_SERVICE}-key
+  cf service-key ${TERRAFORM_STORAGE_SERVICE} ${TERRAFORM_STORAGE_SERVICE_KEY}
+}
+
+show() {
+  print_service_key
+  print_terraform_storage_key
+  print_bucket_details
 }
 
 deploy() {
-  export_terraform_storage_key
-  export_service_key
+  export_environment
   terraform apply deployment/workspaces/${space_name}
 }
 
 while [ "$1" != "" ]; do
   case $1 in
-    setup | print-service-key | print-bucket-details | print-terraform-storage-key | export-terraform-storage-key | export-service-key | deploy )  operation=$1
+    setup | show | export | deploy )  operation=$1
                                 ;;
     -o | --organization )       shift
                                 organization_name=$1
@@ -161,15 +202,9 @@ cf target -o ${organization_name} -s ${space_name}
 case $operation in
   setup )                         setup
                                   ;;
-  print-service-key )             print_service_key
+  show )                          show
                                   ;;
-  print-bucket-details )          print_bucket_details
-                                  ;;
-  print-terraform-storage-key )   print_terraform_storage_key
-                                  ;;
-  export-terraform-storage-key )  export_terraform_storage_key
-                                  ;;
-  export-service-key )            export_service_key
+  export )                        export_environment
                                   ;;
   deploy )                        deploy
                                   ;;
