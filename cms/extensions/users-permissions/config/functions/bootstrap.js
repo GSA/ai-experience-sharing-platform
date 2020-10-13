@@ -14,7 +14,10 @@ const uuid = require('uuid/v4');
 
 const usersPermissionsActions = require('../../../../node_modules/strapi-plugin-users-permissions/config/users-permissions-actions');
 
-const loginGovCredentials = process.env.VCAP_SERVICES['login-gov'] ? process.env.VCAP_SERVICES['login-gov'][0].credentials : {};
+const userProvidedServices = process.env.VCAP_SERVICES['user-provided'] || [];
+const loginGov = userProvidedServices.filter(service => service.name === 'login-gov');
+const loginGovCredentials = loginGov.length > 0 ? loginGov[0].credentials : {};
+
 
 module.exports = async () => {
   const pluginStore = strapi.store({
