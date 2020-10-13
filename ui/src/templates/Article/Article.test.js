@@ -1,7 +1,11 @@
 import React from "react";
 import { mount } from "enzyme";
+import { Route } from "react-router-dom";
 import Article from "templates/Article";
 import TestProvider from "test/TestProvider";
+import store from "app";
+import { login } from "app/AuthModule";
+import runAsyncRender from "test/utils/runAsyncRender";
 
 describe("<Article />", () => {
   describe("default render", () => {
@@ -12,6 +16,18 @@ describe("<Article />", () => {
         </TestProvider>
       );
       expect(wrapper.find(".App-header")).toBeTruthy();
+    });
+  });
+  describe("load content when authenticated", () => {
+    it("should render", async () => {
+      await store.dispatch(login({ username: "jarvis", password: "vision" }));
+      const wrapper = mount(
+        <TestProvider route={["/usecase/test"]}>
+          <Route path="/:type/:name" component={Article} />
+        </TestProvider>
+      );
+      await runAsyncRender(wrapper);
+      expect(wrapper.find("h1").text()).toBeTruthy();
     });
   });
 });

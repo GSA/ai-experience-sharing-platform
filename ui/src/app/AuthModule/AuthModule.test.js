@@ -19,10 +19,21 @@ describe("AuthModule", () => {
       const state = await store.getState();
       expect(state.isAuth).toBeTruthy();
     });
+    it("should return error on invalid credentials", async () => {
+      await store.dispatch(login({ username: "", password: "" }));
+      const state = await store.getState();
+      expect(state.error).toBe("Invalid Credentials.");
+    });
     it("should logout", async () => {
       await store.dispatch(logout());
       const state = await store.getState();
       expect(state.isAuth).toBeFalsy();
+    });
+
+    it("should logout", async () => {
+      await store.dispatch(logout("error"));
+      const state = await store.getState();
+      expect(state.error).toBe("Logout error.");
     });
   });
 });

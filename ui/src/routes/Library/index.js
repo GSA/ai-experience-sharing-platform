@@ -1,9 +1,9 @@
 import React from "react";
 import { Route } from "react-router-dom";
-import Taxonomy from "routes/Taxonomy";
-import Article from "routes/Article";
+import Taxonomy from "templates/Taxonomy";
+import Article from "templates/Article";
 
-export default ({ match: { path } }) => {
+const Library = ({ match: { path } }) => {
   return (
     <>
       <Route path={`${path}/:type`} exact component={Taxonomy} />
@@ -11,3 +11,9 @@ export default ({ match: { path } }) => {
     </>
   );
 };
+
+Library.defaultProps = {
+  match: {},
+};
+
+export default Library;

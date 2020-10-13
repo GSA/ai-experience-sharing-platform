@@ -1,0 +1,52 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/usecases",
+      "handler": "usecase.find",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/usecases/count",
+      "handler": "usecase.count",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/usecases/:id",
+      "handler": "usecase.findOne",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/usecases",
+      "handler": "usecase.create",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/usecases/:id",
+      "handler": "usecase.update",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/usecases/:id",
+      "handler": "usecase.delete",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}

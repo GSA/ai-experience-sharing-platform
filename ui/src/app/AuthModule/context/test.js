@@ -6,10 +6,13 @@ export const postAuthCredentials = async ({ username, password }) => {
       token: "some-fake-token",
     };
   } else {
-    throw new Error("Inalid Credentials.");
+    throw new Error("Invalid Credentials.");
   }
 };
 
-export const endSession = async () => {
+export const endSession = async (state) => {
+  if (state === "error") {
+    throw new Error("Logout error.");
+  }
   return { success: true };
 };

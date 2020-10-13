@@ -10,6 +10,9 @@ export const getSiteData = async () => {
 };
 
 export const getMenus = async () => {
-  const data = [{ name: "primary" }, { name: "secondary" }];
+  const data = [
+    { name: "primary", items: [{ text: "test", link: "/test" }] },
+    { name: "secondary" },
+  ];
   return data;
 };

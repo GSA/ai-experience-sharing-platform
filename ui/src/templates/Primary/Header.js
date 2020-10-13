@@ -1,13 +1,15 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
-import Button from "components/Button";
-import Nav from "./PrimaryNav";
+import Nav from "components/PrimaryNav";
 import { useSelector } from "react-redux";
-import { siteMeta } from "app/SiteModule";
+import { siteMeta, menu } from "app/SiteModule";
+
+import PrimaryNav from "components/PrimaryNav";
 
 const Header = ({ children }) => {
   const { title } = useSelector(siteMeta);
+  const { items } = useSelector(menu("primary"));
 
   return (
     <header className="usa-header usa-header--extended" role="banner">
@@ -19,11 +21,8 @@ const Header = ({ children }) => {
             </Link>
           </em>
         </div>
-        <Button type="button" className="usa-menu-btn">
-          Menu
-        </Button>
       </div>
-      <Nav />
+      <PrimaryNav items={items} />
     </header>
   );
 };

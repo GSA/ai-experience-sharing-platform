@@ -4,32 +4,31 @@ import { useParams, useLocation } from "react-router-dom";
 import PropTypes from "prop-types";
 import Article from "components/ArticleExcerpt";
 import Login from "features/Login";
-import { getList, clearList, getTaxonomy } from "app/ContentModule";
+import { getList, getTaxonomy } from "app/ContentModule";
 import { Grid, Row, Col } from "components/Grid";
 import Button from "components/Button";
 import Select from "components/Select";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Card from "components/Card";
 import { Loading } from "components/Loading";
+import FourOhFour from "templates/FourOhFour";
 
 const Title = ({ items }) =>
-  items.map(
-    (item, i) =>
-      item && (
-        <span key={i} style={{ textTransform: "capitalize" }}>
-          {i ? " / " : ""}
-          {item}
-        </span>
-      )
-  );
+  items.map((item, i) => (
+    <span key={i} style={{ textTransform: "capitalize" }}>
+      {i ? " / " : ""}
+      {item}
+    </span>
+  ));
 
 const Layout = ({ layout, onClick }) => {
   return (
     <ul className="usa-button-group usa-button-group--segmented flex-justify-end">
       <li className="usa-button-group__item">
         <Button
+          id="Layout__toggle-list"
           onClick={onClick}
-          variant={layout === "list" ? "primary" : "outline"}
+          variant={layout === "list" ? "" : "outline"}
           value="list"
         >
           <FontAwesomeIcon icon="list" />
@@ -37,8 +36,9 @@ const Layout = ({ layout, onClick }) => {
       </li>
       <li className="usa-button-group__item">
         <Button
+          id="Layout__toggle-card"
           onClick={onClick}
-          variant={layout === "card" ? "primary" : "outline"}
+          variant={layout === "card" ? "" : "outline"}
           value="card"
         >
           <FontAwesomeIcon icon="grip-horizontal" />
@@ -49,53 +49,33 @@ const Layout = ({ layout, onClick }) => {
 };
 
 export const Taxonomy = ({ match: { url } }) => {
+  const dispatch = useDispatch();
   const [layout, setLayout] = useState("list");
   const [filter, setFilter] = useState({ key: "", value: "" });
 
-  const dispatch = useDispatch();
   const { hash } = useLocation();
-  const [key, value] = hash.replace("#", "").split("=");
   const { type } = useParams();
-  const { pending = false, data: listData = [] } = useSelector(
+
+  const [key, value] = hash.replace("#", "").split("=");
+
+  const { pending, data: items, error } = useSelector(
     (state) => state.content.list
   );
-  const { data: taxonomyList = [] } = useSelector(
-    (state) => state.content.taxonomy
-  );
   const { isAuth } = useSelector((state) => state.auth);
-
   useEffect(() => {
     if (isAuth) {
       dispatch(getList(type));
       dispatch(getTaxonomy(type));
     }
-    return () => {
-      dispatch(clearList());
-    };
   }, [dispatch, hash, type, isAuth]);
 
-  const handleLayout = (e, data) => {
+  const handleLayout = (e) => {
     setLayout(e.currentTarget.value);
   };
-  const handleFilter = (e) => {
-    const { id: key, value } = e.currentTarget;
-    setFilter({ key: !value ? "" : key, value });
-  };
-  const data = filter.key
-    ? listData.filter(
-        ({ fields }) => fields && fields[filter.key] === filter.value
-      )
-    : listData;
 
-  const items = key
-    ? data.filter(({ fields = [] }) => {
-        const item = fields.find((i) => i.key === key);
-        if (!item) {
-          return false;
-        }
-        return item.value === value;
-      })
-    : data;
+  if (error) {
+    return <FourOhFour />;
+  }
   return (
     <Login>
       <Loading isLoading={pending}>
@@ -113,17 +93,6 @@ export const Taxonomy = ({ match: { url } }) => {
                 </div>
               )}
               <h3 className="margin-0">Filter By</h3>
-              {taxonomyList.map(({ key, items, title }) => (
-                <div>
-                  <Select
-                    name={key}
-                    id={key}
-                    placeholder={title}
-                    onChange={handleFilter}
-                    items={items}
-                  />
-                </div>
-              ))}
             </Col>
             <Col size="9">
               <Row className="align-items-center padding-bottom-4">
@@ -192,6 +161,11 @@ export const Taxonomy = ({ match: { url } }) => {
     </Login>
   );
 };
+
+Taxonomy.defaultProps = {
+  match: {},
+};
+
 Taxonomy.propTypes = {
   pageContext: PropTypes.object,
   data: PropTypes.object,

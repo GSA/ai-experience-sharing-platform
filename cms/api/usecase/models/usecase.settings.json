@@ -1,0 +1,20 @@
+{
+  "kind": "collectionType",
+  "collectionName": "Usecases",
+  "info": {
+    "name": "usecase"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true
+  },
+  "attributes": {
+    "Slug": {
+      "type": "uid",
+      "targetField": "Title"
+    },
+    "Title": {
+      "type": "string"
+    }
+  }
+}
