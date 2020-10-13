@@ -17,9 +17,9 @@ resource "null_resource" "frontend-assets-bucket-website" {
     # Turn on S3 website hosting mode on the bucket
     command = "aws s3api put-bucket-website --bucket ${cloudfoundry_service_key.frontend-bucket-key.credentials.bucket} --website-configuration file://deployment/terraform/frontend-bucket-website.json"
     environment = {
-      AWS_ACCESS_KEY_ID = cloudfoundry_service_key.frontend-bucket-key.credentials.access_key_id
+      AWS_ACCESS_KEY_ID     = cloudfoundry_service_key.frontend-bucket-key.credentials.access_key_id
       AWS_SECRET_ACCESS_KEY = cloudfoundry_service_key.frontend-bucket-key.credentials.secret_access_key
-      AWS_DEFAULT_REGION = cloudfoundry_service_key.frontend-bucket-key.credentials.region
+      AWS_DEFAULT_REGION    = cloudfoundry_service_key.frontend-bucket-key.credentials.region
     }
   }
   depends_on = [
@@ -41,9 +41,9 @@ resource "null_resource" "frontend-assets" {
   provisioner "local-exec" {
     command = "aws s3 sync ./ui/build/ s3://${cloudfoundry_service_key.frontend-bucket-key.credentials.bucket}/"
     environment = {
-      AWS_ACCESS_KEY_ID = cloudfoundry_service_key.frontend-bucket-key.credentials.access_key_id
+      AWS_ACCESS_KEY_ID     = cloudfoundry_service_key.frontend-bucket-key.credentials.access_key_id
       AWS_SECRET_ACCESS_KEY = cloudfoundry_service_key.frontend-bucket-key.credentials.secret_access_key
-      AWS_DEFAULT_REGION = cloudfoundry_service_key.frontend-bucket-key.credentials.region
+      AWS_DEFAULT_REGION    = cloudfoundry_service_key.frontend-bucket-key.credentials.region
     }
   }
 

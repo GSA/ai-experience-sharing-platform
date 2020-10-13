@@ -160,4 +160,4 @@ jobs:
 
       - name: Terraform Apply
         if: github.ref == 'refs/heads/main' && github.event_name == 'push'
-        run: terraform apply -input=false -auto-approve -var="cf_strapi_logingov_key=${{ secrets.LOGINGOV_KEY }}" deployment/terraform
+        run: terraform apply -input=false -auto-approve -var="cf_strapi_logingov_key=${{ secrets.LOGINGOV_KEY }}" -var="cf_space=${{ secrets.CF_SPACE }}" deployment/terraform

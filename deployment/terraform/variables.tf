@@ -2,7 +2,7 @@ variable "cf_api_url" { default = "https://api.fr.cloud.gov" }
 
 variable "cf_env" { default = "dev" }
 variable "cf_org" { default = "sandbox-gsa" }
-variable "cf_space" { default = "taylor.zajicek" }
+variable "cf_space" {}
 variable "cf_rds_strapi_db_service_plan" { default = "shared-psql" }
 variable "cf_s3_strapi_image_plan" { default = "basic-public-sandbox" }
 variable "cf_s3_frontend_plan" { default = "basic-public-sandbox" }
