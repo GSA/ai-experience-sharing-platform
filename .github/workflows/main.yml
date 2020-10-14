@@ -1,6 +1,9 @@
-# This is a basic workflow to help you get started with Actions
+# This Github Action workflow:
+# - Builds the frontend and backend
+# - Comments on PRs with the Terraform plan that will be applied on merge
+# - Applies Terraform plan on relevant branches
 
-name: Build and deploy to CF
+name: ai.digital.gov workflow
 
 on:
   push:
