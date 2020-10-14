@@ -21,142 +21,147 @@ jobs:
         working-directory: ui
 
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-
-      - name: Use Node.js
-        uses: actions/setup-node@v1
-        with:
-          node-version: 12
-
-      - name: Cache node_modules
-        id: cache-node_modules
-        uses: actions/cache@v2
-        with:
-          path: ui/node_modules
-          key: ${{ runner.os }}-ui-node_modules-${{ hashFiles('ui/package-lock.json') }}
-
-      - name: Install dependencies
-        if: steps.cache-node_modules.outputs.cache-hit != 'true'
-        run: npm ci
-
-      - name: Build frontend
-        run: npm run build
+      - name: Dump job context
         env:
-          NODE_ENV: production
+          JOB_CONTEXT: ${{ toJson(job) }}
+        run: echo "$JOB_CONTEXT"
 
-      - name: Upload frontend artifact
-        uses: actions/upload-artifact@v2
-        with:
-          name: ui-artifact
-          path: ui/build
+#       - name: Checkout
+#         uses: actions/checkout@v2
 
-  build_backend:
-    name: "Build backend"
-    runs-on: ubuntu-latest
+  #     - name: Use Node.js
+  #       uses: actions/setup-node@v1
+  #       with:
+  #         node-version: 12
 
-    defaults:
-      run:
-        working-directory: cms
+  #     - name: Cache node_modules
+  #       id: cache-node_modules
+  #       uses: actions/cache@v2
+  #       with:
+  #         path: ui/node_modules
+  #         key: ${{ runner.os }}-ui-node_modules-${{ hashFiles('ui/package-lock.json') }}
 
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
+  #     - name: Install dependencies
+  #       if: steps.cache-node_modules.outputs.cache-hit != 'true'
+  #       run: npm ci
 
-      - name: Use Node.js
-        uses: actions/setup-node@v1
-        with:
-          node-version: 12
+  #     - name: Build frontend
+  #       run: npm run build
+  #       env:
+  #         NODE_ENV: production
 
-      - name: Cache node_modules
-        id: cache-node_modules
-        uses: actions/cache@v2
-        with:
-          path: cms/node_modules
-          key: ${{ runner.os }}-cms-node_modules-${{ hashFiles('cms/package-lock.json') }}
+  #     - name: Upload frontend artifact
+  #       uses: actions/upload-artifact@v2
+  #       with:
+  #         name: ui-artifact
+  #         path: ui/build
 
-      - name: Install dependencies
-        if: steps.cache-node_modules.outputs.cache-hit != 'true'
-        run: npm ci
+  # build_backend:
+  #   name: "Build backend"
+  #   runs-on: ubuntu-latest
 
-      - name: Build Strapi
-        run: npm run build
-        env:
-          NODE_ENV: production
+  #   defaults:
+  #     run:
+  #       working-directory: cms
 
-      - name: Upload backend artifact
-        uses: actions/upload-artifact@v2
-        with:
-          name: cms-artifact
-          path: |
-            cms
-            !cms/.cache
-            !cms/.tmp
-            !cms/node_modules
+  #   steps:
+  #     - name: Checkout
+  #       uses: actions/checkout@v2
 
-  deploy:
-    name: "Deploy to cloud.gov"
-    needs: [build_frontend, build_backend]
-    runs-on: ubuntu-latest
+  #     - name: Use Node.js
+  #       uses: actions/setup-node@v1
+  #       with:
+  #         node-version: 12
 
-    env:
-      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-      AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }}
-      CF_USER: ${{ secrets.DEV_CF_USER }}
-      CF_PASSWORD: ${{ secrets.DEV_CF_PASSWORD }}
+  #     - name: Cache node_modules
+  #       id: cache-node_modules
+  #       uses: actions/cache@v2
+  #       with:
+  #         path: cms/node_modules
+  #         key: ${{ runner.os }}-cms-node_modules-${{ hashFiles('cms/package-lock.json') }}
 
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
+  #     - name: Install dependencies
+  #       if: steps.cache-node_modules.outputs.cache-hit != 'true'
+  #       run: npm ci
 
-      - name: Download Strapi artifact
-        uses: actions/download-artifact@v2
-        with:
-          name: cms-artifact
-          path: cms
+  #     - name: Build Strapi
+  #       run: npm run build
+  #       env:
+  #         NODE_ENV: production
 
-      - name: Download frontend artifact
-        uses: actions/download-artifact@v2
-        with:
-          name: ui-artifact
-          path: ui/build
+  #     - name: Upload backend artifact
+  #       uses: actions/upload-artifact@v2
+  #       with:
+  #         name: cms-artifact
+  #         path: |
+  #           cms
+  #           !cms/.cache
+  #           !cms/.tmp
+  #           !cms/node_modules
 
-      - name: Display structure of cwd
-        run: ls -R
-        working-directory: .
+  # deploy:
+  #   name: "Terraform"
+  #   needs: [build_frontend, build_backend]
+  #   runs-on: ubuntu-latest
 
-      - name: Setup Terraform
-        uses: hashicorp/setup-terraform@v1
-        with:
-          terraform_version: 0.13.4
+  #   env:
+  #     AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+  #     AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+  #     AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }}
+  #     CF_USER: ${{ secrets.DEV_CF_USER }}
+  #     CF_PASSWORD: ${{ secrets.DEV_CF_PASSWORD }}
 
-      - name: Terraform Init
-        run: terraform init -input=false deployment/workspaces/taylor.zajicek
+  #   steps:
+  #     - name: Checkout
+  #       uses: actions/checkout@v2
 
-      # - name: Terraform Format
-      #   run: terraform fmt -check deployment/workspaces/taylor.zajicek
+  #     - name: Download Strapi artifact
+  #       uses: actions/download-artifact@v2
+  #       with:
+  #         name: cms-artifact
+  #         path: cms
 
-      - name: Terraform Plan
-        id: plan
-        if: github.event_name == 'pull_request'
-        run: terraform plan -input=false -no-color deployment/workspaces/${{ github.event.pull_request.base.ref }}
+  #     - name: Download frontend artifact
+  #       uses: actions/download-artifact@v2
+  #       with:
+  #         name: ui-artifact
+  #         path: ui/build
 
-      - name: Create Plan Comment
-        uses: actions/github-script@0.9.0
-        if: github.event_name == 'pull_request'
-        env:
-          STDOUT: "```${{ steps.plan.outputs.stdout }}```"
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          script: |
-            github.issues.createComment({
-              issue_number: context.issue.number,
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              body: process.env.STDOUT
-            })
+  #     - name: Display structure of cwd
+  #       run: ls -R
+  #       working-directory: .
 
-      - name: Terraform Apply
-        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
-        run: terraform apply -input=false -auto-approve -var="cf_strapi_logingov_key=${{ secrets.LOGINGOV_KEY }}" deployment/workspaces/taylor.zajicek
+  #     - name: Setup Terraform
+  #       uses: hashicorp/setup-terraform@v1
+  #       with:
+  #         terraform_version: 0.13.4
+
+  #     - name: Terraform Init
+  #       run: terraform init -input=false deployment/workspaces/${{ github.event.pull_request.base.ref }}
+
+  #     # - name: Terraform Format
+  #     #   run: terraform fmt -check deployment/workspaces/${{ github.event.pull_request.base.ref }}
+
+  #     - name: Terraform Plan
+  #       id: plan
+  #       if: github.event_name == 'pull_request'
+  #       run: terraform plan -input=false -no-color deployment/workspaces/${{ github.event.pull_request.base.ref }}
+
+  #     - name: Create Plan Comment
+  #       uses: actions/github-script@0.9.0
+  #       if: github.event_name == 'pull_request'
+  #       env:
+  #         STDOUT: "```${{ steps.plan.outputs.stdout }}```"
+  #       with:
+  #         github-token: ${{ secrets.GITHUB_TOKEN }}
+  #         script: |
+  #           github.issues.createComment({
+  #             issue_number: context.issue.number,
+  #             owner: context.repo.owner,
+  #             repo: context.repo.repo,
+  #             body: process.env.STDOUT
+  #           })
+
+  #     - name: Terraform Apply
+  #       if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+  #       run: terraform apply -input=false -auto-approve -var="cf_strapi_logingov_key=${{ secrets.LOGINGOV_KEY }}" deployment/workspaces/${{ github.event.pull_request.base.ref }}
