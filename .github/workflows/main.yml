@@ -3,7 +3,7 @@
 # - Comments on PRs with the Terraform plan that will be applied on merge
 # - Applies Terraform plan on relevant branches
 
-name: ai.digital.gov workflow
+name: ai.digital.gov
 
 on:
   push:
@@ -14,8 +14,19 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
+  pre_workflow:
+    name: "starting workflow..."
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request'
+    steps:
+      - name: Initialize plan comment
+        uses: marocchino/sticky-pull-request-comment@v1.1.0
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          message: ":eyes: Generating Terraform plan..."
+
   build_frontend:
-    name: "Build frontend"
+    name: "build frontend"
     runs-on: ubuntu-latest
 
     defaults:
@@ -54,7 +65,7 @@ jobs:
           path: ui/build
 
   build_backend:
-    name: "Build backend"
+    name: "build backend"
     runs-on: ubuntu-latest
 
     defaults:
@@ -97,7 +108,7 @@ jobs:
             !cms/node_modules
 
   deploy:
-    name: "Terraform"
+    name: "terraform"
     needs: [build_frontend, build_backend]
     runs-on: ubuntu-latest
 
@@ -109,14 +120,6 @@ jobs:
       CF_PASSWORD: ${{ secrets.DEV_CF_PASSWORD }}
 
     steps:
-      - name: Initialize plan comment
-        if: github.event_name == 'pull_request'
-        uses: marocchino/sticky-pull-request-comment@v1.1.0
-        with:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          header: Terraform plan
-          message: "Generating..."
-
       - name: Checkout
         uses: actions/checkout@v2
 
@@ -151,14 +154,22 @@ jobs:
         id: plan
         if: github.event_name == 'pull_request'
         run: terraform plan -input=false -no-color deployment/workspaces/main
+        continue-on-error: true
 
       - name: Comment Terraform plan
         if: github.event_name == 'pull_request'
         uses: marocchino/sticky-pull-request-comment@v1.1.0
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          header: Terraform plan
-          message: ${{ steps.plan.outputs.stdout }}
+          message: |
+            <details open>
+            <summary>:sparkles: Terraform plan</summary>
+
+            ```
+            ${{ steps.plan.outputs.stdout }}
+            ```
+            </details>
+            Terraform plan:
 
       - name: Terraform Apply
         if: github.ref == 'refs/heads/main'
