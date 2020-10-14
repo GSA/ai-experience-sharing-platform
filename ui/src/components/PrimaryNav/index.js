@@ -4,6 +4,7 @@ import classnames from "classnames";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import close from "./close.svg";
 import Button from "components/Button";
+import Icon from "components/Icon";
 
 const NavItem = ({ id, text, url, items = [] }) => {
   return (
@@ -74,7 +75,7 @@ const Nav = ({ items }) => {
             className="usa-nav-close"
             onClick={handleClick}
           >
-            <img src={close} alt="close" />
+            Close
           </Button>
           <ul className="usa-accordion usa-nav__primary">
             {items.map(({ text, link, items }, idx) => {
