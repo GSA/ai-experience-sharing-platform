@@ -1,0 +1,13 @@
+.usa-nav-open {
+  width: auto;
+  @include at-media("desktop") {
+    display: none;
+  }
+}
+
+.usa-nav-close {
+  width: auto;
+  @include at-media("desktop") {
+    display: none;
+  }
+}
