@@ -2,9 +2,7 @@ import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import classnames from "classnames";
 import { Link, NavLink, useLocation } from "react-router-dom";
-import close from "./close.svg";
 import Button from "components/Button";
-import Icon from "components/Icon";
 
 const NavItem = ({ id, text, url, items = [] }) => {
   return (
