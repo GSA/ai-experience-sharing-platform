@@ -12,7 +12,8 @@ export const getSiteData = async () => {
 export const getMenus = async () => {
   const data = [
     { name: "primary", items: [{ text: "test", link: "/test" }] },
-    { name: "secondary" },
+    { name: "secondary", items: [{ text: "test", link: "/test" }] },
+    { name: "footer", items: [{ text: "test", link: "/test" }] },
   ];
   return data;
 };

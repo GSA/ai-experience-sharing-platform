@@ -24,7 +24,7 @@ describe("SiteModule", () => {
     it("should load menus", async () => {
       await store.dispatch(getMenus());
       const state = await store.getState();
-      expect(state.menus.length).toBe(2);
+      expect(state.menus.length).toBe(3);
     });
     it("should return a menu", async () => {
       await store.dispatch(getMenus());
