@@ -1,7 +1,6 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
-import Nav from "components/PrimaryNav";
 import { useSelector } from "react-redux";
 import { siteMeta, menu } from "app/SiteModule";
 
