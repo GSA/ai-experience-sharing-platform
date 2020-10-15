@@ -145,15 +145,15 @@ jobs:
           terraform_version: 0.13.4
 
       - name: Terraform Init
-        run: terraform init -input=false deployment/workspaces/main
+        run: terraform init -input=false deployment/workspaces/taylor.zajicek
 
       # - name: Terraform Format
-      #   run: terraform fmt -check deployment/workspaces/main
+      #   run: terraform fmt -check deployment/workspaces/taylor.zajicek
 
       - name: Terraform Plan
         id: plan
         if: github.event_name == 'pull_request'
-        run: terraform plan -input=false -no-color deployment/workspaces/main
+        run: terraform plan -input=false -no-color deployment/workspaces/taylor.zajicek
         continue-on-error: true
 
       - name: Comment Terraform plan
@@ -172,4 +172,4 @@ jobs:
 
       - name: Terraform Apply
         if: github.ref == 'refs/heads/main'
-        run: terraform apply -input=false -auto-approve deployment/workspaces/main
+        run: terraform apply -input=false -auto-approve deployment/workspaces/taylor.zajicek
