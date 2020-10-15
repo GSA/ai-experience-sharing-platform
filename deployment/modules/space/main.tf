@@ -11,9 +11,10 @@ data "cloudfoundry_user_provided_service" "login-gov" {
 }
 
 resource "cloudfoundry_service_instance" "strapi-api-db" {
-  name         = "strapi-api-db"
-  space        = data.cloudfoundry_space.space.id
-  service_plan = data.cloudfoundry_service.rds.service_plans[var.cf_rds_strapi_db_service_plan]
+  name            = "strapi-api-db"
+  space           = data.cloudfoundry_space.space.id
+  service_plan    = data.cloudfoundry_service.rds.service_plans[var.cf_rds_strapi_db_service_plan]
+  prevent_destroy = true
 }
 
 resource "cloudfoundry_service_instance" "strapi-image-bucket" {
