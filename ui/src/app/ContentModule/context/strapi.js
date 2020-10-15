@@ -1,23 +1,22 @@
 /* istanbul ignore file */
-const ROOT_URL = "http://localhost:1337";
+const ROOT_URL = process.env.REACT_APP_API_URL;
 
 const timeout = (t = 1000) => {
   return new Promise((resolve) => setTimeout(resolve, t));
 };
 
-export const getAllByContentType = async (type) => {
+export const getAllByContentType = async ({ type }) => {
   await timeout();
-  const response = await fetch(`${ROOT_URL}/content/${type}/index.json`);
+  const response = await fetch(`${ROOT_URL}/api-${type}`);
   const data = await response.json();
   return data;
 };
 
-export const getContentTypeByName = async (type, slug) => {
+export const getContentTypeByName = async ({ type, name }) => {
   await timeout();
-  const rootType = type === "page" ? "" : `${type}/`;
-  const response = await fetch(`${ROOT_URL}/${rootType}${slug}`);
+  const response = await fetch(`${ROOT_URL}/api-${type}?slug=${name}`);
   const data = await response.json();
-  return data;
+  return data[0];
 };
 
 export const getTaxonomyByContentType = async (type) => {

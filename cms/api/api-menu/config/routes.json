@@ -2,48 +2,48 @@
   "routes": [
     {
       "method": "GET",
-      "path": "/usecases",
-      "handler": "usecase.find",
+      "path": "/api-menus",
+      "handler": "api-menu.find",
       "config": {
         "policies": []
       }
     },
     {
       "method": "GET",
-      "path": "/usecases/count",
-      "handler": "usecase.count",
+      "path": "/api-menus/count",
+      "handler": "api-menu.count",
       "config": {
         "policies": []
       }
     },
     {
       "method": "GET",
-      "path": "/usecases/:id",
-      "handler": "usecase.findOne",
+      "path": "/api-menus/:id",
+      "handler": "api-menu.findOne",
       "config": {
         "policies": []
       }
     },
     {
       "method": "POST",
-      "path": "/usecases",
-      "handler": "usecase.create",
+      "path": "/api-menus",
+      "handler": "api-menu.create",
       "config": {
         "policies": []
       }
     },
     {
       "method": "PUT",
-      "path": "/usecases/:id",
-      "handler": "usecase.update",
+      "path": "/api-menus/:id",
+      "handler": "api-menu.update",
       "config": {
         "policies": []
       }
     },
     {
       "method": "DELETE",
-      "path": "/usecases/:id",
-      "handler": "usecase.delete",
+      "path": "/api-menus/:id",
+      "handler": "api-menu.delete",
       "config": {
         "policies": []
       }

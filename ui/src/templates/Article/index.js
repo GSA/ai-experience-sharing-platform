@@ -5,7 +5,7 @@ import Login from "features/Login";
 import ArticleDetails from "components/ArticleDetails";
 import ContentNav from "components/ContentsNav";
 import { useDispatch, useSelector } from "react-redux";
-import { getPage, clearPage } from "app/ContentModule";
+import { getPage } from "app/ContentModule";
 import { Grid, Row, Col } from "components/Grid";
 import { Loading } from "components/Loading";
 import FourOhFour from "templates/FourOhFour";
@@ -13,11 +13,14 @@ import FourOhFour from "templates/FourOhFour";
 export const Article = () => {
   const dispatch = useDispatch();
   const { type, name } = useParams();
-  const { pending, data, error } = useSelector((state) => state.content.page);
+  const { pending, data = {}, error } = useSelector(
+    (state) => state.content.page
+  );
   const { isAuth } = useSelector((state) => state.auth);
 
   useEffect(() => {
     if (isAuth) {
+      console.log("ARTICLE", type, name);
       dispatch(getPage({ type, name }));
     }
   }, [type, name, isAuth, dispatch]);

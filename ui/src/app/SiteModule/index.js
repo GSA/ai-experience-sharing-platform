@@ -44,8 +44,8 @@ export const SiteModule = createSlice({
 export const { reset } = SiteModule.actions;
 
 export const menu = (menuName) => (state) => {
-  const found = state.site.menus.find(({ name }) => name === menuName);
-  return Boolean(found) ? found : { name: menuName, items: [] };
+  const found = state.site.menus.find(({ slug }) => slug === menuName);
+  return Boolean(found) ? found : { slug: menuName, items: [] };
 };
 
 export const siteMeta = ({ site: { title, author, description } }) => ({

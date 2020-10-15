@@ -1,20 +1,22 @@
 {
   "kind": "collectionType",
-  "collectionName": "Usecases",
+  "collectionName": "Page",
   "info": {
-    "name": "usecase"
+    "name": "api-page"
   },
   "options": {
     "increments": true,
     "timestamps": true
   },
   "attributes": {
-    "Slug": {
-      "type": "uid",
-      "targetField": "Title"
-    },
-    "Title": {
+    "title": {
       "type": "string"
+    },
+    "body": {
+      "type": "richtext"
+    },
+    "slug": {
+      "type": "uid"
     }
   }
 }

@@ -76,13 +76,13 @@ const Nav = ({ items }) => {
             Close
           </Button>
           <ul className="usa-accordion usa-nav__primary">
-            {items.map(({ text, link, items }, idx) => {
+            {items.map(({ text, url, items }, idx) => {
               return (
                 <NavItem
                   key={`usa-nav-item-${idx}`}
                   id={idx}
                   text={text}
-                  url={link}
+                  url={url}
                   items={items}
                 />
               );
