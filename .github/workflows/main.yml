@@ -1,15 +1,32 @@
-# This is a basic workflow to help you get started with Actions
+# This Github Action workflow:
+# - Builds the frontend and backend
+# - Comments on PRs with the Terraform plan that will be applied on merge
+# - Applies Terraform plan on relevant branches
 
-name: Build and deploy to CF
+name: ai.digital.gov
 
 on:
   push:
-    branches: [main, develop]
+    branches:
+      - main
+  pull_request:
+    branches_ignore: []
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
+  pre_workflow:
+    name: "starting workflow..."
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request'
+    steps:
+      - name: Initialize plan comment
+        uses: marocchino/sticky-pull-request-comment@v1.1.0
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          message: ":eyes: Generating Terraform plan..."
+
   build_frontend:
-    name: "Build frontend"
+    name: "build frontend"
     runs-on: ubuntu-latest
 
     defaults:
@@ -17,9 +34,6 @@ jobs:
         working-directory: ui
 
     steps:
-      # - name: TEMPORARY act workaround
-      #   run: apt update -y && apt install -y zstd
-
       - name: Checkout
         uses: actions/checkout@v2
 
@@ -51,7 +65,7 @@ jobs:
           path: ui/build
 
   build_backend:
-    name: "Build backend"
+    name: "build backend"
     runs-on: ubuntu-latest
 
     defaults:
@@ -59,9 +73,6 @@ jobs:
         working-directory: cms
 
     steps:
-      # - name: TEMPORARY act workaround
-      #   run: apt update -y && apt install -y zstd
-
       - name: Checkout
         uses: actions/checkout@v2
 
@@ -97,7 +108,7 @@ jobs:
             !cms/node_modules
 
   deploy:
-    name: "Deploy to cloud.gov"
+    name: "terraform"
     needs: [build_frontend, build_backend]
     runs-on: ubuntu-latest
 
@@ -124,6 +135,12 @@ jobs:
           name: ui-artifact
           path: ui/build
 
+      - name: Download frontend artifact to CMS
+        uses: actions/download-artifact@v2
+        with:
+          name: ui-artifact
+          path: cms/public
+
       - name: Display structure of cwd
         run: ls -R
         working-directory: .
@@ -134,30 +151,31 @@ jobs:
           terraform_version: 0.13.4
 
       - name: Terraform Init
-        run: terraform init -input=false deployment/terraform
+        run: terraform init -input=false deployment/workspaces/main
 
       # - name: Terraform Format
-      #   run: terraform fmt -check deployment/terraform
+      #   run: terraform fmt -check deployment/workspaces/main
 
       - name: Terraform Plan
         id: plan
-        run: terraform plan -input=false -no-color deployment/terraform
-
-      - name: Create Plan Comment
-        uses: actions/github-script@0.9.0
         if: github.event_name == 'pull_request'
-        env:
-          STDOUT: "```${{ steps.plan.outputs.stdout }}```"
+        run: terraform plan -input=false -no-color deployment/workspaces/main
+        continue-on-error: true
+
+      - name: Comment Terraform plan
+        if: github.event_name == 'pull_request'
+        uses: marocchino/sticky-pull-request-comment@v1.1.0
         with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          script: |
-            github.issues.createComment({
-              issue_number: context.issue.number,
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              body: process.env.STDOUT
-            })
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          message: |
+            <details open>
+            <summary>:sparkles: Terraform plan</summary>
+
+            ```
+            ${{ steps.plan.outputs.stdout }}
+            ```
+            </details>
 
       - name: Terraform Apply
-        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
-        run: terraform apply -input=false -auto-approve -var="cf_strapi_logingov_key=${{ secrets.LOGINGOV_KEY }}" deployment/terraform
+        if: github.ref == 'refs/heads/main'
+        run: terraform apply -input=false -auto-approve -var="cf_strapi_logingov_key=${{ secrets.LOGINGOV_KEY }}" deployment/workspaces/main

@@ -1,30 +1,27 @@
 resource "cloudfoundry_service_instance" "frontend-bucket" {
-  name         = "frontend-bucket-${var.cf_env}"
+  name         = "frontend-bucket"
   space        = data.cloudfoundry_space.space.id
   service_plan = data.cloudfoundry_service.s3.service_plans[var.cf_s3_frontend_plan]
 }
 
 resource "cloudfoundry_service_key" "frontend-bucket-key" {
-  name             = "frontend-bucket-key-${var.cf_env}"
+  name             = "frontend-bucket-key"
   service_instance = cloudfoundry_service_instance.frontend-bucket.id
 }
 
-resource "null_resource" "frontend-assets-bucket-website" {
+resource "null_resource" "frontend-assets-bucket-website-hosting-mode" {
   triggers = {
-    src_hash = sha256(file("deployment/terraform/frontend-bucket-website.json"))
+    src_hash = sha256(file("${path.module}/frontend-bucket-website.json"))
   }
   provisioner "local-exec" {
     # Turn on S3 website hosting mode on the bucket
-    command = "aws s3api put-bucket-website --bucket ${cloudfoundry_service_key.frontend-bucket-key.credentials.bucket} --website-configuration file://deployment/terraform/frontend-bucket-website.json"
+    command = "aws s3api put-bucket-website --bucket ${cloudfoundry_service_key.frontend-bucket-key.credentials.bucket} --website-configuration file://${path.module}/frontend-bucket-website.json"
     environment = {
-      AWS_ACCESS_KEY_ID = cloudfoundry_service_key.frontend-bucket-key.credentials.access_key_id
+      AWS_ACCESS_KEY_ID     = cloudfoundry_service_key.frontend-bucket-key.credentials.access_key_id
       AWS_SECRET_ACCESS_KEY = cloudfoundry_service_key.frontend-bucket-key.credentials.secret_access_key
-      AWS_DEFAULT_REGION = cloudfoundry_service_key.frontend-bucket-key.credentials.region
+      AWS_DEFAULT_REGION    = cloudfoundry_service_key.frontend-bucket-key.credentials.region
     }
   }
-  depends_on = [
-    cloudfoundry_service_instance.frontend-bucket
-  ]
 }
 
 data "archive_file" "frontend-assets" {
@@ -41,9 +38,9 @@ resource "null_resource" "frontend-assets" {
   provisioner "local-exec" {
     command = "aws s3 sync ./ui/build/ s3://${cloudfoundry_service_key.frontend-bucket-key.credentials.bucket}/"
     environment = {
-      AWS_ACCESS_KEY_ID = cloudfoundry_service_key.frontend-bucket-key.credentials.access_key_id
+      AWS_ACCESS_KEY_ID     = cloudfoundry_service_key.frontend-bucket-key.credentials.access_key_id
       AWS_SECRET_ACCESS_KEY = cloudfoundry_service_key.frontend-bucket-key.credentials.secret_access_key
-      AWS_DEFAULT_REGION = cloudfoundry_service_key.frontend-bucket-key.credentials.region
+      AWS_DEFAULT_REGION    = cloudfoundry_service_key.frontend-bucket-key.credentials.region
     }
   }
 
@@ -53,12 +50,4 @@ resource "null_resource" "frontend-assets" {
   depends_on = [
     cloudfoundry_app.strapi-api-host
   ]
-}
-
-output "frontend_bucket" {
-  value = cloudfoundry_service_key.frontend-bucket-key.credentials.bucket
-}
-
-output "frontend_website_url" {
-  value = "http://${cloudfoundry_service_key.frontend-bucket-key.credentials.bucket}.s3-website-us-gov-west-1.amazonaws.com/"
 }
