@@ -12,9 +12,12 @@ const path = require('path');
 const _ = require('lodash');
 const uuid = require('uuid/v4');
 
+const getServiceConfig = require('../../../../config/cloud-foundry-data').getServiceConfig;
+
 const usersPermissionsActions = require('../../../../node_modules/strapi-plugin-users-permissions/config/users-permissions-actions');
 
-const userProvidedServices = process.env.VCAP_SERVICES['user-provided'] || [];
+const serviceConfig = getServiceConfig();
+const userProvidedServices = serviceConfig['user-provided'] || [];
 const loginGov = userProvidedServices.filter(service => service.name === 'login-gov');
 const loginGovCredentials = loginGov.length > 0 ? loginGov[0].credentials : {};
 
