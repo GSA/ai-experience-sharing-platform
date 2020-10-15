@@ -14,10 +14,6 @@ variable "cf_s3_strapi_image_plan" {
   description = "Service plan for S3 storage for Strapi media files"
 }
 
-variable "cf_s3_frontend_plan" {
-  description = "Service plan for S3 storage for frontend web assets"
-}
-
 variable "strapi_hostname" {
   description = "Cloud.gov app/host name"
 }
