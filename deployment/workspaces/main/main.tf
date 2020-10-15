@@ -19,7 +19,7 @@ provider "cloudfoundry" {
 
 module "ai_experience_environment" {
   source                        = "../../modules/space"
-  strapi_hostname               = "strapi-api-host-dev"
+  strapi_hostname               = "strapi-api-host-main"
   cf_org                        = "sandbox-gsa"
   cf_space                      = "taylor.zajicek"
   cf_rds_strapi_db_service_plan = "shared-psql"
