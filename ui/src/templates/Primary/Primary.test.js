@@ -1,11 +1,8 @@
 import React from "react";
 import { mount } from "enzyme";
-import { Route } from "react-router-dom";
 import Primary from "templates/Primary";
 import TestProvider from "test/TestProvider";
-import store from "app";
-import { login } from "app/AuthModule";
-import runAsyncRender from "test/utils/runAsyncRender";
+import Footer from "./Footer";
 
 describe("<Primary />", () => {
   describe("default render", () => {
@@ -18,6 +15,18 @@ describe("<Primary />", () => {
         </TestProvider>
       );
       expect(wrapper.find("h1").text()).toBe("Test Primary");
+    });
+  });
+  describe("interactive features", () => {
+    it("should handle scroll click", () => {
+      window.scrollTo = jest.fn();
+      const wrapper = mount(
+        <TestProvider>
+          <Footer />
+        </TestProvider>
+      );
+      wrapper.find(".usa-footer__scroll").first().simulate("click");
+      expect(window.scrollTo).toBeCalled();
     });
   });
 });

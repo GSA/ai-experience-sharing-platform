@@ -19,7 +19,11 @@ const Footer = () => {
         <Grid>
           <Row>
             <Col size={12}>
-              <Button onClick={handleScroll} variant="link">
+              <Button
+                className="usa-footer__scroll"
+                onClick={handleScroll}
+                variant="link"
+              >
                 Scroll to top
               </Button>
             </Col>
