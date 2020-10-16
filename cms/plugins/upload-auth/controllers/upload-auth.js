@@ -19,8 +19,11 @@ module.exports = {
     const bucket = strapi.plugins['upload-auth'].config.providerOptions.params.Bucket;
     const publicAssetMatcher = /^((large|medium|small|thumbnail)_)?public_.+/i;
     const requestedFile = ctx.captures[0];
+
+    const mediaToken = ctx.cookies.get('media_auth');
+    const isTokenValid = await strapi.plugins['users-permissions'].services.jwt.verify(mediaToken);
     
-    if (ctx.isAuthenticated() || publicAssetMatcher.test(requestedFile)) {
+    if ((ctx.isAuthenticated && ctx.isAuthenticated()) || publicAssetMatcher.test(requestedFile) || isTokenValid) {
       const data = await s3.getObject({
         Bucket: bucket,
         Key: requestedFile,

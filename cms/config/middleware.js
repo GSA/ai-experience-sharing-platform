@@ -1,9 +1,12 @@
 module.exports = {
  load: {
-    after: ['spa'],
+   after: ['spa', 'authCookie'],
   },
   settings: {
     spa: {
+      enabled: true,
+    },
+    authCookie: {
       enabled: true,
     },
   },
