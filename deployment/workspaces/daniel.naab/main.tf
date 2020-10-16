@@ -23,5 +23,5 @@ module "ai_experience_environment" {
   cf_org                        = "sandbox-gsa"
   cf_space                      = "daniel.naab"
   cf_rds_strapi_db_service_plan = "shared-psql"
-  cf_s3_strapi_image_plan       = "basic-public-sandbox"
+  cf_s3_strapi_image_plan       = "basic-sandbox"
 }
