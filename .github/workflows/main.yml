@@ -53,6 +53,9 @@ jobs:
         if: steps.cache-node_modules.outputs.cache-hit != 'true'
         run: npm ci
 
+      - name: Test frontend
+        run: npm run test:coverage
+
       - name: Build frontend
         run: npm run build
         env:
