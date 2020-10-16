@@ -20,7 +20,6 @@ export const Article = () => {
 
   useEffect(() => {
     if (isAuth) {
-      console.log("ARTICLE", type, name);
       dispatch(getPage({ type, name }));
     }
   }, [type, name, isAuth, dispatch]);
