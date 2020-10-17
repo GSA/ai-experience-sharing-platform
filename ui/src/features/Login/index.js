@@ -1,68 +1,34 @@
 import React from "react";
 import PropTypes from "prop-types";
 import Button from "components/Button";
-import { login } from "app/AuthModule";
 import { useDispatch, useSelector } from "react-redux";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import FourOhFour from "templates/FourOhFour";
+import loginLogo from "./logingov.svg";
 
-const Login = ({ children }) => {
+const Login = ({ children, oAuthUrl }) => {
   const dispatch = useDispatch();
-  const { isAuth, pending, error } = useSelector((state) => state.auth);
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const {
-      target: {
-        username: { value: username },
-        password: { value: password },
-      },
-    } = e;
-    dispatch(login({ username, password }));
-  };
+  const { isAuth, error } = useSelector((state) => state.auth);
 
+  if (error) {
+    return <FourOhFour />;
+  }
   // some kind of race condition happens with the children prop so we have to add it to the condition
   return isAuth && children ? (
     children
   ) : (
-    <div className="text-center">
-      <form onSubmit={handleSubmit} className="usa-form usa-login-form">
-        {Boolean(error) && (
-          <div className="usa-form-group usa-form-group--error">
-            <span className="usa-error-message" id="username" role="alert">
-              {error}
-            </span>
-          </div>
-        )}
-        <div className="usa-form-group">
-          <label className="usa-label" htmlFor="username">
-            Username
-          </label>
-          <input id="username" name="username" className="usa-input" />
-        </div>
-        <div className="usa-form-group">
-          <label className="usa-label" htmlFor="password">
-            Password
-          </label>
-          <input
-            id="password"
-            name="password"
-            type="password"
-            className="usa-input"
-          />
-        </div>
-        <Button type="submit" fullwidth>
-          {pending ? (
-            <span>
-              <FontAwesomeIcon icon="spinner" spin /> Loading...
-            </span>
-          ) : (
-            "Login"
-          )}
-        </Button>
-      </form>
+    <div className="text-center margin-y-10 padding-y-10">
+      <h1>Your must be logged in to view this content.</h1>
+      <Button url={oAuthUrl}>
+        <img style={{ width: "100px" }} src={loginLogo} />
+      </Button>
     </div>
   );
 };
 
+Login.defaultProps = {
+  oAuthUrl:
+    "https://idp.int.identitysandbox.gov/openid_connect/authorize?acr_values=http%3A%2F%2Fidmanagement.gov%2Fns%2Fassurance%2Fial%2F1&client_id=urn:gov:gsa:openidconnect.profiles:sp:sso:gsa:ai_experience&nonce=66A27845-DB89-4433-9AA3-B4B21257FAE9FD69096A-22B2-4B3F-8EE6-0E85B5E00307&prompt=select_account&redirect_uri=https%3A%2F%2Fstrapi-api-host-dev.app.cloud.gov%2Fconnect%2Flogingov%2Fcallback&response_type=code&scope=openid+email&state=abcdefghijklmnopabcdefghijklmnopFD69096A-22B2-4B3F-8EE6-0E85B5E00307",
+};
 Login.propTypes = {
   children: PropTypes.node,
 };
