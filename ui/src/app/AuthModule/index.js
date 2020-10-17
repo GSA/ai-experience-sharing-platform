@@ -29,7 +29,7 @@ export const loginUrl = (params) => {
       "66A27845-DB89-4433-9AA3-B4B21257FAE9FD69096A-22B2-4B3F-8EE6-0E85B5E00307",
     prompt: "select_account",
     redirect_uri:
-      "https://strapi-api-host-dev.app.cloud.gov/connect/logingov/callback",
+      "https://strapi-api-host-main.app.cloud.gov/connect/logingov/callback",
     response_type: "code",
     scope: "openid+email",
     state:
