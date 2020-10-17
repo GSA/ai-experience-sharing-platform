@@ -60,6 +60,9 @@ jobs:
         run: npm run build
         env:
           NODE_ENV: production
+          REACT_APP_API_URL: ""
+          REACT_APP_AUTH_ROOT_URL: https://idp.int.identitysandbox.gov/openid_connect/authorize
+          REACT_APP_AUTH_REDIRECT_URL: https://strapi-api-host-main.app.cloud.gov/connect/logingov/callback
 
       - name: Upload frontend artifact
         uses: actions/upload-artifact@v2

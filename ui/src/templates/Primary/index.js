@@ -6,6 +6,7 @@ import Footer from "./Footer";
 import Header from "./Header";
 import { useDispatch } from "react-redux";
 import { siteData, getMenus } from "app/SiteModule";
+import { useAssertion } from "app/AuthModule";
 import "styles/index.scss";
 
 const Primary = ({ title, children }) => {
@@ -14,6 +15,7 @@ const Primary = ({ title, children }) => {
     dispatch(siteData());
     dispatch(getMenus());
   });
+  useAssertion();
   return (
     <>
       <SEO title={title} />
