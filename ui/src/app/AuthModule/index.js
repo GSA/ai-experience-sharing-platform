@@ -15,7 +15,6 @@ export const login = createAsyncThunk("auth/login", async ({ token }) => ({
 
 export const loginUrl = (params) => {
   const rootUrl = process.env.REACT_APP_AUTH_ROOT_URL;
-  console.log(rootUrl);
   const query = {
     acr_values: "http://idmanagement.gov/ns/assurance/ial/1",
     client_id: "urn:gov:gsa:openidconnect.profiles:sp:sso:gsa:ai_experience",
