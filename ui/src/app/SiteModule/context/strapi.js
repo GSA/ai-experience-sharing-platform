@@ -6,6 +6,9 @@ export const getSiteData = async () => {
   try {
     const response = await fetch(`${ROOT_URL}/api-settings`);
     data = await response.json();
+    if (!response.ok) {
+      throw new Error(data.message);
+    }
   } catch (e) {
     throw new Error(e);
   }
@@ -18,6 +21,9 @@ export const getMenus = async () => {
   try {
     const response = await fetch(`${ROOT_URL}/api-menus`);
     data = await response.json();
+    if (!response.ok) {
+      throw new Error(data.message);
+    }
   } catch (e) {
     throw new Error(e);
   }

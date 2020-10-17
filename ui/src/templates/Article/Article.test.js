@@ -20,7 +20,7 @@ describe("<Article />", () => {
   });
   describe("load content when authenticated", () => {
     it("should render", async () => {
-      await store.dispatch(login({ username: "jarvis", password: "vision" }));
+      await store.dispatch(login({ token: "test" }));
       const wrapper = mount(
         <TestProvider route={["/usecase/test"]}>
           <Route path="/:type/:name" component={Article} />

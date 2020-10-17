@@ -13,9 +13,7 @@ import FourOhFour from "templates/FourOhFour";
 export const Article = () => {
   const dispatch = useDispatch();
   const { type, name } = useParams();
-  const { pending, data = {}, error } = useSelector(
-    (state) => state.content.page
-  );
+  const { pending, data, error } = useSelector((state) => state.content.page);
   const { isAuth } = useSelector((state) => state.auth);
 
   useEffect(() => {

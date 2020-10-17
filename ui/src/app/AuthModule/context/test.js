@@ -10,8 +10,8 @@ export const postAuthCredentials = async ({ username, password }) => {
   }
 };
 
-export const endSession = async (state) => {
-  if (state === "error") {
+export const endSession = async (props) => {
+  if (props === "error") {
     throw new Error("Logout error.");
   }
   return { success: true };

@@ -6,6 +6,9 @@ export const getAllByContentType = async ({ type }) => {
   try {
     const response = await fetch(`${ROOT_URL}/api-${type}`);
     data = await response.json();
+    if (!response.ok) {
+      throw new Error(data.message);
+    }
   } catch (e) {
     throw new Error(e);
   }
@@ -18,6 +21,9 @@ export const getContentTypeByName = async ({ type, name }) => {
   try {
     const response = await fetch(`${ROOT_URL}/api-${type}?slug=${name}`);
     data = await response.json();
+    if (!response.ok) {
+      throw new Error(data.message);
+    }
   } catch (e) {
     throw new Error(e);
   }
@@ -39,6 +45,9 @@ export const getTaxonomyByContentType = async (type) => {
   try {
     const response = await fetch(`${ROOT_URL}/content/${type}/taxonomy.json`);
     data = await response.json();
+    if (!response.ok) {
+      throw new Error(data.message);
+    }
   } catch (e) {
     throw new Error(e);
   }

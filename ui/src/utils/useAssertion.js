@@ -1,20 +1,22 @@
+import { useEffect } from "react";
+import { useHistory, useLocation } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import QS from "query-string";
+import { login } from "app/AuthModule";
 
-export default = () => {
+export default () => {
   const dispatch = useDispatch();
   const { search, pathname } = useLocation();
   const { replace } = useHistory();
-  console.log("TEST1", search);
 
   useEffect(() => {
     let params;
     if (search) {
       params = QS.parse(search);
-      console.log("TEST2", params);
       if (params.token) {
-        console.log("TEST3", params.token);
         dispatch(login(params));
       }
       replace(pathname);
     }
-  }, [dispatch, search]);
+  }, [dispatch, pathname, search, replace]);
 };

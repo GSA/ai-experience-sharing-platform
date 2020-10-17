@@ -6,6 +6,9 @@ import store from "app";
 import { login } from "app/AuthModule";
 import { Route } from "react-router-dom";
 import runAsyncRender from "test/utils/runAsyncRender";
+import { getTaxonomy } from "app/ContentModule";
+
+const creds = { token: "test" };
 
 describe("<Taxonomy />", () => {
   describe("default render", () => {
@@ -19,7 +22,7 @@ describe("<Taxonomy />", () => {
     });
 
     it("should render authenticated", async () => {
-      await store.dispatch(login({ username: "jarvis", password: "vision" }));
+      await store.dispatch(login(creds));
       const wrapper = mount(
         <TestProvider>
           <Taxonomy />
@@ -27,11 +30,24 @@ describe("<Taxonomy />", () => {
       );
       expect(wrapper.find(".App-header")).toBeTruthy();
     });
+
+    it("should render error", async () => {
+      await store.dispatch(login(creds));
+      const wrapper = mount(
+        <TestProvider route={["/error"]}>
+          <Route path="/:type">
+            <Taxonomy />
+          </Route>
+        </TestProvider>
+      );
+      await runAsyncRender(wrapper);
+      expect(wrapper.find(".FourOhFour__title").hostNodes().length).toBe(1);
+    });
   });
 
   describe("features", () => {
     it("should change layout", async () => {
-      await store.dispatch(login({ username: "jarvis", password: "vision" }));
+      await store.dispatch(login(creds));
       const wrapper = mount(
         <TestProvider route={["/usecase"]}>
           <Route path="/:type" component={Taxonomy} />

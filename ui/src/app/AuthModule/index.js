@@ -15,7 +15,7 @@ export const login = createAsyncThunk("auth/login", async ({ token }) => ({
 
 export const loginUrl = (params) => {
   const rootUrl = process.env.REACT_APP_AUTH_ROOT_URL;
-
+  console.log(rootUrl);
   const query = {
     acr_values: "http://idmanagement.gov/ns/assurance/ial/1",
     client_id: "urn:gov:gsa:openidconnect.profiles:sp:sso:gsa:ai_experience",
@@ -30,13 +30,12 @@ export const loginUrl = (params) => {
       "abcdefghijklmnopabcdefghijklmnopFD69096A-22B2-4B3F-8EE6-0E85B5E00307",
     ...params,
   };
-
   return `${rootUrl}?${QS.stringify(query)}`;
 };
 
 export const logout = createAsyncThunk(
   "auth/logout",
-  async (state) => await context.endSession(state)
+  async (props) => await context.endSession(props)
 );
 
 const AuthModule = createSlice({
@@ -57,12 +56,6 @@ const AuthModule = createSlice({
         token: action.payload.token,
       };
       return newState;
-    },
-    [login.rejected]: (state, action) => {
-      return {
-        ...initialState,
-        error: action.error.message,
-      };
     },
     [logout.pending]: (state) => ({
       ...initialState,
