@@ -1,8 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import QS from "query-string";
-import { useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { useHistory, useLocation } from "react-router-dom";
 import context from "./context";
 
 export const initialState = {
@@ -10,26 +7,6 @@ export const initialState = {
   token: "",
   error: null,
   pending: false,
-};
-
-export const useAssertion = () => {
-  const dispatch = useDispatch();
-  const { search, pathname } = useLocation();
-  const { replace } = useHistory();
-  console.log("TEST1", search);
-
-  useEffect(() => {
-    let params;
-    if (search) {
-      params = QS.parse(search);
-      console.log("TEST2", params);
-      if (params.token) {
-        console.log("TEST3", params.token);
-        dispatch(login(params));
-      }
-      replace(pathname);
-    }
-  }, [dispatch, search]);
 };
 
 export const login = createAsyncThunk("auth/login", async ({ token }) => ({

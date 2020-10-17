@@ -6,7 +6,7 @@ import Footer from "./Footer";
 import Header from "./Header";
 import { useDispatch } from "react-redux";
 import { siteData, getMenus } from "app/SiteModule";
-import { useAssertion } from "app/AuthModule";
+import { useAssertion } from "utils";
 import "styles/index.scss";
 
 const Primary = ({ title, children }) => {
