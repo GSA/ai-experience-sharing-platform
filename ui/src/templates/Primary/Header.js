@@ -2,8 +2,16 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { siteMeta, menu } from "app/SiteModule";
-
 import PrimaryNav from "components/PrimaryNav";
+import Logout from "features/Logout";
+
+const NavHeader = () => {
+  const { isAuth } = useSelector((state) => state.auth);
+  if (isAuth) {
+    return <Logout variant="outline" fullwidth />;
+  }
+  return null;
+};
 
 const Header = () => {
   const { title } = useSelector(siteMeta);
@@ -20,7 +28,7 @@ const Header = () => {
           </em>
         </div>
       </div>
-      <PrimaryNav items={items} />
+      <PrimaryNav items={items} footer={NavHeader} />
     </header>
   );
 };

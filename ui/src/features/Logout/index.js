@@ -3,13 +3,13 @@ import Button from "components/Button";
 import { useDispatch } from "react-redux";
 import { logout } from "app/AuthModule";
 
-export const Logout = ({ className }) => {
+export const Logout = (props) => {
   const dispatch = useDispatch();
   const handleClick = () => {
     dispatch(logout());
   };
   return (
-    <Button className={className} onClick={handleClick}>
+    <Button {...props} onClick={handleClick}>
       Logout
     </Button>
   );

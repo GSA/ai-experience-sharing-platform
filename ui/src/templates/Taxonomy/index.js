@@ -27,7 +27,7 @@ const Layout = ({ layout, onClick }) => {
         <Button
           id="Layout__toggle-list"
           onClick={onClick}
-          variant={layout === "list" ? "" : "outline"}
+          variant={layout === "list" ? undefined : "outline"}
           value="list"
         >
           <FontAwesomeIcon icon="list" />
