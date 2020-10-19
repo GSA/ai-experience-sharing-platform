@@ -3,10 +3,11 @@
 export const createSession = async (props) => {
   const { provider, search } = props;
   const requestURL = `${process.env.REACT_APP_API_URL}/auth/${provider}/callback${search}`;
+  let data;
   try {
     const response = await fetch(requestURL);
 
-    const data = await response.json();
+    data = await response.json();
     if (!response.ok) {
       throw new Error(data);
     }
