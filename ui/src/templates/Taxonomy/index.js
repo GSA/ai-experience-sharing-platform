@@ -4,10 +4,9 @@ import { useParams, useLocation } from "react-router-dom";
 import PropTypes from "prop-types";
 import Article from "components/ArticleExcerpt";
 import Login from "features/Login";
-import { getList, getTaxonomy } from "app/ContentModule";
+import { getList } from "app/ContentModule";
 import { Grid, Row, Col } from "components/Grid";
 import Button from "components/Button";
-import Select from "components/Select";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Card from "components/Card";
 import { Loading } from "components/Loading";
@@ -28,7 +27,7 @@ const Layout = ({ layout, onClick }) => {
         <Button
           id="Layout__toggle-list"
           onClick={onClick}
-          variant={layout === "list" ? "" : "outline"}
+          variant={layout === "list" ? undefined : "outline"}
           value="list"
         >
           <FontAwesomeIcon icon="list" />
@@ -51,10 +50,11 @@ const Layout = ({ layout, onClick }) => {
 export const Taxonomy = ({ match: { url } }) => {
   const dispatch = useDispatch();
   const [layout, setLayout] = useState("list");
-  const [filter, setFilter] = useState({ key: "", value: "" });
 
   const { hash } = useLocation();
-  const { type } = useParams();
+  const params = useParams();
+
+  const { type } = params;
 
   const [key, value] = hash.replace("#", "").split("=");
 
@@ -64,8 +64,7 @@ export const Taxonomy = ({ match: { url } }) => {
   const { isAuth } = useSelector((state) => state.auth);
   useEffect(() => {
     if (isAuth) {
-      dispatch(getList(type));
-      dispatch(getTaxonomy(type));
+      dispatch(getList({ type }));
     }
   }, [dispatch, hash, type, isAuth]);
 
@@ -76,6 +75,7 @@ export const Taxonomy = ({ match: { url } }) => {
   if (error) {
     return <FourOhFour />;
   }
+
   return (
     <Login>
       <Loading isLoading={pending}>
@@ -133,7 +133,7 @@ export const Taxonomy = ({ match: { url } }) => {
                         <Article
                           title={item.title}
                           date={item.date}
-                          path={`${url}/${item.name}`}
+                          path={`${url}/${item.slug}`}
                           excerpt={item.excerpt}
                         />
                       </div>
@@ -144,7 +144,7 @@ export const Taxonomy = ({ match: { url } }) => {
                           title={item.title}
                           excerpt={item.excerpt}
                           footer={
-                            <Button url={item.path} fullwidth>
+                            <Button url={`${url}/${item.slug}`} fullwidth>
                               View
                             </Button>
                           }

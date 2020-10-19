@@ -1,0 +1,25 @@
+{
+  "kind": "collectionType",
+  "collectionName": "Usecase",
+  "info": {
+    "name": "api-usecase"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true
+  },
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "slug": {
+      "type": "uid"
+    },
+    "body": {
+      "type": "richtext"
+    },
+    "excerpt": {
+      "type": "string"
+    }
+  }
+}

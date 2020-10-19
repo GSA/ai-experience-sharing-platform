@@ -1,19 +1,17 @@
-'use strict';
+"use strict";
 
 /**
  * Module dependencies.
  */
 
 // Public node modules.
-const _ = require('lodash');
-const request = require('request');
+const _ = require("lodash");
+const request = require("request");
 
 // Purest strategies.
-const purest = require('purest')({ request });
-const purestConfig = require('@purest/providers');
-const { getAbsoluteServerUrl } = require('strapi-utils');
-
-
+const purest = require("purest")({ request });
+const purestConfig = require("@purest/providers");
+const { getAbsoluteServerUrl } = require("strapi-utils");
 
 /**
  * Connect thanks to a third-party provider.
@@ -30,7 +28,7 @@ const connect = (provider, query) => {
 
   return new Promise((resolve, reject) => {
     if (!access_token) {
-      return reject([null, { message: 'No access_token.' }]);
+      return reject([null, { message: "No access_token." }]);
     }
 
     // Get the profile.
@@ -41,20 +39,20 @@ const connect = (provider, query) => {
 
       // We need at least the mail.
       if (!profile.email) {
-        return reject([null, { message: 'Email was not available.' }]);
+        return reject([null, { message: "Email was not available." }]);
       }
 
       try {
-        const users = await strapi.query('user', 'users-permissions').find({
+        const users = await strapi.query("user", "users-permissions").find({
           email: profile.email,
         });
 
         const advanced = await strapi
           .store({
-            environment: '',
-            type: 'plugin',
-            name: 'users-permissions',
-            key: 'advanced',
+            environment: "",
+            type: "plugin",
+            name: "users-permissions",
+            key: "advanced",
           })
           .get();
 
@@ -63,8 +61,8 @@ const connect = (provider, query) => {
         if (_.isEmpty(user) && !advanced.allow_register) {
           return resolve([
             null,
-            [{ messages: [{ id: 'Auth.advanced.allow_register' }] }],
-            'Register action is actualy not available.',
+            [{ messages: [{ id: "Auth.advanced.allow_register" }] }],
+            "Register action is actualy not available.",
           ]);
         }
 
@@ -73,19 +71,19 @@ const connect = (provider, query) => {
         }
 
         if (
-          !_.isEmpty(_.find(users, user => user.provider !== provider)) &&
+          !_.isEmpty(_.find(users, (user) => user.provider !== provider)) &&
           advanced.unique_email
         ) {
           return resolve([
             null,
-            [{ messages: [{ id: 'Auth.form.error.email.taken' }] }],
-            'Email is already taken.',
+            [{ messages: [{ id: "Auth.form.error.email.taken" }] }],
+            "Email is already taken.",
           ]);
         }
 
         // Retrieve default role.
         const defaultRole = await strapi
-          .query('role', 'users-permissions')
+          .query("role", "users-permissions")
           .findOne({ type: advanced.default_role }, []);
 
         // Create the new user.
@@ -95,7 +93,9 @@ const connect = (provider, query) => {
           confirmed: true,
         });
 
-        const createdUser = await strapi.query('user', 'users-permissions').create(params);
+        const createdUser = await strapi
+          .query("user", "users-permissions")
+          .create(params);
 
         return resolve([createdUser, null]);
       } catch (err) {
@@ -114,31 +114,31 @@ const connect = (provider, query) => {
 
 const getProfile = async (provider, query, callback) => {
   const access_token = query.access_token || query.code || query.oauth_token;
-  
+
   const grant = await strapi
     .store({
-      environment: '',
-      type: 'plugin',
-      name: 'users-permissions',
-      key: 'grant',
+      environment: "",
+      type: "plugin",
+      name: "users-permissions",
+      key: "grant",
     })
     .get();
 
   switch (provider) {
-    case 'discord': {
+    case "discord": {
       const discord = purest({
-        provider: 'discord',
+        provider: "discord",
         config: {
           discord: {
-            'https://discordapp.com/api/': {
+            "https://discordapp.com/api/": {
               __domain: {
                 auth: {
-                  auth: { bearer: '[0]' },
+                  auth: { bearer: "[0]" },
                 },
               },
-              '{endpoint}': {
+              "{endpoint}": {
                 __path: {
-                  alias: '__default',
+                  alias: "__default",
                 },
               },
             },
@@ -147,7 +147,7 @@ const getProfile = async (provider, query, callback) => {
       });
       discord
         .query()
-        .get('users/@me')
+        .get("users/@me")
         .auth(access_token)
         .request((err, res, body) => {
           if (err) {
@@ -163,20 +163,20 @@ const getProfile = async (provider, query, callback) => {
         });
       break;
     }
-    case 'localuaa': {
+    case "localuaa": {
       const localuaa = purest({
-        provider: 'localuaa',
+        provider: "localuaa",
         config: {
           localuaa: {
-            'http://localhost:8080': {
+            "http://localhost:8080": {
               __domain: {
                 auth: {
-                  auth: { bearer: '[0]' },
+                  auth: { bearer: "[0]" },
                 },
               },
-              '{endpoint}': {
+              "{endpoint}": {
                 __path: {
-                  alias: '__default',
+                  alias: "__default",
                 },
               },
             },
@@ -184,9 +184,9 @@ const getProfile = async (provider, query, callback) => {
         },
       });
       localuaa
-        .post('introspect')
-        .auth('bXlfY2xpZW50X2lkOm15X2NsaWVudF9zZWNyZXQ=')
-        .options({multipart: {token: access_token}})
+        .post("introspect")
+        .auth("bXlfY2xpZW50X2lkOm15X2NsaWVudF9zZWNyZXQ=")
+        .options({ multipart: { token: access_token } })
         .request((err, res, body) => {
           if (err) {
             callback(err);
@@ -200,20 +200,20 @@ const getProfile = async (provider, query, callback) => {
         });
       break;
     }
-    case 'logingov': {
+    case "logingov": {
       const logingov = purest({
-        provider: 'logingov',
+        provider: "logingov",
         config: {
           logingov: {
-            'https://idp.int.identitysandbox.gov/api': {
+            "https://idp.int.identitysandbox.gov/api": {
               __domain: {
                 auth: {
-                  auth: { bearer: '[0]' },
+                  auth: { bearer: "[0]" },
                 },
               },
-              '{endpoint}': {
+              "{endpoint}": {
                 __path: {
-                  alias: '__default',
+                  alias: "__default",
                 },
               },
             },
@@ -221,7 +221,7 @@ const getProfile = async (provider, query, callback) => {
         },
       });
       logingov
-        .get('openid_connect/userinfo')
+        .get("openid_connect/userinfo")
         .auth(access_token)
         .request((err, res, body) => {
           if (err) {
@@ -235,15 +235,15 @@ const getProfile = async (provider, query, callback) => {
         });
       break;
     }
-    case 'facebook': {
+    case "facebook": {
       const facebook = purest({
-        provider: 'facebook',
+        provider: "facebook",
         config: purestConfig,
       });
 
       facebook
         .query()
-        .get('me?fields=name,email')
+        .get("me?fields=name,email")
         .auth(access_token)
         .request((err, res, body) => {
           if (err) {
@@ -257,39 +257,39 @@ const getProfile = async (provider, query, callback) => {
         });
       break;
     }
-    case 'google': {
-      const google = purest({ provider: 'google', config: purestConfig });
+    case "google": {
+      const google = purest({ provider: "google", config: purestConfig });
 
       google
-        .query('oauth')
-        .get('tokeninfo')
+        .query("oauth")
+        .get("tokeninfo")
         .qs({ access_token })
         .request((err, res, body) => {
           if (err) {
             callback(err);
           } else {
             callback(null, {
-              username: body.email.split('@')[0],
+              username: body.email.split("@")[0],
               email: body.email,
             });
           }
         });
       break;
     }
-    case 'github': {
+    case "github": {
       const github = purest({
-        provider: 'github',
+        provider: "github",
         config: purestConfig,
         defaults: {
           headers: {
-            'user-agent': 'strapi',
+            "user-agent": "strapi",
           },
         },
       });
 
       github
         .query()
-        .get('user')
+        .get("user")
         .auth(access_token)
         .request((err, res, userbody) => {
           if (err) {
@@ -307,7 +307,7 @@ const getProfile = async (provider, query, callback) => {
           // Get the email with Github's user/emails API
           github
             .query()
-            .get('user/emails')
+            .get("user/emails")
             .auth(access_token)
             .request((err, res, emailsbody) => {
               if (err) {
@@ -317,22 +317,22 @@ const getProfile = async (provider, query, callback) => {
               return callback(null, {
                 username: userbody.login,
                 email: Array.isArray(emailsbody)
-                  ? emailsbody.find(email => email.primary === true).email
+                  ? emailsbody.find((email) => email.primary === true).email
                   : null,
               });
             });
         });
       break;
     }
-    case 'microsoft': {
+    case "microsoft": {
       const microsoft = purest({
-        provider: 'microsoft',
+        provider: "microsoft",
         config: purestConfig,
       });
 
       microsoft
         .query()
-        .get('me')
+        .get("me")
         .auth(access_token)
         .request((err, res, body) => {
           if (err) {
@@ -346,9 +346,9 @@ const getProfile = async (provider, query, callback) => {
         });
       break;
     }
-    case 'twitter': {
+    case "twitter": {
       const twitter = purest({
-        provider: 'twitter',
+        provider: "twitter",
         config: purestConfig,
         key: grant.twitter.key,
         secret: grant.twitter.secret,
@@ -356,9 +356,9 @@ const getProfile = async (provider, query, callback) => {
 
       twitter
         .query()
-        .get('account/verify_credentials')
+        .get("account/verify_credentials")
         .auth(access_token, query.access_secret)
-        .qs({ screen_name: query['raw[screen_name]'], include_email: 'true' })
+        .qs({ screen_name: query["raw[screen_name]"], include_email: "true" })
         .request((err, res, body) => {
           if (err) {
             callback(err);
@@ -371,17 +371,17 @@ const getProfile = async (provider, query, callback) => {
         });
       break;
     }
-    case 'instagram': {
+    case "instagram": {
       const instagram = purest({
         config: purestConfig,
-        provider: 'instagram',
+        provider: "instagram",
         key: grant.instagram.key,
         secret: grant.instagram.secret,
       });
 
       instagram
         .query()
-        .get('users/self')
+        .get("users/self")
         .qs({ access_token })
         .request((err, res, body) => {
           if (err) {
@@ -395,15 +395,15 @@ const getProfile = async (provider, query, callback) => {
         });
       break;
     }
-    case 'vk': {
+    case "vk": {
       const vk = purest({
-        provider: 'vk',
+        provider: "vk",
         config: purestConfig,
       });
 
       vk.query()
-        .get('users.get')
-        .qs({ access_token, id: query.raw.user_id, v: '5.122' })
+        .get("users.get")
+        .qs({ access_token, id: query.raw.user_id, v: "5.122" })
         .request((err, res, body) => {
           if (err) {
             callback(err);
@@ -416,28 +416,28 @@ const getProfile = async (provider, query, callback) => {
         });
       break;
     }
-    case 'twitch': {
+    case "twitch": {
       const twitch = purest({
-        provider: 'twitch',
+        provider: "twitch",
         config: {
           twitch: {
-            'https://api.twitch.tv': {
+            "https://api.twitch.tv": {
               __domain: {
                 auth: {
                   headers: {
-                    Authorization: 'Bearer [0]',
-                    'Client-ID': '[1]',
+                    Authorization: "Bearer [0]",
+                    "Client-ID": "[1]",
                   },
                 },
               },
-              'helix/{endpoint}': {
+              "helix/{endpoint}": {
                 __path: {
-                  alias: '__default',
+                  alias: "__default",
                 },
               },
-              'oauth2/{endpoint}': {
+              "oauth2/{endpoint}": {
                 __path: {
-                  alias: 'oauth',
+                  alias: "oauth",
                 },
               },
             },
@@ -446,7 +446,7 @@ const getProfile = async (provider, query, callback) => {
       });
 
       twitch
-        .get('users')
+        .get("users")
         .auth(access_token, grant.twitch.key)
         .request((err, res, body) => {
           if (err) {
@@ -462,14 +462,16 @@ const getProfile = async (provider, query, callback) => {
     }
     default:
       callback({
-        message: 'Unknown provider.',
+        message: "Unknown provider.",
       });
       break;
   }
 };
 
-const buildRedirectUri = (provider = '') =>
-  `${getAbsoluteServerUrl(strapi.config)}/connect/${provider}/callback`;
+const buildRedirectUri = (provider = "", requestUri) =>
+  `${
+    requestUri ? requestUri : getAbsoluteServerUrl(strapi.config)
+  }/connect/${provider}/callback`;
 
 module.exports = {
   connect,

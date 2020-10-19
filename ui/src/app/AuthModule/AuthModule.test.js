@@ -15,14 +15,15 @@ describe("AuthModule", () => {
   describe("login/logout", () => {
     beforeEach(async () => await store.dispatch(reset()));
     it("should login", async () => {
-      await store.dispatch(login({ username: "jarvis", password: "vision" }));
+      await store.dispatch(login({ provider: "test" }));
       const state = await store.getState();
       expect(state.isAuth).toBeTruthy();
     });
-    it("should return error on invalid credentials", async () => {
-      await store.dispatch(login({ username: "", password: "" }));
+
+    it("return error if invalid provider", async () => {
+      await store.dispatch(login({ provider: "error" }));
       const state = await store.getState();
-      expect(state.error).toBe("Invalid Credentials.");
+      expect(state.error).toBe("Invalid Provider.");
     });
     it("should logout", async () => {
       await store.dispatch(logout());
@@ -30,7 +31,7 @@ describe("AuthModule", () => {
       expect(state.isAuth).toBeFalsy();
     });
 
-    it("should logout", async () => {
+    it("should return logout error", async () => {
       await store.dispatch(logout("error"));
       const state = await store.getState();
       expect(state.error).toBe("Logout error.");

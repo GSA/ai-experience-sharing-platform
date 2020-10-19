@@ -1,4 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import QS from "query-string";
 import context from "./context";
 
 export const initialState = {
@@ -10,16 +11,18 @@ export const initialState = {
 
 export const login = createAsyncThunk(
   "auth/login",
-  async ({ username, password }) =>
-    await context.postAuthCredentials({
-      username,
-      password,
-    })
+  async ({ provider, search }) => context.createSession({ provider, search })
 );
+
+export const loginUrl = (params) => {
+  const rootUrl = `${process.env.REACT_APP_API_URL}/connect/logingov`;
+  const query = {};
+  return `${rootUrl}?${QS.stringify(query)}`;
+};
 
 export const logout = createAsyncThunk(
   "auth/logout",
-  async (state) => await context.endSession(state)
+  async (props) => await context.endSession(props)
 );
 
 const AuthModule = createSlice({
@@ -36,8 +39,8 @@ const AuthModule = createSlice({
     [login.fulfilled]: (state, action) => {
       const newState = {
         ...initialState,
-        isAuth: Boolean(action.payload.token),
-        token: action.payload.token,
+        isAuth: Boolean(action.payload.jwt),
+        token: action.payload.jwt,
       };
       return newState;
     },

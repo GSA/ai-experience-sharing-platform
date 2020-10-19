@@ -1,12 +1,19 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import PropTypes from "prop-types";
 import { useSelector } from "react-redux";
 import { siteMeta, menu } from "app/SiteModule";
-
 import PrimaryNav from "components/PrimaryNav";
+import Logout from "features/Logout";
 
-const Header = ({ children }) => {
+const NavHeader = () => {
+  const { isAuth } = useSelector((state) => state.auth);
+  if (isAuth) {
+    return <Logout variant="outline" fullwidth />;
+  }
+  return null;
+};
+
+const Header = () => {
   const { title } = useSelector(siteMeta);
   const { items } = useSelector(menu("primary"));
 
@@ -21,17 +28,9 @@ const Header = ({ children }) => {
           </em>
         </div>
       </div>
-      <PrimaryNav items={items} />
+      <PrimaryNav items={items} footer={NavHeader} />
     </header>
   );
-};
-
-Header.propTypes = {
-  siteTitle: PropTypes.string,
-};
-
-Header.defaultProps = {
-  siteTitle: ``,
 };
 
 export default Header;

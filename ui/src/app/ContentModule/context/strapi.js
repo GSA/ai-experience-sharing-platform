@@ -1,28 +1,58 @@
 /* istanbul ignore file */
-const ROOT_URL = "http://localhost:1337";
+const ROOT_URL = process.env.REACT_APP_API_URL;
 
-const timeout = (t = 1000) => {
-  return new Promise((resolve) => setTimeout(resolve, t));
-};
+export const getAllByContentType = async ({ type }) => {
+  let data;
+  try {
+    const response = await fetch(`${ROOT_URL}/api-${type}`);
+    data = await response.json();
+    if (!response.ok) {
+      throw new Error(data.message);
+    }
+  } catch (e) {
+    throw new Error(e);
+  }
 
-export const getAllByContentType = async (type) => {
-  await timeout();
-  const response = await fetch(`${ROOT_URL}/content/${type}/index.json`);
-  const data = await response.json();
   return data;
 };
 
-export const getContentTypeByName = async (type, slug) => {
-  await timeout();
-  const rootType = type === "page" ? "" : `${type}/`;
-  const response = await fetch(`${ROOT_URL}/${rootType}${slug}`);
-  const data = await response.json();
-  return data;
+export const getContentTypeByName = async ({ type, name }) => {
+  let data;
+  try {
+    const response = await fetch(`${ROOT_URL}/api-${type}?slug=${name}`);
+    data = await response.json();
+    if (!response.ok) {
+      throw new Error(data.message);
+    }
+  } catch (e) {
+    throw new Error(e);
+  }
+
+  if (!data) {
+    throw new Error(`${type} "${name}" not found.`);
+  }
+  if (!Array.isArray(data)) {
+    throw new Error(`Expected "array", received "${typeof data}".`);
+  }
+  if (data.length > 1) {
+    throw new Error("Query returned more than one result.");
+  }
+  return data[0];
 };
 
 export const getTaxonomyByContentType = async (type) => {
-  await timeout();
-  const response = await fetch(`${ROOT_URL}/content/${type}/taxonomy.json`);
-  const data = await response.json();
+  let data;
+  try {
+    const response = await fetch(`${ROOT_URL}/content/${type}/taxonomy.json`);
+    data = await response.json();
+    if (!response.ok) {
+      throw new Error(data.message);
+    }
+  } catch (e) {
+    throw new Error(e);
+  }
+  if (!data) {
+    throw new Error(`Taxonomy "${type}" not found.`);
+  }
   return data;
 };

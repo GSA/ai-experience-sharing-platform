@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import classnames from "classnames";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import Button from "components/Button";
+import Icon from "components/Icon";
 
 const NavItem = ({ id, text, url, items = [] }) => {
   return (
@@ -42,7 +43,9 @@ const NavItem = ({ id, text, url, items = [] }) => {
   );
 };
 
-const Nav = ({ items }) => {
+const Nav = ({ items, header, footer }) => {
+  const Header = header;
+  const Footer = footer;
   const [isOpen, setOpen] = useState(false);
   const handleClick = () => {
     setOpen((state) => !state);
@@ -67,27 +70,39 @@ const Nav = ({ items }) => {
         className={classnames({ "usa-nav": true, "is-visible": isOpen })}
       >
         <div className="usa-nav__inner">
-          <Button
-            id="usa-nav-close"
-            type="button"
-            className="usa-nav-close"
-            onClick={handleClick}
-          >
-            Close
-          </Button>
+          <div className="usa-nav__toggle">
+            <Button
+              id="usa-nav-close"
+              type="button"
+              className="usa-nav-close"
+              onClick={handleClick}
+            >
+              <Icon icon="times" />
+            </Button>
+          </div>
+          {Header && (
+            <div className="usa-nav__header">
+              <Header />
+            </div>
+          )}
           <ul className="usa-accordion usa-nav__primary">
-            {items.map(({ text, link, items }, idx) => {
+            {items.map(({ text, url, items }, idx) => {
               return (
                 <NavItem
                   key={`usa-nav-item-${idx}`}
                   id={idx}
                   text={text}
-                  url={link}
+                  url={url}
                   items={items}
                 />
               );
             })}
           </ul>
+          {Footer && (
+            <div className="usa-nav__footer">
+              <Footer />
+            </div>
+          )}
         </div>
       </nav>
     </>

@@ -6,7 +6,7 @@
 
 .usa-header--extended .usa-current:after,
 .usa-header--extended .usa-nav__link:hover:after,
-.usa-header--extended [aria-expanded='true']:after {
+.usa-header--extended [aria-expanded="true"]:after {
   @include at-media($theme-navigation-width) {
     background-color: #112f4e;
     bottom: -1px;
@@ -14,17 +14,17 @@
 }
 
 .usa-header--extended nav.usa-nav {
-  @include u-border-top(1px, 'base-lighter');
+  @include u-border-top(1px, "base-lighter");
   padding-bottom: 1rem;
 }
 
 .usa-nav__primary > .usa-nav__primary-item > a {
   @include at-media($theme-navigation-width) {
-    @include u-border(1px, 'transparent');
-    @include u-text('semibold');
+    @include u-border(1px, "transparent");
+    @include u-text("semibold");
 
     &.usa-nav__link:hover {
-      @include u-text('primary');
+      @include u-text("primary");
 
       &:not(.usa-current):after {
         content: none;
@@ -32,7 +32,7 @@
     }
 
     &.usa-current {
-      @include u-text('ink');
+      @include u-text("ink");
     }
   }
 }
@@ -45,11 +45,11 @@
 
 .usa-nav__secondary-links {
   a {
-    @include u-text('ink');
+    @include u-text("ink");
     text-decoration: none;
 
     &:hover {
-      @include u-text('primary');
+      @include u-text("primary");
       text-decoration: none;
     }
   }
@@ -76,10 +76,20 @@
 .usa-header + .usa-section,
 .usa-header + main {
   @include at-media($theme-navigation-width) {
-    border-color: color('base');
+    border-color: color("base");
+  }
+}
+
+.usa-header {
+  position: relative;
+  .usa-nav-open {
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    transform: translateY(-50%);
   }
 }
 
 .usa-navbar {
-  @include u-height('10');
+  @include u-height("10");
 }

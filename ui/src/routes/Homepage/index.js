@@ -9,17 +9,16 @@ const Homepage = ({ name }) => {
   const dispatch = useDispatch();
   const { pending, data, error } = useSelector((state) => state.content.page);
   useEffect(() => {
-    dispatch(getPage({ type: "page", name }));
+    dispatch(getPage({ type: "pages", name }));
   }, [dispatch, name]);
-
+  if (pending) {
+    return <Loading isLoading={pending} />;
+  }
   if (error) {
     return <FourOhFour />;
   }
-  return (
-    <Loading isLoading={pending}>
-      <Mdx>{data.body}</Mdx>
-    </Loading>
-  );
+
+  return <Mdx>{data.body}</Mdx>;
 };
 
 Homepage.defaultProps = {

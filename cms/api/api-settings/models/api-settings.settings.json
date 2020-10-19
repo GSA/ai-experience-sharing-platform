@@ -1,8 +1,8 @@
 {
   "kind": "singleType",
-  "collectionName": "Homepage",
+  "collectionName": "settings",
   "info": {
-    "name": "Homepage"
+    "name": "api-settings"
   },
   "options": {
     "increments": true,
@@ -10,8 +10,7 @@
   },
   "attributes": {
     "title": {
-      "type": "string",
-      "required": true
+      "type": "string"
     }
   }
 }

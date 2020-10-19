@@ -1,19 +1,26 @@
 /* istanbul ignore file */
 
-const timeout = (t = 1000) => {
-  return new Promise((resolve) => setTimeout(resolve, t));
-};
+export const createSession = async (props) => {
+  const { provider, search } = props;
+  const requestURL = `${process.env.REACT_APP_API_URL}/auth/${provider}/callback${search}`;
+  let data;
+  try {
+    const response = await fetch(requestURL);
 
-export const postAuthCredentials = async ({ username, password }) => {
-  await timeout();
-  if (username === "jarvis" && password === "vision") {
-    return {
-      token: "some-fake-token",
-    };
+    data = await response.json();
+    if (!response.ok) {
+      throw new Error(data);
+    }
+  } catch (e) {
+    throw new Error(e);
   }
-  return { token: "", error: "Authentication Failed." };
+  return data;
 };
 
 export const endSession = async () => {
-  return { success: true };
+  const logoutUrl = "";
+  const options = {};
+  const request = await fetch(logoutUrl, options);
+  const data = await request.json();
+  return data;
 };

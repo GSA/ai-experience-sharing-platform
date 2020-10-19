@@ -1,15 +1,38 @@
 /* istanbul ignore file */
+const ROOT_URL = process.env.REACT_APP_API_URL;
 
 export const getSiteData = async () => {
-  const response = await fetch(`${process.env.PUBLIC_URL}/settings/site.json`);
-  const data = await response.json();
+  let data;
+  try {
+    const response = await fetch(`${ROOT_URL}/api-settings`);
+    data = await response.json();
+    if (!response.ok) {
+      throw new Error(data.message);
+    }
+  } catch (e) {
+    throw new Error(e);
+  }
+
   return data;
 };
 
 export const getMenus = async () => {
-  const response = await fetch(
-    `${process.env.PUBLIC_URL}/settings/menu/index.json`
-  );
-  const data = await response.json();
+  let data;
+  try {
+    const response = await fetch(`${ROOT_URL}/api-menus`);
+    data = await response.json();
+    if (!response.ok) {
+      throw new Error(data.message);
+    }
+  } catch (e) {
+    throw new Error(e);
+  }
+
+  if (!data) {
+    throw new Error(`No active menus were returned.`);
+  }
+  if (!Array.isArray(data)) {
+    throw new Error(`Expected "array", received "${typeof data}".`);
+  }
   return data;
 };

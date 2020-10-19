@@ -1,13 +1,26 @@
-.usa-nav-open {
-  width: auto;
-  @include at-media("desktop") {
-    display: none;
+.usa-nav {
+  &__toggle {
+    text-align: right;
   }
-}
+  &__header,
+  &__footer {
+    @include u-padding-y(2);
+    @include at-media("desktop") {
+      display: none;
+    }
+  }
 
-.usa-nav-close {
-  width: auto;
-  @include at-media("desktop") {
-    display: none;
+  &-open {
+    width: auto;
+    @include at-media("desktop") {
+      display: none;
+    }
+  }
+
+  &-close {
+    width: auto;
+    @include at-media("desktop") {
+      display: none;
+    }
   }
 }

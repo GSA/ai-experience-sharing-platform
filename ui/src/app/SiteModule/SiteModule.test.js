@@ -30,7 +30,7 @@ describe("SiteModule", () => {
       await store.dispatch(getMenus());
       const site = await store.getState();
       const data = menu("primary")({ site });
-      expect(data.name).toBe("primary");
+      expect(data.slug).toBe("primary");
     });
     it("should return empty if no menu found", async () => {
       await store.dispatch(getMenus());
