@@ -9,9 +9,10 @@ export const initialState = {
   pending: false,
 };
 
-export const login = createAsyncThunk("auth/login", async ({ token }) => ({
-  token,
-}));
+export const login = createAsyncThunk(
+  "auth/login",
+  async ({ provider, search }) => context.createSession({ provider, search })
+);
 
 export const loginUrl = (params) => {
   const rootUrl = process.env.REACT_APP_AUTH_ROOT_URL;
@@ -51,10 +52,16 @@ const AuthModule = createSlice({
     [login.fulfilled]: (state, action) => {
       const newState = {
         ...initialState,
-        isAuth: Boolean(action.payload.token),
-        token: action.payload.token,
+        isAuth: Boolean(action.payload.jwt),
+        token: action.payload.jwt,
       };
       return newState;
+    },
+    [logout.rejected]: (state, action) => {
+      return {
+        ...initialState,
+        error: action.error.message,
+      };
     },
     [logout.pending]: (state) => ({
       ...initialState,

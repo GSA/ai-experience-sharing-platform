@@ -1,5 +1,21 @@
 /* istanbul ignore file */
 
+export const createSession = async (props) => {
+  const { provider, search } = props;
+  const requestURL = `${process.env.REACT_APP_API_URL}/auth/${provider}/callback${search}`;
+  try {
+    const response = await fetch(requestURL);
+
+    const data = await response.json();
+    if (!response.ok) {
+      throw new Error(data);
+    }
+  } catch (e) {
+    throw new Error(e);
+  }
+  return data;
+};
+
 export const endSession = async () => {
   const logoutUrl = "";
   const options = {};
