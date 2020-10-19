@@ -1,12 +1,13 @@
 /*istanbul ignore file */
 
-export const postAuthCredentials = async ({ username, password }) => {
-  if (username === "jarvis" && password === "vision") {
+export const createSession = async ({ provider, search }) => {
+  console.log(provider);
+  if (provider !== "error") {
     return {
-      token: "some-fake-token",
+      jwt: "some-fake-token",
     };
   } else {
-    throw new Error("Invalid Credentials.");
+    throw new Error("Invalid Provider.");
   }
 };
 

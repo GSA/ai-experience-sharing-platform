@@ -60,7 +60,6 @@ export const Col = ({
   children,
   ...props
 }) => {
-  console.log(className, size, tablet, desktop);
   return (
     <div
       className={classnames({

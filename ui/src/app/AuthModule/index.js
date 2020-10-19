@@ -44,7 +44,7 @@ const AuthModule = createSlice({
       };
       return newState;
     },
-    [logout.rejected]: (state, action) => {
+    [login.rejected]: (state, action) => {
       return {
         ...initialState,
         error: action.error.message,
