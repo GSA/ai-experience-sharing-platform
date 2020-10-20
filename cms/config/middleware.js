@@ -1,6 +1,7 @@
 module.exports = {
- load: {
-   after: ['spa', 'authCookie'],
+  load: {
+    before: ["authCookie"],
+    after: ["spa"],
   },
   settings: {
     spa: {
