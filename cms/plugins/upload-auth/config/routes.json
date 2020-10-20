@@ -1,0 +1,12 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/*",
+      "handler": "upload-auth.index",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}
