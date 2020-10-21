@@ -37,7 +37,7 @@ export const getContentTypeByName = async ({ type, name }) => {
   if (data.length > 1) {
     throw new Error("Query returned more than one result.");
   }
-  return data[0];
+  return data[0] || {};
 };
 
 export const getTaxonomyByContentType = async (type) => {
