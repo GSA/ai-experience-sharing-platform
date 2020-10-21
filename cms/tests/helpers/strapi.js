@@ -5,6 +5,7 @@ let instance;
 
 async function setupStrapi() {
   if (!instance) {
+    jest.setTimeout(16 * 1000);
     /** the following code in copied from `./node_modules/strapi/lib/Strapi.js` */
     await Strapi().load();
     instance = strapi; // strapi is global now
@@ -13,6 +14,7 @@ async function setupStrapi() {
       .use(instance.router.allowedMethods()); // populate KOA methods
 
     instance.server = http.createServer(instance.app.callback());
+    jest.setTimeout(5000);
   }
   return instance;
 }
