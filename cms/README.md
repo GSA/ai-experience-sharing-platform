@@ -10,7 +10,7 @@ This is the headless CMS backend.
     * Runs the cms very similar to production.
  * `npm run build`
     * Runs the webpack build for the strapi admin UI. Needed for changes like strapi version changes, plugin changes.
- * `npm run strapi1`
+ * `npm run strapi`
     * Runs the strapi cli help to see additional tools available.
 
 ### Useful links
