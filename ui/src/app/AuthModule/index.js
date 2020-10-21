@@ -42,6 +42,10 @@ const AuthModule = createSlice({
       ...state,
       redirect: action.payload,
     }),
+    clearRedirect: (state) => ({
+      ...state,
+      redirect: "",
+    }),
   },
   extraReducers: {
     [login.pending]: (state) => ({

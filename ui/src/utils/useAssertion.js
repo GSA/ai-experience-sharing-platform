@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useHistory, useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { login } from "app/AuthModule";
+import { login, clearRedirect } from "app/AuthModule";
 
 export default () => {
   const dispatch = useDispatch();
@@ -12,9 +12,10 @@ export default () => {
   useEffect(() => {
     if (search) {
       dispatch(login({ provider: "logingov", search }));
-    }
-    if (redirect) {
-      replace(redirect);
+      if (redirect) {
+        replace(redirect);
+        dispatch(clearRedirect());
+      }
     }
   }, [dispatch, redirect, search, replace]);
 };
