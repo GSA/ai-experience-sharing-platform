@@ -7,9 +7,12 @@
     "develop": "strapi develop",
     "start": "strapi start",
     "build": "strapi build",
-    "strapi": "strapi"
+    "strapi": "strapi",
+    "test": "jest --forceExit --detectOpenHandles"
   },
   "devDependencies": {
+    "jest": "^26.6.0",
+    "supertest": "^5.0.0",
     "webpack": "^4.44.2",
     "webpack-cli": "^3.3.12"
   },
@@ -23,6 +26,7 @@
     "pg": "^8.3.3",
     "pm2": "^4.4.1",
     "serialize-javascript": ">=3.1.0",
+    "object-path": ">=0.11.5",
     "slugify": "^1.4.5",
     "sqlite3": "latest",
     "strapi": "3.2.4",
@@ -44,5 +48,13 @@
     "node": "12.x",
     "npm": "6.x"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "jest": {
+    "testPathIgnorePatterns": [
+      "/node_modules/",
+      ".tmp",
+      ".cache"
+    ],
+    "testEnvironment": "node"
+  }
 }
