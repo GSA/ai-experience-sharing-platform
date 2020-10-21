@@ -6,6 +6,7 @@ import { loginUrl, setRedirect } from "app/AuthModule";
 import loginLogo from "./logingov.svg";
 import { useLocation } from "react-router-dom";
 import Alert from "components/Alert";
+import { Grid } from "components/Grid";
 
 const Login = ({ children, oAuthUrl }) => {
   const dispatch = useDispatch();
@@ -19,17 +20,25 @@ const Login = ({ children, oAuthUrl }) => {
   return isAuth && children ? (
     children
   ) : (
-    <div className="text-center margin-y-10 padding-y-10">
-      <h1>Your must be logged in to view this content.</h1>
-      <Button onClick={handleClick} external className="Login__link">
-        <img style={{ width: "100px" }} alt="Login.gov link" src={loginLogo} />
-      </Button>
-      {error && (
-        <Alert title="Login Error" variant="error">
-          There was an error when attempting to login.
-        </Alert>
-      )}
-    </div>
+    <Grid className="text-center margin-y-10 padding-y-10">
+      <div className="text-center">
+        <h1>Your must be logged in to view this content.</h1>
+        {error && (
+          <div className="padding-bottom-2">
+            <Alert className="display-inline-block" variant="error" slim>
+              {error}
+            </Alert>
+          </div>
+        )}
+        <Button onClick={handleClick} external className="Login__link">
+          <img
+            style={{ width: "100px" }}
+            alt="Login.gov link"
+            src={loginLogo}
+          />
+        </Button>
+      </div>
+    </Grid>
   );
 };
 

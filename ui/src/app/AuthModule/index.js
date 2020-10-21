@@ -5,6 +5,13 @@ import context from "./context";
 export const initialState = {
   isAuth: false,
   token: "",
+  user: {
+    id: "",
+    username: "t",
+    email: "",
+    provider: "",
+    confirmed: null,
+  },
   error: null,
   pending: false,
   redirect: "",
@@ -48,6 +55,7 @@ const AuthModule = createSlice({
         redirect: state.redirect,
         isAuth: Boolean(action.payload.jwt),
         token: action.payload.jwt,
+        user: action.payload.user,
       };
       return newState;
     },

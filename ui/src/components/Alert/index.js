@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import classnames from "classnames";
 
-const Alert = ({ title, variant, slim, icon, children }) => {
+const Alert = ({ title, className, variant, slim, icon, children }) => {
   return (
     <div
       className={classnames({
@@ -10,6 +10,7 @@ const Alert = ({ title, variant, slim, icon, children }) => {
         [`usa-alert--${variant}`]: variant,
         "usa-alert--slim": slim,
         "usa-alert--no-icon": !icon,
+        [className]: className,
       })}
       role="alert"
     >
@@ -22,6 +23,7 @@ const Alert = ({ title, variant, slim, icon, children }) => {
 };
 
 Alert.defaultProps = {
+  className: "",
   variant: "info",
   slim: false,
   icon: true,

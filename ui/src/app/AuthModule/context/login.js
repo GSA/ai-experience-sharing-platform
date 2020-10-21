@@ -8,7 +8,7 @@ export const createSession = async (props) => {
     const response = await fetch(requestURL);
     data = await response.json();
     if (!response.ok) {
-      throw new Error(data.message.message);
+      throw new Error(`${data.error} - ${data.message.message}`);
     }
   } catch (e) {
     throw new Error(e);
