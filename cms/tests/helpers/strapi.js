@@ -5,7 +5,7 @@ let instance;
 
 async function setupStrapi() {
   if (!instance) {
-    jest.setTimeout(16 * 1000);
+    jest.setTimeout(32 * 1000);
     /** the following code in copied from `./node_modules/strapi/lib/Strapi.js` */
     await Strapi().load();
     instance = strapi; // strapi is global now
