@@ -5,7 +5,7 @@ This is the headless CMS backend.
 ### The following npm scripts are defined
 
  * `npm run develop`
-    * Runs the cms with file watching turned on. Changes new new content types are detected and strapi is restarted.
+    * Runs the cms with file watching turned on. Changes and new content types are detected and Strapi is restarted.
  * `npm run start`
     * Runs the cms very similar to production.
  * `npm run build`
