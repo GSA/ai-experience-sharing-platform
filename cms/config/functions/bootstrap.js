@@ -47,6 +47,6 @@ const setupJwtSecret = async () => {
 }
 
 module.exports = async () => {
-  await setupPublicPermissions();
-  await setupJwtSecret();
+  // await setupPublicPermissions();
+  // await setupJwtSecret();
 };
