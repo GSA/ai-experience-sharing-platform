@@ -89,6 +89,6 @@ const AuthModule = createSlice({
   },
 });
 
-export const { reset, setRedirect } = AuthModule.actions;
+export const { reset, setRedirect, clearRedirect } = AuthModule.actions;
 
 export default AuthModule.reducer;

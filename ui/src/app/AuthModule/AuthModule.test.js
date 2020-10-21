@@ -5,6 +5,7 @@ import reducer, {
   login,
   logout,
   setRedirect,
+  clearRedirect,
 } from "./index";
 
 const store = configureStore({ reducer });
@@ -47,6 +48,12 @@ describe("AuthModule", () => {
       await store.dispatch(setRedirect("/test"));
       const state = await store.getState();
       expect(state.redirect).toBe("/test");
+    });
+
+    it("should set redirect", async () => {
+      await store.dispatch(clearRedirect("/test"));
+      const state = await store.getState();
+      expect(state.redirect).toBe("");
     });
   });
 });
