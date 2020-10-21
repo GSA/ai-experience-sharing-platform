@@ -1,5 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
-import reducer, { initialState, reset, login, logout } from "./index";
+import reducer, {
+  initialState,
+  reset,
+  login,
+  logout,
+  setRedirect,
+} from "./index";
 
 const store = configureStore({ reducer });
 
@@ -35,6 +41,12 @@ describe("AuthModule", () => {
       await store.dispatch(logout("error"));
       const state = await store.getState();
       expect(state.error).toBe("Logout error.");
+    });
+
+    it("should set redirect", async () => {
+      await store.dispatch(setRedirect("/test"));
+      const state = await store.getState();
+      expect(state.redirect).toBe("/test");
     });
   });
 });

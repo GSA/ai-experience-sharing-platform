@@ -54,6 +54,20 @@ describe("<PrimaryNav />", () => {
       );
       expect(wrapper.find(".usa-nav__submenu-item").length).toBe(2);
     });
+
+    it("should render header and footer", () => {
+      const wrapper = mount(
+        <TestProvider>
+          <PrimaryNav
+            items={items1}
+            header={() => <div className="testheader">Test Header</div>}
+            footer={() => <div className="testfooter">Test Footer</div>}
+          />
+        </TestProvider>
+      );
+      expect(wrapper.find(".testheader").text()).toBe("Test Header");
+      expect(wrapper.find(".testfooter").text()).toBe("Test Footer");
+    });
   });
 
   describe("mobile menu", () => {

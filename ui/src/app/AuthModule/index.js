@@ -7,6 +7,7 @@ export const initialState = {
   token: "",
   error: null,
   pending: false,
+  redirect: "",
 };
 
 export const login = createAsyncThunk(
@@ -30,15 +31,21 @@ const AuthModule = createSlice({
   initialState,
   reducers: {
     reset: () => initialState,
+    setRedirect: (state, action) => ({
+      ...state,
+      redirect: action.payload,
+    }),
   },
   extraReducers: {
     [login.pending]: (state) => ({
       ...initialState,
+      redirect: state.redirect,
       pending: true,
     }),
     [login.fulfilled]: (state, action) => {
       const newState = {
         ...initialState,
+        redirect: state.redirect,
         isAuth: Boolean(action.payload.jwt),
         token: action.payload.jwt,
       };
@@ -47,11 +54,14 @@ const AuthModule = createSlice({
     [login.rejected]: (state, action) => {
       return {
         ...initialState,
+        redirect: state.redirect,
         error: action.error.message,
       };
     },
     [logout.pending]: (state) => ({
       ...initialState,
+
+      redirect: state.redirect,
       pending: true,
     }),
     [logout.fulfilled]: (state, action) => ({
@@ -60,12 +70,13 @@ const AuthModule = createSlice({
     [logout.rejected]: (state, action) => {
       return {
         ...initialState,
+        redirect: state.redirect,
         error: action.error.message,
       };
     },
   },
 });
 
-export const { reset } = AuthModule.actions;
+export const { reset, setRedirect } = AuthModule.actions;
 
 export default AuthModule.reducer;

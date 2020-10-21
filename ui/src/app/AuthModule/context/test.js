@@ -1,7 +1,6 @@
 /*istanbul ignore file */
 
 export const createSession = async ({ provider, search }) => {
-  console.log(provider);
   if (provider !== "error") {
     return {
       jwt: "some-fake-token",
