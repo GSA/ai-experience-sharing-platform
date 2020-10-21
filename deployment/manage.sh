@@ -6,6 +6,7 @@
 
 #set -eo pipefail
 
+CMS_SERVICE=cms-service
 LOGIN_GOV_SERVICE=login-gov
 TERRAFORM_SERVICE=terraform-user
 TERRAFORM_SERVICE_KEY=${TERRAFORM_SERVICE}-key
@@ -20,7 +21,7 @@ Manage a cloud.gov deployment environment.
 Usage: manage.sh <OPERATION> -o <cloud.gov organization name> -s <cloud.gov space name>
 
 OPERATION:
-    setup   - create a new cloud.gov space and login.gov certificate
+    setup   - create a new cloud.gov space, login.gov certificate, and strapi secrets
     show    - show Terraform S3 and cloud.gov credentials
     export  - when used with `source`, exports credentials to the environment
     deploy  - deploy the locally-built application via Terraform
@@ -129,6 +130,17 @@ setup() {
     CERTIFICATE=`cat deployment/login-gov-${organization_name}-${space_name}-cert.pem | jq -aRs`
     ISSUER="urn:gov:gsa:openidconnect.profiles:sp:sso:gsa:ai_experience"
     cf create-user-provided-service "${LOGIN_GOV_SERVICE}" -p "{\"issuer\": \"${ISSUER}\", \"privateKey\": ${PRIVATE_KEY}, \"certificate\": ${CERTIFICATE}}"
+  fi
+
+  if service_exists "${CMS_SERVICE}" ; then
+    echo space "${CMS_SERVICE}" already created
+  else
+
+    ADMIN_JWT_SECRET=`openssl rand 128 | LC_ALL=C tr -dc 'A-Za-z0-9!#$%&()*+,-./:;<=>?@[\]^_{|}~' | head -c 32`
+    JWT_SECRET=`openssl rand 128 | LC_ALL=C tr -dc 'A-Za-z0-9!#$%&()*+,-./:;<=>?@[\]^_{|}~' | head -c 32`
+    SESSION_SECRET_1=`openssl rand 128 | LC_ALL=C tr -dc 'A-Za-z0-9!#$%&()*+,-./:;<=>?@[\]^_{|}~' | head -c 32`
+    SESSION_SECRET_2=`openssl rand 128 | LC_ALL=C tr -dc 'A-Za-z0-9!#$%&()*+,-./:;<=>?@[\]^_{|}~' | head -c 32`
+    cf create-user-provided-service "${CMS_SERVICE}" -p "{\"adminJwtSecret\": \"${ADMIN_JWT_SECRET}\", \"jwtSecret\": \"${JWT_SECRET_KEY}\", \"sessionSecret1\": \"${SESSION_SECRET_1}\", \"sessionSecret2\": \"${SESSION_SECRET_2}\"}"
   fi
 }
 

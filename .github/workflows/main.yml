@@ -156,8 +156,8 @@ jobs:
       - name: Terraform Init
         run: terraform init -input=false deployment/workspaces/taylor.zajicek
 
-      # - name: Terraform Format
-      #   run: terraform fmt -check deployment/workspaces/taylor.zajicek
+      - name: Terraform Format
+        run: terraform fmt -check deployment/workspaces/taylor.zajicek
 
       - name: Terraform Plan
         id: plan

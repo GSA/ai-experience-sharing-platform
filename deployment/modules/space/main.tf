@@ -10,6 +10,11 @@ data "cloudfoundry_user_provided_service" "login-gov" {
   space = data.cloudfoundry_space.space.id
 }
 
+data "cloudfoundry_user_provided_service" "cms-service" {
+  name  = "cms-service"
+  space = data.cloudfoundry_space.space.id
+}
+
 resource "cloudfoundry_service_instance" "strapi-api-db" {
   name            = "strapi-api-db"
   space           = data.cloudfoundry_space.space.id
@@ -47,6 +52,9 @@ resource "cloudfoundry_app" "strapi-api-host" {
   }
   service_binding {
     service_instance = data.cloudfoundry_user_provided_service.login-gov.id
+  }
+  service_binding {
+    service_instance = data.cloudfoundry_user_provided_service.cms-service.id
   }
   routes {
     route = cloudfoundry_route.strapi-api-host.id
