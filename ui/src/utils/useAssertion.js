@@ -6,16 +6,16 @@ import { login, clearRedirect } from "app/AuthModule";
 export default () => {
   const dispatch = useDispatch();
   const { search } = useLocation();
-  const { replace } = useHistory();
+  const { push } = useHistory();
   const { redirect } = useSelector((state) => state.auth);
 
   useEffect(() => {
     if (search) {
       dispatch(login({ provider: "logingov", search }));
       if (redirect) {
-        replace(redirect);
+        push(redirect);
         dispatch(clearRedirect());
       }
     }
-  }, [dispatch, redirect, search, replace]);
+  }, [dispatch, redirect, search, push]);
 };

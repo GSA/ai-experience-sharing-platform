@@ -5,6 +5,4 @@ export default (run) => {
   const { pathname } = useLocation();
 
   useEffect(run, [pathname, run]);
-
-  return null;
 };

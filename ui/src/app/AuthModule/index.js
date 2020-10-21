@@ -72,7 +72,6 @@ const AuthModule = createSlice({
     },
     [logout.pending]: (state) => ({
       ...initialState,
-
       redirect: state.redirect,
       pending: true,
     }),
@@ -82,7 +81,6 @@ const AuthModule = createSlice({
     [logout.rejected]: (state, action) => {
       return {
         ...initialState,
-        redirect: state.redirect,
         error: action.error.message,
       };
     },
