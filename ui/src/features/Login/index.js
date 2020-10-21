@@ -21,7 +21,7 @@ const Login = ({ children, oAuthUrl }) => {
   ) : (
     <div className="text-center margin-y-10 padding-y-10">
       <h1>Your must be logged in to view this content.</h1>
-      <Button onClick={handleClick} className="Login__link">
+      <Button onClick={handleClick} external className="Login__link">
         <img style={{ width: "100px" }} alt="Login.gov link" src={loginLogo} />
       </Button>
       {error && (
