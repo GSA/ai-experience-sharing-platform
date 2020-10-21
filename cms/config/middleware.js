@@ -23,13 +23,13 @@ module.exports = ({ env }) => {
         client: "cookie",
         key: "strapi.sid",
         prefix: "strapi:sess:",
-        ttl: 864000000,
+        ttl: 12 * 60 * 60 * 1000,
         rolling: false,
         secretKeys: [env("SESSION_SECRET_1", sessionSecret1), env("SESSION_SECRET_2", sessionSecret2)],
         cookie: {
           path: "/",
           httpOnly: true,
-          maxAge: 864000000,
+          maxAge: 12 * 60 * 60 * 1000,
           rewrite: true,
           signed: false
         },
