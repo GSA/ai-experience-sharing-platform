@@ -13,6 +13,8 @@ export default () => {
     if (search) {
       dispatch(login({ provider: "logingov", search }));
     }
-    replace(redirect);
+    if (redirect) {
+      replace(redirect);
+    }
   }, [dispatch, redirect, search, replace]);
 };
