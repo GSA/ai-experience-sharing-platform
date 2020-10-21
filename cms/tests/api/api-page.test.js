@@ -10,9 +10,9 @@ afterAll((done) => {
   strapi.server.close(() => done());
 });
 
-it('should not allow anonymous access', async done => {
+it('should allow anonymous access', async done => {
   await request(strapi.server)
     .get('/api-pages')
-    .expect(403);
+    .expect(200);
   done();
 });
