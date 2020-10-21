@@ -8,7 +8,7 @@ import Logout from "features/Logout";
 const NavHeader = () => {
   const { isAuth } = useSelector((state) => state.auth);
   if (isAuth) {
-    return <Logout variant="outline" fullwidth />;
+    return <Logout className="Logout__link" variant="outline" fullwidth />;
   }
   return null;
 };
