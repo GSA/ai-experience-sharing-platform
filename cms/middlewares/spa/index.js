@@ -12,7 +12,11 @@ module.exports = strapi => {
       strapi.app.use(async (ctx, next) => {
         await next();
         if (ctx.status === 404) {
-          const spaIndex = await fs.readFile(path.join(staticDir, 'index.html'));
+          try {
+            const spaIndex = await fs.readFile(path.join(staticDir, 'index.html'));
+          } catch {
+            return;
+          }
           ctx.status = 200;
           ctx.type = 'text/html; charset=utf-8';
           ctx.send(spaIndex);
