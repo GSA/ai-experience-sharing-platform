@@ -140,7 +140,7 @@ setup() {
     JWT_SECRET=`openssl rand 128 | LC_ALL=C tr -dc 'A-Za-z0-9!#$%&()*+,-./:;<=>?@[\]^_{|}~' | head -c 32`
     SESSION_SECRET_1=`openssl rand 128 | LC_ALL=C tr -dc 'A-Za-z0-9!#$%&()*+,-./:;<=>?@[\]^_{|}~' | head -c 32`
     SESSION_SECRET_2=`openssl rand 128 | LC_ALL=C tr -dc 'A-Za-z0-9!#$%&()*+,-./:;<=>?@[\]^_{|}~' | head -c 32`
-    cf create-user-provided-service "${CMS_SERVICE}" -p "{\"adminJwtSecret\": \"${ADMIN_JWT_SECRET}\", \"jwtSecret\": \"${JWT_SECRET_KEY}\", \"sessionSecret1\": \"${SESSION_SECRET_1}\", \"sessionSecret2\": \"${SESSION_SECRET_2}\"}"
+    cf create-user-provided-service "${CMS_SERVICE}" -p "{\"adminJwtSecret\": \"${ADMIN_JWT_SECRET}\", \"jwtSecret\": \"${JWT_SECRET}\", \"sessionSecret1\": \"${SESSION_SECRET_1}\", \"sessionSecret2\": \"${SESSION_SECRET_2}\"}"
   fi
 }
 
