@@ -7,6 +7,8 @@ module.exports = strapi => {
       const { path: publicPath } = strapi.config.middleware.settings.public;
       const staticDir = path.resolve(strapi.dir, publicPath || strapi.config.paths.static);
 
+      strapi.app.on('error', console.log);
+
       strapi.app.use(async (ctx, next) => {
         await next();
         if (ctx.status === 404) {
