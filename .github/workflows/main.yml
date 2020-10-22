@@ -98,6 +98,9 @@ jobs:
         if: steps.cache-node_modules.outputs.cache-hit != 'true'
         run: npm ci
 
+      - name: Test Strapi
+        run: npm run test
+
       - name: Build Strapi
         run: npm run build
         env:
@@ -153,8 +156,8 @@ jobs:
       - name: Terraform Init
         run: terraform init -input=false deployment/workspaces/taylor.zajicek
 
-      # - name: Terraform Format
-      #   run: terraform fmt -check deployment/workspaces/taylor.zajicek
+      - name: Terraform Format
+        run: terraform fmt -check deployment/workspaces/taylor.zajicek
 
       - name: Terraform Plan
         id: plan

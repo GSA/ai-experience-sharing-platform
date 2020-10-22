@@ -7,10 +7,17 @@ module.exports = strapi => {
       const { path: publicPath } = strapi.config.middleware.settings.public;
       const staticDir = path.resolve(strapi.dir, publicPath || strapi.config.paths.static);
 
+      strapi.app.on('error', console.log);
+
       strapi.app.use(async (ctx, next) => {
         await next();
         if (ctx.status === 404) {
-          const spaIndex = await fs.readFile(path.join(staticDir, 'index.html'));
+          let spaIndex;
+          try {
+            spaIndex = await fs.readFile(path.join(staticDir, 'index.html'));
+          } catch {
+            return;
+          }
           ctx.status = 200;
           ctx.type = 'text/html; charset=utf-8';
           ctx.send(spaIndex);

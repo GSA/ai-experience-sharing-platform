@@ -11,8 +11,8 @@ module.exports = ({ env }) => {
         "region": env('S3_REGION', cloudFoundryConfig['s3'][0].credentials.region),
         "params": {
           "Bucket": env('S3_BUCKET', cloudFoundryConfig['s3'][0].credentials.bucket)
-        }
-      }
+        },
+      },
     },
     'upload-auth': {
       "providerOptions": {
@@ -21,8 +21,8 @@ module.exports = ({ env }) => {
         "region": env('S3_REGION', cloudFoundryConfig['s3'][0].credentials.region),
         "params": {
           "Bucket": env('S3_BUCKET', cloudFoundryConfig['s3'][0].credentials.bucket)
-        }
-      }
-    }
+        },
+      },
+    },
   };
 };
