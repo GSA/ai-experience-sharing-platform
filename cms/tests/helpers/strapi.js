@@ -12,7 +12,9 @@ const setupFakeSpaIndex = async () => {
   try {
     await fs.mkdir(publicDir);
     await fs.writeFile(path.join(publicDir, 'index.html', fakeSpaIndex, { flag: 'wx' }))
-  } catch (err) {}
+  } catch (err) {
+    console.log('Unable to ensure public/index.html because', err);
+  }
 };
 
 async function setupStrapi() {
