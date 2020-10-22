@@ -8,13 +8,13 @@ let instance;
 const fakeSpaIndex = '<html><head><title>Fake SPA Index</title></head><body></body></html>';
 
 const setupFakeSpaIndex = async () => {
-  const publicDir = path.join(__dirname, '../../public')
+  const publicDir = path.join(__dirname, '../../public');
   try {
     await fs.mkdir(publicDir);
-    await fs.writeFile(path.join(publicDir, 'index.html', fakeSpaIndex, { flag: 'wx' }))
-  } catch (err) {
-    console.log('Unable to ensure public/index.html because', err);
-  }
+  } catch (err) {}
+  try {
+    await fs.writeFile(path.join(publicDir, 'index.html'), fakeSpaIndex, { flag: 'wx' })
+  } catch (err) {}
 };
 
 async function setupStrapi() {
