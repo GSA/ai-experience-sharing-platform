@@ -21,7 +21,13 @@ module.exports = {
     const requestedFile = ctx.captures[0];
 
     const mediaToken = ctx.cookies.get('media_auth');
-    const isTokenValid = await strapi.plugins['users-permissions'].services.jwt.verify(mediaToken);
+
+    let isTokenValid = false;
+    try {
+      if (mediaToken) {
+        isTokenValid = await strapi.plugins['users-permissions'].services.jwt.verify(mediaToken);
+      }
+    } catch (err) {}
     
     if ((ctx.isAuthenticated && ctx.isAuthenticated()) || publicAssetMatcher.test(requestedFile) || isTokenValid) {
       const data = await s3.getObject({
@@ -35,5 +41,12 @@ module.exports = {
       ctx.status = 404;
       return;
     }
-  }
+  },
+
+  logout: async (ctx) => {
+    if (ctx.cookies.get('media_auth')) {
+      ctx.cookies.set('media_auth');
+    }
+    ctx.send({});
+  },
 };

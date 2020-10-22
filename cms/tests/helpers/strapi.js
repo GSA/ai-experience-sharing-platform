@@ -7,7 +7,7 @@ let instance;
 
 const fakeSpaIndex = '<html><head><title>Fake SPA Index</title></head><body></body></html>';
 
-const setupFakeSpaIndex = async () => {
+async function setupFakeSpaIndex() {
   const publicDir = path.join(__dirname, '../../public');
   try {
     await fs.mkdir(publicDir);
@@ -15,6 +15,47 @@ const setupFakeSpaIndex = async () => {
   try {
     await fs.writeFile(path.join(publicDir, 'index.html'), fakeSpaIndex, { flag: 'wx' })
   } catch (err) {}
+};
+
+async function bootstrapUsers() {
+  const superAdminRole = await strapi.admin.services.role.getSuperAdmin();
+  const input = {
+    email: 'example@example.com',
+    lastname: 'lastname',
+    fistname: 'firstname',
+  };
+  await strapi.admin.services.user.create({
+    ...input,
+    registrationToken: null,
+    isActive: true,
+    roles: superAdminRole ? [superAdminRole.id] : [],
+  });
+
+  const user = {
+    email: 'example@example.com',
+    confirmed: true,
+    username: 'example@example.com',
+    provider: 'local',
+  };
+
+  const advanced = await strapi
+        .store({
+          environment: '',
+          type: 'plugin',
+          name: 'users-permissions',
+          key: 'advanced',
+        })
+        .get();
+
+  if (!user.role) {
+    const defaultRole = await strapi
+          .query('role', 'users-permissions')
+          .findOne({ type: advanced.default_role }, []);
+
+    user.role = defaultRole.id;
+  }
+
+  await strapi.plugins['users-permissions'].services.user.add(user);
 };
 
 async function setupStrapi() {
@@ -33,4 +74,4 @@ async function setupStrapi() {
   }
   return instance;
 }
-module.exports = { setupStrapi };
+module.exports = { setupStrapi, bootstrapUsers };

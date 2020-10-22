@@ -12,30 +12,40 @@ const getServiceConfig = require('../cloud-foundry-data').getServiceConfig;
 
 const setupPublicPermissions = async () => {
   const publicRoleId = 2;
+  const authenticatedRoleId = 1;
 
   const plugins = await strapi.plugins['users-permissions'].services.userspermissions.getPlugins();
-  const role = await strapi.plugins['users-permissions'].services.userspermissions.getRole(
-    publicRoleId,
-    plugins
-  );
+  for (roleId of [publicRoleId, authenticatedRoleId]) {
+    const role = await strapi.plugins['users-permissions'].services.userspermissions.getRole(
+      roleId,
+      plugins
+    );
 
-  const publicPermissions = {
-    'api-menu': ['count', 'find', 'findone'],
-    'api-page': ['count', 'find', 'findone'],
-    'api-settings': ['find'],
-    'api-usecase': ['count', 'find', 'findone'],
-  };
+    const publicPermissions = {
+      application: {
+        'api-menu': ['count', 'find', 'findone'],
+        'api-page': ['count', 'find', 'findone'],
+        'api-settings': ['find'],
+        'api-usecase': ['count', 'find', 'findone'],
+      },
+      'upload-auth': {
+        'upload-auth': ['index', 'logout'],
+      },
+    };
 
-  for (const controller in publicPermissions) {
-    for (const action of publicPermissions[controller]) {
-      role.permissions.application.controllers[controller][action].enabled = true;
+    for (const plugin in publicPermissions) {
+      for (const controller in publicPermissions[plugin]) {
+        for (const action of publicPermissions[plugin][controller]) {
+          role.permissions[plugin].controllers[controller][action].enabled = true;
+        }
+      }
     }
-  }
 
-  await strapi.plugins['users-permissions'].services.userspermissions.updateRole(
-    publicRoleId,
-    role
-  );
+    await strapi.plugins['users-permissions'].services.userspermissions.updateRole(
+      roleId,
+      role
+    );
+  }
 };
 
 const setupJwtSecret = async () => {
