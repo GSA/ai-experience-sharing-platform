@@ -23,7 +23,7 @@ export const login = createAsyncThunk(
 );
 
 export const loginUrl = (params) => {
-  const rootUrl = `${process.env.REACT_APP_API_URL}/connect/logingov`;
+  const rootUrl = `/connect/logingov`;
   const query = {};
   return `${rootUrl}?${QS.stringify(query)}`;
 };
