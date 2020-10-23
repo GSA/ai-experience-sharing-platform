@@ -1,5 +1,5 @@
 /* istanbul ignore file */
-const ROOT_URL = process.env.REACT_APP_API_URL;
+const ROOT_URL = process.env.REACT_APP_API_URL || "";
 
 export const getSiteData = async () => {
   let data;

@@ -1,12 +1,19 @@
 .usa-nav {
+  &__inner {
+    @include at-media("desktop") {
+      display: flex;
+    }
+  }
+
   &__toggle {
     text-align: right;
   }
   &__header,
   &__footer {
     @include u-padding-y(2);
+
     @include at-media("desktop") {
-      display: none;
+      display: inline-block;
     }
   }
 

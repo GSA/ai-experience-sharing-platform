@@ -5,7 +5,7 @@ import { siteMeta, menu } from "app/SiteModule";
 import PrimaryNav from "components/PrimaryNav";
 import Logout from "features/Logout";
 
-const NavHeader = () => {
+const NavAuth = () => {
   const { isAuth } = useSelector((state) => state.auth);
   if (isAuth) {
     return <Logout className="Logout__link" variant="outline" fullwidth />;
@@ -28,7 +28,7 @@ const Header = () => {
           </em>
         </div>
       </div>
-      <PrimaryNav items={items} footer={NavHeader} />
+      <PrimaryNav items={items} footer={NavAuth} />
     </header>
   );
 };
