@@ -13,7 +13,7 @@ const Page = () => {
   const { pending, data, error } = useSelector((state) => state.content.page);
   const { title, body } = data;
   useEffect(() => {
-    dispatch(getPage({ type: "page", name }));
+    dispatch(getPage({ type: "pages", name }));
   }, [name, dispatch]);
 
   if (error) {
