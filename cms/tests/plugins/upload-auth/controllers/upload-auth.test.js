@@ -83,3 +83,34 @@ it('should remove the cookie when the request is logout', async done => {
       done();
     });
 });
+
+it('should return media when the request is not authenticated and the media is prefixed with public_', async done => {
+  const spy = jest.spyOn(strapi.plugins['upload-auth'].provider, 'getObject');
+  strapi.plugins['upload-auth'].provider.getObject.mockReturnValue({
+    promise: () => (Promise.resolve(exampleS3Payload))
+  })
+
+  await request(strapi.server)
+    .get('/upload-auth/public_secure_file.txt')
+    .expect('Content-Type', /text/)
+    .expect(200, /hi there/).then((data) => {
+      done();
+    });
+});
+
+it('should return media when the request is authenticated and it is prefixed with public_', async done => {
+  const spy = jest.spyOn(strapi.plugins['upload-auth'].provider, 'getObject');
+  strapi.plugins['upload-auth'].provider.getObject.mockReturnValue({
+    promise: () => (Promise.resolve(exampleS3Payload))
+  })
+
+  const jwt = strapi.plugins['users-permissions'].services.jwt.issue({id: 1});
+
+  await request(strapi.server)
+    .get('/upload-auth/public_secure_file.txt')
+    .set('Authorization', `Bearer ${jwt}`)
+    .expect('Content-Type', /text/)
+    .expect(200, /hi there/).then((data) => {
+      done();
+    });
+});
