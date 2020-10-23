@@ -18,9 +18,13 @@ module.exports = ({ env }) => {
       authCookie: {
         enabled: true,
       },
+      poweredBy: {
+        enabled: false,
+      },
       session: {
         enabled: true,
-        client: "cookie",
+        client: serviceConfig.isLocal ? "sqlite" : "postgresql",
+        connection: serviceConfig.isLocal ? "default" : "pg",
         key: "strapi.sid",
         prefix: "strapi:sess:",
         ttl: 12 * 60 * 60 * 1000,
