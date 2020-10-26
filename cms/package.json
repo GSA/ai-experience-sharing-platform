@@ -19,7 +19,7 @@
   "dependencies": {
     "aws-sdk": "2.762.0",
     "css-loader": "^2.1.1",
-    "grant": "5.4.5",
+    "grant": "taylor-work/grant#d940be3e553c75eb76cd69a3a5fa0228c0b1365d",
     "knex": "<0.20.0",
     "node-fetch": ">=2.6.1",
     "node-forge": ">=0.10.0",
