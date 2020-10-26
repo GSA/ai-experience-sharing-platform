@@ -18,8 +18,14 @@ module.exports = ({ env }) => {
       authCookie: {
         enabled: true,
       },
+      poweredBy: {
+        enabled: false,
+      },
       session: {
         enabled: true,
+        // Waiting for https://github.com/strapi/strapi/pull/8457 to be merged
+        // client: serviceConfig.isLocal ? "sqlite" : "postgresql",
+        // connection: serviceConfig.isLocal ? "default" : "pg",
         client: "cookie",
         key: "strapi.sid",
         prefix: "strapi:sess:",
