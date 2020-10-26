@@ -1,8 +1,10 @@
 /* istanbul ignore file */
 
+const ROOT_URL = process.env.REACT_APP_API_URL || "";
+
 export const createSession = async (props) => {
   const { provider, search } = props;
-  const requestURL = `${process.env.REACT_APP_API_URL}/auth/${provider}/callback${search}`;
+  const requestURL = `${ROOT_URL}/auth/${provider}/callback${search}`;
   let data;
   try {
     const response = await fetch(requestURL);
@@ -17,7 +19,7 @@ export const createSession = async (props) => {
 };
 
 export const endSession = async () => {
-  const logoutUrl = "";
+  const logoutUrl = `${ROOT_URL}/upload-auth/logout`;
   const options = {};
   const request = await fetch(logoutUrl, options);
   const data = await request.json();
