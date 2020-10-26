@@ -8,10 +8,12 @@
     "start": "strapi start",
     "build": "strapi build",
     "strapi": "strapi",
-    "test": "jest --forceExit --detectOpenHandles"
+    "test": "jest --forceExit --detectOpenHandles",
+    "preinstall": "npx npm-force-resolutions"
   },
   "devDependencies": {
     "jest": "^26.6.0",
+    "npm-force-resolutions": "0.0.3",
     "supertest": "^5.0.0",
     "webpack": "^4.44.2",
     "webpack-cli": "^3.3.12"
@@ -39,6 +41,9 @@
     "strapi-plugin-users-permissions": "3.2.4",
     "strapi-provider-upload-aws-s3-auth": "github:flexion/strapi-provider-upload-aws-s3-auth#v0.0.3",
     "strapi-utils": "3.2.4"
+  },
+  "resolutions": {
+    "grant": "taylor-work/grant#d940be3e553c75eb76cd69a3a5fa0228c0b1365d"
   },
   "author": {
     "name": "A Strapi developer"
