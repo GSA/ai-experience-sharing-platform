@@ -23,8 +23,10 @@ module.exports = ({ env }) => {
       },
       session: {
         enabled: true,
-        client: serviceConfig.isLocal ? "sqlite" : "postgresql",
-        connection: serviceConfig.isLocal ? "default" : "pg",
+        // Waiting for https://github.com/strapi/strapi/pull/8457 to be merged
+        // client: serviceConfig.isLocal ? "sqlite" : "postgresql",
+        // connection: serviceConfig.isLocal ? "default" : "pg",
+        client: "cookie",
         key: "strapi.sid",
         prefix: "strapi:sess:",
         ttl: 12 * 60 * 60 * 1000,
