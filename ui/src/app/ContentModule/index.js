@@ -7,19 +7,35 @@ export const initialState = {
   taxonomy: { pending: false, data: [], error: null },
 };
 
+const getToken = (type, state) => {
+  const sendToken = state?.auth?.authenticatedTypes ? state.auth.authenticatedTypes[type] : false;
+  return sendToken ? state.auth.token : null;
+};
+
 export const getPage = createAsyncThunk(
   "content/getPage",
-  async ({ type = "page", name = "" }) =>
-    await context.getContentTypeByName({ type, name })
+  async ({ type = "page", name = "" }, thunkAPI) => {
+    const token = getToken(type, thunkAPI.getState());
+
+    return await context.getContentTypeByName({ type, name, token })
+  }
 );
 export const getTaxonomy = createAsyncThunk(
   "content/getTaxonomy",
-  async ({ type }) => await context.getTaxonomyByContentType({ type })
+  async ({ type }, thunkAPI) => {
+    const token = getToken(type, thunkAPI.getState());
+
+    return await context.getTaxonomyByContentType({ type, token })
+  }
 );
 
 export const getList = createAsyncThunk(
   "content/getList",
-  async ({ type }) => await context.getAllByContentType({ type })
+  async ({ type }, thunkAPI) => {
+    const token = getToken(type, thunkAPI.getState());
+
+    return await context.getAllByContentType({ type, token })
+  }
 );
 
 const pending = (key, state) => {

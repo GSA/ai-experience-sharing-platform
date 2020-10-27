@@ -20,7 +20,14 @@ export const createSession = async (props) => {
 
 export const endSession = async () => {
   const logoutUrl = `${ROOT_URL}/upload-auth/logout`;
-  const options = {};
+  const options = {
+    method: 'POST',
+    credentials: 'include',
+    headers: {
+      'Content-type': 'application/json',
+    },
+    body: '{}',
+  };
   const request = await fetch(logoutUrl, options);
   const data = await request.json();
   return data;
