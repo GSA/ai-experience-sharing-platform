@@ -1,6 +1,14 @@
 {
   "routes": [
     {
+      "method": "POST",
+      "path": "/logout",
+      "handler": "upload-auth.logout",
+      "config": {
+        "policies": []
+      }
+    },
+    {
       "method": "GET",
       "path": "/*",
       "handler": "upload-auth.index",

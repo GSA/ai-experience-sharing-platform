@@ -8,7 +8,7 @@ module.exports = strapi => {
       strapi.app.use(async (ctx, next) => {
         await next();
         if (openIdConnectUrlMatcher.test(ctx.url) && ctx.body && ctx.body.jwt) {
-          ctx.cookies.set('media_auth', ctx.body.jwt, {maxAge: cookieMaxAge})
+          ctx.cookies.set('media_auth', ctx.body.jwt, {maxAge: cookieMaxAge});
         }
       });
     },
