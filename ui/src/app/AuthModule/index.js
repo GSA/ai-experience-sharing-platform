@@ -15,6 +15,9 @@ export const initialState = {
   error: null,
   pending: false,
   redirect: "",
+  authenticatedTypes: {
+    "usecases": true,
+  },
 };
 
 export const login = createAsyncThunk(

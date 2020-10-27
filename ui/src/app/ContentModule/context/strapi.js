@@ -1,10 +1,24 @@
 /* istanbul ignore file */
+
 const ROOT_URL = process.env.REACT_APP_API_URL || "";
 
-export const getAllByContentType = async ({ type }) => {
+const getOptions = (token) => {
+  const options = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
+  if (!token) {
+    delete options.headers.Authorization;
+  }
+  return options;
+};
+
+export const getAllByContentType = async ({ type, token }) => {
+  const options = getOptions(token);
   let data;
   try {
-    const response = await fetch(`${ROOT_URL}/api-${type}`);
+    const response = await fetch(`${ROOT_URL}/api-${type}`, options);
     data = await response.json();
     if (!response.ok) {
       throw new Error(data.message);
@@ -16,10 +30,11 @@ export const getAllByContentType = async ({ type }) => {
   return data;
 };
 
-export const getContentTypeByName = async ({ type, name }) => {
+export const getContentTypeByName = async ({ type, name, token }) => {
+  const options = getOptions(token);
   let data;
   try {
-    const response = await fetch(`${ROOT_URL}/api-${type}?slug=${name}`);
+    const response = await fetch(`${ROOT_URL}/api-${type}?slug=${name}`, options);
     data = await response.json();
     if (!response.ok) {
       throw new Error(data.message);
@@ -40,10 +55,11 @@ export const getContentTypeByName = async ({ type, name }) => {
   return data[0] || {};
 };
 
-export const getTaxonomyByContentType = async (type) => {
+export const getTaxonomyByContentType = async (type, token) => {
+  const options = getOptions(token);
   let data;
   try {
-    const response = await fetch(`${ROOT_URL}/content/${type}/taxonomy.json`);
+    const response = await fetch(`${ROOT_URL}/content/${type}/taxonomy.json`, options);
     data = await response.json();
     if (!response.ok) {
       throw new Error(data.message);

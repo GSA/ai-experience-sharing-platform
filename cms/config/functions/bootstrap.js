@@ -26,19 +26,29 @@ const setupPublicPermissions = async () => {
         'api-menu': ['count', 'find', 'findone'],
         'api-page': ['count', 'find', 'findone'],
         'api-settings': ['find'],
-        'api-usecase': ['count', 'find', 'findone'],
       },
       'upload-auth': {
         'upload-auth': ['index', 'logout'],
       },
     };
+    const authenticatedPermissions = {
+      application: {
+        'api-usecase': ['count', 'find', 'findone'],
+      },
+    };
 
-    for (const plugin in publicPermissions) {
-      for (const controller in publicPermissions[plugin]) {
-        for (const action of publicPermissions[plugin][controller]) {
-          role.permissions[plugin].controllers[controller][action].enabled = true;
+    const applyPermissions = (permissions) => {
+      for (const plugin in permissions) {
+        for (const controller in permissions[plugin]) {
+          for (const action of permissions[plugin][controller]) {
+            role.permissions[plugin].controllers[controller][action].enabled = true;
+          }
         }
       }
+    }
+    applyPermissions(publicPermissions);
+    if (roleId === authenticatedRoleId) {
+      applyPermissions(authenticatedPermissions);
     }
 
     await strapi.plugins['users-permissions'].services.userspermissions.updateRole(

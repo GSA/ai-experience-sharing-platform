@@ -24,12 +24,15 @@ async function bootstrapUsers() {
     lastname: 'lastname',
     fistname: 'firstname',
   };
-  await strapi.admin.services.user.create({
-    ...input,
-    registrationToken: null,
-    isActive: true,
-    roles: superAdminRole ? [superAdminRole.id] : [],
-  });
+
+  if (!await strapi.admin.services.user.findOne({id: 1})) {
+    await strapi.admin.services.user.create({
+      ...input,
+      registrationToken: null,
+      isActive: true,
+      roles: superAdminRole ? [superAdminRole.id] : [],
+    });
+  }
 
   const user = {
     email: 'example@example.com',
@@ -55,7 +58,9 @@ async function bootstrapUsers() {
     user.role = defaultRole.id;
   }
 
-  await strapi.plugins['users-permissions'].services.user.add(user);
+  if (!await strapi.plugins['users-permissions'].services.user.fetch({id: 1})){
+    await strapi.plugins['users-permissions'].services.user.add(user);
+  }
 };
 
 async function setupStrapi() {
