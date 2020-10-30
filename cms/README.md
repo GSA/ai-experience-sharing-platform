@@ -67,4 +67,5 @@ Using nodejs's inspector, https://nodejs.org/en/docs/guides/debugging-getting-st
 
 ## Strapi design considerations
 
-404's are handled by the SPA and not strapi to enable modern SPA url's.
+ + 404's are handled by the SPA and not strapi to enable modern SPA url's.
+ + Streaming media is handled via signed S3 urls because there are currently rough edges around https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/Request.html#createReadStream-property

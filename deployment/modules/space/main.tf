@@ -30,6 +30,26 @@ resource "cloudfoundry_service_instance" "strapi-image-bucket" {
   service_plan = data.cloudfoundry_service.s3.service_plans[var.cf_s3_strapi_image_plan]
 }
 
+resource "cloudfoundry_service_key" "strapi-image-bucket-key" {
+  name             = "strapi-image-bucket"
+  service_instance = cloudfoundry_service_instance.strapi-image-bucket.id
+}
+
+resource "null_resource" "strapi-image-bucket-media-streaming" {
+  triggers = {
+    src_hash = sha256(file("${path.module}/cors.json"))
+  }
+  provisioner "local-exec" {
+    # Turn on S3 website hosting mode on the bucket
+    command = "aws s3api put-bucket-cors --bucket ${cloudfoundry_service_key.strapi-image-bucket-key.credentials.bucket} --cors-configuration file://${path.module}/cors.json"
+    environment = {
+      AWS_ACCESS_KEY_ID = cloudfoundry_service_key.strapi-image-bucket-key.credentials.access_key_id
+      AWS_SECRET_ACCESS_KEY = cloudfoundry_service_key.strapi-image-bucket-key.credentials.secret_access_key
+      AWS_DEFAULT_REGION = cloudfoundry_service_key.strapi-image-bucket-key.credentials.region
+    }
+  }
+}
+
 resource "cloudfoundry_route" "strapi-api-host" {
   domain   = data.cloudfoundry_domain.app.id
   space    = data.cloudfoundry_space.space.id
