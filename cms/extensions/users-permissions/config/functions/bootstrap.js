@@ -43,7 +43,7 @@ module.exports = async () => {
       scope: ['identify', 'email'],
     },
     localuaa: {
-      enabled: true,
+      enabled: false,
       icon: 'discord',
       key: '',
       secret: '',
