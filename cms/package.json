@@ -29,6 +29,7 @@
     "pg": "^8.3.3",
     "pm2": "^4.4.1",
     "serialize-javascript": ">=3.1.0",
+    "systeminformation": ">=4.27.11",
     "object-path": ">=0.11.5",
     "slugify": "^1.4.5",
     "sqlite3": "latest",

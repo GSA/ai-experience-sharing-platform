@@ -56,6 +56,9 @@ jobs:
       - name: Test frontend
         run: npm run test:coverage
 
+      - name: Test pa11y
+        run: npm run start & npm run test:pa11y
+
       - name: Build frontend
         run: npm run build
         env:
