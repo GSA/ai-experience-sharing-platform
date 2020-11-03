@@ -57,7 +57,7 @@ jobs:
         run: npm run test:coverage
 
       - name: Test pa11y
-        run: npm run start & npm run test:pa11y
+        run: npm run start & timeout 22 sh -c 'until nc -z $0 $1; do sleep 1; done' localhost 3000 && npm run test:pa11y
 
       - name: Build frontend
         run: npm run build
