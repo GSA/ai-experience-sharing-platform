@@ -1,7 +1,6 @@
 import React from "react";
 import { mount } from "enzyme";
 import Tagline from "components/Tagline";
-import TestProvider from "test/TestProvider";
 
 describe("<Tagline />", () => {
   describe("default render", () => {

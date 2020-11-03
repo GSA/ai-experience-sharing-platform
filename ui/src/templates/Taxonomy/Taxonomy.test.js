@@ -6,7 +6,6 @@ import store from "app";
 import { login } from "app/AuthModule";
 import { Route } from "react-router-dom";
 import runAsyncRender from "test/utils/runAsyncRender";
-import { getTaxonomy } from "app/ContentModule";
 
 const creds = { token: "test" };
 

@@ -2,7 +2,6 @@ import React from "react";
 import { mount } from "enzyme";
 import Login from "features/Login";
 import TestProvider from "test/TestProvider";
-import runAsyncRender from "test/utils/runAsyncRender";
 import { login, reset } from "app/AuthModule";
 import store from "app";
 

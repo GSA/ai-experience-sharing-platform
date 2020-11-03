@@ -9,7 +9,7 @@ export const Logout = (props) => {
     dispatch(logout());
   };
   return (
-    <Button {...props} onClick={handleClick}>
+    <Button title="Logout" {...props} onClick={handleClick}>
       Logout
     </Button>
   );

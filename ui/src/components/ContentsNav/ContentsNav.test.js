@@ -1,7 +1,6 @@
 import React from "react";
 import { mount } from "enzyme";
 import ContentsNav from "components/ContentsNav";
-import TestProvider from "test/TestProvider";
 
 const items = [
   { text: "test", url: "/test", items: [{ text: "test2", url: "/test2" }] },

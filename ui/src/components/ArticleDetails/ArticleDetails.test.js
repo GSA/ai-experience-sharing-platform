@@ -1,7 +1,6 @@
 import React from "react";
 import { mount } from "enzyme";
 import ArticleDetails from "components/ArticleDetails";
-import TestProvider from "test/TestProvider";
 
 describe("<ArticleDetails />", () => {
   describe("default render", () => {

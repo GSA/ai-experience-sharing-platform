@@ -11,6 +11,7 @@ const NavItem = ({ id, text, url, items = [] }) => {
       {items.length ? (
         <div>
           <button
+            title={text}
             className={`usa-accordion__button usa-nav__url`}
             aria-controls={`extended-nav-section-${id}`}
             aria-expanded={false}
@@ -58,6 +59,7 @@ const Nav = ({ items, header, footer }) => {
     <>
       <Button
         type="button"
+        title="Open"
         id="usa-nav-open"
         onClick={handleClick}
         className="usa-nav-open"
@@ -74,6 +76,7 @@ const Nav = ({ items, header, footer }) => {
             <Button
               id="usa-nav-close"
               type="button"
+              title="Close"
               className="usa-nav-close"
               onClick={handleClick}
             >

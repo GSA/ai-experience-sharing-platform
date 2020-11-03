@@ -30,7 +30,7 @@ const Login = ({ children, oAuthUrl }) => {
             </Alert>
           </div>
         )}
-        <Button onClick={handleClick} external className="Login__link">
+        <Button title="Login With Login.gov" onClick={handleClick} external className="Login__link">
           <img
             style={{ width: "100px" }}
             alt="Login.gov link"
