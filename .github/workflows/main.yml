@@ -3,7 +3,7 @@
 # - Comments on PRs with the Terraform plan that will be applied on merge
 # - Applies Terraform plan on relevant branches
 
-name: ai.digital.gov
+name: ai.gsa.gov
 
 on:
   push:
