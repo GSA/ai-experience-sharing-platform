@@ -26,11 +26,10 @@
     "knex": "<0.20.0",
     "node-fetch": ">=2.6.1",
     "node-forge": ">=0.10.0",
+    "object-path": ">=0.11.5",
     "pg": "^8.3.3",
     "pm2": "^4.4.1",
     "serialize-javascript": ">=3.1.0",
-    "systeminformation": ">=4.27.11",
-    "object-path": ">=0.11.5",
     "slugify": "^1.4.5",
     "sqlite3": "latest",
     "strapi": "3.2.4",
@@ -39,10 +38,12 @@
     "strapi-plugin-content-manager": "3.2.5",
     "strapi-plugin-content-type-builder": "3.2.5",
     "strapi-plugin-email": "3.2.5",
+    "strapi-plugin-sitemap": "^1.1.4",
     "strapi-plugin-upload": "3.2.5",
     "strapi-plugin-users-permissions": "3.2.5",
     "strapi-provider-upload-aws-s3-auth": "github:flexion/strapi-provider-upload-aws-s3-auth#v0.0.4",
-    "strapi-utils": "3.2.5"
+    "strapi-utils": "3.2.5",
+    "systeminformation": ">=4.27.11"
   },
   "resolutions": {
     "grant": "5.4.5"
