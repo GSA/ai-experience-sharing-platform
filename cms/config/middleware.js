@@ -9,17 +9,24 @@ module.exports = ({ env }) => {
 
   return {
     load: {
-      after: ['spa', 'authCookie', 'parser', 'router'],
+      before: ['responseTime', 'requestContext', 'logger', 'customLogger', 'cors', 'responses', 'gzip'],
+      after: ['spa', 'authCookie', 'requestContextLogging', 'parser', 'router'],
     },
     settings: {
-      spa: {
-        enabled: true,
-      },
       authCookie: {
         enabled: true,
       },
-      poweredBy: {
-        enabled: false,
+      customLogger: {
+        enabled: true,
+      },
+      logger: {
+        requests: false,
+      },
+      requestContext: {
+        enabled: true,
+      },
+      requestContextLogging: {
+        enabled: true,
       },
       session: {
         enabled: true,
@@ -39,6 +46,12 @@ module.exports = ({ env }) => {
           rewrite: true,
           signed: false
         },
+      },
+      spa: {
+        enabled: true,
+      },
+      poweredBy: {
+        enabled: false,
       },
     },
   };

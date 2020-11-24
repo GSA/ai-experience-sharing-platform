@@ -8,6 +8,7 @@ import { useDispatch } from "react-redux";
 import { siteData, getMenus } from "app/SiteModule";
 import useAssertion from "utils/useAssertion";
 import "styles/index.scss";
+import IdleTimer from 'components/IdleTimer'
 
 const Primary = ({ title, children }) => {
   const dispatch = useDispatch();
@@ -27,6 +28,7 @@ const Primary = ({ title, children }) => {
       <Header />
       {children}
       <Footer />
+      <IdleTimer />
     </>
   );
 };

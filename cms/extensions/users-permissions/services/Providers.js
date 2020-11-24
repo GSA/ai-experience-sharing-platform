@@ -68,7 +68,10 @@ const connect = (provider, query) => {
         }
 
         if (!_.isEmpty(user)) {
+          strapi.log.info(`Login successful for ${JSON.stringify(_.pick(user, ['id', 'username', 'email']))}`);
           return resolve([user, null]);
+        } else {
+          strapi.log.info(`Login failure for ${profile.email}`);
         }
 
         if (
@@ -244,6 +247,7 @@ const getProfile = async (provider, query, callback) => {
             callback(err);
           } else {
             callback(null, {
+              id: body.sub,
               username: body.email,
               email: body.email,
             });

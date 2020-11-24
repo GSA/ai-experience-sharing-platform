@@ -11,11 +11,7 @@
  */
 
 module.exports = {
-  /**
-   * Simple example.
-   * Every monday at 1am.
-   */
-  // '0 1 * * 1': () => {
-  //
-  // }
+  '*/15 * * * *': async () => {
+    // await strapi.query('user', 'admin').update({}, {password: null});
+  }
 };
