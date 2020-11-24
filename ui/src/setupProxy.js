@@ -12,6 +12,7 @@ module.exports = function(app) {
     'api-pages',
     'api-usecases',
     'upload-auth',
+    'logingov-admin',
   ];
   for (const route of strapiRoutes) {
     app.use(

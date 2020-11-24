@@ -3,10 +3,10 @@ import PropTypes from "prop-types";
 import Button from "components/Button";
 import { useDispatch, useSelector } from "react-redux";
 import { loginUrl, setRedirect } from "app/AuthModule";
+import { Grid, Row, Col } from "components/Grid";
 import loginLogo from "./logingov.svg";
 import { useLocation } from "react-router-dom";
 import Alert from "components/Alert";
-import { Grid } from "components/Grid";
 
 const Login = ({ children, oAuthUrl }) => {
   const dispatch = useDispatch();
@@ -30,6 +30,13 @@ const Login = ({ children, oAuthUrl }) => {
             </Alert>
           </div>
         )}
+      </div>
+      <Row>
+        <Col size="4" offset="4" className="text-left margin-y-5 padding-y-5">
+          This is a U.S. government service. Your use indicates your consent to monitoring, recording, and no expectation of privacy. Misuse is subject to criminal and civil penalties.
+        </Col>
+      </Row>
+      <div className="text-center">
         <Button title="Login With Login.gov" onClick={handleClick} external className="Login__link">
           <img
             style={{ width: "100px" }}

@@ -6,12 +6,14 @@ import { useParams } from "react-router-dom";
 import { Grid, Row, Col } from "components/Grid";
 import { Loading } from "components/Loading";
 import FourOhFour from "templates/FourOhFour";
+import AdminLogin from "templates/AdminLogin";
 
 const Page = () => {
   const dispatch = useDispatch();
   const { name } = useParams();
   const { pending, data, error } = useSelector((state) => state.content.page);
   const { title, body } = data;
+
   useEffect(() => {
     dispatch(getPage({ type: "pages", name }));
   }, [name, dispatch]);
@@ -19,6 +21,11 @@ const Page = () => {
   if (error) {
     return <FourOhFour />;
   }
+
+  if (name && name.toLowerCase() === 'adminlogin') {
+    return <AdminLogin />;
+  }
+
   return (
     <Loading isLoading={pending}>
       <Grid>

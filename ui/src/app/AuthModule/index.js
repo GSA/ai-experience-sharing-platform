@@ -4,16 +4,23 @@ import context from "./context";
 
 export const initialState = {
   isAuth: false,
+  isAdminAuth: false,
   token: "",
+  adminToken: "",
   user: {
     id: "",
-    username: "t",
+    username: "",
     email: "",
     provider: "",
     confirmed: null,
   },
+  adminUser: {
+    id: "",
+    email: "",
+  },
   error: null,
   pending: false,
+  pendingAdmin: false,
   redirect: "",
   authenticatedTypes: {
     "usecases": true,
@@ -31,9 +38,19 @@ export const loginUrl = (params) => {
   return `${rootUrl}?${QS.stringify(query)}`;
 };
 
+export const loginAdminUrl = () => {
+  const rootUrl = `/admin/`;
+  return `${rootUrl}`;
+};
+
 export const logout = createAsyncThunk(
   "auth/logout",
   async (props) => await context.endSession(props)
+);
+
+export const loginAdmin = createAsyncThunk(
+  "auth/loginAdmin",
+  async (props) => context.createAdminSession(props)
 );
 
 const AuthModule = createSlice({
@@ -87,6 +104,27 @@ const AuthModule = createSlice({
         error: action.error.message,
       };
     },
+    [loginAdmin.pending]: (state) => ({
+      ...state,
+      pendingAdmin: true,
+    }),
+    [loginAdmin.fulfilled]: (state, action) => {
+      const newState = {
+        ...state,
+        adminToken: action.payload.token,
+        adminUser: action.payload.user,
+        isAdminAuth: Boolean(action.payload.token),
+        pendingAdmin: false,
+      };
+      return newState;
+    },
+    [loginAdmin.rejected]: (state, action) => {
+      return {
+        ...state,
+        error: action.error.message,
+      };
+    },
+
   },
 });
 

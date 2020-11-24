@@ -1,18 +1,7 @@
 /* istanbul ignore file */
+const { getOptions } = require("utils/http");
 
 const ROOT_URL = process.env.REACT_APP_API_URL || "";
-
-const getOptions = (token) => {
-  const options = {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  };
-  if (!token) {
-    delete options.headers.Authorization;
-  }
-  return options;
-};
 
 export const getAllByContentType = async ({ type, token }) => {
   const options = getOptions(token);
