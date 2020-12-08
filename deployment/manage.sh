@@ -12,6 +12,7 @@ TERRAFORM_SERVICE=terraform-user
 TERRAFORM_SERVICE_KEY=${TERRAFORM_SERVICE}-key
 TERRAFORM_STORAGE_SERVICE=terraform-storage
 TERRAFORM_STORAGE_SERVICE_KEY=${TERRAFORM_STORAGE_SERVICE}-key
+S3BUCKETTYPE=basic
 
 usage()
 {
@@ -105,13 +106,13 @@ setup() {
   if service_exists "${TERRAFORM_STORAGE_SERVICE}" ; then
     echo space "${TERRAFORM_STORAGE_SERVICE}" already created
   else
-    cf create-service s3 basic-sandbox ${TERRAFORM_STORAGE_SERVICE}
+    cf create-service s3 ${S3BUCKETTYPE} ${TERRAFORM_STORAGE_SERVICE}
   fi
 
   setup_keys
 
   export_environment
-  aws s3api put-bucket-versioning --bucket $BUCKET_NAME --versioning-configuration Status=Enabled
+  aws s3api put-bucket-versioning --bucket ${BUCKET_NAME} --versioning-configuration Status=Enabled
 
   if service_exists "${LOGIN_GOV_SERVICE}" ; then
     echo space "${LOGIN_GOV_SERVICE}" already created
@@ -169,7 +170,7 @@ print_service_key() {
 print_bucket_details() {
   export_terraform_storage_key
   aws s3api get-bucket-encryption --bucket $BUCKET_NAME
-  aws s3api get-bucket-policy --bucket $BUCKET_NAME
+  aws s3api get-bucket-versioning --bucket $BUCKET_NAME
 }
 
 print_terraform_storage_key() {
