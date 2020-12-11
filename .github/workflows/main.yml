@@ -25,8 +25,40 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           message: ":eyes: Generating Terraform plan..."
 
-  build_frontend:
-    name: "build frontend"
+  build_frontend_build_matrix:
+    name: "build a matrix of frontend builds"
+    runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.set-matrix-main.outputs.matrix }} ${{ steps.set-matrix-pr-develop.outputs.matrix }} ${{ steps.set-matrix-pr-main.outputs.matrix }} ${{ steps.set-matrix-develop.outputs.matrix }}
+    steps:
+      - id: debug-info
+        run: echo ${{ github.event_name }} ${{ github.base_ref }}
+      - id: set-matrix-main
+        if: github.ref == 'refs/heads/main'
+        # run: echo "::set-output name=matrix::{\"include\":[{\"deployenv\":\"prod\",\"logingovurl\":\"https://idp.int.identitysandbox.gov/openid_connect/authorize\",\"strapiloginurl\":\"https://strapi-api-host-main.app.cloud.gov/connect/logingov/callback\"}]}"
+        run: echo "::set-output name=matrix::{\"include\":[{\"deployenv\":\"dev\",\"logingovurl\":\"https://idp.int.identitysandbox.gov/openid_connect/authorize\",\"strapiloginurl\":\"https://strapi-api-host-main.app.cloud.gov/connect/logingov/callback\"}]}"
+      - id: set-matrix-pr-develop
+        if: github.event_name == 'pull_request' && github.base_ref == 'develop'
+        run: echo "::set-output name=matrix::{\"include\":[{\"deployenv\":\"dev\",\"logingovurl\":\"https://idp.int.identitysandbox.gov/openid_connect/authorize\",\"strapiloginurl\":\"https://strapi-api-host-main.app.cloud.gov/connect/logingov/callback\"}]}"
+      - id: set-matrix-pr-main
+        if: github.event_name == 'pull_request' && github.base_ref == 'main'
+        # run: echo "::set-output name=matrix::{\"include\":[{\"deployenv\":\"prod\",\"logingovurl\":\"https://idp.int.identitysandbox.gov/openid_connect/authorize\",\"strapiloginurl\":\"https://strapi-api-host-main.app.cloud.gov/connect/logingov/callback\"}]}"
+        run: echo "::set-output name=matrix::{\"include\":[{\"deployenv\":\"dev\",\"logingovurl\":\"https://idp.int.identitysandbox.gov/openid_connect/authorize\",\"strapiloginurl\":\"https://strapi-api-host-main.app.cloud.gov/connect/logingov/callback\"}]}"
+      - id: set-matrix-develop
+        if: github.ref == 'refs/heads/develop'
+        run: echo "::set-output name=matrix::{\"include\":[{\"deployenv\":\"dev\",\"logingovurl\":\"https://idp.int.identitysandbox.gov/openid_connect/authorize\",\"strapiloginurl\":\"https://strapi-api-host-main.app.cloud.gov/connect/logingov/callback\"},{\"deployenv\":\"staging\",\"logingovurl\":\"https://idp.int.identitysandbox.gov/openid_connect/authorize\",\"strapiloginurl\":\"https://strapi-api-host-main.app.cloud.gov/connect/logingov/callback\"}]}"
+
+  # build_frontend_build_matrix_debug:
+  #   name: "debug a matrix of frontends"
+  #   needs: [build_frontend_build_matrix]
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - id: debug-info
+  #       run: echo ${{ needs.build_frontend_build_matrix.outputs.matrix }}
+
+
+  test_frontend:
+    name: "test frontend"
     runs-on: ubuntu-latest
 
     defaults:
@@ -59,19 +91,61 @@ jobs:
       - name: Test pa11y
         run: npm run start & timeout 22 sh -c 'until nc -z $0 $1; do sleep 1; done' localhost 3000 && npm run test:pa11y
 
+
+  build_frontend:
+    needs: [build_frontend_build_matrix]
+    name: "build frontend"
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix: ${{ fromJson(needs.build_frontend_build_matrix.outputs.matrix) }}
+
+    defaults:
+      run:
+        working-directory: ui
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Use Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12
+
+      - name: Cache node_modules
+        id: cache-node_modules
+        uses: actions/cache@v2
+        with:
+          path: ui/node_modules
+          key: ${{ runner.os }}-ui-node_modules-${{ hashFiles('ui/package-lock.json') }}
+
+      - name: Install dependencies
+        if: steps.cache-node_modules.outputs.cache-hit != 'true'
+        run: npm ci
+
       - name: Build frontend
         run: npm run build
         env:
           NODE_ENV: production
           REACT_APP_API_URL: ""
-          REACT_APP_AUTH_ROOT_URL: https://idp.int.identitysandbox.gov/openid_connect/authorize
-          REACT_APP_AUTH_REDIRECT_URL: https://strapi-api-host-main.app.cloud.gov/connect/logingov/callback
+          REACT_APP_AUTH_ROOT_URL: ${{ matrix.logingovurl }}
+          REACT_APP_AUTH_REDIRECT_URL: ${{ matrix.strapiloginurl }}
 
       - name: Upload frontend artifact
         uses: actions/upload-artifact@v2
+        if: github.event_name != 'pull_request'
         with:
-          name: ui-artifact
+          name: ui-artifact-${{ matrix.deployenv }}
           path: ui/build
+
+      - name: Upload frontend artifact for PR's
+        uses: actions/upload-artifact@v2
+        if: github.event_name == 'pull_request'
+        with:
+          name: ui-artifact-${{ matrix.deployenv }}-pr
+          path: ui/build
+          retention-days: 5
 
   build_backend:
     name: "build backend"
@@ -111,6 +185,7 @@ jobs:
 
       - name: Upload backend artifact
         uses: actions/upload-artifact@v2
+        if: github.event_name != 'pull_request'
         with:
           name: cms-artifact
           path: |
@@ -119,17 +194,63 @@ jobs:
             !cms/.tmp
             !cms/node_modules
 
+      - name: Upload backend artifact for PR's
+        uses: actions/upload-artifact@v2
+        if: github.event_name == 'pull_request'
+        with:
+          name: cms-artifact-pr
+          retention-days: 5
+          path: |
+            cms
+            !cms/.cache
+            !cms/.tmp
+            !cms/node_modules
+
+  build_deploy_build_matrix:
+    name: "build a matrix of deploys"
+    runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.set-matrix-main.outputs.matrix }} ${{ steps.set-matrix-pr-develop.outputs.matrix }} ${{ steps.set-matrix-pr-main.outputs.matrix }} ${{ steps.set-matrix-develop.outputs.matrix }}
+    steps:
+      - id: debug-info
+        run: echo ${{ github.event_name }} ${{ github.base_ref }}
+      - id: set-matrix-main
+        if: github.ref == 'refs/heads/main'
+        # run: echo "::set-output name=matrix::{\"include\":[{\"deployenv\":\"prod\",\"deployorg\":\"tts-ai-digitalpresence\",\"aws_access_key_id_secret\":\"AWS_ACCESS_KEY_ID_PROD\",\"aws_secret_access_key_secret\":\"AWS_SECRET_ACCESS_KEY_PROD\",\"aws_default_region\":\"us-gov-west-1\",\"cf_user_secret\":\"CF_USER_PROD\",\"cf_password_secret\":\"CF_PASSWORD_PROD\"}]}"
+        run: echo "::set-output name=matrix::{\"include\":[{\"deployenv\":\"dev\",\"deployorg\":\"tts-ai-digitalpresence\",\"aws_access_key_id_secret\":\"AWS_ACCESS_KEY_ID_DEV\",\"aws_secret_access_key_secret\":\"AWS_SECRET_ACCESS_KEY_DEV\",\"aws_default_region\":\"us-gov-west-1\",\"cf_user_secret\":\"CF_USER_DEV\",\"cf_password_secret\":\"CF_PASSWORD_DEV\"}]}"
+      - id: set-matrix-pr-main
+        if: github.event_name == 'pull_request' && github.base_ref == 'main'
+        # run: echo "::set-output name=matrix::{\"include\":[{\"deployenv\":\"prod\",\"deployorg\":\"tts-ai-digitalpresence\",\"aws_access_key_id_secret\":\"AWS_ACCESS_KEY_ID_PROD\",\"aws_secret_access_key_secret\":\"AWS_SECRET_ACCESS_KEY_PROD\",\"aws_default_region\":\"us-gov-west-1\",\"cf_user_secret\":\"CF_USER_PROD\",\"cf_password_secret\":\"CF_PASSWORD_PROD\"}]}"
+        run: echo "::set-output name=matrix::{\"include\":[{\"deployenv\":\"dev\",\"deployorg\":\"tts-ai-digitalpresence\",\"aws_access_key_id_secret\":\"AWS_ACCESS_KEY_ID_DEV\",\"aws_secret_access_key_secret\":\"AWS_SECRET_ACCESS_KEY_DEV\",\"aws_default_region\":\"us-gov-west-1\",\"cf_user_secret\":\"CF_USER_DEV\",\"cf_password_secret\":\"CF_PASSWORD_DEV\"}]}"
+      - id: set-matrix-develop
+        if: github.ref == 'refs/heads/develop'
+        run: echo "::set-output name=matrix::{\"include\":[{\"deployenv\":\"dev\",\"deployorg\":\"tts-ai-digitalpresence\",\"aws_access_key_id_secret\":\"AWS_ACCESS_KEY_ID_DEV\",\"aws_secret_access_key_secret\":\"AWS_SECRET_ACCESS_KEY_DEV\",\"aws_default_region\":\"us-gov-west-1\",\"cf_user_secret\":\"CF_USER_DEV\",\"cf_password_secret\":\"CF_PASSWORD_DEV\"},{\"deployenv\":\"staging\",\"deployorg\":\"tts-ai-digitalpresence\",\"aws_access_key_id_secret\":\"AWS_ACCESS_KEY_ID_STAGING\",\"aws_secret_access_key_secret\":\"AWS_SECRET_ACCESS_KEY_STAGING\",\"aws_default_region\":\"us-gov-west-1\",\"cf_user_secret\":\"CF_USER_STAGING\",\"cf_password_secret\":\"CF_PASSWORD_STAGING\"}]}"
+      - id: set-matrix-pr-develop
+        if: github.event_name == 'pull_request' && github.base_ref == 'develop'
+        run: echo "::set-output name=matrix::{\"include\":[{\"deployenv\":\"dev\",\"deployorg\":\"tts-ai-digitalpresence\",\"aws_access_key_id_secret\":\"AWS_ACCESS_KEY_ID_DEV\",\"aws_secret_access_key_secret\":\"AWS_SECRET_ACCESS_KEY_DEV\",\"aws_default_region\":\"us-gov-west-1\",\"cf_user_secret\":\"CF_USER_DEV\",\"cf_password_secret\":\"CF_PASSWORD_DEV\"}]}"
+
+  # build_deploy_build_matrix_debug:
+  #   name: "debug a matrix of deploys"
+  #   needs: [build_deploy_build_matrix]
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - id: debug-info
+  #       run: echo ${{ needs.build_deploy_build_matrix.outputs.matrix }}
+
   deploy:
     name: "terraform"
-    needs: [build_frontend, build_backend]
+    needs: [build_frontend, test_frontend, build_backend, build_deploy_build_matrix]
     runs-on: ubuntu-latest
 
+    strategy:
+      matrix: ${{ fromJson(needs.build_deploy_build_matrix.outputs.matrix) }}
+
     env:
-      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-      AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }}
-      CF_USER: ${{ secrets.DEV_CF_USER }}
-      CF_PASSWORD: ${{ secrets.DEV_CF_PASSWORD }}
+      AWS_ACCESS_KEY_ID: ${{ secrets[matrix.aws_access_key_id_secret] }}
+      AWS_SECRET_ACCESS_KEY: ${{ secrets[matrix.aws_secret_access_key_secret] }}
+      AWS_DEFAULT_REGION: ${{ secrets[matrix.aws_default_region] }}
+      CF_USER: ${{ secrets[matrix.cf_user_secret] }}
+      CF_PASSWORD: ${{ secrets[matrix.cf_password_secret] }}
 
     steps:
       - name: Checkout
@@ -137,14 +258,30 @@ jobs:
 
       - name: Download Strapi artifact
         uses: actions/download-artifact@v2
+        if: github.event_name != 'pull_request'
         with:
           name: cms-artifact
           path: cms
 
+      - name: Download Strapi artifact for PR's
+        uses: actions/download-artifact@v2
+        if: github.event_name == 'pull_request'
+        with:
+          name: cms-artifact-pr
+          path: cms
+
       - name: Download frontend artifact to CMS
         uses: actions/download-artifact@v2
+        if: github.event_name != 'pull_request'
         with:
-          name: ui-artifact
+          name: ui-artifact-${{ matrix.deployenv }}
+          path: cms/public
+
+      - name: Download frontend artifact to CMS for PR's
+        uses: actions/download-artifact@v2
+        if: github.event_name == 'pull_request'
+        with:
+          name: ui-artifact-${{ matrix.deployenv }}-pr
           path: cms/public
 
       - name: Display structure of cwd
@@ -157,15 +294,15 @@ jobs:
           terraform_version: 0.13.4
 
       - name: Terraform Init
-        run: terraform init -input=false deployment/workspaces/taylor.zajicek
+        run: terraform init -input=false deployment/workspaces/${{ matrix.deployenv }}
 
       - name: Terraform Format
-        run: terraform fmt -check deployment/workspaces/taylor.zajicek
+        run: terraform fmt -check deployment/workspaces/${{ matrix.deployenv }}
 
       - name: Terraform Plan
         id: plan
         if: github.event_name == 'pull_request'
-        run: terraform plan -input=false -no-color deployment/workspaces/taylor.zajicek
+        run: terraform plan -input=false -no-color deployment/workspaces/${{ matrix.deployenv }}
         continue-on-error: true
 
       - name: Comment Terraform plan
@@ -183,5 +320,5 @@ jobs:
             </details>
 
       - name: Terraform Apply
-        if: github.ref == 'refs/heads/main'
-        run: terraform apply -input=false -auto-approve deployment/workspaces/taylor.zajicek
+        if: github.ref == 'refs/heads/main' || github.event_name == 'pull_request' && github.base_ref == 'main'
+        run: terraform apply -input=false -auto-approve deployment/workspaces/${{ matrix.deployenv }}
