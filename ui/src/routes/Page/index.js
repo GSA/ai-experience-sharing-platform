@@ -22,7 +22,7 @@ const Page = () => {
     return <FourOhFour />;
   }
 
-  if (name && name.toLowerCase() === 'adminlogin') {
+  if (name && (name.toLowerCase() === 'adminlogin' || name.toLowerCase() === 'loginadmin')) {
     return <AdminLogin />;
   }
 
