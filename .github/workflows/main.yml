@@ -320,5 +320,5 @@ jobs:
             </details>
 
       - name: Terraform Apply
-        if: github.ref == 'refs/heads/main' || github.event_name == 'pull_request' && github.base_ref == 'main'
+        if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/develop'
         run: terraform apply -input=false -auto-approve deployment/workspaces/${{ matrix.deployenv }}
