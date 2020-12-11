@@ -2,6 +2,9 @@ const { setupJwtSecret } = require('./bootstrap-secrets');
 const { setupPermissions } = require('./bootstrap-permissions');
 const { disableAdminPasswords } = require('./bootstrap-disable-passwords');
 const { setupLogging } = require('./bootstrap-logging');
+const { configureSignups } = require('./bootstrap-signups');
+const { setupApiSettings } = require('./bootstrap-api-settings');
+const { setupProviders } = require('./bootstrap-providers');
 
 /**
  * An asynchronous bootstrap function that runs before
@@ -19,4 +22,6 @@ module.exports = async () => {
   await setupPermissions();
   await setupJwtSecret();
   await disableAdminPasswords();
+  await configureSignups();
+  await setupProviders();
 };
