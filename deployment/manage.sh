@@ -122,15 +122,28 @@ setup() {
       -new \
       -nodes \
       -x509 \
-      -days 3650 \
+      -days 730 \
       -subj "/C=US/O=General Services Administration/OU=TTS/CN=gsa.gov" \
       -keyout deployment/login-gov-${organization_name}-${space_name}-key.pem \
       -out deployment/login-gov-${organization_name}-${space_name}-cert.pem
 
+    urn_suffix=""
+
+    if [ "${space_name}" = "prod" ] || [ "${space_name}" = "staging" ] || [ "${space_name}" = "dev" ]; then
+        urn_suffix="_$space_name"
+    fi
+
     PRIVATE_KEY=`cat deployment/login-gov-${organization_name}-${space_name}-key.pem | jq -aRs`
     CERTIFICATE=`cat deployment/login-gov-${organization_name}-${space_name}-cert.pem | jq -aRs`
-    ISSUER="urn:gov:gsa:openidconnect.profiles:sp:sso:gsa:ai_experience"
-    cf create-user-provided-service "${LOGIN_GOV_SERVICE}" -p "{\"issuer\": \"${ISSUER}\", \"privateKey\": ${PRIVATE_KEY}, \"certificate\": ${CERTIFICATE}}"
+    ISSUER="urn:gov:gsa:openidconnect.profiles:sp:sso:gsa:ai_experience${urn_suffix}"
+    ACCESS_URL="https://idp.int.identitysandbox.gov/api/openid_connect/token"
+
+    if [ "${space_name}" = "prod" ]; then
+        # TODO: Need prod login.gov url
+        ACCESS_URL="https://idp.int.identitysandbox.gov/api/openid_connect/token"
+    fi
+
+    cf create-user-provided-service "${LOGIN_GOV_SERVICE}" -p "{\"issuer\": \"${ISSUER}\", \"privateKey\": ${PRIVATE_KEY}, \"certificate\": ${CERTIFICATE}, \"accessUrl\": \"${ACCESS_URL}\"}"
   fi
 
   if service_exists "${CMS_SERVICE}" ; then

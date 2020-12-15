@@ -11,7 +11,8 @@ This configuration is intended to be run via CI, and consists of two components:
 
 ### Bootstrap cloud.gov
 
-First, you must initialize a new cloud.gov space. This includes creating a space in the target cloud.gov organization, an S3 bucket for Terraform state storage, and a service user and corresponding key for CI jobs. Use the setup operation for this purpose:
+First, you must initialize a new cloud.gov space. This includes creating a space in the target cloud.gov organization, an S3 bucket for Terraform state storage, user provided service for 
+login.gov, user provided service for strapi specific environment secrets, a service user and corresponding key for CI jobs. Use the setup operation for this purpose:
 
 ```bash
 ./deployment/manage.sh setup -o <organization name> -s <space name>

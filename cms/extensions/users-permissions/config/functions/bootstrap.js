@@ -31,7 +31,7 @@ module.exports = async () => {
 
   const grantConfig = {
     email: {
-      enabled: true,
+      enabled: false,
       icon: 'envelope',
     },
     discord: {
@@ -57,15 +57,16 @@ module.exports = async () => {
       icon: 'discord',
       key: loginGovCredentials['issuer'],
       secret: loginGovCredentials['issuer'],  // Not used but makes the strapi admin ui happy
-      callback: `${strapi.config.server.url}/auth/logingov/callback`,
+      callback: '/react/auth/logingov/callback',
+      redirectUri: `${strapi.config.server.url}/auth/logingov/callback`,
       scope: ['identify', 'email'],
       oauth: 2,
-      access_url: 'https://idp.int.identitysandbox.gov/api/openid_connect/token',
+      access_url: loginGovCredentials['accessUrl'] || 'https://idp.int.identitysandbox.gov/api/openid_connect/token',
       token_endpoint_auth_method: 'private_key_jwt',
       public_key: loginGovCredentials['certificate'],
       private_key: loginGovCredentials['privateKey'],
-      state: 'E74D92C3-356C-4A1B-B443-7FE6E21A7BC73A8B5978-3ADD-48FC-AC1D-6958651CAB74',
-      nonce: '5F962C9F-3FEF-4990-B0B3-E7CE60A1054E9366D3E9-D3F7-4B91-86B4-E50A1A9C1713',
+      state: `${uuid()}${uuid()}`,
+      nonce: `${uuid()}${uuid()}`,
       custom_params: {
         acr_values: 'http://idmanagement.gov/ns/assurance/ial/1',
       },
