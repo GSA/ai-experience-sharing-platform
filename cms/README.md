@@ -63,6 +63,8 @@ Using nodejs's inspector, https://nodejs.org/en/docs/guides/debugging-getting-st
 
 ### Github Actions
 
+.github/workflows/main.yml - Builds, tests, deploys the AI Sharing Platform for dev, staging, and prod.
+.github/workflows/codeql-analysis.yml - Scans for code quality and security issues in the AI Sharing Platform and it's dependancies.
 
 
 ## Strapi design considerations
