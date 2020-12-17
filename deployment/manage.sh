@@ -24,8 +24,9 @@ Usage: manage.sh <OPERATION> -o <cloud.gov organization name> -s <cloud.gov spac
 OPERATION:
     setup   - create a new cloud.gov space, login.gov certificate, and strapi secrets
     show    - show Terraform S3 and cloud.gov credentials
-    export  - when used with `source`, exports credentials to the environment
+    export  - when used with source, exports credentials to the environment
     deploy  - deploy the locally-built application via Terraform
+    rotate  - replace current secrets with new secrets
 
 Options:
   -o, --organization organization_name   Cloud.gov organization name
@@ -117,31 +118,7 @@ setup() {
   if service_exists "${LOGIN_GOV_SERVICE}" ; then
     echo space "${LOGIN_GOV_SERVICE}" already created
   else
-    openssl req \
-      -newkey rsa:2048 \
-      -new \
-      -nodes \
-      -x509 \
-      -days 730 \
-      -subj "/C=US/O=General Services Administration/OU=TTS/CN=gsa.gov" \
-      -keyout deployment/login-gov-${organization_name}-${space_name}-key.pem \
-      -out deployment/login-gov-${organization_name}-${space_name}-cert.pem
-
-    urn_suffix=""
-
-    if [ "${space_name}" = "prod" ] || [ "${space_name}" = "staging" ] || [ "${space_name}" = "dev" ]; then
-        urn_suffix="_$space_name"
-    fi
-
-    PRIVATE_KEY=`cat deployment/login-gov-${organization_name}-${space_name}-key.pem | jq -aRs`
-    CERTIFICATE=`cat deployment/login-gov-${organization_name}-${space_name}-cert.pem | jq -aRs`
-    ISSUER="urn:gov:gsa:openidconnect.profiles:sp:sso:gsa:ai_experience${urn_suffix}"
-    ACCESS_URL="https://idp.int.identitysandbox.gov/api/openid_connect/token"
-
-    if [ "${space_name}" = "prod" ]; then
-        # TODO: Need prod login.gov url
-        ACCESS_URL="https://idp.int.identitysandbox.gov/api/openid_connect/token"
-    fi
+    create_certs
 
     cf create-user-provided-service "${LOGIN_GOV_SERVICE}" -p "{\"issuer\": \"${ISSUER}\", \"privateKey\": ${PRIVATE_KEY}, \"certificate\": ${CERTIFICATE}, \"accessUrl\": \"${ACCESS_URL}\"}"
   fi
@@ -149,13 +126,44 @@ setup() {
   if service_exists "${CMS_SERVICE}" ; then
     echo space "${CMS_SERVICE}" already created
   else
-
-    ADMIN_JWT_SECRET=`openssl rand 128 | LC_ALL=C tr -dc 'A-Za-z0-9!#$%&()*+,-./:;<=>?@[\]^_{|}~' | head -c 32`
-    JWT_SECRET=`openssl rand 128 | LC_ALL=C tr -dc 'A-Za-z0-9!#$%&()*+,-./:;<=>?@[\]^_{|}~' | head -c 32`
-    SESSION_SECRET_1=`openssl rand 128 | LC_ALL=C tr -dc 'A-Za-z0-9!#$%&()*+,-./:;<=>?@[\]^_{|}~' | head -c 32`
-    SESSION_SECRET_2=`openssl rand 128 | LC_ALL=C tr -dc 'A-Za-z0-9!#$%&()*+,-./:;<=>?@[\]^_{|}~' | head -c 32`
+    create_cms_secrets
     cf create-user-provided-service "${CMS_SERVICE}" -p "{\"adminJwtSecret\": \"${ADMIN_JWT_SECRET}\", \"jwtSecret\": \"${JWT_SECRET}\", \"sessionSecret1\": \"${SESSION_SECRET_1}\", \"sessionSecret2\": \"${SESSION_SECRET_2}\"}"
   fi
+}
+
+create_certs() {
+  openssl req \
+          -newkey rsa:2048 \
+          -new \
+          -nodes \
+          -x509 \
+          -days 730 \
+          -subj "/C=US/O=General Services Administration/OU=TTS/CN=gsa.gov" \
+          -keyout deployment/login-gov-${organization_name}-${space_name}-key.pem \
+          -out deployment/login-gov-${organization_name}-${space_name}-cert.pem
+
+  urn_suffix=""
+
+  if [ "${space_name}" = "prod" ] || [ "${space_name}" = "staging" ] || [ "${space_name}" = "dev" ]; then
+    urn_suffix="_$space_name"
+  fi
+
+  PRIVATE_KEY=`cat deployment/login-gov-${organization_name}-${space_name}-key.pem | jq -aRs`
+  CERTIFICATE=`cat deployment/login-gov-${organization_name}-${space_name}-cert.pem | jq -aRs`
+  ISSUER="urn:gov:gsa:openidconnect.profiles:sp:sso:gsa:ai_experience${urn_suffix}"
+  ACCESS_URL="https://idp.int.identitysandbox.gov/api/openid_connect/token"
+
+  if [ "${space_name}" = "prod" ]; then
+    # TODO: Need prod login.gov url
+    ACCESS_URL="https://idp.int.identitysandbox.gov/api/openid_connect/token"
+  fi
+}
+
+create_cms_secrets() {
+  ADMIN_JWT_SECRET=`openssl rand 128 | LC_ALL=C tr -dc 'A-Za-z0-9!#$%&()*+,-./:;<=>?@[\]^_{|}~' | head -c 32`
+  JWT_SECRET=`openssl rand 128 | LC_ALL=C tr -dc 'A-Za-z0-9!#$%&()*+,-./:;<=>?@[\]^_{|}~' | head -c 32`
+  SESSION_SECRET_1=`openssl rand 128 | LC_ALL=C tr -dc 'A-Za-z0-9!#$%&()*+,-./:;<=>?@[\]^_{|}~' | head -c 32`
+  SESSION_SECRET_2=`openssl rand 128 | LC_ALL=C tr -dc 'A-Za-z0-9!#$%&()*+,-./:;<=>?@[\]^_{|}~' | head -c 32`
 }
 
 setup_keys() {
@@ -174,6 +182,32 @@ setup_keys() {
   fi
 
   echo "To see service keys, execute './deployment/manage.sh'"
+}
+
+update_keys() {
+  if service_key_exists "${TERRAFORM_SERVICE}" "${TERRAFORM_SERVICE_KEY}" ; then
+      echo ${TERRAFORM_SERVICE_KEY} exists, deleting and recreating
+      cf delete-service-key ${TERRAFORM_SERVICE} ${TERRAFORM_SERVICE_KEY}
+      cf create-service-key ${TERRAFORM_SERVICE} ${TERRAFORM_SERVICE_KEY}
+  else
+      echo ${TERRAFORM_SERVICE_KEY} does not exist
+  fi
+
+  if service_key_exists "${TERRAFORM_STORAGE_SERVICE}" "${TERRAFORM_STORAGE_SERVICE_KEY}" ; then
+      echo ${TERRAFORM_STORAGE_SERVICE_KEY} exists, deleting and recreating
+      cf delete-service-key ${TERRAFORM_STORAGE_SERVICE} ${TERRAFORM_STORAGE_SERVICE_KEY}
+      cf create-service-key ${TERRAFORM_STORAGE_SERVICE} ${TERRAFORM_STORAGE_SERVICE_KEY}
+  else
+      echo ${TERRAFORM_STORAGE_SERVICE_KEY} does not exist
+  fi
+}
+
+update_certs() {
+  cf update-user-provided-service "${LOGIN_GOV_SERVICE}" -p "{\"issuer\": \"${ISSUER}\", \"privateKey\": ${PRIVATE_KEY}, \"certificate\": ${CERTIFICATE}, \"accessUrl\": \"${ACCESS_URL}\"}"
+}
+
+update_cms_secrets() {
+  cf update-user-provided-service "${CMS_SERVICE}" -p "{\"adminJwtSecret\": \"${ADMIN_JWT_SECRET}\", \"jwtSecret\": \"${JWT_SECRET}\", \"sessionSecret1\": \"${SESSION_SECRET_1}\", \"sessionSecret2\": \"${SESSION_SECRET_2}\"}"
 }
 
 print_service_key() {
@@ -201,9 +235,34 @@ deploy() {
   terraform apply deployment/workspaces/${space_name}
 }
 
+rotate() {
+  update_keys
+
+  mv -v deployment/login-gov-${organization_name}-${space_name}-key.pem deployment/login-gov-${organization_name}-${space_name}-key.pem.old
+  mv -v deployment/login-gov-${organization_name}-${space_name}-cert.pem deployment/login-gov-${organization_name}-${space_name}-cert.pem.old
+
+  create_certs
+  update_certs
+  create_cms_secrets
+  update_cms_secrets
+  echo "Forcing redeploy of CMS"
+  cf restage strapi-api-host
+  cat << EOF
+
+
+You need to update CI/CD github secrets with ./manage.sh show
+
+  terraform-storage-key.access_key_id => AWS_ACCESS_KEY_ID_ENV
+  terraform-storage-key.secret_access_key => AWS_SECRET_ACCESS_KEY_ENV
+
+  terraform-user-key.password => CF_PASSWORD_ENV
+  terraform-user-key.username => CF_USER_ENV
+EOF
+}
+
 while [ "$1" != "" ]; do
   case $1 in
-    setup | show | export | deploy )  operation=$1
+    rotate | setup | show | export | deploy )  operation=$1
                                 ;;
     -o | --organization )       shift
                                 organization_name=$1
@@ -226,6 +285,8 @@ validate_parameters
 cf target -o ${organization_name} -s ${space_name}
 
 case $operation in
+  rotate )                        rotate 
+                                  ;;
   setup )                         setup
                                   ;;
   show )                          show
