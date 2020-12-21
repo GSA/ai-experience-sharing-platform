@@ -69,6 +69,7 @@ const connect = (provider, query) => {
 
         if (!_.isEmpty(user)) {
           strapi.log.info(`Login successful for ${JSON.stringify(_.pick(user, ['id', 'username', 'email']))}`);
+          await strapi.query('logingovuser', 'logingov-admin').update({userId: user.id}, {lastlogin: new Date()});
           return resolve([user, null]);
         } else {
           strapi.log.info(`Login failure for ${profile.email}`);
@@ -85,6 +86,14 @@ const connect = (provider, query) => {
           ]);
         }
 
+        if (!profile.email.endsWith('.gov') && !profile.email.endsWith('.mil')) {
+          resolve([
+            null,
+            [{ messages: [{ id: 'Auth.form.error.email.tld' }] }],
+            'Email does not end with .gov or .mil.',
+          ]);
+        }
+
         // Retrieve default role.
         const defaultRole = await strapi
           .query('role', 'users-permissions')
@@ -98,6 +107,8 @@ const connect = (provider, query) => {
         });
 
         const createdUser = await strapi.query('user', 'users-permissions').create(params);
+
+        await strapi.query('logingovuser', 'logingov-admin').create({userId: createdUser.id, lastlogin: new Date()});
 
         return resolve([createdUser, null]);
       } catch (err) {
