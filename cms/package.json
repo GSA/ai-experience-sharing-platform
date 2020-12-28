@@ -46,7 +46,7 @@
     "strapi-plugin-users-permissions": "3.3.4",
     "strapi-provider-upload-aws-s3-auth": "github:flexion/strapi-provider-upload-aws-s3-auth#v0.0.4",
     "strapi-utils": "3.3.4",
-    "systeminformation": ">=4.30.5"
+    "systeminformation": ">=4.31.1"
   },
   "resolutions": {
     "grant": "5.4.5"
