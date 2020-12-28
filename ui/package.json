@@ -1,12 +1,12 @@
 {
-  "name": "app",
-  "version": "0.1.0",
+  "name": "ai-experience-sharing-platform-ui",
+  "version": "0.2.0",
   "private": true,
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.28",
     "@fortawesome/free-regular-svg-icons": "^5.14.0",
-    "@fortawesome/free-solid-svg-icons": "^5.13.0",
-    "@fortawesome/react-fontawesome": "^0.1.10",
+    "@fortawesome/free-solid-svg-icons": "^5.13.1",
+    "@fortawesome/react-fontawesome": "^0.1.11",
     "@mdx-js/runtime": "^1.6.11",
     "@reduxjs/toolkit": "^1.4.0",
     "@testing-library/jest-dom": "^4.2.4",
@@ -20,7 +20,7 @@
     "query-string": "^6.13.5",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "react-helmet": "^6.0.0",
+    "react-helmet": "^6.1.0",
     "react-idle-timer": "^4.5.0",
     "react-moment": "^0.9.7",
     "react-oauth-popup": "^1.0.2",
@@ -92,6 +92,7 @@
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.5",
     "object-path": ">=0.11.5",
-    "pa11y-ci": "^2.4.0"
+    "pa11y-ci": "^2.4.0",
+    "node-notifier": ">=8.0.1"
   }
 }
