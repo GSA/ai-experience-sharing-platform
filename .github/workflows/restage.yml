@@ -1,0 +1,38 @@
+name: "Cloud.gov periodic restage"
+
+on:
+  schedule:
+    - cron: '5 3 4 * *'
+
+jobs:
+
+  restage_backend:
+    name: "restage backend"
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: cms
+
+    strategy:
+      matrix:
+        deployenv: [dev, staging, production]
+
+    env:
+      CF_USER: ${{ secrets[matrix.cf_user_secret] }}
+      CF_PASSWORD: ${{ secrets[matrix.cf_password_secret] }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v1
+        with:
+          terraform_version: 0.13.4
+
+      - name: Terraform Init
+        run: terraform init -input=false deployment/workspaces/${{ matrix.deployenv }}
+
+      - name: Terraform Apply
+        run: cf target -o tts-ai-digitalpresence -s ${{ matrix.deployenv }} && cf restage strapi-api-host --strategy rolling
