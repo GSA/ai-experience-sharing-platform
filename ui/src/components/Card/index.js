@@ -14,6 +14,7 @@ const Card = ({
   variant,
   flat,
   color,
+  ...props
 }) => {
   return (
     <div
@@ -25,6 +26,7 @@ const Card = ({
         "usa-card--flat": flat,
         [className]: Boolean(className),
       })}
+      {...props}
     >
       <div
         className={classnames({
@@ -36,18 +38,15 @@ const Card = ({
       >
         {(title || meta || subtitle) && (
           <header className="usa-card__header">
-            {title && <h3 className="usa-card__heading">{title}</h3>}
-            {subtitle && <span className="usa-card__subhead">{subtitle}</span>}
+            {title && <h2 className="usa-card__heading">{title}</h2>}
+            {subtitle && <h3 className="usa-card__subhead">{subtitle}</h3>}
             {meta && <span className="usa-card__meta">{meta}</span>}
           </header>
         )}
         {image && (
           <div className="usa-card__media">
             <div className="usa-card__img">
-              <div
-                className="usa-card__img-container"
-                style={{ backgroundImage: `url('${image}')` }}
-              >
+              <div className="usa-card__img-container">
                 <img src={image} alt={imageAlt} />
               </div>
             </div>

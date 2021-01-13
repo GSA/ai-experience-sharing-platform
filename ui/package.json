@@ -28,7 +28,11 @@
     "react-router-dom": "^5.2.0",
     "react-scripts": "^4.0.0",
     "uswds": "^2.9.0",
-    "yaml": "^1.10.0"
+    "enzyme": "^3.11.0",
+    "enzyme-adapter-react-16": "^1.15.4",
+    "framer-motion": "^2.9.4",
+    "node-env-run": "^3.0.2",
+    "react-axe": "^3.5.3"
   },
   "scripts": {
     "start": "react-scripts start",

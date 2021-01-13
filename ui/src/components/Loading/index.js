@@ -1,22 +1,22 @@
 import React from "react";
-import { Grid, Row, Col } from "components/Grid";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import PropTypes from "prop-types";
+import classnames from "classnames";
 
-export const Loading = ({ isLoading, children }) => {
-  if (isLoading) {
-    return (
-      <Grid>
-        <Row className="padding-y-8 text-center">
-          <Col size={12} className="padding-y-8">
-            <h1>
-              <FontAwesomeIcon icon="spinner" spin /> LOADING...
-            </h1>
-          </Col>
-        </Row>
-      </Grid>
-    );
-  }
-  return children;
+export const Loading = ({ className }) => {
+  return (
+    <div
+      className={classnames({
+        Loading: true,
+        [className]: Boolean(className),
+      })}
+    />
+  );
+};
+
+Loading.propTypes = {
+  isLoading: PropTypes.bool,
+  message: PropTypes.node,
+  children: PropTypes.node,
 };
 
 export default Loading;

@@ -4,31 +4,31 @@
  *
  */
 
-import { useEffect, useRef } from 'react';
-import PropTypes from 'prop-types';
-import pluginId from '../../pluginId';
-import { useIdleTimer } from 'react-idle-timer';
-import { auth } from 'strapi-helper-plugin';
+import { useEffect, useRef } from "react";
+import PropTypes from "prop-types";
+import pluginId from "../../pluginId";
+import { useIdleTimer } from "react-idle-timer";
+import { auth } from "strapi-helper-plugin";
 
 const Initializer = ({ updatePlugin }) => {
   const ref = useRef();
 
-  const handleOnIdle = event => {
-    auth.clearAppStorage();
-    window.location.href = '/adminlogin';
-  }
+  // const handleOnIdle = event => {
+  //   auth.clearAppStorage();
+  //   window.location.href = '/adminlogin';
+  // }
 
-  const { reset } = useIdleTimer({
-    timeout: 1000 * 60 * 15,
-    onIdle: handleOnIdle,
-    debounce: 500
-  });
-  reset();
+  // const { reset } = useIdleTimer({
+  //   timeout: 1000 * 60 * 15,
+  //   onIdle: handleOnIdle,
+  //   debounce: 500
+  // });
+  // reset();
 
   ref.current = updatePlugin;
 
   useEffect(() => {
-    ref.current(pluginId, 'isReady', true);
+    ref.current(pluginId, "isReady", true);
   }, []);
 
   return null;

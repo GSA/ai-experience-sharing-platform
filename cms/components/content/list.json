@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_content_lists",
+  "info": {
+    "name": "List",
+    "icon": "clipboard-list",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "items": {
+      "type": "component",
+      "repeatable": true,
+      "component": "content.list-item"
+    },
+    "title": {
+      "type": "string"
+    }
+  }
+}

@@ -34,7 +34,7 @@
     "pm2": "^4.5.1",
     "serialize-javascript": ">=3.1.0",
     "slugify": "^1.4.5",
-    "sqlite3": "latest",
+    "sqlite3": "^5.0.1",
     "strapi": "3.4.1",
     "strapi-admin": "3.4.1",
     "strapi-connector-bookshelf": "3.4.1",

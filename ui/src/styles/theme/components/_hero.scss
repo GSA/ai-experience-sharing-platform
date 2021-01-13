@@ -1,8 +1,0 @@
-.usa-hero {
-  @include u-bg("primary-light");
-  background-size: cover;
-  background-position: center center;
-  &__heading {
-    @include u-font("sans", "xl");
-  }
-}

@@ -1,42 +1,48 @@
 import React, { useEffect } from "react";
-import Mdx from "features/Mdx";
-import { useSelector, useDispatch } from "react-redux";
-import { getPage } from "app/ContentModule";
+import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { Grid, Row, Col } from "components/Grid";
-import { Loading } from "components/Loading";
-import FourOhFour from "templates/FourOhFour";
-import AdminLogin from "templates/AdminLogin";
+import { getPage } from "app/ContentModule";
+import { Grid } from "components/Grid";
+import Loading from "components/Loading";
+import FourOhFour from "routes/FourOhFour";
+import Head from "routes/Head";
+import Layout from "features/Layout";
+import useScrollToTop from "utils/useScrollToTop";
 
-const Page = () => {
+const Page = ({ slug }) => {
   const dispatch = useDispatch();
-  const { name } = useParams();
-  const { pending, data, error } = useSelector((state) => state.content.page);
-  const { title, body } = data;
-
+  const params = useParams();
+  const pageSlug = slug ? slug : params.slug;
+  const page = useSelector((state) => state.content.page);
+  useScrollToTop();
   useEffect(() => {
-    dispatch(getPage({ type: "pages", name }));
-  }, [name, dispatch]);
-
+    dispatch(getPage({ slug: pageSlug }));
+  }, [dispatch, pageSlug]);
+  const { pending, data, error } = page;
+  if (pending) {
+    return (
+      <Grid>
+        <Head title="Loading..." />
+        <div className="margin-y-9 margin-x-auto">
+          <Loading isLoading={true}>
+            <span />
+          </Loading>
+        </div>
+      </Grid>
+    );
+  }
   if (error) {
     return <FourOhFour />;
   }
-
-  if (name && (name.toLowerCase() === 'adminlogin' || name.toLowerCase() === 'loginadmin')) {
-    return <AdminLogin />;
-  }
-
   return (
-    <Loading isLoading={pending}>
-      <Grid>
-        <Row>
-          <Col size={12}>
-            <h1>{title}</h1>
-            <Mdx>{body}</Mdx>
-          </Col>
-        </Row>
-      </Grid>
-    </Loading>
+    <div className={`TxContent Tx__${pageSlug}`}>
+      <div className="usa-app__bg">
+        <Head title={data.title} />
+        <div className={`Tx__${data.slug}-content`}>
+          <Layout items={data.content} />
+        </div>
+      </div>
+    </div>
   );
 };
 

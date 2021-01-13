@@ -1,0 +1,13 @@
+{
+  "collectionName": "components_content_callouts",
+  "info": {
+    "name": "Callout",
+    "icon": "columns"
+  },
+  "options": {},
+  "attributes": {
+    "test": {
+      "type": "richtext"
+    }
+  }
+}

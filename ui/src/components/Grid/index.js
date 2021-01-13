@@ -64,7 +64,7 @@ export const Col = ({
     <div
       className={classnames({
         [`grid-col`]: size === "auto",
-        [`grid-col-${size}`]: size !== "auto",
+        [`grid-col-${size}`]: size && size !== "auto",
         [`tablet:grid-col-${tablet}`]: tablet && tablet !== "auto",
         [`tablet:grid-col`]: tablet === "auto",
         [`desktop:grid-col-${desktop}`]: desktop && desktop !== "auto",
