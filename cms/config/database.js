@@ -2,14 +2,6 @@ const cloudFoundryServiceConfig = require('./cloud-foundry-data').getServiceConf
 const cloudFoundryConfig = cloudFoundryServiceConfig();
 
 module.exports = ({ env }) => {
-  console.log(
-    cloudFoundryConfig['aws-rds'][0].credentials['host'],
-    cloudFoundryConfig['aws-rds'][0].credentials['port'],
-    cloudFoundryConfig['aws-rds'][0].credentials['db_name'],
-    cloudFoundryConfig['aws-rds'][0].credentials['username'],
-    'J' === cloudFoundryConfig['aws-rds'][0].credentials['password'].substr(-1)
-  )
-
   return {
     defaultConnection: cloudFoundryConfig.isLocal ? 'default' : 'pg',
     connections: {

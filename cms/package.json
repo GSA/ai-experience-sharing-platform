@@ -4,6 +4,7 @@
   "version": "0.1.1",
   "description": "A CMS that has public and private content, initially focused on AI Use Case sharing.",
   "scripts": {
+    "data:model": "find cms/api/*/models/*settings.json -exec cat {} \\;",
     "develop": "strapi develop",
     "start": "strapi start",
     "build": "strapi build",
