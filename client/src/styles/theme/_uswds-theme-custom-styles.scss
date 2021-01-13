@@ -1,0 +1,32 @@
+/*
+* * * * * ==============================
+* * * * * ==============================
+* * * * * ==============================
+* * * * * ==============================
+========================================
+========================================
+========================================
+----------------------------------------
+USWDS THEME CUSTOM STYLES
+----------------------------------------
+!! Copy this file to your project's
+   sass root. Don't edit the version
+   in node_modules.
+----------------------------------------
+Custom project SASS goes here.
+
+i.e.
+@include u-padding-right('05');
+----------------------------------------
+*/
+
+@import "~styles/fonts";
+@import "~styles/font-awesome/fontAwesome.scss";
+@import "~styles/mixins/index.scss";
+@import "~styles/core";
+@import "~styles/custom";
+@import "~styles/pages";
+
+main#main-content {
+  border: none;
+}

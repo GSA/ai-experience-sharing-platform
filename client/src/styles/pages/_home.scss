@@ -1,0 +1,132 @@
+$bgImgDir: "~styles/images";
+
+@keyframes cursor {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+.Tx__homepage {
+  padding-top: 0;
+
+  &-content {
+    position: relative;
+    z-index: 1000;
+  }
+
+  .Home {
+    &__hero {
+      position: relative;
+      margin-top: -4rem;
+      @include u-margin-bottom(10);
+      background-color: #ddf1f5;
+
+      .grid-container {
+        position: relative;
+        @include u-padding-y(10);
+
+        .GhostWriter {
+          min-height: 210px;
+          @include at-media("desktop") {
+            min-height: 140px;
+          }
+          &__content {
+            display: inline;
+            position: relative;
+            @include u-font("heading", "2xl");
+            line-height: 125%;
+            @include u-bg("white");
+            z-index: 2;
+          }
+
+          &__cursor {
+            animation: cursor 1s infinite;
+          }
+          .Typewriter {
+            display: inline;
+          }
+        }
+        &:before {
+          display: inline-block;
+          position: absolute;
+          content: "";
+          top: 100%;
+          bottom: -32px;
+          left: 0;
+          right: 0;
+          z-index: 0;
+          @include fullWidthBg("/home-hero-bg-stroke.png");
+          background-position-y: bottom;
+          background-size: cover;
+
+          @include at-media("tablet") {
+            bottom: -50px;
+          }
+          @include at-media("desktop") {
+            bottom: -36px;
+          }
+
+          @include at-media("desktop") {
+          }
+        }
+        &:after {
+          content: "";
+          position: absolute;
+          display: inline-block;
+          top: 10px;
+          right: -100px;
+          width: 400px;
+          height: 400px;
+          @include fullWidthBg("/home-x.png");
+          z-index: 1;
+          @include at-media("desktop") {
+            top: -50px;
+            right: -250px;
+            width: 700px;
+            height: 700px;
+          }
+        }
+      }
+    }
+    &__callout {
+      &.usa-card {
+        @include at-media("desktop") {
+          margin-bottom: 0 !important;
+        }
+      }
+      .usa-card__container {
+        @include u-padding-top(6);
+        @include u-padding-bottom(2);
+        border: none;
+        background-size: 100% 100%;
+        background-color: transparent;
+        @include fullWidthBg("submit-idea-bg.png");
+        @include at-media("desktop") {
+          margin-top: 150px;
+          padding-bottom: 3rem;
+          margin-bottom: -1rem;
+        }
+        .usa-card__body {
+          @include u-padding-top(10);
+          @include u-padding-right(10);
+          @include u-margin-right(10);
+
+          @include at-media("desktop") {
+            margin-right: 0;
+          }
+          strong {
+            @include u-font("heading", "md");
+          }
+          .usa-button {
+            width: auto;
+          }
+        }
+      }
+    }
+  }
+}

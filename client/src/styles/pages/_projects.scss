@@ -1,0 +1,288 @@
+$card-shadow: 0px 16px 24px rgba(0, 0, 0, 0.15);
+
+.TxProject,
+.Tx__projects {
+  @include u-color("white");
+
+  &__nav-link {
+    a {
+      @include u-color("primary-light");
+      &:visited {
+        @include u-color("primary-light");
+      }
+      &:hover {
+        @include u-color("primary-lighter");
+      }
+    }
+    svg {
+      @include u-margin-right(1);
+    }
+  }
+  &__title {
+    @include u-margin-top(2);
+  }
+  &__subtitle {
+    @include u-margin-top(2);
+  }
+  &__intro {
+    @include u-font("serif", 10);
+  }
+  &__summary {
+    @include u-color("white");
+    .usa-card {
+      &__container {
+        margin: 0;
+        padding-top: 0;
+        @include u-padding-bottom(2);
+        background-color: transparent;
+        @include at-media("desktop") {
+          @include u-padding-top(4);
+        }
+      }
+      &__header,
+      &__body {
+        border: none;
+        background-size: 100% 100%;
+        background-position-x: center;
+        background-repeat: no-repeat;
+      }
+      &__header {
+        @include u-padding-left(6);
+        @include u-padding-top(10);
+        @include u-padding-bottom(2);
+        background-image: url("~styles/images/in-nutshell-header.png");
+        background-position-y: bottom;
+        h2 {
+          padding: 0;
+          margin: 0;
+          @include u-color("white");
+        }
+      }
+      &__body {
+        @include u-padding-left(6);
+        @include u-padding-right(10);
+        @include u-padding-bottom(6);
+        @include u-color("white");
+        background-image: url("~styles/images/in-nutshell-body.png");
+        background-position-y: top;
+        ul {
+          list-style: none;
+          margin: 0;
+          padding: 0;
+          @include u-font("sans", "xs");
+
+          li {
+            display: flex;
+            align-items: baseline;
+            @include u-margin-bottom(2);
+
+            svg {
+              transform: translateY(2px);
+            }
+          }
+        }
+      }
+    }
+  }
+  &__content {
+    .usa-card__container {
+      box-shadow: $card-shadow;
+      .usa-card__body {
+        position: relative;
+        ul {
+          list-style: none;
+          margin: 0;
+          padding: 0;
+          @include u-font("sans", "xs");
+
+          li {
+            display: flex;
+            align-items: baseline;
+            @include u-margin-bottom(2);
+            &:before {
+              content: "\f058";
+              display: inline-block;
+              font-family: "Font Awesome 5 Free Solid";
+              @include u-margin-right(1);
+              @include u-color("accent-cool");
+              font-size: 1.25rem;
+              transform: translateY(4px);
+            }
+            svg {
+              transform: translateY(2px);
+            }
+          }
+        }
+      }
+    }
+  }
+  &__details {
+    h3 {
+      @include u-margin-bottom(2);
+    }
+    @include at-media("desktop") {
+      a,
+      .usa-button--primary.usa-button--unstyled {
+        @include u-color("primary-light");
+        &:visited {
+          @include u-color("primary-light");
+        }
+        &:hover {
+          @include u-color("primary-lighter");
+        }
+      }
+    }
+
+    .usa-card__container {
+      box-shadow: $card-shadow;
+
+      @include at-media("desktop") {
+        margin: 0;
+        background: transparent;
+        box-shadow: none;
+
+        @include u-color("white");
+      }
+
+      .usa-card__body {
+        @include at-media("desktop") {
+          padding-top: 0 !important;
+          padding-bottom: 0 !important;
+        }
+      }
+    }
+    @include at-media("desktop") {
+      @include u-padding-x(3);
+    }
+  }
+
+  blockquote {
+    @include u-margin-bottom(8);
+
+    @include at-media("desktop") {
+      margin-right: 25%;
+    }
+  }
+  .usa-card {
+    @include u-color("ink");
+  }
+
+  @mixin ProjectContentBg($t: 1) {
+    .TxProject__content {
+      .usa-card__container {
+        background-size: 50%;
+        background-position-x: right;
+        background-position-y: top;
+        background-repeat: no-repeat;
+      }
+      .usa-card:nth-child(1) {
+        .usa-card__container {
+          background-image: url("~styles/images/portfolio-paint-stroke-#{$t}.png");
+        }
+      }
+      .usa-card:nth-child(2) {
+        .usa-card__container {
+          position: relative;
+          @include u-padding-bottom(6);
+          &:before {
+            content: "";
+            position: absolute;
+            display: inline-block;
+            bottom: 0;
+            right: 0;
+            left: 40%;
+            height: 100px;
+            transform: rotate(180deg);
+            background-size: contain;
+            background-image: url("~styles/images/portfolio-paint-stroke-#{$t}.png");
+
+            background-repeat: no-repeat;
+          }
+        }
+      }
+      .usa-card:nth-child(3) {
+        .usa-card__container {
+          position: relative;
+          background-position-x: 100.05%;
+          background-position-y: 100px;
+          background-size: 10%;
+          background-image: url("~styles/images/portfolio-paint-stroke-#{$t}-v.png");
+          background-repeat: no-repeat;
+        }
+      }
+    }
+  }
+
+  &--template {
+    &-1 {
+      @include ProjectContentBg(1);
+    }
+    &-2 {
+      @include ProjectContentBg(2);
+    }
+    &-3 {
+      @include ProjectContentBg(3);
+    }
+    &-4 {
+      @include ProjectContentBg(4);
+    }
+    &-5 {
+      @include ProjectContentBg(5);
+    }
+    &-6 {
+      @include ProjectContentBg(6);
+    }
+  }
+}
+
+.usa-app__theme-projects {
+  background: linear-gradient(
+    180deg,
+    #{$x-charcoal} 2px,
+    #{$x-lead} 75%,
+    #{$x-smoke} 100%
+  );
+  @include at-media("desktop") {
+    background: linear-gradient(
+      180deg,
+      #{$x-charcoal} 2px,
+      #{$x-lead} 2000px,
+      #{$x-smoke} 2600px
+    );
+  }
+}
+
+.TxTeam {
+  &__icon {
+    display: inline-block;
+    @include u-margin-right(1);
+    min-width: 30px;
+    text-align: center;
+  }
+  ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    li {
+      display: flex;
+      @include u-margin-bottom(2);
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+}
+
+.TxLinks {
+  ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    li {
+      @include u-margin-bottom(2);
+      a {
+        line-height: 150%;
+      }
+    }
+  }
+}

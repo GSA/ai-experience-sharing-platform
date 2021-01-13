@@ -1,0 +1,29 @@
+.GSAFooter {
+  @include u-text("white");
+  line-height: 1.2;
+  @include at-media("tablet") {
+    display: flex;
+  }
+  &__logo {
+    display: flex;
+    align-items: center;
+    @include u-margin-right(4);
+    @include u-margin-bottom(2);
+    min-width: 64px;
+    @include at-media("tablet") {
+      margin-bottom: 0;
+    }
+    img {
+      width: 64px;
+      height: 64px;
+    }
+  }
+
+  &__text {
+    font-weight: 400;
+
+    .usa-button--unstyled {
+      display: inline;
+    }
+  }
+}

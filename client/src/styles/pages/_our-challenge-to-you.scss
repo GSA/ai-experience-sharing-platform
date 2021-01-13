@@ -1,0 +1,30 @@
+.Tx__our-challenge-to-you {
+  .TxChallenge__pitch {
+    h3 {
+      margin-left: -4rem;
+      padding-left: 4rem;
+      @include u-padding-y(15);
+      @include u-padding-right(4);
+      @include fullWidthBg("pitch-structure-mobile-bg.png");
+
+      @include at-media("desktop") {
+        max-width: 85%;
+
+        margin-top: -2rem;
+        @include u-padding-y(6);
+
+        margin-right: -2rem;
+        padding-right: 2rem;
+
+        margin-left: -4rem;
+        padding-left: 4rem;
+        @include fullWidthBg("pitch-structure-bg.png");
+      }
+    }
+
+    @include at-media("desktop") {
+      @include u-maxw("tablet-lg");
+    }
+  }
+  @include u-padding-bottom(10);
+}

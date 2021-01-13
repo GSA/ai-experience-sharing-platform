@@ -1,0 +1,66 @@
+.usa-footer {
+  @include u-bg("base");
+  @include u-color("white");
+  @include u-font-family("sans");
+  font-weight: 400;
+
+  &__preFooter {
+    .usa-button--unstyled,
+    a {
+      @include u-color("primary-light");
+      &:visited {
+        @include u-color("primary-light");
+      }
+      &:hover {
+        @include u-color("primary-lighter");
+      }
+    }
+  }
+  &__primary {
+    @include u-bg("base-dark");
+    @include u-font-family("sans");
+    &-content {
+      position: relative;
+      margin-top: 48px;
+      line-height: 16px;
+      border: none;
+      &:after {
+        display: inline-block;
+        position: absolute;
+        content: "";
+        top: -32px;
+        bottom: 100%;
+        left: 0;
+        right: 0;
+        z-index: 0;
+        background-size: cover;
+        background-position-x: center;
+        background-position-y: top;
+        background-image: url("~styles/images/footer-brush-stroke.svg");
+        background-repeat: no-repeat;
+        @include at-media("tablet") {
+          top: -50px;
+        }
+        @include at-media("desktop") {
+          top: -66px;
+        }
+      }
+    }
+    .usa-button--unstyled,
+    a {
+      @include u-color("primary-light");
+      &:visited {
+        @include u-color("primary-light");
+      }
+      &:hover {
+        @include u-color("primary-lighter");
+      }
+    }
+  }
+
+  &__bottom-link {
+    @include at-media("desktop") {
+      transform: translateY(-2rem);
+    }
+  }
+}

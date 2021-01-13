@@ -1,0 +1,505 @@
+/*
+* * * * * ==============================
+* * * * * ==============================
+* * * * * ==============================
+* * * * * ==============================
+========================================
+========================================
+========================================
+----------------------------------------
+USWDS 2.8.1
+----------------------------------------
+TYPOGRAPHY SETTINGS
+----------------------------------------
+Read more about settings and
+USWDS typography tokens in the documentation:
+https://designsystem.digital.gov/design-tokens/typesetting/font-family/
+----------------------------------------
+*/
+
+/*
+----------------------------------------
+Root font size
+----------------------------------------
+Setting $theme-respect-user-font-size to
+true sets the root font size to 100% and
+uses ems for media queries
+----------------------------------------
+$theme-root-font-size only applies when
+$theme-respect-user-font-size is set to
+false.
+
+This will set the root font size
+as a specific px value and use px values
+for media queries.
+
+Accepts true or false
+----------------------------------------
+*/
+
+$theme-respect-user-font-size: true;
+
+// $theme-root-font-size only applies when
+// $theme-respect-user-font-size is set to
+// false.
+
+// This will set the root font size
+// as a specific px value and use px values
+// for media queries.
+
+// Accepts values in px
+
+$theme-root-font-size: 10px;
+
+/*
+----------------------------------------
+Global styles
+----------------------------------------
+Adds basic styling for the following
+unclassed elements:
+
+- paragraph: paragraph text
+- link: links
+- content: paragraph text, links,
+  headings, lists, and tables
+----------------------------------------
+*/
+
+$theme-global-paragraph-styles: true;
+$theme-global-link-styles: true;
+$theme-global-content-styles: true;
+
+/*
+----------------------------------------
+Font path
+----------------------------------------
+Relative font file path
+----------------------------------------
+*/
+
+$theme-font-path: "~styles/fonts";
+
+/*
+----------------------------------------
+Custom font stacks
+----------------------------------------
+Add custom font stacks to any of the
+type-based fonts. Any USWDS typeface
+token already has a default stack.
+
+Custom stacks don't need to include the
+font's display name. It will
+automatically appear at the start of
+the stack.
+----------------------------------------
+Example:
+$theme-font-type-sans: 'source-sans-pro';
+$theme-font-sans-custom-stack: "Helvetica Neue", Helvetica, Arial, sans;
+
+Output:
+font-family: "Source Sans Pro", "Helvetica Neue", Helvetica, Arial, sans;
+----------------------------------------
+*/
+
+$theme-font-cond-custom-stack: false;
+$theme-font-icon-custom-stack: false;
+$theme-font-lang-custom-stack: false;
+$theme-font-mono-custom-stack: false;
+$theme-font-sans-custom-stack: "Helvetica Neue", "Helvetica", "Roboto", "Arial";
+$theme-font-serif-custom-stack: "Georgia", "Cambria", "Times New Roman", "Times",
+  serif;
+
+/*
+----------------------------------------
+Custom typeface tokens
+----------------------------------------
+Add a new custom typeface token if
+your project uses a typeface not already
+defined by USWDS.
+----------------------------------------
+USWDS defines the following tokens
+by default:
+----------------------------------------
+'georgia'
+'helvetica'
+'merriweather'
+'open-sans'
+'public-sans'
+'roboto-mono'
+'source-sans-pro'
+'system'
+'tahoma'
+'verdana'
+----------------------------------------
+Add as many new tokens as you have
+custom typefaces. Reference your new
+token(s) in the type-based font settings
+using the quoted name of the token.
+
+For example:
+
+$theme-font-type-cond: 'example-font-token';
+
+display-name:
+The display name of your font
+
+cap-height:
+The height of a 500px `N` in Sketch
+----------------------------------------
+You should change `example-[style]-token`
+names to something more descriptive.
+----------------------------------------
+*/
+
+$theme-typeface-tokens: (
+  lato: (
+    display-name: "Lato",
+    cap-height: 362px,
+    stack: $theme-font-sans-custom-stack,
+    src: (
+      dir: "Lato",
+      roman: (
+        100: "lato-thin",
+        200: "lato-thin",
+        300: "lato-light",
+        400: "lato-regular",
+        500: "lato-regular",
+        600: "lato-regular",
+        700: "lato-bold",
+        800: "lato-bold",
+        900: "lato-black",
+      ),
+      italic: (
+        100: "lato-thinitalic",
+        200: "lato-thinitalic",
+        300: "lato-lightitalic",
+        400: "lato-italic",
+        500: "lato-italic",
+        600: "lato-italic",
+        700: "lato-bolditalic",
+        800: "lato-bolditalic",
+        900: "lato-blackitalic",
+      ),
+    ),
+  ),
+  faustina: (
+    display-name: "Faustina",
+    cap-height: 362px,
+    stack: $theme-font-serif-custom-stack,
+    src: (
+      dir: "Faustina",
+      roman: (
+        100: "Faustina-Regular",
+        200: "Faustina-Regular",
+        300: "Faustina-Regular",
+        400: "Faustina-Regular",
+        500: "Faustina-Medium",
+        600: "Faustina-SemiBold",
+        700: "Faustina-Bold",
+        800: "Faustina-Bold",
+        900: "Faustina-Bold",
+      ),
+      italic: (
+        100: "Faustina-Italic",
+        200: "Faustina-Italic",
+        300: "Faustina-Italic",
+        400: "Faustina-Italic",
+        500: "Faustina-MediumItalic",
+        600: "Faustina-SemiBoldItalic",
+        700: "Faustina-BoldItalic",
+        800: "Faustina-BoldItalic",
+        900: "Faustina-BoldItalic",
+      ),
+    ),
+  ),
+  qualy: (
+    display-name: "Qualy",
+    cap-height: 362px,
+    stack: $theme-font-sans-custom-stack,
+    src: (
+      dir: "Qualy",
+      roman: (
+        100: "Qualy-Bold",
+        200: "Qualy-Bold",
+        300: "Qualy-Bold",
+        400: "Qualy-Bold",
+        500: "Qualy-Bold",
+        600: "Qualy-Bold",
+        700: "Qualy-Bold",
+        800: "Qualy-Bold",
+        900: "Qualy-Bold",
+      ),
+      italic: (
+        100: "Qualy-Bold",
+        200: "Qualy-Bold",
+        300: "Qualy-Bold",
+        400: "Qualy-Bold",
+        500: "Qualy-Bold",
+        600: "Qualy-Bold",
+        700: "Qualy-Bold",
+        800: "Qualy-Bold",
+        900: "Qualy-Bold",
+      ),
+    ),
+  ),
+);
+
+/*
+----------------------------------------
+Type-based font settings
+----------------------------------------
+Set the type-based tokens for your
+project from the following tokens,
+or from any new font tokens you added in
+$theme-typeface-tokens.
+----------------------------------------
+'georgia'
+'helvetica'
+'merriweather'
+'open-sans'
+'public-sans'
+'roboto-mono'
+'source-sans-pro'
+'system'
+'tahoma'
+'verdana'
+----------------------------------------
+*/
+
+// condensed
+$theme-font-type-cond: "qualy";
+
+// icon
+$theme-font-type-icon: false;
+
+// language-specific
+$theme-font-type-lang: false;
+
+// monospace
+$theme-font-type-mono: "roboto-mono";
+
+// sans-serif
+$theme-font-type-sans: "lato";
+
+// serif
+$theme-font-type-serif: "faustina";
+
+/*
+----------------------------------------
+Add any custom font source files
+----------------------------------------
+If you want USWDS to generate additional
+@font-face declarations, add your font
+data below, following the example that
+follows.
+----------------------------------------
+USWDS automatically generates @font-face
+decalarations for the following
+
+'merriweather'
+'public-sans'
+'roboto-mono'
+'source-sans-pro'
+
+These typefaces not require custom
+source files.
+----------------------------------------
+EXAMPLE
+
+- dir:
+  Directory relative to $theme-font-path
+- This directory should include fonts saved as
+  .ttf, .woff, and .woff2
+  ExampleSerif-Normal.ttf
+  ExampleSerif-Normal.woff
+  ExampleSerif-Normal.woff2
+
+$theme-font-serif-custom-src: (
+  dir: 'custom/example-serif',
+  roman: (
+    100: false,
+    200: false,
+    300: 'ExampleSerif-Light',
+    400: 'ExampleSerif-Normal',
+    500: false,
+    600: false,
+    700: 'ExampleSerif-Bold',
+    800: false,
+    900: false,
+  ),
+  italic: (
+    100: false,
+    200: false,
+    300: 'ExampleSerif-LightItalic',
+    400: 'ExampleSerif-Italic',
+    500: false,
+    600: false,
+    700: 'ExampleSerif-BoldItalic',
+    800: false,
+    900: false,
+  ),
+);
+----------------------------------------
+*/
+
+$theme-font-cond-custom-src: false;
+$theme-font-icon-custom-src: false;
+$theme-font-lang-custom-src: false;
+$theme-font-mono-custom-src: false;
+$theme-font-sans-custom-src: false;
+$theme-font-serif-custom-src: false;
+
+/*
+----------------------------------------
+Role-based font settings
+----------------------------------------
+Set the role-based tokens for your
+project from the following font-type
+tokens.
+----------------------------------------
+'cond'
+'icon'
+'lang'
+'mono'
+'sans'
+'serif'
+----------------------------------------
+*/
+
+$theme-font-role-ui: "sans";
+$theme-font-role-heading: "serif";
+$theme-font-role-body: "sans";
+$theme-font-role-code: "mono";
+$theme-font-role-alt: "serif";
+
+/*
+----------------------------------------
+Type scale
+----------------------------------------
+Define your project's type scale using
+values from the USWDS system type scale
+
+1-20
+----------------------------------------
+*/
+
+$theme-type-scale-3xs: 1;
+$theme-type-scale-2xs: 3;
+$theme-type-scale-xs: 4;
+$theme-type-scale-sm: 6;
+$theme-type-scale-md: 8;
+$theme-type-scale-lg: 11;
+$theme-type-scale-xl: 13;
+$theme-type-scale-2xl: 16;
+$theme-type-scale-3xl: 18;
+
+/*
+----------------------------------------
+Font weights
+----------------------------------------
+Assign weights 100-900
+Or use `false` for unneeded weights.
+----------------------------------------
+*/
+
+$theme-font-weight-thin: 100;
+$theme-font-weight-light: 300;
+$theme-font-weight-normal: 400;
+$theme-font-weight-medium: 500;
+$theme-font-weight-semibold: 600;
+$theme-font-weight-bold: 700;
+$theme-font-weight-heavy: 900;
+
+// If USWDS is generating your @font-face rules,
+// should we generate all available weights
+// regardless of the assignments above?
+
+$theme-generate-all-weights: true;
+
+/*
+----------------------------------------
+General typography settings
+----------------------------------------
+Type scale tokens
+----------------------------------------
+micro:      10px
+1:          12px
+2:          13px
+3:          14px
+4:          15px
+5:          16px
+6:          17px
+7:          18px
+8:          20px
+9:          22px
+10:         24px
+11:         28px
+12:         32px
+13:         36px
+14:         40px
+15:         48px
+16:         56px
+17:         64px
+18:         80px
+19:         120px
+20:         140px
+----------------------------------------
+Line height tokens
+----------------------------------------
+1:    1
+2:    1.15
+3:    1.35
+4:    1.5
+5:    1.62
+6:    1.75
+----------------------------------------
+Font role tokens
+----------------------------------------
+'ui'
+'heading'
+'body'
+'code'
+'alt'
+----------------------------------------
+Measure (max-width) tokens
+----------------------------------------
+1:       44ex
+2:       60ex
+3:       64ex
+4:       68ex
+5:       74ex
+6:       88ex
+none:    none
+----------------------------------------
+*/
+
+// Body settings are the equivalent of setting the <body> element
+$theme-body-font-family: "body";
+$theme-body-font-size: "sm";
+$theme-body-line-height: 5;
+
+// If true, explicitly style the <body> element with the base styles
+$theme-style-body-element: true;
+
+// Headings
+$theme-h1-font-size: "2xl";
+$theme-h2-font-size: "xl";
+$theme-h3-font-size: "lg";
+$theme-h4-font-size: "md";
+$theme-h5-font-size: "sm";
+$theme-h6-font-size: "xs";
+$theme-heading-line-height: 2;
+$theme-small-font-size: "2xs";
+$theme-display-font-size: "3xl";
+
+// Text and prose
+$theme-text-measure-narrow: 1;
+$theme-text-measure: 4;
+$theme-text-measure-wide: 6;
+$theme-prose-font-family: "body";
+
+// Lead text
+$theme-lead-font-family: "heading";
+$theme-lead-font-size: "lg";
+$theme-lead-line-height: 6;
+$theme-lead-measure: 6;

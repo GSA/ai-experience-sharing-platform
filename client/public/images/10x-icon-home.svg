@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="32px" height="32px" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 49.3 (51167) - http://www.bohemiancoding.com/sketch -->
+    <title>10x-icon-home</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <rect id="path-1" x="0" y="0" width="32" height="32"></rect>
+        <filter x="-131.2%" y="-93.8%" width="362.5%" height="362.5%" filterUnits="objectBoundingBox" id="filter-2">
+            <feOffset dx="0" dy="12" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="12" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+        <rect id="path-3" x="0" y="0" width="32" height="32"></rect>
+        <path d="M0,-3.55271368e-15 L32,-3.55271368e-15 L32,32 L0,32 L0,-3.55271368e-15 Z M2,2 L2,30 L30,30 L30,2 L2,2 Z" id="path-5"></path>
+        <rect id="path-7" x="0" y="0" width="22" height="22"></rect>
+        <filter x="-190.9%" y="-136.4%" width="481.8%" height="481.8%" filterUnits="objectBoundingBox" id="filter-8">
+            <feOffset dx="0" dy="12" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="12" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+        <rect id="path-9" x="0" y="0" width="22" height="22"></rect>
+        <path d="M0,-3.55271368e-15 L22,-3.55271368e-15 L22,22 L0,22 L0,-3.55271368e-15 Z M2,2 L2,20 L20,20 L20,2 L2,2 Z" id="path-11"></path>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Artboard" transform="translate(-1667.000000, -6593.000000)">
+            <g id="10x-icon-home" transform="translate(1667.000000, 6593.000000)">
+                <g id="block">
+                    <g id="block/rd0">
+                        <g>
+                            <g id="block">
+                                <g id="block/elevation/rd0/elev-0" fill="black" fill-opacity="1">
+                                    <g id="elev">
+                                        <use filter="url(#filter-2)" xlink:href="#path-1"></use>
+                                    </g>
+                                </g>
+                                <mask id="mask-4" fill="white">
+                                    <use xlink:href="#path-3"></use>
+                                </mask>
+                                <g></g>
+                                <g id="color-black-trans-0" mask="url(#mask-4)" fill="#000000" fill-opacity="0">
+                                    <rect id="Rectangle" x="0" y="0" width="32" height="32"></rect>
+                                </g>
+                                <g id="block/border/b2px" mask="url(#mask-4)">
+                                    <g id="Group-3">
+                                        <mask id="mask-6" fill="white">
+                                            <use xlink:href="#path-5"></use>
+                                        </mask>
+                                        <use id="Combined-Shape" fill="#E44608" xlink:href="#path-5"></use>
+                                        <g id="color-black-cool-90" mask="url(#mask-6)" fill="#1C1D1F">
+                                            <rect id="Rectangle" x="0" y="0" width="32" height="32"></rect>
+                                        </g>
+                                    </g>
+                                </g>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+                <g id="block" transform="translate(5.000000, 5.000000)">
+                    <g id="block/rd0">
+                        <g>
+                            <g id="block">
+                                <g id="block/elevation/rd0/elev-0" fill="black" fill-opacity="1">
+                                    <g id="elev">
+                                        <use filter="url(#filter-8)" xlink:href="#path-7"></use>
+                                    </g>
+                                </g>
+                                <mask id="mask-10" fill="white">
+                                    <use xlink:href="#path-9"></use>
+                                </mask>
+                                <g></g>
+                                <g id="color-black-trans-0" mask="url(#mask-10)" fill="#000000" fill-opacity="0">
+                                    <rect id="Rectangle" x="0" y="0" width="22" height="22"></rect>
+                                </g>
+                                <g id="block/border/b2px" mask="url(#mask-10)">
+                                    <g id="Group-3">
+                                        <mask id="mask-12" fill="white">
+                                            <use xlink:href="#path-11"></use>
+                                        </mask>
+                                        <use id="Combined-Shape" fill="#E44608" xlink:href="#path-11"></use>
+                                        <g id="color-black-cool-60" mask="url(#mask-12)" fill="#595D63">
+                                            <rect id="Rectangle" x="0" y="0" width="22" height="22"></rect>
+                                        </g>
+                                    </g>
+                                </g>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

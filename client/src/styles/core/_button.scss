@@ -1,0 +1,162 @@
+@function darkerValue($value, $darkerValue) {
+  @if $darkerValue != "" {
+    @return $darkerValue;
+  } @else if $value == "white" {
+    @return "base-lightest";
+  } @else {
+    @return $value + -dark;
+  }
+}
+
+@function darkValue($value, $darkValue) {
+  @if $darkValue != "" {
+    @return $darkValue;
+  } @else if $value == "white" {
+    @return "base-lightest";
+  } @else {
+    @return $value + -dark;
+  }
+}
+
+@mixin buttonCustom($value, $darkValue: "", $darkerValue: "") {
+  background-color: color($value);
+  box-shadow: $button-stroke color($value);
+  color: color("white");
+
+  &:visited {
+    background-color: color($value);
+    box-shadow: $button-stroke color($value);
+  }
+  &:hover,
+  &.usa-button--hover {
+    background-color: color(darkerValue($value, $darkerValue));
+    box-shadow: $button-stroke color(darkerValue($value, $darkerValue));
+  }
+  &:focus,
+  &.usa-button--active,
+  &:active,
+  &.usa-button--active {
+    background-color: color(darkerValue($value, $darkerValue));
+    box-shadow: $button-stroke color(darkerValue($value, $darkerValue));
+  }
+  &:disabled,
+  &.usa-button--disabled {
+    box-shadow: none;
+  }
+
+  &.usa-button--unstyled {
+    color: color($value);
+    background-color: transparent;
+    box-shadow: none;
+    &:visited {
+      color: color($value);
+    }
+    &:hover,
+    &.usa-button--hover {
+      color: color(darkValue($value, $darkValue));
+    }
+    &:focus,
+    &.usa-button--active,
+    &:active,
+    &.usa-button--active {
+      color: color(darkValue($value, $darkValue));
+    }
+    &:disabled,
+    &.usa-button--disabled {
+      box-shadow: none;
+    }
+  }
+
+  &-outline {
+    @include no-knockout-font-smoothing;
+    background-color: color("transparent");
+    box-shadow: $button-stroke color($value);
+    color: color($value);
+    font-weight: 500;
+
+    &:visited {
+      background-color: color("transparent");
+      box-shadow: $button-stroke color($value);
+      color: color($value);
+    }
+
+    &:hover,
+    &.usa-button--hover {
+      background-color: color("transparent");
+      box-shadow: $button-stroke color(darkValue($value, $darkValue));
+      color: color(darkValue($value, $darkValue));
+    }
+
+    &:active,
+    &.usa-button--active,
+    &:focus,
+    &.usa-button--focus {
+      background-color: color("transparent");
+      color: color(darkValue($value, $darkValue));
+      box-shadow: $button-stroke color(darkValue($value, $darkValue));
+    }
+
+    &:disabled,
+    &.usa-button--disabled {
+      box-shadow: none;
+    }
+
+    &.usa-button--unstyled {
+      box-shadow: none;
+    }
+  }
+
+  &-white {
+    color: color($value);
+    background-color: color("white");
+    box-shadow: $button-stroke color("white");
+    &:visited {
+      color: color($value);
+      background-color: color("white");
+      box-shadow: $button-stroke color("white");
+    }
+    &:hover,
+    &.usa-button--hover {
+      color: color($value);
+      text-decoration: none;
+    }
+    &:active,
+    &.usa-button--active,
+    &:focus,
+    &.usa-button--focus {
+      color: color(darkerValue($value, $darkerValue));
+      background-color: color("white");
+      box-shadow: $button-stroke color("white");
+    }
+    &:disabled,
+    &.usa-button--disabled {
+      box-shadow: none;
+    }
+  }
+}
+
+.usa-button {
+  font-size: 1rem;
+  margin-right: unset;
+  &--primary {
+    @include buttonCustom("primary");
+  }
+  &--secondary {
+    @include buttonCustom("secondary");
+  }
+  &--accent-warm {
+    @include buttonCustom("accent-warm");
+  }
+  &--white {
+    @include buttonCustom("white");
+  }
+
+  &--fullwidth {
+    width: 100%;
+  }
+  &.usa-button--unstyled {
+    background-color: transparent;
+    box-shadow: none;
+    width: auto;
+  }
+}

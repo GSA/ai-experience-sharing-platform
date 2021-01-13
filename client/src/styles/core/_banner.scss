@@ -1,0 +1,41 @@
+.usa-banner {
+  .usa-banner__button {
+    line-height: 0;
+    @include u-margin-left(2);
+    @include u-margin-top(2);
+
+    &:after {
+      display: none;
+    }
+    .usa-banner__button-text {
+      display: inline-block;
+      position: relative;
+      left: unset;
+      @include u-margin-right(1);
+      @include u-font("sans", "3xs");
+
+      &:after {
+        display: inline-block;
+        @include u-margin-left("2px");
+        background: transparent;
+        content: "\f107";
+        font-family: "Font Awesome 5 Free Solid";
+      }
+    }
+  }
+
+  &[aria-expanded="true"] {
+    .usa-banner__button-text {
+      &:after {
+        content: "\f106";
+      }
+    }
+  }
+
+  @include at-media("tablet") {
+    .usa-banner__button {
+      transform: translateY(-2px);
+      margin-top: 0;
+    }
+  }
+}

@@ -1,0 +1,36 @@
+.usa-nav {
+  display: none;
+  position: relative;
+  align-items: center;
+  justify-content: space-between;
+  float: none;
+  text-align: left;
+  padding-left: 0;
+
+  &.is-visible {
+    display: flex;
+  }
+
+  @include at-media("desktop") {
+    display: flex;
+  }
+}
+
+.usa-nav__footer {
+  margin: 0;
+  text-align: right;
+}
+
+.usa-nav-open {
+  width: auto;
+  @include at-media("desktop") {
+    display: none;
+  }
+}
+
+.usa-nav-close {
+  float: right;
+  @include at-media("desktop") {
+    display: none;
+  }
+}

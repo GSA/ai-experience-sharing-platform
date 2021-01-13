@@ -1,0 +1,205 @@
+html {
+  font-size: 12px;
+
+  @include at-media("tablet") {
+    font-size: 14px;
+  }
+  @include at-media("desktop") {
+    font-size: 16px;
+  }
+}
+
+a {
+  @include u-color("primary-darker");
+  &:visited {
+    @include u-color("primary-darker");
+  }
+  &:hover {
+    @include u-color("primary-dark");
+  }
+}
+
+blockquote {
+  @include u-font("serif", 10);
+  padding: 0;
+  margin: 0;
+  @include u-margin-bottom(5);
+  line-height: 150%;
+
+  p {
+    margin: 0;
+  }
+}
+
+p {
+  margin-top: 0;
+  @include u-margin-bottom(3);
+  max-width: 100%;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin-top: 0;
+  line-height: 130%;
+}
+
+h1,
+h2 {
+  @include u-text("normal");
+}
+h3,
+h4 {
+  @include u-text("medium");
+}
+
+h1 {
+  @include u-margin-bottom(2);
+}
+h2 {
+  @include u-margin-bottom(3);
+}
+h3 {
+  @include u-margin-bottom(2.5);
+  font-weight: 400;
+}
+h4 {
+  font-weight: 400;
+}
+h4,
+h5 {
+  @include u-margin-bottom(2);
+}
+
+h5 {
+  text-transform: uppercase;
+  font-weight: 400;
+}
+
+.usa-app {
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+  background: rgb(69, 217, 217);
+
+  &__theme-1 {
+    .TxContent {
+      background: linear-gradient(
+        180deg,
+        #d7d7f0 400px,
+        #f4ada2 1000px,
+        #dcc5c2 1800px
+      );
+    }
+  }
+
+  &__theme-2 {
+    .TxContent {
+      background: linear-gradient(
+        180deg,
+        #{color("base-dark")} 2px,
+        #{color("base")} 1400px,
+        #a6a7ae 2800px
+      );
+
+      .usa-app__bg {
+        background-image: url("~styles/images/theme-2-bg.png");
+        background-repeat: no-repeat;
+        background-position-x: center;
+        background-position-y: 60px;
+        background-size: 1400px;
+      }
+    }
+  }
+
+  &__theme-3 {
+    .TxContent {
+      background: linear-gradient(
+        180deg,
+        #{color("base-light")} 8.7%,
+        #d1e8ed 35.58%,
+        #e6eced 87.96%
+      );
+    }
+  }
+
+  &__theme-4 {
+    .TxContent {
+      background: linear-gradient(
+        180deg,
+        #{color("base-light")} 8.7%,
+        #f6c5b5 58.64%,
+        #fff7f5 87.96%
+      );
+    }
+  }
+
+  &__theme-5 {
+    .TxContent {
+      background: linear-gradient(
+        180deg,
+        #{color("base-dark")} 2px,
+        #{color("base")} 1400px,
+        #a6a7ae 2800px
+      );
+
+      .usa-app__bg {
+        background-image: url("~styles/images/theme-5-bg.png");
+        background-repeat: no-repeat;
+        background-position-x: center;
+        background-position-y: 130%;
+        background-size: 1300px;
+      }
+    }
+  }
+
+  &__theme-6 {
+    .TxContent {
+      background: linear-gradient(
+        180deg,
+        #{color("base-light")} 0,
+        #ffffff 100%
+      );
+    }
+  }
+
+  &__theme-7 {
+    .TxContent {
+      background: linear-gradient(
+        180deg,
+        #{color("base-light")} 0,
+        #bce9e9 50%,
+        #daf7f750 100%
+      );
+    }
+  }
+
+  &__theme-8 {
+    .TxContent {
+      background: linear-gradient(
+        180deg,
+        #{color("base-light")} 0,
+        #d9d9f7 50%,
+        #f6f6fe 100%
+      );
+    }
+  }
+}
+
+.grid-container {
+  @include u-padding-x(2);
+}
+
+#main-content {
+  min-height: 50vh;
+  z-index: 1;
+}
+
+.TxContent {
+  .usa-app__bg {
+    @include u-padding-y(8);
+  }
+}

@@ -1,0 +1,52 @@
+.Tx__FourOhFour {
+  @include u-padding-bottom(8);
+  .FourOhFour {
+    &__quote {
+      display: flex;
+      @include u-padding-top(4);
+      @include u-padding-bottom(6);
+      @include u-padding-right(6);
+      @include u-padding-left(10);
+      @include u-margin-bottom(4);
+      @include u-margin-left(-2);
+      background-image: url("~styles/images/quote-mobile-background.png");
+      background-repeat: no-repeat;
+      background-size: 100% 100%;
+      @include at-media("tablet") {
+        background-image: url("~styles/images/quote-background.png");
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+        max-width: 90%;
+      }
+
+      &:before {
+        display: inline-block;
+        @include u-margin-top(2);
+        @include u-margin-right(4);
+        content: "";
+        width: 100px;
+        min-width: 50px;
+        height: 100px;
+        background-image: url("~styles/images/quote.png");
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-position: top center;
+      }
+      blockquote {
+        @include u-font("serif", "xl");
+        margin-bottom: 0;
+      }
+      em {
+        display: block;
+        @include u-margin-top(2);
+        @include u-font("serif", "md");
+      }
+    }
+    &__links {
+      a {
+        display: block;
+        @include u-margin-bottom(2);
+      }
+    }
+  }
+}

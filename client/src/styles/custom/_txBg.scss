@@ -1,0 +1,28 @@
+.TxBG {
+  &--1 {
+    @include fullWidthBg("pitch-structure-bg.png");
+
+    margin-left: -3rem;
+    padding-left: 3rem;
+    margin-right: -2rem;
+    padding-left: 2rem;
+    padding-top: 3rem;
+    padding-bottom: 1rem;
+  }
+
+  &--2 {
+    @include fullWidthBg("our-process-callout-bg-mobile.png");
+
+    margin: 0 -3rem;
+    padding: 3rem;
+    @include at-media("desktop") {
+      @include fullWidthBg("our-process-callout-bg.png");
+      margin-left: -3rem;
+      padding-left: 3rem;
+      margin-right: -3rem;
+      padding-right: -3rem;
+      margin-top: -1rem;
+      @include u-padding-y(6);
+    }
+  }
+}

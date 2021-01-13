@@ -1,0 +1,22 @@
+.usa-footer {
+  @include u-padding-top(4);
+
+  &__links {
+    flex-direction: column;
+    @include u-padding-bottom(2);
+
+    a {
+      width: auto;
+      line-height: 135%;
+      @include u-margin-bottom(3);
+      @include at-media("tablet") {
+        @include u-margin-bottom(2);
+      }
+    }
+
+    @include at-media("desktop") {
+      flex-direction: row;
+      justify-content: space-between;
+    }
+  }
+}

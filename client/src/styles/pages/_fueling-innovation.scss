@@ -1,0 +1,17 @@
+.Tx__fueling-innovation {
+  .TxCallout {
+    margin-top: -3rem;
+    padding-top: 3rem;
+
+    margin-right: -2rem;
+    padding-right: 2rem;
+
+    padding-bottom: 2rem;
+    margin-bottom: -2rem;
+
+    margin-left: -3rem;
+    padding-left: 3rem;
+
+    @include fullWidthBg("fueling-innovation-callout-bg.png");
+  }
+}
