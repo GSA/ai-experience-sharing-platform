@@ -4,13 +4,14 @@ import classnames from "classnames";
 import Header from "./Header";
 import Logo from "components/Logo";
 import Footer from "./Footer";
-import { getMenus } from "app/SiteModule";
+import { getMenus, siteData } from "app/SiteModule";
 import { Helmet } from "react-helmet";
 
 const Primary = ({ children }) => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getMenus({}));
+    dispatch(siteData());
   }, [dispatch]);
 
   const page = useSelector((state) => state.content.page);

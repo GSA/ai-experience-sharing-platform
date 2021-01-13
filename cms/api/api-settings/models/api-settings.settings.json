@@ -14,7 +14,7 @@
     "title": {
       "type": "string"
     },
-    "footerColumn": {
+    "footer": {
       "type": "component",
       "repeatable": true,
       "component": "content.list"
