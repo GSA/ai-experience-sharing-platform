@@ -36,7 +36,8 @@ jobs:
       - id: set-matrix-main
         if: github.ref == 'refs/heads/main'
         # run: echo "::set-output name=matrix::{\"include\":[{\"deployenv\":\"prod\",\"logingovurl\":\"https://idp.int.identitysandbox.gov/openid_connect/authorize\",\"strapiloginurl\":\"https://strapi-api-host-main.app.cloud.gov/connect/logingov/callback\"}]}"
-        run: echo "::set-output name=matrix::{\"include\":[{\"deployenv\":\"dev\",\"logingovurl\":\"https://idp.int.identitysandbox.gov/openid_connect/authorize\",\"strapiloginurl\":\"https://strapi-api-host-main.app.cloud.gov/connect/logingov/callback\"}]}"
+        # run: echo "::set-output name=matrix::{\"include\":[{\"deployenv\":\"dev\",\"logingovurl\":\"https://idp.int.identitysandbox.gov/openid_connect/authorize\",\"strapiloginurl\":\"https://strapi-api-host-main.app.cloud.gov/connect/logingov/callback\"}]}"
+        run: echo "::set-output name=matrix::{\"include\":[{\"deployenv\":\"dev\",\"logingovurl\":\"https://idp.int.identitysandbox.gov/openid_connect/authorize\",\"strapiloginurl\":\"https://strapi-api-host-main.app.cloud.gov/connect/logingov/callback\"},{\"deployenv\":\"staging\",\"logingovurl\":\"https://idp.int.identitysandbox.gov/openid_connect/authorize\",\"strapiloginurl\":\"https://strapi-api-host-main.app.cloud.gov/connect/logingov/callback\"}]}"
       - id: set-matrix-pr-develop
         if: github.event_name == 'pull_request' && github.base_ref == 'develop'
         run: echo "::set-output name=matrix::{\"include\":[{\"deployenv\":\"dev\",\"logingovurl\":\"https://idp.int.identitysandbox.gov/openid_connect/authorize\",\"strapiloginurl\":\"https://strapi-api-host-main.app.cloud.gov/connect/logingov/callback\"}]}"
