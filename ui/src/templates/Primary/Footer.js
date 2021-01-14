@@ -40,14 +40,14 @@ const Footer = () => {
                 {footer.map(
                   (foot) =>
                     Boolean(foot.items.length) && (
-                      <Col desktop="3">
+                      <Col key={foot.id} desktop="3">
                         <section className="usa-footer__primary-content usa-footer__primary-content--collapsible">
                           <h4 className="usa-footer__primary-link">
                             {foot.title}
                           </h4>
                           <ul className="usa-list usa-list--unstyled">
                             {foot.items.map((item) => (
-                              <li className="usa-footer__secondary-link">
+                              <li key={item.id} className="usa-footer__secondary-link">
                                 <Link url={item.link}>{item.text}</Link>
                               </li>
                             ))}
@@ -66,7 +66,7 @@ const Footer = () => {
             <Col desktop="6" className="usa-footer__contact-links">
               <Row className="usa-footer__social-links" gap={1}>
                 {social.map((item) => (
-                  <Col size="auto">
+                  <Col key={item.key} size="auto">
                     <a
                       className={`usa-social-link usa-social-link--${item.key}`}
                       href={item.link}
