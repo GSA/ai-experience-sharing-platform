@@ -6,8 +6,14 @@ import { useSelector } from "react-redux";
 import { name as siteName } from "app/SiteModule";
 
 const Footer = () => {
-  const { footer = [] } = useSelector((state) => state[siteName]);
-  let data = {};
+  const { title, footer = [] } = useSelector((state) => state[siteName]);
+
+  const social = [
+    { key: "facebook", title: "Facebook", link: "/#" },
+    { key: "twitter", title: "Twitter", link: "/#" },
+    { key: "youtube", title: "YouTube", link: "/#" },
+    { key: "rss", title: "RSS", link: "/#" },
+  ];
 
   return (
     <footer className="usa-footer usa-footer--big">
@@ -18,95 +24,61 @@ const Footer = () => {
         <Grid>
           <Row>
             <Col>
-              <nav className="usa-footer__nav" aria-label="Footer navigation">
-                <Row>
-                  {Boolean(footer.length) &&
-                    footer.map(
-                      (foot) =>
-                        Boolean(foot.items.length) && (
-                          <Col desktop="3">
-                            <section className="usa-footer__primary-content usa-footer__primary-content--collapsible">
-                              <h4 className="usa-footer__primary-link">
-                                {foot.title}
-                              </h4>
-                              <ul className="usa-list usa-list--unstyled">
-                                {foot.items.map((item) => (
-                                  <li className="usa-footer__secondary-link">
-                                    <Link url={item.link}>{item.text}</Link>
-                                  </li>
-                                ))}
-                              </ul>
-                            </section>
-                          </Col>
-                        )
-                    )}
-                </Row>
-              </nav>
+              <div className="margin-y-4">
+                <GSAFooter />
+              </div>
             </Col>
           </Row>
         </Grid>
       </div>
 
       <div className="usa-footer__secondary-section">
-        <div className="grid-container">
-          <div className="grid-row grid-gap">
-            <div className="usa-footer__logo grid-row mobile-lg:grid-col-6 mobile-lg:grid-gap-2">
-              <div className="mobile-lg:grid-col-auto"></div>
-              <div className="mobile-lg:grid-col-auto">
-                <h3 className="usa-footer__logo-heading">Name of Agency</h3>
-              </div>
-            </div>
-            <div className="usa-footer__contact-links mobile-lg:grid-col-6">
-              <div className="usa-footer__social-links grid-row grid-gap-1">
-                <div className="grid-col-auto">
-                  <a
-                    className="usa-social-link usa-social-link--facebook"
-                    href="javascript:void(0);"
-                  >
-                    <span>Facebook</span>
-                  </a>
-                </div>
-                <div className="grid-col-auto">
-                  <a
-                    className="usa-social-link usa-social-link--twitter"
-                    href="javascript:void(0);"
-                  >
-                    <span>Twitter</span>
-                  </a>
-                </div>
-                <div className="grid-col-auto">
-                  <a
-                    className="usa-social-link usa-social-link--youtube"
-                    href="javascript:void(0);"
-                  >
-                    <span>YouTube</span>
-                  </a>
-                </div>
-                <div className="grid-col-auto">
-                  <a
-                    className="usa-social-link usa-social-link--rss"
-                    href="javascript:void(0);"
-                  >
-                    <span>RSS</span>
-                  </a>
-                </div>
-              </div>
-              <h3 className="usa-footer__contact-heading">
-                Agency Contact Center
-              </h3>
-              <address className="usa-footer__address">
-                <div className="usa-footer__contact-info grid-row grid-gap">
-                  <div className="grid-col-auto">
-                    <a href="tel:1-800-555-5555">(800) CALL-GOVT</a>
-                  </div>
-                  <div className="grid-col-auto">
-                    <a href="mailto:info@agency.gov">info@agency.gov</a>
-                  </div>
-                </div>
-              </address>
-            </div>
-          </div>
-        </div>
+        <Grid>
+          {Boolean(footer.length) && (
+            <nav className="usa-footer__nav" aria-label="Footer navigation">
+              <Row>
+                {footer.map(
+                  (foot) =>
+                    Boolean(foot.items.length) && (
+                      <Col desktop="3">
+                        <section className="usa-footer__primary-content usa-footer__primary-content--collapsible">
+                          <h4 className="usa-footer__primary-link">
+                            {foot.title}
+                          </h4>
+                          <ul className="usa-list usa-list--unstyled">
+                            {foot.items.map((item) => (
+                              <li className="usa-footer__secondary-link">
+                                <Link url={item.link}>{item.text}</Link>
+                              </li>
+                            ))}
+                          </ul>
+                        </section>
+                      </Col>
+                    )
+                )}
+              </Row>
+            </nav>
+          )}
+          <Row gap={6}>
+            <Col desktop="6">
+              <h3 className="usa-footer__logo-heading">{title}</h3>
+            </Col>
+            <Col desktop="6" className="usa-footer__contact-links">
+              <Row className="usa-footer__social-links" gap={1}>
+                {social.map((item) => (
+                  <Col size="auto">
+                    <a
+                      className={`usa-social-link usa-social-link--${item.key}`}
+                      href={item.link}
+                    >
+                      <span>{item.title}</span>
+                    </a>
+                  </Col>
+                ))}
+              </Row>
+            </Col>
+          </Row>
+        </Grid>
       </div>
     </footer>
   );
