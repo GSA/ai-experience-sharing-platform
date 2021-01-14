@@ -33,7 +33,7 @@
       "type": "richtext"
     },
     "businessProblem": {
-      "type": "richtext"
+      "type": "string"
     },
     "solutionBenefits": {
       "type": "richtext"
@@ -213,6 +213,60 @@
       "type": "string"
     },
     "metadataSubAgency": {
+      "type": "string"
+    },
+    "headlineTitle": {
+      "type": "string"
+    },
+    "summaryTitle": {
+      "type": "string"
+    },
+    "solutionBenefitsTitle": {
+      "type": "string"
+    },
+    "implementationContextTitle": {
+      "type": "string"
+    },
+    "futureDevelopmentGoalsTitle": {
+      "type": "string"
+    },
+    "approachTitle": {
+      "type": "string"
+    },
+    "aiMlTechniquesTitle": {
+      "type": "string"
+    },
+    "dataApproachTitle": {
+      "type": "string"
+    },
+    "technicalSolutionTitle": {
+      "type": "string"
+    },
+    "obstaclesTitle": {
+      "type": "string"
+    },
+    "riskAssessmentTitle": {
+      "type": "string"
+    },
+    "responsibleAiManagementTitle": {
+      "type": "string"
+    },
+    "metricsTitle": {
+      "type": "string"
+    },
+    "decisionMakingTitle": {
+      "type": "string"
+    },
+    "developmentTitle": {
+      "type": "string"
+    },
+    "trainingOrCodeOfConductTitle": {
+      "type": "string"
+    },
+    "lessionsLearnedTitle": {
+      "type": "string"
+    },
+    "contactTitle": {
       "type": "string"
     }
   }
