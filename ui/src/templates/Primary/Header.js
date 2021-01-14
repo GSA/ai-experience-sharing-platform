@@ -38,7 +38,6 @@ const Header = ({ className, variant }) => {
 
   // For menu item matches current path
   const currentMenuItem = history.location.pathname;
-  console.log(currentMenuItem);
   const { items = [] } = useMenuSelector("primary");
   const { title } = useSelector((state) => state[siteName]);
 

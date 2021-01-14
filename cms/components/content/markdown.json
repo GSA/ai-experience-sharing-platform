@@ -6,5 +6,18 @@
     "description": ""
   },
   "options": {},
-  "attributes": {}
+  "attributes": {
+    "body": {
+      "type": "richtext"
+    },
+    "className": {
+      "type": "string"
+    },
+    "fullwidth": {
+      "type": "boolean"
+    },
+    "title": {
+      "type": "string"
+    }
+  }
 }

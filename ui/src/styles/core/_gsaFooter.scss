@@ -2,6 +2,7 @@
   line-height: 1.2;
   @include at-media("tablet") {
     display: flex;
+    align-items: center;
   }
   &__logo {
     display: flex;
@@ -20,9 +21,5 @@
 
   &__text {
     font-weight: 400;
-
-    .usa-button--unstyled {
-      display: inline;
-    }
   }
 }

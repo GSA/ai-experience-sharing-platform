@@ -19,7 +19,12 @@
     },
     "content": {
       "type": "dynamiczone",
-      "components": []
+      "components": [
+        "content.cards",
+        "content.list",
+        "content.markdown",
+        "content.callout"
+      ]
     }
   }
 }

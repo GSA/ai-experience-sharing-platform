@@ -13,6 +13,7 @@ const Page = ({ slug }) => {
   const dispatch = useDispatch();
   const params = useParams();
   const pageSlug = slug ? slug : params.slug;
+  console.log(pageSlug);
   const page = useSelector((state) => state.content.page);
   useScrollToTop();
   useEffect(() => {

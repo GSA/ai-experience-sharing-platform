@@ -2,12 +2,26 @@
   "collectionName": "components_content_callouts",
   "info": {
     "name": "Callout",
-    "icon": "columns"
+    "icon": "columns",
+    "description": ""
   },
   "options": {},
   "attributes": {
-    "test": {
-      "type": "richtext"
+    "items": {
+      "type": "component",
+      "repeatable": true,
+      "component": "content.markdown",
+      "max": 3,
+      "min": 1
+    },
+    "className": {
+      "type": "string"
+    },
+    "fullwidth": {
+      "type": "boolean"
+    },
+    "title": {
+      "type": "string"
     }
   }
 }
