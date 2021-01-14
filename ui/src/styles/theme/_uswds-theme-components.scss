@@ -32,7 +32,7 @@ $theme-alert-padding-x: 2.5;
 $theme-banner-background-color: "base-lightest";
 $theme-banner-font-family: "ui";
 $theme-banner-link-color: default;
-$theme-banner-max-width: "desktop";
+$theme-banner-max-width: "desktop-lg";
 
 // Breadcrumb
 $theme-breadcrumb-background-color: "white";
@@ -66,7 +66,7 @@ $theme-card-padding-y: 2;
 
 // Footer
 $theme-footer-font-family: "body";
-$theme-footer-max-width: 1200px;
+$theme-footer-max-width: "desktop-lg";
 
 // Form and input
 $theme-checkbox-border-radius: "sm";
@@ -80,8 +80,8 @@ $theme-input-state-border-width: 0.5;
 // Header
 $theme-header-font-family: "ui";
 $theme-header-logo-text-width: 33%;
-$theme-header-max-width: "desktop";
-$theme-header-min-width: "desktop";
+$theme-header-max-width: "desktop-lg";
+$theme-header-min-width: "desktop-lg";
 
 // Hero
 $theme-hero-image: "#{$theme-image-path}/hero.png";
