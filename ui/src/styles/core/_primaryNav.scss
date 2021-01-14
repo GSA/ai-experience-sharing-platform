@@ -35,3 +35,8 @@
     display: none;
   }
 }
+
+.usa-nav__link > .last {
+  display: block;
+  text-transform: uppercase;
+}
