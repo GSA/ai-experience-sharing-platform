@@ -1,25 +1,26 @@
 {
-  "collectionName": "components_content_lists",
+  "collectionName": "components_content_cards",
   "info": {
-    "name": "List",
-    "icon": "clipboard-list",
+    "name": "Cards",
+    "icon": "id-card",
     "description": ""
   },
   "options": {},
   "attributes": {
-    "items": {
+    "card": {
       "type": "component",
       "repeatable": true,
-      "component": "content.list-item"
-    },
-    "title": {
-      "type": "string"
+      "component": "content.card",
+      "max": 3,
+      "min": 1
     },
     "columns": {
       "type": "enumeration",
       "enum": [
         "one",
-        "two"
+        "two",
+        "three",
+        "four"
       ]
     },
     "className": {
@@ -27,6 +28,9 @@
     },
     "fullwidth": {
       "type": "boolean"
+    },
+    "title": {
+      "type": "string"
     }
   }
 }

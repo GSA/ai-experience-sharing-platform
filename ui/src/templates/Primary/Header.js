@@ -61,17 +61,19 @@ const Header = ({ className, variant }) => {
                 </Link>
               </Col>
               <Col size="8" className="usa-header__nav">
-                <PrimaryNav
-                  items={items}
-                  varaint="basic"
-                  isMobileMenuOpen={isMenuOpen}
-                  onMobileMenuClick={handleMenuToggle}
-                  activeMenuItem={activeMenuItem}
-                  currentMenuItem={currentMenuItem}
-                  onClick={handleClick}
-                  onMenuItemClick={handleMenuItemClick}
-                  footer={<Search />}
-                />
+                <Row className="flex-align-center height-full">
+                  <PrimaryNav
+                    items={items}
+                    varaint="basic"
+                    isMobileMenuOpen={isMenuOpen}
+                    onMobileMenuClick={handleMenuToggle}
+                    activeMenuItem={activeMenuItem}
+                    currentMenuItem={currentMenuItem}
+                    onClick={handleClick}
+                    onMenuItemClick={handleMenuItemClick}
+                    footer={<Search />}
+                  />
+                </Row>
               </Col>
             </Row>
           </Col>
