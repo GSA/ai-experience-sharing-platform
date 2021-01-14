@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import Button from "components/Button";
+import Button from "features/Button";
 import { useDispatch, useSelector } from "react-redux";
 import { loginUrl, setRedirect } from "app/AuthModule";
 import { Grid, Row, Col } from "components/Grid";

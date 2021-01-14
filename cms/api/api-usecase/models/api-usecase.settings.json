@@ -33,7 +33,7 @@
       "type": "richtext"
     },
     "businessProblem": {
-      "type": "richtext"
+      "type": "string"
     },
     "solutionBenefits": {
       "type": "richtext"
@@ -88,12 +88,7 @@
     },
     "contactRole": {
       "type": "enumeration",
-      "enum": [
-        "governmentEmployee",
-        "academica",
-        "industry",
-        "other"
-      ]
+      "enum": ["governmentEmployee", "academica", "industry", "other"]
     },
     "aiRole": {
       "type": "enumeration",
@@ -143,10 +138,7 @@
     },
     "metadataDevelopmentPhase": {
       "type": "enumeration",
-      "enum": [
-        "operationalUse",
-        "researchProject"
-      ]
+      "enum": ["operationalUse", "researchProject"]
     },
     "metadataAiMlTechniques": {
       "type": "enumeration",
@@ -215,10 +207,59 @@
     "metadataSubAgency": {
       "type": "string"
     },
-    "sidenav": {
-      "type": "string",
-      "private": false,
-      "default": "headline,summary,businessProblem,solutionBenefits,implementationContext,futureDevelopmentGoals,approach,aiMITechniques,dataApproach,technicalSolution,obstacles,riskAssessment,responsibleAiManagement,metrics,decisionMaking,development,trainingOrCodeOfConduct,lessionsLearned,contactInformation"
+    "headlineTitle": {
+      "type": "string"
+    },
+    "summaryTitle": {
+      "type": "string"
+    },
+    "solutionBenefitsTitle": {
+      "type": "string"
+    },
+    "implementationContextTitle": {
+      "type": "string"
+    },
+    "futureDevelopmentGoalsTitle": {
+      "type": "string"
+    },
+    "approachTitle": {
+      "type": "string"
+    },
+    "aiMlTechniquesTitle": {
+      "type": "string"
+    },
+    "dataApproachTitle": {
+      "type": "string"
+    },
+    "technicalSolutionTitle": {
+      "type": "string"
+    },
+    "obstaclesTitle": {
+      "type": "string"
+    },
+    "riskAssessmentTitle": {
+      "type": "string"
+    },
+    "responsibleAiManagementTitle": {
+      "type": "string"
+    },
+    "metricsTitle": {
+      "type": "string"
+    },
+    "decisionMakingTitle": {
+      "type": "string"
+    },
+    "developmentTitle": {
+      "type": "string"
+    },
+    "trainingOrCodeOfConductTitle": {
+      "type": "string"
+    },
+    "lessionsLearnedTitle": {
+      "type": "string"
+    },
+    "contactTitle": {
+      "type": "string"
     }
   }
 }
