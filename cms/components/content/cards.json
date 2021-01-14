@@ -2,17 +2,24 @@
   "collectionName": "components_content_cards",
   "info": {
     "name": "Cards",
-    "icon": "id-card",
+    "icon": "address-card",
     "description": ""
   },
   "options": {},
   "attributes": {
-    "card": {
+    "cardItem": {
       "type": "component",
       "repeatable": true,
-      "component": "content.card",
-      "max": 3,
-      "min": 1
+      "component": "content.card-item"
+    },
+    "title": {
+      "type": "string"
+    },
+    "className": {
+      "type": "string"
+    },
+    "fullWidth": {
+      "type": "boolean"
     },
     "columns": {
       "type": "enumeration",
@@ -21,16 +28,8 @@
         "two",
         "three",
         "four"
-      ]
-    },
-    "className": {
-      "type": "string"
-    },
-    "fullwidth": {
-      "type": "boolean"
-    },
-    "title": {
-      "type": "string"
+      ],
+      "default": "two"
     }
   }
 }

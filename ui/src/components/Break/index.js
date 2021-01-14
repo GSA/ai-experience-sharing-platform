@@ -6,9 +6,9 @@ const Break = ({ color, variant }) => {
   return (
     <div
       className={classnames({
-        TxBreak: true,
-        [`TxBreak__${color}`]: color,
-        TxBreak__wide: variant === "wide",
+        USBreak: true,
+        [`USBreak__${color}`]: color,
+        USBreak__wide: variant === "wide",
       })}
     />
   );

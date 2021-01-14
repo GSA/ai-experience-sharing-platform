@@ -5,28 +5,29 @@ import { Col, Row } from "components/Grid";
 import Card from "components/Card";
 import Mdx from "features/Mdx";
 
-const Cards = ({ title, text, items, className, columns }) => {
+const Cards = ({ title, text, cardItem: items, className, columns }) => {
   const columnSize = {
-    1: "12",
-    2: "6",
-    3: "4",
-    4: "3",
+    one: "12",
+    two: "6",
+    three: "4",
+    four: "3",
   };
+  console.log(items);
   return (
     <div
       className={classnames({
-        TxCards: true,
+        USCards: true,
         [className]: Boolean(className),
       })}
     >
       {title && <h2>{title}</h2>}
       {text && <div className="margin-bottom-4">{text}</div>}
 
-      <Row>
+      <Row className="flex-align-stretch">
         {items.map((item, i) => {
           return (
             <Col
-              key={`txCards-${i}`}
+              key={`USCards-${i}`}
               className={classnames({ [item.className]: item.className })}
               size="12"
               desktop={columnSize[columns]}

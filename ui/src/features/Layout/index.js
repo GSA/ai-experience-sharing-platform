@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import classnames from "classnames";
 import { Grid } from "components/Grid";
 import Break from "components/Break";
 import Callout from "./templates/Callout";
@@ -18,24 +19,25 @@ const components = {
   links: Links,
   list: List,
   markdown: ({ body, className }) => (
-    <div className={className}>
-      <Mdx className={className}>{body}</Mdx>
+    <div className={classnames({ USMarkdown: true, [className]: className })}>
+      <Mdx>{body}</Mdx>
     </div>
   ),
   title: Title,
 };
 
 const Layout = ({ items, data }) => {
-  return items.map(({ type, fullwidth, ...props }, i) => {
-    const compType = type.split(".");
+  console.log(items, data);
+  return items.map(({ __component, fullwidth, ...props }, i) => {
+    const compType = __component.split(".");
     const Comp = components[compType[1]];
     if (!Comp) {
-      console.warn(`Module type "${type}" not defined.`);
+      console.warn(`Module type "${compType}" not defined.`);
       return null;
     }
     return Comp ? (
       fullwidth ? (
-        <Comp key={`txLayout-${++i}`} {...props} data={data} />
+        <Comp key={`USLayout-${++i}`} {...props} data={data} />
       ) : (
         <Grid key={`layout-${++i}`}>
           <Comp {...props} data={data} />

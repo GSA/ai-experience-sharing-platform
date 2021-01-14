@@ -6,7 +6,7 @@ import Mdx from "features/Mdx";
 
 const Grid = ({ className, columns }) => {
   return (
-    <Row className={classnames({ TxGrid: true, [`${className}`]: className })}>
+    <Row className={classnames({ USGrid: true, [`${className}`]: className })}>
       {columns.length &&
         columns.map((col, i) => (
           <Col className={col.className} size={col.size} desktop={col.desktop}>

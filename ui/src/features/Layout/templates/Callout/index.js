@@ -17,8 +17,8 @@ const Callout = ({
   return (
     <div
       className={classnames({
-        TxCallout: true,
-        [`TxCallout__${variant}`]: variant,
+        USCallout: true,
+        [`USCallout__${variant}`]: variant,
         [className]: Boolean(className),
       })}
     >
@@ -26,10 +26,10 @@ const Callout = ({
       {text && <div className="margin-bottom-4">{text}</div>}
       {subtitle && <h3>{subtitle}</h3>}
       {items && (
-        <Row className="TxCallout__items">
+        <Row className="USCallout__items">
           {items.map((item, i) => (
             <Col
-              key={`txCallout-${i}`}
+              key={`USCallout-${i}`}
               className={classnames({ [item.className]: item.className })}
               size="12"
               desktop="auto"
@@ -37,11 +37,11 @@ const Callout = ({
               <div className="display-flex margin-right-2">
                 <div
                   className={classnames({
-                    TxCallout__icon: true,
-                    [`TxCallout__icon--${variant}`]: variant,
+                    USCallout__icon: true,
+                    [`USCallout__icon--${variant}`]: variant,
                   })}
                 />
-                <div className="TxCallout__content">
+                <div className="USCallout__content">
                   <Mdx>{item.body}</Mdx>
                 </div>
               </div>

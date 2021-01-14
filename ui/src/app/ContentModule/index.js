@@ -16,7 +16,7 @@ const getToken = (type, state) => {
 
 export const getPage = createAsyncThunk(
   "content/getPage",
-  async ({ type = "page", slug = "" }, thunkAPI) => {
+  async ({ type = "pages", slug = "" }, thunkAPI) => {
     const token = getToken(type, thunkAPI.getState());
 
     return await context.getContentTypeByName({ type, slug, token });

@@ -36,10 +36,10 @@ const Page = ({ slug }) => {
     return <FourOhFour />;
   }
   return (
-    <div className={`TxContent Tx__${pageSlug}`}>
+    <div className={`USLayout US__${pageSlug}`}>
       <div className="usa-app__bg">
         <Head title={data.title} />
-        <div className={`Tx__${data.slug}-content`}>
+        <div className={`US__${data.slug}-content`}>
           <Layout items={data.content} />
         </div>
       </div>

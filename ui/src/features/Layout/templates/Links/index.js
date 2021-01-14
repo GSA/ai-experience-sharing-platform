@@ -10,7 +10,7 @@ const Links = ({ className, title, subtitle, text, items, button }) => {
   return (
     <div
       className={classnames({
-        TxContent__links: true,
+        USLayout__links: true,
         [className]: Boolean(className),
       })}
     >
@@ -20,7 +20,7 @@ const Links = ({ className, title, subtitle, text, items, button }) => {
       {items && (
         <Row gap="6">
           {items.map((item, i) => (
-            <Col key={`txLinks-${i}`} size="12" desktop="6">
+            <Col key={`USLinks-${i}`} size="12" desktop="6">
               <div className="display-flex margin-bottom-4">
                 <Icon
                   icon="circle"

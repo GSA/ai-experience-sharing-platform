@@ -14,18 +14,17 @@ const List = ({ className, title, subtitle, text, items, button, columns }) => {
   return (
     <div
       className={classnames({
-        TxList: true,
+        USList: true,
         [className]: Boolean(className),
       })}
     >
       {title && <h2>{title}</h2>}
-      {text && <div className="margin-bottom-4">{text}</div>}
-      {subtitle && <h3>{subtitle}</h3>}
+
       {items && (
         <Row gap="6">
           {items.map((item, i) => (
-            <Col key={`txLinks-${i}`} size="12" desktop={desktop[columns]}>
-              <div className="display-flex margin-bottom-4">
+            <Col key={`USLinks-${i}`} size="12" desktop={desktop[columns]}>
+              <div className="display-flex">
                 <Icon
                   icon="circle"
                   size="xs"
@@ -39,13 +38,6 @@ const List = ({ className, title, subtitle, text, items, button, columns }) => {
             </Col>
           ))}
         </Row>
-      )}
-      {button.text && button.link && (
-        <div className="text-center margin-bottom-4">
-          <Button variant="outline" url={button.link}>
-            {button.text}
-          </Button>
-        </div>
       )}
     </div>
   );

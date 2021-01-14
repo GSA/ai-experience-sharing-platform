@@ -20,10 +20,16 @@
     "content": {
       "type": "dynamiczone",
       "components": [
-        "content.cards",
         "content.list",
         "content.markdown",
-        "content.callout"
+        "content.callout",
+        "content.cards"
+      ]
+    },
+    "leftSidebar": {
+      "type": "dynamiczone",
+      "components": [
+        "menu.menu"
       ]
     }
   }

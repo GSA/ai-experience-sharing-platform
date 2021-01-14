@@ -25,7 +25,7 @@ describe("Page", () => {
         </TestProvider>
       );
       await runAsyncRender(wrapper);
-      expect(wrapper.find(".Tx__FourOhFour").length).toBe(1);
+      expect(wrapper.find(".US__FourOhFour").length).toBe(1);
     });
   });
 });
