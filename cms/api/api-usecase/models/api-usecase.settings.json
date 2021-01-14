@@ -214,6 +214,11 @@
     },
     "metadataSubAgency": {
       "type": "string"
+    },
+    "sidenav": {
+      "type": "string",
+      "private": false,
+      "default": "headline,summary,businessProblem,solutionBenefits,implementationContext,futureDevelopmentGoals,approach,aiMITechniques,dataApproach,technicalSolution,obstacles,riskAssessment,responsibleAiManagement,metrics,decisionMaking,development,trainingOrCodeOfConduct,lessionsLearned,contactInformation"
     }
   }
 }

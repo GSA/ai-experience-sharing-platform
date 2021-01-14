@@ -1,16 +1,16 @@
 import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
-import Mdx from "features/Mdx";
-import Login from "features/Login";
-import ArticleDetails from "components/ArticleDetails";
-import ContentNav from "components/ContentsNav";
 import { useDispatch, useSelector } from "react-redux";
-import { getPage } from "app/ContentModule";
+import Details from "./Details";
 import { Grid, Row, Col } from "components/Grid";
 import { Loading } from "components/Loading";
+import Mdx from "features/Mdx";
+import Login from "features/Login";
+import ContentNav from "features/ContentsNav";
 import FourOhFour from "templates/FourOhFour";
+import { getPage } from "app/ContentModule";
 
-export const Article = () => {
+export const Usecase = () => {
   const dispatch = useDispatch();
   const { type, name } = useParams();
   const { pending, data, error } = useSelector((state) => state.content.page);
@@ -47,7 +47,7 @@ export const Article = () => {
               <Mdx>{body}</Mdx>
             </Col>
             <Col size={2}>
-              <ArticleDetails title="Details" items={details} />
+              <Details title="Details" items={details} />
             </Col>
           </Row>
         </Grid>
@@ -56,4 +56,4 @@ export const Article = () => {
   );
 };
 
-export default Article;
+export default Usecase;

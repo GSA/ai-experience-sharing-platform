@@ -1,0 +1,37 @@
+{
+  "kind": "collectionType",
+  "collectionName": "api_usecase_deuxes",
+  "info": {
+    "name": "api-usecase-deux",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "content": {
+      "type": "dynamiczone",
+      "components": [
+        "content.callout",
+        "content.card-item",
+        "content.cards",
+        "content.list-item",
+        "content.list",
+        "content.markdown"
+      ]
+    },
+    "usecaseMeta": {
+      "type": "component",
+      "repeatable": false,
+      "component": "usecase.usecase-meta"
+    },
+    "title": {
+      "type": "string"
+    },
+    "publishData": {
+      "type": "date"
+    }
+  }
+}
