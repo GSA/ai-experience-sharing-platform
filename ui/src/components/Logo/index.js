@@ -3,9 +3,9 @@ import PropTypes from "prop-types";
 
 const Logo = ({ title, variant }) => {
   return (
-    <div className="usa-logo" id="basic-logo">
+    <span className="usa-logo" id="basic-logo">
       {`AI in Government`}
-    </div>
+    </span>
   );
 };
 

@@ -2,11 +2,13 @@
   "kind": "collectionType",
   "collectionName": "Menu",
   "info": {
-    "name": "api-menu"
+    "name": "api-menu",
+    "description": ""
   },
   "options": {
     "increments": true,
-    "timestamps": true
+    "timestamps": true,
+    "draftAndPublish": false
   },
   "attributes": {
     "title": {
@@ -21,7 +23,8 @@
     "items": {
       "type": "dynamiczone",
       "components": [
-        "menu.menu"
+        "content.list-item",
+        "content.list"
       ]
     }
   }

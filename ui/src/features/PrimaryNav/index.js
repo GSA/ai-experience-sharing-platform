@@ -19,7 +19,6 @@ const Nav = ({
   open,
   close,
 }) => {
-  console.log(activeMenuItem);
   return (
     <>
       <button

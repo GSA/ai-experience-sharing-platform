@@ -1,5 +1,12 @@
 import React from "react";
 import classnames from "classnames";
+import Link from "features/Link";
+
+const handleEvent = (e) => {
+  if (e.preventDefault) {
+    e.preventDefault();
+  }
+};
 
 const NavItem = ({
   data,
@@ -12,9 +19,13 @@ const NavItem = ({
   renderMenuItem,
   renderSubItem,
 }) => {
-  const { items = [] } = data;
+  const { items = [], ...props } = data;
 
-  const Link = renderLink;
+  const handleMenuItemClick = (e) => {
+    onMenuItemClick();
+  };
+
+  const Item = renderLink;
   const Button = renderMenuItem;
   const Sub = renderSubItem;
   return (
@@ -22,20 +33,20 @@ const NavItem = ({
       {items.length ? (
         <>
           <Button
-            {...data}
+            {...props}
             id={id}
-            onClick={onMenuItemClick}
+            onClick={(e) => {
+              handleEvent(e);
+              onMenuItemClick({ ...data, id });
+            }}
             className={classnames({
               "usa-nav__link": true,
-              "usa-accordion__button": true,
               "usa-current": items.reduce(
                 (acc, cur) => (cur.link === currentMenuItem ? acc + 1 : acc),
                 0
               ),
             })}
-          >
-            {data.text}
-          </Button>
+          />
           <ul
             id={`extended-nav-section-${id}`}
             className="usa-accordion__content usa-nav__submenu"
@@ -43,18 +54,29 @@ const NavItem = ({
           >
             {items.map((item, idx) => (
               <li key={idx} className="usa-nav__submenu-item">
-                <Sub {...item} isCurrent={currentMenuItem} onClick={onClick} />
+                <Sub
+                  {...item}
+                  isCurrent={currentMenuItem.includes(item.link)}
+                  onClick={(e) => {
+                    handleEvent(e);
+                    onClick(item);
+                  }}
+                />
               </li>
             ))}
           </ul>
         </>
       ) : (
-        <Link
-          {...data}
+        <Item
+          {...props}
           className={classnames({
             "usa-nav__link": true,
             "usa-current": currentMenuItem.includes(data.link),
           })}
+          onClick={(e) => {
+            handleEvent(e);
+            onClick(data);
+          }}
         />
       )}
     </li>
@@ -69,7 +91,7 @@ NavItem.defaultProps = {
       {props.text}
     </a>
   ),
-  renderMenuItem: (props) => <button {...props}>{props.text}</button>,
+  renderMenuItem: (props) => <button {...props}>{props.title}</button>,
   renderSubItem: (props) => (
     <a href={props.link} {...props}>
       {props.text}

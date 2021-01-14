@@ -1,8 +1,5 @@
 import React from "react";
-import {
-  AnimatedRoutes as Switch,
-  RouteTransition as Route,
-} from "./AnimatedRoutes";
+import { Switch, Route } from "react-router-dom";
 import Default from "./Default";
 import Page from "./Page";
 
