@@ -34,5 +34,5 @@ jobs:
       - name: Terraform Init
         run: terraform init -input=false deployment/workspaces/${{ matrix.deployenv }}
 
-      - name: Terraform Apply
+      - name: Restage deployed images
         run: cf target -o tts-ai-digitalpresence -s ${{ matrix.deployenv }} && cf restage strapi-api-host --strategy rolling
