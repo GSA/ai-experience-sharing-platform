@@ -10,6 +10,7 @@ module.exports = function (app) {
     "api-settings",
     "api-menus",
     "api-pages",
+    "api-boks",
     "api-usecase-settings",
     "api-usecases-filters",
     "api-usecases",
