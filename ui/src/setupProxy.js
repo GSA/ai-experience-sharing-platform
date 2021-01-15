@@ -10,11 +10,11 @@ module.exports = function (app) {
     "api-settings",
     "api-menus",
     "api-pages",
+    "api-usecase-settings",
+    "api-usecases-filters",
     "api-usecases",
     "upload-auth",
     "logingov-admin",
-    "api-usecase-settings",
-    "api-usecase-filters",
   ];
   for (const route of strapiRoutes) {
     app.use(

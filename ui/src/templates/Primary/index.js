@@ -28,7 +28,7 @@ const Primary = ({ children }) => {
         })}
       >
         <div className="usa-app__bg">
-          <Header logo={<Logo />} variant="basic" />
+          <Header logo={<Logo title="title2" />} variant="basic" />
           <main role="main" id="main-content" style={{ minHeight: "42vh" }}>
             {children}
           </main>

@@ -12,7 +12,7 @@ import Layout from "features/Layout";
 import {
   getUsecaseSettings,
   getUsecaseFilters,
-} from "app/SiteModule/context/strapi";
+} from "app/SiteModule";
 
 export const Usecase = () => {
   const dispatch = useDispatch();
@@ -23,8 +23,8 @@ export const Usecase = () => {
   useEffect(() => {
     if (isAuth) {
       dispatch(getPage({ type, slug }));
-      // dispatch(getUsecaseSettings());
-      // dispatch(getUsecaseFilters());
+      dispatch(getUsecaseSettings());
+      dispatch(getUsecaseFilters());
     }
   }, [type, slug, isAuth, dispatch]);
 

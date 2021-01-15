@@ -45,6 +45,7 @@ export const getUsecaseSettings = async () => {
     if (!response.ok) {
       throw new Error(data.message);
     }
+
     if (!("usecaseFilterTitles" in data)) {
       throw new Error(`"usecaseFilterTitles" object not found`);
     }
@@ -58,7 +59,7 @@ export const getUsecaseSettings = async () => {
 export const getUsecaseFilters = async () => {
   let data;
   try {
-    const response = await fetch(`${ROOT_URL}/api-usecase-filters`);
+    const response = await fetch(`${ROOT_URL}/api-usecases-filters`);
     data = await response.json();
     if (!response.ok) {
       throw new Error(data.message);

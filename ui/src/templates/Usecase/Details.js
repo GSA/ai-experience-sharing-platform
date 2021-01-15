@@ -35,13 +35,13 @@ Details.defaultProps = {
 Details.propTypes = {
   id: PropTypes.string,
   title: PropTypes.string,
-  items: PropTypes.arrayOf(
-    PropTypes.shape({
-      title: PropTypes.string,
-      key: PropTypes.string,
-      value: PropTypes.oneOfType([PropTypes.string, PropTypes.array]),
-    })
-  ),
+  // items: PropTypes.arrayOf(
+  //   PropTypes.shape({
+  //     title: PropTypes.string,
+  //     key: PropTypes.string,
+  //     value: PropTypes.oneOfType([PropTypes.string, PropTypes.array]),
+  //   })
+  // ),
 };
 
 export default Details;
