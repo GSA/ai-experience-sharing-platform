@@ -10,18 +10,8 @@
     "key": {
       "type": "string"
     },
-    "type": {
-      "type": "enumeration",
-      "enum": [
-        "multiselect",
-        "date"
-      ]
-    },
     "title": {
       "type": "string"
-    },
-    "items": {
-      "type": "json"
     }
   }
 }
