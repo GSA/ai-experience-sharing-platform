@@ -13,6 +13,7 @@ const setupPermissions = async () => {
       application: {
         'api-menu': ['count', 'find', 'findone'],
         'api-page': ['count', 'find', 'findone'],
+        'api-bok': ['count', 'find', 'findone'],
         'api-settings': ['find'],
       },
       'upload-auth': {
