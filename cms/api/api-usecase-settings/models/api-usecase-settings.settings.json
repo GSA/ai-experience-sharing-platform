@@ -2,15 +2,19 @@
   "kind": "singleType",
   "collectionName": "api_usecase_settings",
   "info": {
-    "name": "Api-Usecase-Settings"
+    "name": "Api-Usecase-Settings",
+    "description": ""
   },
   "options": {
     "increments": true,
     "timestamps": true,
-    "draftAndPublish": true
+    "draftAndPublish": false
   },
   "attributes": {
     "usecaseFilterCounts": {
+      "type": "json"
+    },
+    "usecaseFilterTitles": {
       "type": "json"
     }
   }
