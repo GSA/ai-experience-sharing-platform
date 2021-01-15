@@ -12,7 +12,6 @@ const Cards = ({ title, text, cardItem: items, className, columns }) => {
     three: "4",
     four: "3",
   };
-  console.log(items);
   return (
     <div
       className={classnames({
@@ -20,9 +19,6 @@ const Cards = ({ title, text, cardItem: items, className, columns }) => {
         [className]: Boolean(className),
       })}
     >
-      {title && <h2>{title}</h2>}
-      {text && <div className="margin-bottom-4">{text}</div>}
-
       <Row className="flex-align-stretch">
         {items.map((item, i) => {
           return (

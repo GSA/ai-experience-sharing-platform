@@ -2,15 +2,14 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams, useLocation } from "react-router-dom";
 import PropTypes from "prop-types";
-import Article from "components/ArticleExcerpt";
 import Login from "features/Login";
 import { getList } from "app/ContentModule";
 import { Grid, Row, Col } from "components/Grid";
-import Button from "components/Button";
+import Button from "features/Button";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Card from "components/Card";
 import { Loading } from "components/Loading";
-import FourOhFour from "templates/FourOhFour";
+import FourOhFour from "routes/FourOhFour";
 
 const Title = ({ items }) =>
   items.map((item, i) => (
@@ -22,28 +21,31 @@ const Title = ({ items }) =>
 
 const Layout = ({ layout, onClick }) => {
   return (
-    <ul className="usa-button-group usa-button-group--segmented flex-justify-end">
-      <li className="usa-button-group__item">
-        <Button
-          id="Layout__toggle-list"
-          onClick={onClick}
-          variant={layout === "list" ? undefined : "outline"}
-          value="list"
-        >
-          <FontAwesomeIcon icon="list" />
-        </Button>
-      </li>
-      <li className="usa-button-group__item">
-        <Button
-          id="Layout__toggle-card"
-          onClick={onClick}
-          variant={layout === "card" ? "" : "outline"}
-          value="card"
-        >
-          <FontAwesomeIcon icon="grip-horizontal" />
-        </Button>
-      </li>
-    </ul>
+    <>
+      <h1>BLAHBLAHBLAH</h1>
+      <ul className="usa-button-group usa-button-group--segmented flex-justify-end">
+        <li className="usa-button-group__item">
+          <Button
+            id="Layout__toggle-list"
+            onClick={onClick}
+            variant={layout === "list" ? undefined : "outline"}
+            value="list"
+          >
+            <FontAwesomeIcon icon="list" />
+          </Button>
+        </li>
+        <li className="usa-button-group__item">
+          <Button
+            id="Layout__toggle-card"
+            onClick={onClick}
+            variant={layout === "card" ? "" : "outline"}
+            value="card"
+          >
+            <FontAwesomeIcon icon="grip-horizontal" />
+          </Button>
+        </li>
+      </ul>
+    </>
   );
 };
 
@@ -130,7 +132,7 @@ export const Taxonomy = ({ match: { url } }) => {
                         key={`article-${item.name}`}
                         className="margin-bottom-5"
                       >
-                        <Article
+                        <Card
                           title={item.title}
                           date={item.date}
                           path={`${url}/${item.slug}`}

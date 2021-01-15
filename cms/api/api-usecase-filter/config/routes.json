@@ -1,0 +1,28 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/api-usecase-filter",
+      "handler": "api-usecase-filter.find",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/api-usecase-filter",
+      "handler": "api-usecase-filter.update",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/api-usecase-filter",
+      "handler": "api-usecase-filter.delete",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}

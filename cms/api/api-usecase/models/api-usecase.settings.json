@@ -26,59 +26,8 @@
     "publishedDate": {
       "type": "datetime"
     },
-    "headline": {
-      "type": "richtext"
-    },
-    "summary": {
-      "type": "richtext"
-    },
     "businessProblem": {
       "type": "string"
-    },
-    "solutionBenefits": {
-      "type": "richtext"
-    },
-    "implementationContext": {
-      "type": "richtext"
-    },
-    "futureDevelopmentGoals": {
-      "type": "richtext"
-    },
-    "approach": {
-      "type": "richtext"
-    },
-    "aiMlTechniques": {
-      "type": "richtext"
-    },
-    "dataApproach": {
-      "type": "richtext"
-    },
-    "technicalSolution": {
-      "type": "richtext"
-    },
-    "obstacles": {
-      "type": "richtext"
-    },
-    "riskAssessment": {
-      "type": "richtext"
-    },
-    "responsibleAiManagement": {
-      "type": "richtext"
-    },
-    "metrics": {
-      "type": "richtext"
-    },
-    "decisionMaking": {
-      "type": "richtext"
-    },
-    "development": {
-      "type": "richtext"
-    },
-    "trainingOrCodeOfConduct": {
-      "type": "richtext"
-    },
-    "lessionsLearned": {
-      "type": "richtext"
     },
     "contactName": {
       "type": "string"
@@ -88,7 +37,12 @@
     },
     "contactRole": {
       "type": "enumeration",
-      "enum": ["governmentEmployee", "academica", "industry", "other"]
+      "enum": [
+        "governmentEmployee",
+        "academica",
+        "industry",
+        "other"
+      ]
     },
     "aiRole": {
       "type": "enumeration",
@@ -138,7 +92,10 @@
     },
     "metadataDevelopmentPhase": {
       "type": "enumeration",
-      "enum": ["operationalUse", "researchProject"]
+      "enum": [
+        "operationalUse",
+        "researchProject"
+      ]
     },
     "metadataAiMlTechniques": {
       "type": "enumeration",
@@ -207,58 +164,18 @@
     "metadataSubAgency": {
       "type": "string"
     },
-    "headlineTitle": {
-      "type": "string"
+    "content": {
+      "type": "dynamiczone",
+      "components": [
+        "content.callout",
+        "content.card-item",
+        "content.cards",
+        "content.list-item",
+        "content.list",
+        "content.markdown"
+      ]
     },
-    "summaryTitle": {
-      "type": "string"
-    },
-    "solutionBenefitsTitle": {
-      "type": "string"
-    },
-    "implementationContextTitle": {
-      "type": "string"
-    },
-    "futureDevelopmentGoalsTitle": {
-      "type": "string"
-    },
-    "approachTitle": {
-      "type": "string"
-    },
-    "aiMlTechniquesTitle": {
-      "type": "string"
-    },
-    "dataApproachTitle": {
-      "type": "string"
-    },
-    "technicalSolutionTitle": {
-      "type": "string"
-    },
-    "obstaclesTitle": {
-      "type": "string"
-    },
-    "riskAssessmentTitle": {
-      "type": "string"
-    },
-    "responsibleAiManagementTitle": {
-      "type": "string"
-    },
-    "metricsTitle": {
-      "type": "string"
-    },
-    "decisionMakingTitle": {
-      "type": "string"
-    },
-    "developmentTitle": {
-      "type": "string"
-    },
-    "trainingOrCodeOfConductTitle": {
-      "type": "string"
-    },
-    "lessionsLearnedTitle": {
-      "type": "string"
-    },
-    "contactTitle": {
+    "keywords": {
       "type": "string"
     }
   }

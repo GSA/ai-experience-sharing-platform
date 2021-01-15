@@ -2,7 +2,8 @@ import React from "react";
 import { Switch, Route } from "react-router-dom";
 import Default from "./Default";
 import Page from "./Page";
-import AdminLogin from "./AdminLogin"
+import AdminLogin from "./AdminLogin";
+import Usecase from "./Usecase";
 
 export default ({ location }) => (
   <Switch>
@@ -15,5 +16,6 @@ export default ({ location }) => (
     <Route key="page" path="/:name">
       <Page />
     </Route>
+    <Usecase />
   </Switch>
 );

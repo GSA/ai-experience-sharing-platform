@@ -4,11 +4,11 @@ import { useDispatch, useSelector } from "react-redux";
 import Details from "./Details";
 import { Grid, Row, Col } from "components/Grid";
 import { Loading } from "components/Loading";
-import Mdx from "features/Mdx";
 import Login from "features/Login";
-import ContentNav from "features/ContentsNav";
-import FourOhFour from "templates/FourOhFour";
+import ContentNav from "features/ContentNav";
+import FourOhFour from "routes/FourOhFour";
 import { getPage } from "app/ContentModule";
+import Layout from "features/Layout";
 
 export const Usecase = () => {
   const dispatch = useDispatch();
@@ -22,7 +22,7 @@ export const Usecase = () => {
     }
   }, [type, name, isAuth, dispatch]);
 
-  const { title, date, body, toc, fields } = data;
+  const { title } = data;
 
   const details = fields
     ? [{ key: "date", title: "Published", value: date }, ...fields]
@@ -36,18 +36,16 @@ export const Usecase = () => {
       <Loading isLoading={pending}>
         <Grid>
           <Row>
-            {Boolean(toc) && (
-              <Col size={2}>
-                <h4>Sections</h4>
-                <ContentNav items={toc} />
-              </Col>
-            )}
+            <Col size={2}>
+              <h4>Sections</h4>
+              <ContentNav items={data.content} />
+            </Col>
             <Col size={toc ? 8 : 10} className="padding-right-4">
               <h1>{title}</h1>
-              <Mdx>{body}</Mdx>
+              <Layout items={data.content} renderTitles={true} />
             </Col>
             <Col size={2}>
-              <Details title="Details" items={details} />
+              <Details title="Details" items={data} />
             </Col>
           </Row>
         </Grid>

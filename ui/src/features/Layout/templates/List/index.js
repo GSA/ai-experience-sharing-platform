@@ -18,8 +18,6 @@ const List = ({ className, title, subtitle, text, items, button, columns }) => {
         [className]: Boolean(className),
       })}
     >
-      {title && <h2>{title}</h2>}
-
       {items && (
         <Row gap="6">
           {items.map((item, i) => (

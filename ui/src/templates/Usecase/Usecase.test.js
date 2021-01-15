@@ -1,7 +1,7 @@
 import React from "react";
 import { mount } from "enzyme";
 import { Route } from "react-router-dom";
-import Article from "templates/Article";
+import Article from "templates/Usecase";
 import TestProvider from "test/TestProvider";
 import store from "app";
 import { login } from "app/AuthModule";

@@ -22,9 +22,6 @@ const Callout = ({
         [className]: Boolean(className),
       })}
     >
-      {title && <h2>{title}</h2>}
-      {text && <div className="margin-bottom-4">{text}</div>}
-      {subtitle && <h3>{subtitle}</h3>}
       {items && (
         <Row className="USCallout__items">
           {items.map((item, i) => (
@@ -48,13 +45,6 @@ const Callout = ({
             </Col>
           ))}
         </Row>
-      )}
-      {button.text && button.link && (
-        <div className="text-center margin-top-2 margin-bottom-4">
-          <Button variant="outline" url={button.link}>
-            {button.text}
-          </Button>
-        </div>
       )}
     </div>
   );

@@ -18,6 +18,9 @@
       "type": "component",
       "repeatable": true,
       "component": "content.list"
+    },
+    "keyMap": {
+      "type": "json"
     }
   }
 }

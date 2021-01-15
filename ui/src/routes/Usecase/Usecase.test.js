@@ -1,6 +1,6 @@
 import React from "react";
 import { mount } from "enzyme";
-import Library from "routes/Library";
+import Library from "routes/Usecase";
 import TestProvider from "test/TestProvider";
 import { Route } from "react-router-dom";
 

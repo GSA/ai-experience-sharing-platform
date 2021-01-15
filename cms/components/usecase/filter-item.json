@@ -1,0 +1,27 @@
+{
+  "collectionName": "components_usecase_filter_items",
+  "info": {
+    "name": "filters",
+    "icon": "apple-alt",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "key": {
+      "type": "string"
+    },
+    "type": {
+      "type": "enumeration",
+      "enum": [
+        "multiselect",
+        "date"
+      ]
+    },
+    "title": {
+      "type": "string"
+    },
+    "items": {
+      "type": "json"
+    }
+  }
+}
