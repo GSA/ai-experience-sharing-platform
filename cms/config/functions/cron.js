@@ -33,8 +33,8 @@ module.exports = {
       });
     }
 
-    const settings = await strapi.services['api-settings'].find();
+    const settings = await strapi.services['api-usecase-settings'].find() || {};
     settings.usecaseFilterCounts = counts;
-    await strapi.services['api-settings'].createOrUpdate(settings);
+    await strapi.services['api-usecase-settings'].createOrUpdate(settings);
   },
 };
