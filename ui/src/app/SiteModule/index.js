@@ -15,6 +15,8 @@ export const initialState = {
     access_key: "",
     inline: true,
   },
+  keymaps: {},
+  filters: {},
   dapAgency: "",
 };
 
@@ -26,6 +28,16 @@ export const siteData = createAsyncThunk(
 export const getMenus = createAsyncThunk(
   `${name}/getMenus`,
   async () => await context.getMenus()
+);
+
+export const getUsecaseSettings = createAsyncThunk(
+  `${name}/getUsecaseSettings`,
+  async () => await context.getUsecaseSettings()
+);
+
+export const getUsecaseFilters = createAsyncThunk(
+  `${name}/getUsecaseFilters`,
+  async () => await context.getUsecaseFilters()
 );
 
 export const SiteModule = createSlice({
@@ -40,6 +52,12 @@ export const SiteModule = createSlice({
     },
     [getMenus.fulfilled]: (state, action) => {
       return { ...state, menus: action.payload };
+    },
+    [getUsecaseSettings.fulfilled]: (state, action) => {
+      return { ...state, keymaps: action.payload };
+    },
+    [getUsecaseFilters.fulfilled]: (state, action) => {
+      return { ...state, filters: action.payload };
     },
   },
 });

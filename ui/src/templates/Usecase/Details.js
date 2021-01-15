@@ -1,6 +1,8 @@
-import React from "react";
+import React, { version } from "react";
 import PropTypes from "prop-types";
 import Date from "components/Date";
+import { useSelector } from "react-redux";
+import { name as siteName } from "app/SiteModule";
 
 const Format = ({ name, value }) => {
   if (name === "date") {
@@ -9,22 +11,17 @@ const Format = ({ name, value }) => {
   return Array.isArray(value) ? value.join(", ") : value;
 };
 
-const Details = ({ id, title, items }) => {
+const Details = ({ items }) => {
+  // TODO how to get list of meta fields to display
+
+  const { keymaps } = useSelector((state) => state[siteName]);
   return (
     <div className="Details">
-      {title && (
-        <h4 id={id} className="Details__title">
-          {title}
-        </h4>
-      )}
-      {items.map(({ key, title, value }) => (
-        <div key={key} className="Details__item">
-          <span className="Details__item-title">{title}</span>
-          <span className="Details__text">
-            <Format name={key} value={value} />
-          </span>
-        </div>
-      ))}
+      {Object.entries(items).map(([key, value]) => {
+        const title = keymaps[key] || key;
+        const text = keymaps[value] || value;
+        return <div>{`${title}: ${text}`}</div>;
+      })}
     </div>
   );
 };

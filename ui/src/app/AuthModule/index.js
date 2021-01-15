@@ -23,7 +23,7 @@ export const initialState = {
   pendingAdmin: false,
   redirect: "",
   authenticatedTypes: {
-    "usecases": true,
+    usecases: true,
   },
 };
 
@@ -48,9 +48,8 @@ export const logout = createAsyncThunk(
   async (props) => await context.endSession(props)
 );
 
-export const loginAdmin = createAsyncThunk(
-  "auth/loginAdmin",
-  async (props) => context.createAdminSession(props)
+export const loginAdmin = createAsyncThunk("auth/loginAdmin", async (props) =>
+  context.createAdminSession(props)
 );
 
 const AuthModule = createSlice({
@@ -65,6 +64,11 @@ const AuthModule = createSlice({
     clearRedirect: (state) => ({
       ...state,
       redirect: "",
+    }),
+    setAuth: (state) => ({
+      ...state,
+      isAuth: true,
+      isAdminAuth: true,
     }),
   },
   extraReducers: {
@@ -124,7 +128,6 @@ const AuthModule = createSlice({
         error: action.error.message,
       };
     },
-
   },
 });
 

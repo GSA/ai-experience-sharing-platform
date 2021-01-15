@@ -9,24 +9,26 @@ import ContentNav from "features/ContentNav";
 import FourOhFour from "routes/FourOhFour";
 import { getPage } from "app/ContentModule";
 import Layout from "features/Layout";
+import {
+  getUsecaseSettings,
+  getUsecaseFilters,
+} from "app/SiteModule/context/strapi";
 
 export const Usecase = () => {
   const dispatch = useDispatch();
-  const { type, name } = useParams();
+  const { type = "usecases", slug } = useParams();
   const { pending, data, error } = useSelector((state) => state.content.page);
   const { isAuth } = useSelector((state) => state.auth);
 
   useEffect(() => {
     if (isAuth) {
-      dispatch(getPage({ type, name }));
+      dispatch(getPage({ type, slug }));
+      // dispatch(getUsecaseSettings());
+      // dispatch(getUsecaseFilters());
     }
-  }, [type, name, isAuth, dispatch]);
+  }, [type, slug, isAuth, dispatch]);
 
   const { title } = data;
-
-  const details = fields
-    ? [{ key: "date", title: "Published", value: date }, ...fields]
-    : [{ key: "date", title: "Published", value: date }];
 
   if (error) {
     return <FourOhFour />;
@@ -40,7 +42,7 @@ export const Usecase = () => {
               <h4>Sections</h4>
               <ContentNav items={data.content} />
             </Col>
-            <Col size={toc ? 8 : 10} className="padding-right-4">
+            <Col size={8} className="padding-right-4">
               <h1>{title}</h1>
               <Layout items={data.content} renderTitles={true} />
             </Col>
