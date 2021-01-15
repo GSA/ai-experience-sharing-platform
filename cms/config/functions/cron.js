@@ -25,4 +25,16 @@ module.exports = {
   //       .update({blocked: true})
   //   }
   // },
+  '33 * * * *': async () => {
+    const counts = {};
+    for (const filter of strapi.config.useCases.filters) {
+      counts[filter] = await strapi.services['api-usecase'].count({
+        [filter]: strapi.models['api-usecase'].attributes[filter]['enum'],
+      });
+    }
+
+    const settings = await strapi.services['api-usecase-settings'].find() || {};
+    settings.usecaseFilterCounts = counts;
+    await strapi.services['api-usecase-settings'].createOrUpdate(settings);
+  },
 };

@@ -29,3 +29,12 @@ i.e.
 main#main-content {
   border: none;
 }
+
+.usa-hero > h1 > span {
+  display: block;
+  background-color: rgba(229, 229, 229, .85);
+  width: fit-content;
+  padding-right: 2em;
+  padding-left: .5em;
+  margin-left: .5em;
+}

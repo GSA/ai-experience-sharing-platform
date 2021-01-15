@@ -9,6 +9,7 @@ import GridModule from "./templates/Grid";
 import Links from "./templates/Links";
 import List from "./templates/List";
 import Mdx from "features/Mdx";
+import Carousel from "features/Carousel";
 import Title from "./templates/Title";
 import kebab from "utils/kebab";
 
@@ -16,6 +17,7 @@ const components = {
   break: Break,
   callout: Callout,
   cards: Cards,
+  carousel: Carousel,
   grid: GridModule,
   links: Links,
   list: List,
@@ -31,6 +33,7 @@ const Layout = ({ items, data, renderTitles }) => {
   return items.map(({ __component, fullwidth, ...props }, i) => {
     const compType = __component.split(".");
     const Comp = components[compType[1]];
+
     if (!Comp) {
       console.warn(`Module type "${compType}" not defined.`);
       return null;

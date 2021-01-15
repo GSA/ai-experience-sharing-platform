@@ -25,6 +25,14 @@
       }
     },
     {
+      "method": "GET",
+      "path": "/api-usecases-filters",
+      "handler": "api-usecase.filters",
+      "config": {
+        "policies": []
+      }
+    },
+    {
       "method": "POST",
       "path": "/api-usecases",
       "handler": "api-usecase.create",
