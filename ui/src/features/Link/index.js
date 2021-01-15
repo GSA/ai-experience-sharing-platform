@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
+import { Link as Comp } from "react-router-dom";
 
 const nodes = {
   a: ({ url, children, ...props }) => (
@@ -8,10 +8,10 @@ const nodes = {
       {children}
     </a>
   ),
-  link: ({ url, ...props }) => <Link to={url} {...props} />,
+  link: ({ url, ...props }) => <Comp to={url} {...props} />,
 };
 
-export const Button = ({ children, url, external, ...props }) => {
+export const Link = ({ children, url, external, ...props }) => {
   const Node =
     external ||
     url.includes("://") ||
@@ -26,7 +26,7 @@ export const Button = ({ children, url, external, ...props }) => {
   );
 };
 
-Button.propTypes = {
+Link.propTypes = {
   /** component children to be rendered */
   children: PropTypes.node,
   /** classnames applied to component */
@@ -38,4 +38,4 @@ Button.propTypes = {
   external: PropTypes.bool,
 };
 
-export default Button;
+export default Link;

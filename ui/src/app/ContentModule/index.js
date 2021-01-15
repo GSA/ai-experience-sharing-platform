@@ -1,6 +1,8 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import context from "./context";
 
+export const name = "content";
+
 export const initialState = {
   list: { pending: false, data: [], error: null },
   page: { pending: false, data: {}, error: null },
@@ -15,7 +17,7 @@ const getToken = (type, state) => {
 };
 
 export const getPage = createAsyncThunk(
-  "content/getPage",
+  `${name}/getPage`,
   async ({ type = "pages", slug = "" }, thunkAPI) => {
     const token = getToken(type, thunkAPI.getState());
 
@@ -23,7 +25,7 @@ export const getPage = createAsyncThunk(
   }
 );
 export const getTaxonomy = createAsyncThunk(
-  "content/getTaxonomy",
+  `${name}/getTaxonomy`,
   async ({ type }, thunkAPI) => {
     const token = getToken(type, thunkAPI.getState());
 
@@ -32,7 +34,7 @@ export const getTaxonomy = createAsyncThunk(
 );
 
 export const getList = createAsyncThunk(
-  "content/getList",
+  `${name}/getList`,
   async ({ type, query }, thunkAPI) => {
     const token = getToken(type, thunkAPI.getState());
 
@@ -60,7 +62,7 @@ const rejected = (key, state, action) => {
 };
 
 export const ContentModule = createSlice({
-  name: "content",
+  name,
   initialState,
   reducers: {
     reset: () => initialState,

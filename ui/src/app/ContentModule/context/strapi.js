@@ -3,11 +3,14 @@ const { getOptions } = require("utils/http");
 
 const ROOT_URL = process.env.REACT_APP_API_URL || "";
 
-export const getAllByContentType = async ({ type, token }) => {
+export const getAllByContentType = async ({ type, token, query }) => {
   const options = getOptions(token);
   let data;
   try {
-    const response = await fetch(`${ROOT_URL}/api-${type}`, options);
+    const response = await fetch(
+      `${ROOT_URL}/api-${type}${query ? `?${query}` : ""}`,
+      options
+    );
     data = await response.json();
     if (!response.ok) {
       throw new Error(data.message);
