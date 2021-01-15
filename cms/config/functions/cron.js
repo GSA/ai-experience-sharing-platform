@@ -25,7 +25,7 @@ module.exports = {
   //       .update({blocked: true})
   //   }
   // },
-  '*/30 * * * *': async () => {
+  '33 * * * *': async () => {
     const counts = {};
     for (const filter of strapi.config.useCases.filters) {
       counts[filter] = await strapi.services['api-usecase'].count({
