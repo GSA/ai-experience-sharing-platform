@@ -1,0 +1,25 @@
+{
+  "collectionName": "components_content_carousels",
+  "info": {
+    "name": "Carousel",
+    "icon": "images",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "className": {
+      "type": "string"
+    },
+    "fullWidth": {
+      "type": "boolean"
+    },
+    "title": {
+      "type": "string"
+    },
+    "images": {
+      "type": "component",
+      "repeatable": true,
+      "component": "menu.carousel-item"
+    }
+  }
+}

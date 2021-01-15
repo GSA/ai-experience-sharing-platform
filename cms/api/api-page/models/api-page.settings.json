@@ -23,7 +23,8 @@
         "content.list",
         "content.markdown",
         "content.callout",
-        "content.cards"
+        "content.cards",
+        "content.carousel"
       ]
     },
     "leftSidebar": {
