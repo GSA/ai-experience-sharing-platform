@@ -33,10 +33,10 @@ export const getTaxonomy = createAsyncThunk(
 
 export const getList = createAsyncThunk(
   "content/getList",
-  async ({ type }, thunkAPI) => {
+  async ({ type, query }, thunkAPI) => {
     const token = getToken(type, thunkAPI.getState());
 
-    return await context.getAllByContentType({ type, token });
+    return await context.getAllByContentType({ type, query, token });
   }
 );
 

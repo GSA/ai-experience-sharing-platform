@@ -19,8 +19,10 @@
       "repeatable": true,
       "component": "content.list"
     },
-    "keyMap": {
-      "type": "json"
+    "bokModules": {
+      "type": "component",
+      "repeatable": true,
+      "component": "bok.bok-modules"
     }
   }
 }

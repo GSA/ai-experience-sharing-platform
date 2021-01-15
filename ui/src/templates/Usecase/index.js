@@ -9,10 +9,7 @@ import ContentNav from "features/ContentNav";
 import FourOhFour from "routes/FourOhFour";
 import { getPage } from "app/ContentModule";
 import Layout from "features/Layout";
-import {
-  getUsecaseSettings,
-  getUsecaseFilters,
-} from "app/SiteModule";
+import { getUsecaseSettings, getUsecaseFilters } from "app/SiteModule";
 
 export const Usecase = () => {
   const dispatch = useDispatch();
@@ -29,29 +26,26 @@ export const Usecase = () => {
   }, [type, slug, isAuth, dispatch]);
 
   const { title } = data;
-
   if (error) {
     return <FourOhFour />;
   }
   return (
     <Login>
-      <Loading isLoading={pending}>
-        <Grid>
-          <Row>
-            <Col size={2}>
-              <h4>Sections</h4>
-              <ContentNav items={data.content} />
-            </Col>
-            <Col size={8} className="padding-right-4">
-              <h1>{title}</h1>
-              <Layout items={data.content} renderTitles={true} />
-            </Col>
-            <Col size={2}>
-              <Details title="Details" items={data} />
-            </Col>
-          </Row>
-        </Grid>
-      </Loading>
+      <Grid>
+        <Row>
+          <Col size={2}>
+            <h4>Sections</h4>
+            <ContentNav items={data.content} />
+          </Col>
+          <Col size={8} className="padding-right-4">
+            <h1>{title}</h1>
+            <Layout items={data.content} renderTitles={true} />
+          </Col>
+          <Col size={2}>
+            <Details title="Details" items={data} />
+          </Col>
+        </Row>
+      </Grid>
     </Login>
   );
 };

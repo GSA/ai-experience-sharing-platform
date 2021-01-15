@@ -54,10 +54,10 @@ export const SiteModule = createSlice({
       return { ...state, menus: action.payload };
     },
     [getUsecaseSettings.fulfilled]: (state, action) => {
-      return { ...state, keymaps: action.payload.usecaseFilterTitles };
+      return { ...state, keymaps: action.payload };
     },
     [getUsecaseFilters.fulfilled]: (state, action) => {
-      return { ...state, filters: action.payload.filters };
+      return { ...state, filters: action.payload };
     },
   },
 });

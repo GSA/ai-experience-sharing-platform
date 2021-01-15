@@ -46,14 +46,17 @@ export const getUsecaseSettings = async () => {
       throw new Error(data.message);
     }
 
-    if (!("usecaseFilterTitles" in data)) {
+    if (!data.usecaseFilterTitles) {
       throw new Error(`"usecaseFilterTitles" object not found`);
     }
   } catch (e) {
     throw new Error(e);
   }
 
-  return data;
+  return {
+    keymaps: data.usecaseFilterTitles,
+    metadata: data.usecaseMetadataOrder,
+  };
 };
 
 export const getUsecaseFilters = async () => {
@@ -64,12 +67,12 @@ export const getUsecaseFilters = async () => {
     if (!response.ok) {
       throw new Error(data.message);
     }
-    if (!("filters" in data)) {
+    if (!data.filters) {
       throw new Error(`"filters" object not found`);
     }
   } catch (e) {
     throw new Error(e);
   }
 
-  return data;
+  return data.filters;
 };

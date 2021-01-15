@@ -13,14 +13,19 @@ const Format = ({ name, value }) => {
 
 const Details = ({ items }) => {
   // TODO how to get list of meta fields to display
-
-  const { keymaps } = useSelector((state) => state[siteName]);
+  console.log(items);
+  const site = useSelector((state) => state[siteName]);
+  console.log(site);
+  const { keymaps = {} } = site;
+  const mapKeys = keymaps !== null ? keymaps : {};
   return (
     <div className="Details">
       {Object.entries(items).map(([key, value]) => {
-        const title = keymaps[key] || key;
-        const text = keymaps[value] || value;
-        return <div>{`${title}: ${text}`}</div>;
+        if (key in mapKeys) {
+          const title = key in mapKeys ? mapKeys[key] : key;
+          const text = value in mapKeys ? mapKeys[value] : value;
+          return <div>{`${title}: ${text}`}</div>;
+        }
       })}
     </div>
   );

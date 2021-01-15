@@ -1,0 +1,16 @@
+{
+  "collectionName": "components_bok_bok_modules",
+  "info": {
+    "name": "bokModules",
+    "icon": "angry"
+  },
+  "options": {},
+  "attributes": {
+    "key": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string"
+    }
+  }
+}
