@@ -1,6 +1,5 @@
 import React from "react";
 import classnames from "classnames";
-import Link from "features/Link";
 
 const handleEvent = (e) => {
   if (e.preventDefault) {
@@ -20,10 +19,6 @@ const NavItem = ({
   renderSubItem,
 }) => {
   const { items = [], ...props } = data;
-
-  const handleMenuItemClick = (e) => {
-    onMenuItemClick();
-  };
 
   const Item = renderLink;
   const Button = renderMenuItem;

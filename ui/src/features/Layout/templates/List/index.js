@@ -2,7 +2,6 @@ import React from "react";
 import PropTypes from "prop-types";
 import classnames from "classnames";
 import { Col, Row } from "components/Grid";
-import Button from "features/Button";
 import Icon from "components/Icon";
 
 const List = ({ className, title, subtitle, text, items, button, columns }) => {

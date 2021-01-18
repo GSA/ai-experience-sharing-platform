@@ -3,7 +3,6 @@ import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import Details from "./Details";
 import { Grid, Row, Col } from "components/Grid";
-import { Loading } from "components/Loading";
 import Login from "features/Login";
 import ContentNav from "features/ContentNav";
 import FourOhFour from "routes/FourOhFour";
@@ -14,7 +13,7 @@ import { getUsecaseSettings, getUsecaseFilters } from "app/SiteModule";
 export const Usecase = () => {
   const dispatch = useDispatch();
   const { type = "usecases", slug } = useParams();
-  const { pending, data, error } = useSelector((state) => state.content.page);
+  const { data, error } = useSelector((state) => state.content.page);
   const { isAuth } = useSelector((state) => state.auth);
 
   useEffect(() => {

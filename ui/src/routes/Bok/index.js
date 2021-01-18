@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import PropTypes from "prop-types";
 import { Grid, Row, Col } from "components/Grid";
 import SidebarNav from "./SidebarNav";
 import Layout from "features/Layout";
@@ -8,13 +7,11 @@ import { name as contentName, getPage } from "app/ContentModule";
 import { useParams } from "react-router-dom";
 
 const Bok = () => {
-  const title = "oops";
-
   const { type = "boks", slug } = useParams();
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getPage({ type, slug }));
-  }, [dispatch, slug]);
+  }, [dispatch, slug, type]);
   const { page: { data = {} } = {} } = useSelector(
     (state) => state[contentName]
   );

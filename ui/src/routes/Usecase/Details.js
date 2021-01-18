@@ -1,4 +1,4 @@
-import React, { version } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import Date from "components/Date";
 import { useSelector } from "react-redux";
@@ -26,6 +26,7 @@ const Details = ({ items }) => {
           const text = value in mapKeys ? mapKeys[value] : value;
           return <div>{`${title}: ${text}`}</div>;
         }
+        return;
       })}
     </div>
   );
