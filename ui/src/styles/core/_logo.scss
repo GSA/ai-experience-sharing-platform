@@ -1,0 +1,15 @@
+.usa-logo {
+  @include u-margin(0);
+  &__text {
+    display: inline-block;
+    font-size: 3rem;
+    font-weight: 900;
+    font-size: 40px;
+    border-bottom: 8px solid black;
+    color: black;
+    &:hover {
+      cursor: pointer;
+      border-bottom: 8px solid red;
+    }
+  }
+}

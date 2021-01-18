@@ -3,11 +3,14 @@ const { getOptions } = require("utils/http");
 
 const ROOT_URL = process.env.REACT_APP_API_URL || "";
 
-export const getAllByContentType = async ({ type, token }) => {
+export const getAllByContentType = async ({ type, token, query }) => {
   const options = getOptions(token);
   let data;
   try {
-    const response = await fetch(`${ROOT_URL}/api-${type}`, options);
+    const response = await fetch(
+      `${ROOT_URL}/api-${type}${query ? `?${query}` : ""}`,
+      options
+    );
     data = await response.json();
     if (!response.ok) {
       throw new Error(data.message);
@@ -19,11 +22,14 @@ export const getAllByContentType = async ({ type, token }) => {
   return data;
 };
 
-export const getContentTypeByName = async ({ type, name, token }) => {
+export const getContentTypeByName = async ({ type, slug, token }) => {
   const options = getOptions(token);
   let data;
   try {
-    const response = await fetch(`${ROOT_URL}/api-${type}?slug=${name}`, options);
+    const response = await fetch(
+      `${ROOT_URL}/api-${type}?slug=${slug}`,
+      options
+    );
     data = await response.json();
     if (!response.ok) {
       throw new Error(data.message);
@@ -33,7 +39,7 @@ export const getContentTypeByName = async ({ type, name, token }) => {
   }
 
   if (!data) {
-    throw new Error(`${type} "${name}" not found.`);
+    throw new Error(`${type} "${slug}" not found.`);
   }
   if (!Array.isArray(data)) {
     throw new Error(`Expected "array", received "${typeof data}".`);
@@ -48,7 +54,10 @@ export const getTaxonomyByContentType = async (type, token) => {
   const options = getOptions(token);
   let data;
   try {
-    const response = await fetch(`${ROOT_URL}/content/${type}/taxonomy.json`, options);
+    const response = await fetch(
+      `${ROOT_URL}/content/${type}/taxonomy.json`,
+      options
+    );
     data = await response.json();
     if (!response.ok) {
       throw new Error(data.message);

@@ -6,6 +6,7 @@ import Routes from "routes";
 import store from "app";
 import registerFontAwesome from "utils/registerFontAwesome";
 import Layout from "templates/Primary";
+import "./styles/index.scss";
 
 import * as serviceWorker from "./serviceWorker";
 

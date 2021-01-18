@@ -20,199 +20,162 @@
     "version": {
       "type": "decimal"
     },
-    "interview_date": {
+    "interviewDate": {
       "type": "datetime"
     },
-    "published_date": {
+    "publishedDate": {
       "type": "datetime"
     },
-    "headline": {
-      "type": "richtext"
-    },
-    "summary": {
-      "type": "richtext"
-    },
-    "business_problem": {
-      "type": "richtext"
-    },
-    "solution_benefits": {
-      "type": "richtext"
-    },
-    "implementation_context": {
-      "type": "richtext"
-    },
-    "future_development_goals": {
-      "type": "richtext"
-    },
-    "approach": {
-      "type": "richtext"
-    },
-    "ai_ml_techniques": {
-      "type": "richtext"
-    },
-    "data_approach": {
-      "type": "richtext"
-    },
-    "technical_solution": {
-      "type": "richtext"
-    },
-    "obstacles": {
-      "type": "richtext"
-    },
-    "risk_assessment": {
-      "type": "richtext"
-    },
-    "responsible_ai_management": {
-      "type": "richtext"
-    },
-    "metrics": {
-      "type": "richtext"
-    },
-    "decision_making": {
-      "type": "richtext"
-    },
-    "development": {
-      "type": "richtext"
-    },
-    "training_or_code_of_conduct": {
-      "type": "richtext"
-    },
-    "lessions_learned": {
-      "type": "richtext"
-    },
-    "contact_name": {
+    "businessProblem": {
       "type": "string"
     },
-    "contact_agency": {
+    "contactName": {
       "type": "string"
     },
-    "contact_role": {
+    "contactAgency": {
+      "type": "string"
+    },
+    "contactRole": {
       "type": "enumeration",
       "enum": [
-        "government_employee",
+        "governmentEmployee",
         "academica",
         "industry",
         "other"
       ]
     },
-    "ai_role": {
+    "aiRole": {
       "type": "enumeration",
       "enum": [
-        "it_professional",
-        "system_operator",
-        "system_manager",
-        "output_consumer",
-        "data_professional",
+        "itProfessional",
+        "systemOperator",
+        "systemManager",
+        "outputConsumer",
+        "dataProfessional",
         "legal",
         "governance",
-        "vendor_or_contractor",
+        "vendorOrContractor",
         "other"
       ]
     },
-    "contact_office": {
+    "contactOffice": {
       "type": "string"
     },
-    "contact_email": {
+    "contactEmail": {
       "type": "string"
     },
-    "contact_approval_required_by": {
+    "contactApprovalRequiredBy": {
       "type": "string"
     },
-    "metadata_benefits": {
+    "metadataBenefits": {
       "type": "enumeration",
       "enum": [
-        "decrease_cycle_time",
-        "increase_accuracy",
-        "increase_outputs",
-        "improve_customer_service",
-        "new_service_or_capability",
-        "increase_compliance",
+        "decreaseCycleTime",
+        "increaseAccuracy",
+        "increaseOutputs",
+        "improveCustomerService",
+        "newServiceOrCapability",
+        "increaseCompliance",
         "other"
       ]
     },
-    "metadata_procurement": {
+    "metadataProcurement": {
       "type": "enumeration",
       "enum": [
-        "developed_in_house",
-        "commercial_off_the_shelf",
-        "joint_development_with_external_partner",
-        "custom_built_by_non_federal_government_entity",
-        "joint_project_with_another_federal_agency",
+        "developedInHouse",
+        "commercialOffTheShelf",
+        "jointDevelopmentWithExternalPartner",
+        "customBuiltByNonFederalGovernmentEntity",
+        "jointProjectWithAnotherFederalAgency",
         "other"
       ]
     },
-    "metadata_development_phase": {
+    "metadataDevelopmentPhase": {
       "type": "enumeration",
       "enum": [
-        "operational_use",
-        "research_project"
+        "operationalUse",
+        "researchProject"
       ]
     },
-    "metadata_ai_ml_techniques": {
+    "metadataAiMlTechniques": {
       "type": "enumeration",
       "enum": [
-        "image_recognition",
-        "pattern_and_anomaly_detection",
-        "conversational_ai_and_chatbots",
-        "natural_language_processing_or_generation",
-        "autonomous_systems",
-        "predictive_analytics_and_decision_making",
-        "goal_driven_systems",
-        "recommendations_and_personalization",
-        "intelligent_automation"
+        "imageRecognition",
+        "patternAndAnomalyDetection",
+        "conversationalAiAndChatbots",
+        "naturalLanguageProcessingOrGeneration",
+        "autonomousSystems",
+        "predictiveAnalyticsAndDecisionMaking",
+        "goalDrivenSystems",
+        "recommendationsAndPersonalization",
+        "intelligentAutomation"
       ]
     },
-    "metadata_ai_lifecycle_stage": {
+    "metadataAiLifecycleStage": {
       "type": "enumeration",
       "enum": [
-        "planning_and_design",
-        "verification_and_validation",
-        "data_collection_and_processing",
+        "planningAndDesign",
+        "verificationAndValidation",
+        "dataCollectionAndProcessing",
         "deployment",
-        "model_building_and_interpretation",
-        "operation_and_monitoring"
+        "modelBuildingAndInterpretation",
+        "operationAndMonitoring"
       ]
     },
-    "metadata_environment": {
+    "metadataEnvironment": {
       "type": "enumeration",
       "enum": [
         "agriculture",
         "environment",
-        "social_and_welfare_issues",
+        "socialAndWelfareIssues",
         "competition",
-        "finance_and_insurance",
+        "financeAndInsurance",
         "tax",
-        "corporate_governance",
+        "corporateGovernance",
         "health",
         "trade",
         "development",
-        "industry_and_entrepreneurship",
+        "industryAndEntrepreneurship",
         "transport",
-        "digital_economy",
+        "digitalEconomy",
         "innovation",
         "economy",
         "investment",
         "education",
-        "public_governance",
+        "publicGovernance",
         "employment",
-        "science_and_technology",
-        "law_enforcement",
-        "transportation_security",
-        "critical_infrastructure",
-        "human_resources",
+        "scienceAndTechnology",
+        "lawEnforcement",
+        "transportationSecurity",
+        "criticalInfrastructure",
+        "humanResources",
         "immigration",
-        "defense_and_intelligence",
-        "acquisition_and_procurement",
+        "defenseAndIntelligence",
+        "acquisitionAndProcurement",
         "other"
       ]
     },
-    "metadata_spii_pii_use": {
+    "metadataSpiiPiiUse": {
       "type": "boolean"
     },
-    "metadata_agency": {
+    "metadataAgency": {
       "type": "string"
     },
-    "metadata_sub_agency": {
+    "metadataSubAgency": {
+      "type": "string"
+    },
+    "content": {
+      "type": "dynamiczone",
+      "components": [
+        "content.callout",
+        "content.card-item",
+        "content.cards",
+        "content.list-item",
+        "content.list",
+        "content.markdown"
+      ]
+    },
+    "keywords": {
       "type": "string"
     }
   }

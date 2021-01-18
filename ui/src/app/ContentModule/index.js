@@ -1,6 +1,8 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import context from "./context";
 
+export const name = "content";
+
 export const initialState = {
   list: { pending: false, data: [], error: null },
   page: { pending: false, data: {}, error: null },
@@ -8,33 +10,35 @@ export const initialState = {
 };
 
 const getToken = (type, state) => {
-  const sendToken = state?.auth?.authenticatedTypes ? state.auth.authenticatedTypes[type] : false;
+  const sendToken = state?.auth?.authenticatedTypes
+    ? state.auth.authenticatedTypes[type]
+    : false;
   return sendToken ? state.auth.token : null;
 };
 
 export const getPage = createAsyncThunk(
-  "content/getPage",
-  async ({ type = "page", name = "" }, thunkAPI) => {
+  `${name}/getPage`,
+  async ({ type = "pages", slug = "" }, thunkAPI) => {
     const token = getToken(type, thunkAPI.getState());
 
-    return await context.getContentTypeByName({ type, name, token })
+    return await context.getContentTypeByName({ type, slug, token });
   }
 );
 export const getTaxonomy = createAsyncThunk(
-  "content/getTaxonomy",
+  `${name}/getTaxonomy`,
   async ({ type }, thunkAPI) => {
     const token = getToken(type, thunkAPI.getState());
 
-    return await context.getTaxonomyByContentType({ type, token })
+    return await context.getTaxonomyByContentType({ type, token });
   }
 );
 
 export const getList = createAsyncThunk(
-  "content/getList",
-  async ({ type }, thunkAPI) => {
+  `${name}/getList`,
+  async ({ type, query }, thunkAPI) => {
     const token = getToken(type, thunkAPI.getState());
 
-    return await context.getAllByContentType({ type, token })
+    return await context.getAllByContentType({ type, query, token });
   }
 );
 
@@ -58,7 +62,7 @@ const rejected = (key, state, action) => {
 };
 
 export const ContentModule = createSlice({
-  name: "content",
+  name,
   initialState,
   reducers: {
     reset: () => initialState,

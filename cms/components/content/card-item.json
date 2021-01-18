@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_content_card_items",
+  "info": {
+    "name": "cardItem",
+    "icon": "id-card"
+  },
+  "options": {},
+  "attributes": {
+    "Title": {
+      "type": "string"
+    },
+    "body": {
+      "type": "richtext"
+    },
+    "className": {
+      "type": "string"
+    }
+  }
+}

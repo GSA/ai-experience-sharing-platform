@@ -1,0 +1,32 @@
+@mixin fontface($name, $file, $weight: 400, $style: normal) {
+  @font-face {
+    font-family: "#{$name}";
+    src: url("#{$theme-font-path}/#{$name}/#{$file}.ttf");
+    src: url("#{$theme-font-path}/#{$name}/#{$file}.ttf") format("truetype");
+    font-weight: $weight;
+    font-style: $style;
+  }
+}
+/*
+@include fontface("Qualy", "qualy-bold");
+
+@include fontface("Faustina", "Faustina-Regular");
+@include fontface("Faustina", "Faustina-Italic", 400, "italic");
+@include fontface("Faustina", "Faustina-Medium", 500);
+@include fontface("Faustina", "Faustina-MediumItalic", 500, "italic");
+@include fontface("Faustina", "Faustina-SemiBold", 600);
+@include fontface("Faustina", "Faustina-SemiBoldItalic", 600, "italic");
+@include fontface("Faustina", "Faustina-Bold", 700);
+@include fontface("Faustina", "Faustina-BoldItalic", 700, "italic");
+
+@include fontface("Lato", "Lato-Regular");
+@include fontface("Lato", "Lato-Italic", 400, "italic");
+@include fontface("Lato", "Lato-Thin", 100);
+@include fontface("Lato", "Lato-ThinItalic", 100, "italic");
+@include fontface("Lato", "Lato-Light", 300);
+@include fontface("Lato", "Lato-LightItalic", 300, "italic");
+@include fontface("Lato", "Lato-Bold", 700);
+@include fontface("Lato", "Lato-BoldItalic", 700, "italic");
+@include fontface("Lato", "Lato-Black", 900);
+@include fontface("Lato", "Lato-BlackItalic", 900, "italic");
+*/

@@ -1,0 +1,40 @@
+{
+  "kind": "collectionType",
+  "collectionName": "api_boks",
+  "info": {
+    "name": "api-bok",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "slug": {
+      "type": "uid"
+    },
+    "content": {
+      "type": "dynamiczone",
+      "components": [
+        "content.markdown",
+        "content.content-list",
+        "content.list-item",
+        "content.cards",
+        "content.list",
+        "content.carousel",
+        "content.card-item",
+        "content.callout"
+      ]
+    },
+    "bokSectionId": {
+      "type": "string",
+      "regex": "\\d-\\d",
+      "unique": true,
+      "required": true
+    }
+  }
+}

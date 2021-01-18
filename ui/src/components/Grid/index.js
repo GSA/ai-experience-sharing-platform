@@ -63,12 +63,12 @@ export const Col = ({
   return (
     <div
       className={classnames({
-        [`grid-col`]: size === "auto",
-        [`grid-col-${size}`]: size !== "auto",
+        [`grid-col-auto`]: size === "auto",
+        [`grid-col-${size}`]: size && size !== "auto",
         [`tablet:grid-col-${tablet}`]: tablet && tablet !== "auto",
-        [`tablet:grid-col`]: tablet === "auto",
+        [`tablet:grid-col-auto`]: tablet === "auto",
         [`desktop:grid-col-${desktop}`]: desktop && desktop !== "auto",
-        [`desktop:grid-col`]: desktop === "auto",
+        [`desktop:grid-col-auto`]: desktop === "auto",
         [className]: className,
         [`grid-offset-${offset}`]: offset,
       })}

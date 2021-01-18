@@ -1,0 +1,10 @@
+.usa-card__header > :last-child,
+.usa-card__body > :last-child {
+  margin-bottom: unset;
+}
+
+.usa-card {
+  .usa-card__img {
+    background-color: transparent;
+  }
+}

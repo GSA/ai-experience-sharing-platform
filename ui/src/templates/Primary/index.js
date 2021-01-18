@@ -1,41 +1,42 @@
 import React, { useEffect } from "react";
-import PropTypes from "prop-types";
-import SEO from "./Seo";
-import Banner from "./Banner";
-import Footer from "./Footer";
+import { useDispatch, useSelector } from "react-redux";
+import classnames from "classnames";
 import Header from "./Header";
-import { useDispatch } from "react-redux";
-import { siteData, getMenus } from "app/SiteModule";
-import useAssertion from "utils/useAssertion";
-import "styles/index.scss";
-import IdleTimer from 'components/IdleTimer'
+import Logo from "components/Logo";
+import Footer from "./Footer";
+import { getMenus, siteData } from "app/SiteModule";
+import { Helmet } from "react-helmet";
 
-const Primary = ({ title, children }) => {
+const Primary = ({ children }) => {
   const dispatch = useDispatch();
   useEffect(() => {
+    dispatch(getMenus({}));
     dispatch(siteData());
-    dispatch(getMenus());
-  });
-  useAssertion();
+  }, [dispatch]);
+
+  const page = useSelector((state) => state.content.page);
+  /* istanbul ignore next */
+  const { meta = {}, type } = page.data;
+  const theme = type === "projects" ? "5" : !meta.theme ? "6" : meta.theme;
   return (
     <>
-      <SEO title={title} />
-      <a className="usa-skipnav" href="#main-content">
-        Skip to main content
-      </a>
-      <Banner />
-      <div className="usa-overlay" />
-      <Header />
-      {children}
-      <Footer />
-      <IdleTimer />
+      <Helmet></Helmet>
+      <div
+        className={classnames({
+          "usa-app": true,
+          [`usa-app__theme-${theme}`]: Boolean(theme),
+        })}
+      >
+        <div className="usa-app__bg">
+          <Header logo={<Logo title="title2" />} variant="basic" />
+          <main role="main" id="main-content" style={{ minHeight: "42vh" }}>
+            {children}
+          </main>
+          <Footer />
+        </div>
+      </div>
     </>
   );
-};
-
-Primary.propTypes = {
-  title: PropTypes.string,
-  children: PropTypes.node.isRequired,
 };
 
 export default Primary;

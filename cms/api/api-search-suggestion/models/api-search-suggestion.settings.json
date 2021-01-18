@@ -1,0 +1,22 @@
+{
+  "kind": "collectionType",
+  "collectionName": "api_search_suggestions",
+  "info": {
+    "name": "Api-Search-Suggestion"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "searchTerm": {
+      "type": "string"
+    },
+    "suggestions": {
+      "type": "component",
+      "repeatable": true,
+      "component": "menu.menu"
+    }
+  }
+}

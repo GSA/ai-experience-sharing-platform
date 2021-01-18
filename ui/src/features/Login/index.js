@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import Button from "components/Button";
+import Button from "features/Button";
 import { useDispatch, useSelector } from "react-redux";
 import { loginUrl, setRedirect } from "app/AuthModule";
 import { Grid, Row, Col } from "components/Grid";
@@ -22,7 +22,7 @@ const Login = ({ children, oAuthUrl }) => {
   ) : (
     <Grid className="text-center margin-y-10 padding-y-10">
       <div className="text-center">
-        <h1>Your must be logged in to view this content.</h1>
+        <h1>You must be logged in to view this content.</h1>
         {error && (
           <div className="padding-bottom-2">
             <Alert className="display-inline-block" variant="error" slim>

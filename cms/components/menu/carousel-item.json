@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_menu_carousel_items",
+  "info": {
+    "name": "carouselItem",
+    "icon": "image"
+  },
+  "options": {},
+  "attributes": {
+    "text": {
+      "type": "string"
+    },
+    "imageUrl": {
+      "type": "string"
+    },
+    "linkUrl": {
+      "type": "string"
+    }
+  }
+}

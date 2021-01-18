@@ -1,0 +1,52 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/api-boks",
+      "handler": "api-bok.find",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api-boks/count",
+      "handler": "api-bok.count",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api-boks/:id",
+      "handler": "api-bok.findOne",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/api-boks",
+      "handler": "api-bok.create",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/api-boks/:id",
+      "handler": "api-bok.update",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/api-boks/:id",
+      "handler": "api-bok.delete",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}

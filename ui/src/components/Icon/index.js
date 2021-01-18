@@ -2,13 +2,17 @@ import React from "react";
 import PropTypes from "prop-types";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-const Icon = ({ icon, variant, className }) => {
+const Icon = ({ icon, size, variant, className }) => {
   const varMap = {
     solid: "fas",
     regular: "far",
   };
   return (
-    <FontAwesomeIcon icon={[varMap[variant], icon]} className={className} />
+    <FontAwesomeIcon
+      icon={[varMap[variant], icon]}
+      size={size}
+      className={className}
+    />
   );
 };
 

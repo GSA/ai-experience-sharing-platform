@@ -38,18 +38,7 @@ describe("<Col />", () => {
           <span className="test" />
         </Col>
       );
-      expect(wrapper.find(".grid-col").hostNodes().length).toBe(1);
-      expect(wrapper.find(".test").hostNodes().length).toBe(1);
-    });
-    it("should render tablet and desktop", () => {
-      const wrapper = mount(
-        <Col tablet="3" desktop="5">
-          <span className="test" />
-        </Col>
-      );
-      expect(wrapper.find("div").hasClass("tablet:grid-col-3")).toBeTruthy();
-      expect(wrapper.find("div").hasClass("desktop:grid-col-5")).toBeTruthy();
-      expect(wrapper.find(".test").hostNodes().length).toBe(1);
+      expect(wrapper.find(".grid-container")).toBeTruthy();
     });
   });
 });

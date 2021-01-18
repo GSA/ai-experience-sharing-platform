@@ -1,13 +1,30 @@
 import React from "react";
 import { Switch, Route } from "react-router-dom";
-import Homepage from "./Homepage";
-import Library from "./Library";
+import Default from "./Default";
 import Page from "./Page";
+import AdminLogin from "./AdminLogin";
+import Usecase from "./Usecase";
+import Bok from "./Bok";
 
 export default ({ location }) => (
-  <Switch location={location}>
-    <Route key="homepage" path="/" component={Homepage} exact />
-    <Route key="page" path="/:name" component={Page} exact />
-    <Route key="usecase" path="/library" component={Library} />
+  <Switch>
+    <Route key="page" path="/loginadmin" exact>
+      <AdminLogin />
+    </Route>
+    <Route path="/bok/:slug">
+      <Bok />
+    </Route>
+    <Route path="/bok" exact>
+      <Bok />
+    </Route>
+    <Route path="/usecases/:slug">
+      <Usecase />
+    </Route>
+    <Route key="page" path="/:slug">
+      <Page />
+    </Route>
+    <Route key="default" path="/" exact>
+      <Default />
+    </Route>
   </Switch>
 );
