@@ -7,6 +7,7 @@ import Loading from "components/Loading";
 import FourOhFour from "routes/FourOhFour";
 import Head from "routes/Head";
 import Layout from "features/Layout";
+import useAssertion from "utils/useAssertion";
 import useScrollToTop from "utils/useScrollToTop";
 
 const Page = ({ slug }) => {
@@ -19,6 +20,7 @@ const Page = ({ slug }) => {
   useEffect(() => {
     dispatch(getPage({ slug: pageSlug }));
   }, [dispatch, pageSlug]);
+  useAssertion();
   const { pending, data, error } = page;
   if (pending) {
     return (
