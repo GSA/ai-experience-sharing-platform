@@ -62,7 +62,7 @@ export const getUsecaseSettings = async () => {
 export const getUsecaseFilters = async () => {
   let data;
   try {
-    const response = await fetch(`${ROOT_URL}/api-usecases-filters`);
+    const response = await fetch(`${ROOT_URL}/api-usecases/filters/all`);
     data = await response.json();
     if (!response.ok) {
       throw new Error(data.message);

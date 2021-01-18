@@ -26,7 +26,7 @@
     },
     {
       "method": "GET",
-      "path": "/api-usecases-filters",
+      "path": "/api-usecases/filters/all",
       "handler": "api-usecase.filters",
       "config": {
         "policies": []
