@@ -7,13 +7,8 @@
   },
   "options": {},
   "attributes": {
-    "key": {
-      "type": "enumeration",
-      "enum": [
-        "pages",
-        "usecases",
-        "bodyOfKnowledge"
-      ]
+    "title": {
+      "type": "string"
     },
     "className": {
       "type": "string"
@@ -21,11 +16,12 @@
     "fullwidth": {
       "type": "boolean"
     },
-    "title": {
-      "type": "string"
-    },
     "filter": {
       "type": "boolean"
+    },
+    "key": {
+      "type": "enumeration",
+      "enum": ["pages", "usecases", "bodyOfKnowledge"]
     }
   }
 }

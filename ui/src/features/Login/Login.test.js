@@ -57,7 +57,6 @@ describe("<Login />", () => {
           </Login>
         </TestProvider>
       );
-      console.log(wrapper.html());
       expect(wrapper.find(".usa-alert--error").hostNodes().length).toBe(1);
     });
   });

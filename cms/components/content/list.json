@@ -7,26 +7,23 @@
   },
   "options": {},
   "attributes": {
-    "items": {
-      "type": "component",
-      "repeatable": true,
-      "component": "content.list-item"
-    },
     "title": {
       "type": "string"
-    },
-    "columns": {
-      "type": "enumeration",
-      "enum": [
-        "one",
-        "two"
-      ]
     },
     "className": {
       "type": "string"
     },
     "fullwidth": {
       "type": "boolean"
+    },
+    "columns": {
+      "type": "enumeration",
+      "enum": ["one", "two"]
+    },
+    "items": {
+      "type": "component",
+      "repeatable": true,
+      "component": "content.list-item"
     }
   }
 }

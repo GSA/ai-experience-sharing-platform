@@ -20,7 +20,6 @@ export const Usecase = () => {
     if (isAuth) {
       dispatch(getPage({ type, slug }));
       dispatch(getUsecaseSettings());
-      dispatch(getUsecaseFilters());
     }
   }, [type, slug, isAuth, dispatch]);
 

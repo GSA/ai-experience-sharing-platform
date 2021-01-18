@@ -9,11 +9,11 @@
     "Title": {
       "type": "string"
     },
-    "body": {
-      "type": "richtext"
-    },
     "className": {
       "type": "string"
+    },
+    "body": {
+      "type": "richtext"
     }
   }
 }

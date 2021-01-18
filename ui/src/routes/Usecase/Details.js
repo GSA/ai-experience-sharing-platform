@@ -12,10 +12,8 @@ const Format = ({ name, value }) => {
 };
 
 const Details = ({ items }) => {
-  // TODO how to get list of meta fields to display
-  console.log(items);
   const site = useSelector((state) => state[siteName]);
-  console.log(site);
+
   const { keymaps = {} } = site;
   const mapKeys = keymaps !== null ? keymaps : {};
   return (

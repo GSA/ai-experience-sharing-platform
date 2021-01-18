@@ -12,3 +12,74 @@
     height: 100%;
   }
 }
+
+.USFilterControl {
+  max-width: 20rem;
+  &__title {
+    font-weight: 700;
+  }
+  &__items {
+    overflow-y: scroll;
+    max-height: 10rem;
+    padding: 0;
+  }
+  &__item {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    &:nth-child(even) {
+      background-color: #eee;
+    }
+  }
+  &__item-label {
+    padding-left: 1rem;
+  }
+  &__item-label,
+  &__item-control {
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}
+
+.USContentList {
+  &__header {
+    align-items: flex-end;
+    margin-bottom: 1rem;
+  }
+  &__card {
+    &.usa-card--flag {
+      .usa-card__body {
+        margin-left: 0;
+      }
+    }
+
+    .usa-card__container {
+      margin-left: 0;
+      margin-right: 0;
+    }
+  }
+  &__layout-control {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+
+    .usa-button {
+      margin-left: 1rem;
+      font-size: 2rem;
+      opacity: 0.7;
+      &.active {
+        opacity: 1;
+      }
+    }
+  }
+  &__sort-control {
+    display: flex;
+    align-items: center;
+  }
+  &__sort-label {
+    white-space: nowrap;
+    display: inline-block;
+    padding-right: 0.5rem;
+  }
+}

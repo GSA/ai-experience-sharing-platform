@@ -6,7 +6,6 @@ import Link from "features/Link";
 
 const SidebarNav = ({ current = "" }) => {
   const dispatch = useDispatch();
-  console.log(current);
 
   const state = useSelector((state) => state);
   const {

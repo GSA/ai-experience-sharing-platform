@@ -24,7 +24,8 @@
         "content.markdown",
         "content.callout",
         "content.cards",
-        "content.carousel"
+        "content.carousel",
+        "usecase.usecase-list"
       ]
     },
     "leftSidebar": {
