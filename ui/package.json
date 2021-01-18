@@ -46,6 +46,9 @@
   "eslintConfig": {
     "extends": "react-app",
     "rules": {
+      "jsx-a11y/anchor-is-valid": "off",
+      "jsx-a11y/role-supports-aria-props": "off",
+      "array-callback-return": "off",
       "import/no-anonymous-default-export": [
         "error",
         {
