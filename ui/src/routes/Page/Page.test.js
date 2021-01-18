@@ -6,7 +6,7 @@ import store from "app";
 import runAsyncRender from "test/utils/runAsyncRender";
 import { Route } from "react-router-dom";
 
-describe("Page", () => {
+describe.skip("Page", () => {
   describe("default render", () => {
     it("should render", async () => {
       window.scrollTo = jest.fn();

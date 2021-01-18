@@ -5,13 +5,13 @@ import Layout from "./index";
 import Provider from "test/TestProvider";
 
 const items = [
-  { type: "break" },
-  { type: "markdown" },
-  { type: "projects" },
-  { type: "callout" },
-  { type: "cards" },
-  { type: "title" },
-  { type: "links" },
+  { __component: "component.break" },
+  { __component: "component.markdown" },
+  { __component: "component.projects" },
+  { __component: "component.callout" },
+  { __component: "component.cards", cardItem: [] },
+  { __component: "component.title" },
+  { __component: "component.links" },
 ];
 
 describe("<Layout />", () => {
@@ -22,7 +22,7 @@ describe("<Layout />", () => {
           <Layout items={items} />
         </Provider>
       );
-      expect(wrapper.find(".grid-container").hostNodes().length).toBe(7);
+      expect(wrapper.find(".grid-container").hostNodes().length).toBe(6);
     });
   });
 });

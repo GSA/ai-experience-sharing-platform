@@ -15,30 +15,11 @@ const AdminLogin = ({ slug }) => {
   const pageSlug = slug ? slug : params.slug;
   const page = useSelector((state) => state.content.page);
   useScrollToTop();
-  useEffect(() => {
-    dispatch(getPage({ slug: pageSlug }));
-  }, [dispatch, pageSlug]);
-  const { pending, data, error } = page;
-  if (pending) {
-    return (
-      <Grid>
-        <Head title="Loading..." />
-        <div className="margin-y-9 margin-x-auto">
-          <Loading isLoading={true}>
-            <span />
-          </Loading>
-        </div>
-      </Grid>
-    );
-  }
-  if (error) {
-    return <FourOhFour />;
-  }
   return (
     <div className={`USLayout US__${pageSlug}`}>
       <div className="usa-app__bg">
-        <Head title={data.title} />
-        <div className={`US__${data.slug}-content`}>
+        <Head title="Admin Login" />
+        <div className={`US__AdminLogin-content`}>
           <AdminLoginTemplate />
         </div>
       </div>

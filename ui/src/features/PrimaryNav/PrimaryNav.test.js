@@ -45,10 +45,11 @@ describe("<PrimaryNav />", () => {
             items={items1}
             header={<div className="test-header" />}
             footer={<div className="test-footer" />}
+            currentMenuItem={''}
           />
         </TestProvider>
       );
-      const button = wrapper.find("#usa-nav-item-1").hostNodes();
+      const button = wrapper.find("a.usa-nav__link").first().hostNodes();
       button.simulate("click");
       wrapper.update();
       expect(wrapper.find(".usa-nav__primary-item").length).toBe(3);
@@ -58,7 +59,7 @@ describe("<PrimaryNav />", () => {
     it("should render nested menu", () => {
       const wrapper = mount(
         <TestProvider>
-          <PrimaryNav items={items2} />
+          <PrimaryNav items={items2} currentMenuItem={''} />
         </TestProvider>
       );
       const button = wrapper.find(".usa-nav__link").hostNodes();
@@ -75,7 +76,7 @@ describe("<PrimaryNav />", () => {
     it("should render", () => {
       const wrapper = mount(
         <TestProvider>
-          <PrimaryNav items={items1} />
+          <PrimaryNav items={items1} currentMenuItem={''} />
         </TestProvider>
       );
       expect(wrapper.find("button#usa-nav-open").length).toBe(1);
@@ -83,7 +84,7 @@ describe("<PrimaryNav />", () => {
     it("should open menu", () => {
       const wrapper = mount(
         <TestProvider>
-          <PrimaryNav items={items1} />
+          <PrimaryNav items={items1} currentMenuItem={''} />
         </TestProvider>
       );
       const button = wrapper.find("button#usa-nav-open");

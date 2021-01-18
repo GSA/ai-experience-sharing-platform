@@ -1,6 +1,6 @@
 import React from "react";
 import { mount, render } from "enzyme";
-import Button from "components/Button";
+import Button from "features/Button";
 import Provider from "test/TestProvider";
 
 describe("<Button />", () => {

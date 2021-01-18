@@ -8,6 +8,10 @@ const testData = [
     excerpt: "test1",
     path: "test1",
     type: "usecase",
+    content: [
+      {
+        __component: 'content.markdown' }
+    ],
     toc: [
       {
         text: "test1-1",
@@ -26,6 +30,10 @@ const testData = [
     excerpt: "test2",
     path: "test2",
     type: "usecase",
+    content: [
+      {
+        __component: 'content.markdown' }
+    ],
     toc: [
       {
         text: "test2-1",
