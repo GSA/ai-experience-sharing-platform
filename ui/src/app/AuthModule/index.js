@@ -57,7 +57,7 @@ const AuthModule = createSlice({
   initialState,
   reducers: {
     reset: () => initialState,
-    setRedirect: (state, action) => ({
+    setRedirect: (state, action) => (state.redirect ? state : {
       ...state,
       redirect: action.payload,
     }),

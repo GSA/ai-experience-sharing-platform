@@ -8,8 +8,8 @@ import Link from "features/Link";
 import PrimaryNav from "features/PrimaryNav";
 import useMenuSelector from "utils/useMenuSelector";
 import { name as siteName } from "app/SiteModule";
-import Search from "./Search";
 import { useSelector } from "react-redux";
+import PrimaryNavFooter from "features/PrimaryNavFooter";
 
 const Header = ({ className, variant }) => {
   const history = useHistory();
@@ -34,6 +34,14 @@ const Header = ({ className, variant }) => {
   const handleClick = (value) => {
     setActiveMenuItem(null);
     history.push(value.link);
+  };
+
+  const getFooter = () => {
+    return (
+      <>
+        <PrimaryNavFooter />
+      </>
+    );
   };
 
   // For menu item matches current path
@@ -70,7 +78,7 @@ const Header = ({ className, variant }) => {
                     currentMenuItem={currentMenuItem}
                     onClick={handleClick}
                     onMenuItemClick={handleMenuItemClick}
-                    footer={<Search />}
+                    footer={getFooter()}
                   />
                 </Row>
               </Col>
