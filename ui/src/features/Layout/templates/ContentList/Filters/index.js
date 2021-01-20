@@ -1,17 +1,19 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import FilterControl from "./FilterControl";
 import { useDispatch, useSelector } from "react-redux";
-import { getUsecaseFilters, name } from "app/SiteModule";
+import { getUsecaseFilters, name as siteName } from "app/SiteModule";
+import { setListFilter, name as contentName } from "app/ContentModule";
 
-const Filters = ({ values }) => {
+const Filters = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getUsecaseFilters());
   }, [dispatch]);
-
-  const { filters, keymaps } = useSelector((state) => state[name]);
+  const state = useSelector((state) => state);
+  const { filters, keymaps } = state[siteName];
+  const { list: { filter: filterValues = {} } = {} } = state[contentName];
   const filterData = Object.entries(filters).reduce((acc, [key, value]) => {
     const title = keymaps[key] || key;
     const enums = value.enum || [];
@@ -25,10 +27,21 @@ const Filters = ({ values }) => {
     return [...acc, filterItem];
   }, []);
 
+  const handleChange = ({ name, value }) => {
+    dispatch(setListFilter({ name, value }));
+  };
+
+  console.log(filterValues);
   return (
     <div>
       {filterData.map((filter) => {
-        return <FilterControl {...filter} />;
+        return (
+          <FilterControl
+            onChange={handleChange}
+            {...filter}
+            values={filterValues[filter.name]}
+          />
+        );
       })}
     </div>
   );

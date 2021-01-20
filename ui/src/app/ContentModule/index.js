@@ -4,41 +4,28 @@ import context from "./context";
 export const name = "content";
 
 export const initialState = {
-  list: { pending: false, data: [], error: null },
+  list: { pending: false, filter: {}, data: [], error: null },
   page: { pending: false, data: {}, error: null },
   taxonomy: { pending: false, data: [], error: null },
-};
-
-const getToken = (type, state) => {
-  const sendToken = state?.auth?.authenticatedTypes
-    ? state.auth.authenticatedTypes[type]
-    : false;
-  return sendToken ? state.auth.token : null;
 };
 
 export const getPage = createAsyncThunk(
   `${name}/getPage`,
   async ({ type = "pages", slug = "" }, thunkAPI) => {
-    const token = getToken(type, thunkAPI.getState());
-
-    return await context.getContentTypeByName({ type, slug, token });
+    return await context.getContentTypeByName({ type, slug, thunkAPI });
   }
 );
 export const getTaxonomy = createAsyncThunk(
   `${name}/getTaxonomy`,
   async ({ type }, thunkAPI) => {
-    const token = getToken(type, thunkAPI.getState());
-
-    return await context.getTaxonomyByContentType({ type, token });
+    return await context.getTaxonomyByContentType({ type, thunkAPI });
   }
 );
 
 export const getList = createAsyncThunk(
   `${name}/getList`,
   async ({ type, query }, thunkAPI) => {
-    const token = getToken(type, thunkAPI.getState());
-
-    return await context.getAllByContentType({ type, query, token });
+    return await context.getAllByContentType({ type, query, thunkAPI });
   }
 );
 
@@ -68,6 +55,30 @@ export const ContentModule = createSlice({
     reset: () => initialState,
     clearPage: (state) => ({ ...state, page: initialState.page }),
     clearList: (state) => ({ ...state, list: initialState.list }),
+    setListFilter: (state, action) => {
+      const { filter: currentFilter = {} } = state.list;
+      const filter = { ...currentFilter };
+      const { name, value } = action.payload;
+      // does name exist in filter
+      if (filter[name]) {
+        // exists
+        // does value exist in filter name list
+        if (filter[name].includes(value)) {
+          filter[name] = filter[name].filter((item) => item !== value);
+        } else {
+          // else, add to filter name list
+          filter[name] = [...filter[name], value];
+        }
+      } else {
+        // else add name list with value to filter
+        filter[name] = [value];
+      }
+      return { ...state, list: { ...state.list, filter } };
+    },
+    resetListFilter: (state) => ({
+      ...state,
+      list: { ...state.list, filter: {} },
+    }),
   },
   extraReducers: {
     [getPage.pending]: (state) => pending("page", state),
@@ -84,6 +95,11 @@ export const ContentModule = createSlice({
   },
 });
 
-export const { reset, clearPage, clearList } = ContentModule.actions;
+export const {
+  reset,
+  clearPage,
+  clearList,
+  setListFilter,
+} = ContentModule.actions;
 
 export default ContentModule.reducer;

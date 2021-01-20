@@ -11,7 +11,7 @@ import List from "./templates/List";
 import Mdx from "features/Mdx";
 import Carousel from "features/Carousel";
 import Title from "./templates/Title";
-import UsecaseList from "./templates/ContentList";
+import ContentList from "./templates/ContentList";
 import kebab from "utils/kebab";
 
 const components = {
@@ -29,12 +29,12 @@ const components = {
   ),
   title: Title,
   "usecase-list": () => (
-    <UsecaseList
-      filters={false}
+    <ContentList
+      filters={true}
       layout={true}
-      sidebar={false}
+      sidebar={true}
       defaultLayout={"vertical"}
-      sort={false}
+      sort={true}
     />
   ),
 };

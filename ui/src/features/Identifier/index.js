@@ -18,7 +18,6 @@ const Identifier = ({
   reportsUrl,
   privacyUrl,
 }) => {
-  console.log(logo);
   return (
     <div className="usa-identifier">
       <section
@@ -137,6 +136,21 @@ Identifier.defaultProps = {
   oigUrl: "/#",
   reportsUrl: "/#",
   privacyUrl: "/#",
+};
+Identifier.propTypes = {
+  logo: PropTypes.node,
+  domain: PropTypes.string,
+  domainUrl: PropTypes.string,
+  agency: PropTypes.string,
+  agencyTitle: PropTypes.string,
+  agencyUrl: PropTypes.string,
+  aboutUrl: PropTypes.string,
+  a11yUrl: PropTypes.string,
+  foiaUrl: PropTypes.string,
+  fealUrl: PropTypes.string,
+  oigUrl: PropTypes.string,
+  reportsUrl: PropTypes.string,
+  privacyUrl: PropTypes.string,
 };
 
 export default Identifier;

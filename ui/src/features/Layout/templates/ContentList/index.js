@@ -47,7 +47,7 @@ const ContentList = ({
 
     return size.toString();
   };
-  console.log(filters, sort, sidebar, layout);
+
   return (
     <div>
       {(filters || sort || layout) && (

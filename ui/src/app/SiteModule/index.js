@@ -17,6 +17,7 @@ export const initialState = {
   },
   keymaps: {},
   filters: {},
+  sort: [],
   bokModules: [],
   dapAgency: "",
 };

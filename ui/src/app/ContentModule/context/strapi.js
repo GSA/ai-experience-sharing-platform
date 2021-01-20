@@ -3,7 +3,15 @@ const { getOptions } = require("utils/http");
 
 const ROOT_URL = process.env.REACT_APP_API_URL || "";
 
-export const getAllByContentType = async ({ type, token, query }) => {
+const getToken = (type, state) => {
+  const sendToken = state?.auth?.authenticatedTypes
+    ? state.auth.authenticatedTypes[type]
+    : false;
+  return sendToken ? state.auth.token : null;
+};
+
+export const getAllByContentType = async ({ type, query, thunkAPI }) => {
+  const token = getToken(type, thunkAPI.getState());
   const options = getOptions(token);
   let data;
   try {
@@ -22,7 +30,8 @@ export const getAllByContentType = async ({ type, token, query }) => {
   return data;
 };
 
-export const getContentTypeByName = async ({ type, slug, token }) => {
+export const getContentTypeByName = async ({ type, slug, thunkAPI }) => {
+  const token = getToken(type, thunkAPI.getState());
   const options = getOptions(token);
   let data;
   try {
@@ -50,7 +59,8 @@ export const getContentTypeByName = async ({ type, slug, token }) => {
   return data[0] || {};
 };
 
-export const getTaxonomyByContentType = async (type, token) => {
+export const getTaxonomyByContentType = async ({ type, thunkAPI }) => {
+  const token = getToken(type, thunkAPI.getState());
   const options = getOptions(token);
   let data;
   try {

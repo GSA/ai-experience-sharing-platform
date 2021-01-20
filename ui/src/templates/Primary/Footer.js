@@ -75,13 +75,6 @@ const Footer = () => {
       <div className="usa-footer__primary-section">
         <Identifier />
       </div>
-      <Grid>
-        <Row>
-          <Col>
-            <div className="margin-y-4"></div>
-          </Col>
-        </Row>
-      </Grid>
     </footer>
   );
 };
