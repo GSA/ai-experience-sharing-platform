@@ -23,7 +23,6 @@ const Bok = () => {
           <SidebarNav current={data.bokSectionId} />
         </Col>
         <Col size={10}>
-          <h1>{data.title}</h1>
           <Layout items={data.content} renderTitles={true} />
         </Col>
       </Row>

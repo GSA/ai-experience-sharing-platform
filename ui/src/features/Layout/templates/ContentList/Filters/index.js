@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from "react";
-import PropTypes from "prop-types";
+import React, { useEffect } from "react";
 import FilterControl from "./FilterControl";
 import { useDispatch, useSelector } from "react-redux";
 import { getUsecaseFilters, name as siteName } from "app/SiteModule";
