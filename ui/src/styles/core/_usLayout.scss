@@ -54,6 +54,10 @@
       }
     }
 
+    &.usa-card {
+      @include u-margin-bottom(2);
+    }
+
     .usa-card__container {
       margin-left: 0;
       margin-right: 0;

@@ -30,10 +30,11 @@ const components = {
   title: Title,
   "usecase-list": () => (
     <UsecaseList
-      filters={true}
+      filters={false}
       layout={true}
-      defaultLayout={"horizontal"}
-      sort={true}
+      sidebar={false}
+      defaultLayout={"vertical"}
+      sort={false}
     />
   ),
 };

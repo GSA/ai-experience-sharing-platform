@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 import Filters from "./Filters";
 import { getUsecaseFilters, getUsecaseSettings } from "app/SiteModule";
 import { useDispatch, useSelector } from "react-redux";
-import { name as authName } from "app/AuthModule";
 import { Row, Col } from "components/Grid";
 import { getList, name as contentName } from "app/ContentModule";
 import Card from "components/Card";
@@ -35,16 +34,15 @@ const ContentList = ({
 
   const setWidth = () => {
     let size = 12;
-    const width = {
-      half: "6",
-      threefourths: "9",
-      full: "12",
-    };
+
     if (filters) {
       size = size - 3;
     }
     if (sidebar) {
       size = size - 3;
+    }
+    if (variant === "vertical" && sidebar) {
+      size = size + 3;
     }
 
     return size.toString();
@@ -54,11 +52,7 @@ const ContentList = ({
     <div>
       {(filters || sort || layout) && (
         <Row gap="2" className="USContentList__header">
-          {filters && (
-            <Col desktop="3">
-              <strong>Filter by</strong>
-            </Col>
-          )}
+          <Col desktop="3">{filters && <strong>Filter by</strong>}</Col>
           <Col desktop="6"></Col>
           {(sort || layout) && (
             <Col desktop="3">
@@ -80,16 +74,20 @@ const ContentList = ({
                   </Button>
                 </div>
               )}
-              <div className="USContentList__sort-control">
-                <span className="USContentList__sort-label">{"Sort by: "}</span>
-                <Select
-                  name={""}
-                  id={""}
-                  items={[]}
-                  placeholder={""}
-                  onChange={() => null}
-                />
-              </div>
+              {sort && (
+                <div className="USContentList__sort-control">
+                  <span className="USContentList__sort-label">
+                    {"Sort by: "}
+                  </span>
+                  <Select
+                    name={""}
+                    id={""}
+                    items={[]}
+                    placeholder={""}
+                    onChange={() => null}
+                  />
+                </div>
+              )}
             </Col>
           )}
         </Row>
@@ -101,7 +99,7 @@ const ContentList = ({
           </Col>
         )}
         <Col desktop={setWidth()}>
-          <Row>
+          <Row gap="2">
             {data.map((item) => (
               <Col desktop={variant === "horizontal" ? "12" : "6"}>
                 <Card variant={variant} className="USContentList__card">
@@ -115,7 +113,7 @@ const ContentList = ({
             ))}
           </Row>
         </Col>
-        {variant === "horizontal" && <Col desktop="3">See also</Col>}
+        {sidebar && variant === "horizontal" && <Col desktop="3">See also</Col>}
       </Row>
     </div>
   );
