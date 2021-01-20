@@ -4,7 +4,13 @@ import context from "./context";
 export const name = "content";
 
 export const initialState = {
-  list: { pending: false, filter: {}, data: [], error: null },
+  list: {
+    pending: false,
+    filter: {},
+    sort: { name: "", dir: "" },
+    data: [],
+    error: null,
+  },
   page: { pending: false, data: {}, error: null },
   taxonomy: { pending: false, data: [], error: null },
 };
@@ -79,6 +85,17 @@ export const ContentModule = createSlice({
       ...state,
       list: { ...state.list, filter: {} },
     }),
+    setListSort: (state, action) => {
+      const { name = "", dir = "ASC" } = action.payload;
+      return {
+        ...state,
+        list: { ...state.list, sort: { name, dir } },
+      };
+    },
+    resetListSort: (state) => ({
+      ...state,
+      list: { ...state.list, sort: initialState.list.sort },
+    }),
   },
   extraReducers: {
     [getPage.pending]: (state) => pending("page", state),
@@ -100,6 +117,9 @@ export const {
   clearPage,
   clearList,
   setListFilter,
+  resetListFilter,
+  setListSort,
+  resetListSort,
 } = ContentModule.actions;
 
 export default ContentModule.reducer;
