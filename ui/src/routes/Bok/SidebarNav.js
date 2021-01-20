@@ -15,7 +15,6 @@ const SidebarNav = ({ current = "" }) => {
   const currentBokModuleId = current.split("-")[0];
 
   const bokModuleItems = bokList.filter(({ bokSectionId: childId = "" }) => {
-    console.log(currentBokModuleId, childId);
     return (
       childId.includes(`${currentBokModuleId}-`) && !childId.includes("-0")
     );
