@@ -30,7 +30,6 @@ const Filters = () => {
     dispatch(setListFilter({ name, value }));
   };
 
-  console.log(filterValues);
   return (
     <div>
       {filterData.map((filter) => {

@@ -27,12 +27,6 @@
         "content.carousel",
         "usecase.usecase-list"
       ]
-    },
-    "leftSidebar": {
-      "type": "dynamiczone",
-      "components": [
-        "menu.menu"
-      ]
     }
   }
 }

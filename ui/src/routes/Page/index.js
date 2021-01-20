@@ -39,7 +39,7 @@ const Page = ({ slug }) => {
       <div className="usa-app__bg">
         <Head title={data.title} />
         <div className={`US__${data.slug}-content`}>
-          <Layout items={data.content} renderTitles={true} />
+          <Layout items={data.content} renderTitles={false} />
         </div>
       </div>
     </div>

@@ -18,7 +18,12 @@
     },
     "columns": {
       "type": "enumeration",
-      "enum": ["one", "two", "three", "four"],
+      "enum": [
+        "one",
+        "two",
+        "three",
+        "four"
+      ],
       "default": "two"
     },
     "cardItem": {

@@ -11,6 +11,16 @@ import { name as siteName } from "app/SiteModule";
 import Search from "./Search";
 import { useSelector } from "react-redux";
 
+const CustomText = ({ text }) => {
+  const parts = text.split(".");
+  return (
+    <>
+      <span className="CustomText__prefix">{parts[0]}</span>
+      <span className="CustomText__suffix">{parts[1]}</span>
+    </>
+  );
+};
+
 const Header = ({ className, variant }) => {
   const history = useHistory();
   // For mobile menu
@@ -41,6 +51,11 @@ const Header = ({ className, variant }) => {
   const { items = [] } = useMenuSelector("primary");
   const { title } = useSelector((state) => state[siteName]);
 
+  const menuItems = items.map((item) => ({
+    ...item,
+    text: <CustomText text={item.text} />,
+  }));
+
   return (
     <header
       className={classnames({
@@ -62,7 +77,7 @@ const Header = ({ className, variant }) => {
               <Col size="8" className="usa-header__nav">
                 <Row className="flex-align-center height-full">
                   <PrimaryNav
-                    items={items}
+                    items={menuItems}
                     varaint="basic"
                     isMobileMenuOpen={isMenuOpen}
                     onMobileMenuClick={handleMenuToggle}
@@ -83,9 +98,8 @@ const Header = ({ className, variant }) => {
 };
 
 Header.propTypes = {
-  logo: PropTypes.node,
-  nav: PropTypes.node,
-  hero: PropTypes.node,
+  className: PropTypes.string,
+  varaint: PropTypes.string,
 };
 
 export default Header;

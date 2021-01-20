@@ -18,7 +18,10 @@
     },
     "columns": {
       "type": "enumeration",
-      "enum": ["one", "two"]
+      "enum": [
+        "one",
+        "two"
+      ]
     },
     "items": {
       "type": "component",

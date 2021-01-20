@@ -8,7 +8,7 @@ import { getList, name as contentName } from "app/ContentModule";
 import Card from "components/Card";
 import Button from "features/Button";
 import Icon from "components/Icon";
-import Select from "components/Select";
+import Sort from "./Sort";
 
 const ContentList = ({
   type = "usecases",
@@ -74,20 +74,7 @@ const ContentList = ({
                   </Button>
                 </div>
               )}
-              {sort && (
-                <div className="USContentList__sort-control">
-                  <span className="USContentList__sort-label">
-                    {"Sort by: "}
-                  </span>
-                  <Select
-                    name={""}
-                    id={""}
-                    items={[]}
-                    placeholder={""}
-                    onChange={() => null}
-                  />
-                </div>
-              )}
+              {sort && <Sort />}
             </Col>
           )}
         </Row>

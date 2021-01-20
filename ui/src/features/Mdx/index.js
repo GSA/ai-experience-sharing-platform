@@ -1,6 +1,5 @@
 import React from "react";
 import MDX from "@mdx-js/runtime";
-import { Link } from "react-router-dom";
 import Break from "components/Break";
 import Button from "features/Button";
 import Card from "components/Card";
@@ -11,6 +10,8 @@ import Image from "components/Image";
 import List from "components/List";
 import Select from "components/Select";
 import ContentList from "features/ContentList";
+
+import Link from "features/Link";
 
 export const shortcodes = {
   Break,

@@ -18,11 +18,6 @@
       "type": "component",
       "repeatable": true,
       "component": "content.list"
-    },
-    "bokModules": {
-      "type": "component",
-      "repeatable": true,
-      "component": "bok.bok-modules"
     }
   }
 }

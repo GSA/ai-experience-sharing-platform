@@ -18,7 +18,10 @@
     },
     "variant": {
       "type": "enumeration",
-      "enum": ["number", "checkmark"],
+      "enum": [
+        "number",
+        "checkmark"
+      ],
       "required": true,
       "default": "checkmark"
     },

@@ -6,12 +6,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { name as contentName, getPage } from "app/ContentModule";
 import { useParams } from "react-router-dom";
 
-const Bok = () => {
-  const { type = "boks", slug } = useParams();
+const Bok = ({ slug: slugOverride }) => {
+  const params = useParams();
+  const slug = slugOverride ? slugOverride : params.slug;
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getPage({ type, slug }));
-  }, [dispatch, slug, type]);
+    dispatch(getPage({ type: "boks", slug }));
+  }, [dispatch, slug]);
   const { page: { data = {} } = {} } = useSelector(
     (state) => state[contentName]
   );
@@ -19,7 +20,6 @@ const Bok = () => {
     <Grid>
       <Row gap="2">
         <Col size={2}>
-          <h4>Sections</h4>
           <SidebarNav current={data.bokSectionId} />
         </Col>
         <Col size={10}>

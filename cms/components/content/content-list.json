@@ -21,7 +21,34 @@
     },
     "key": {
       "type": "enumeration",
-      "enum": ["pages", "usecases", "bodyOfKnowledge"]
+      "enum": [
+        "pages",
+        "usecases",
+        "boks"
+      ]
+    },
+    "defaultFilter": {
+      "type": "component",
+      "repeatable": true,
+      "component": "content.content-list-filter"
+    },
+    "sort": {
+      "type": "boolean"
+    },
+    "defaultSort": {
+      "type": "component",
+      "repeatable": false,
+      "component": "content.content-list-sort"
+    },
+    "layout": {
+      "type": "boolean"
+    },
+    "defaultLayout": {
+      "type": "enumeration",
+      "enum": [
+        "vertical",
+        "horizontal"
+      ]
     }
   }
 }

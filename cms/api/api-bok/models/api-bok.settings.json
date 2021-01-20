@@ -17,6 +17,12 @@
     "slug": {
       "type": "uid"
     },
+    "bokSectionId": {
+      "type": "string",
+      "regex": "\\d-\\d",
+      "unique": true,
+      "required": true
+    },
     "content": {
       "type": "dynamiczone",
       "components": [
@@ -29,12 +35,6 @@
         "content.card-item",
         "content.callout"
       ]
-    },
-    "bokSectionId": {
-      "type": "string",
-      "regex": "\\d-\\d",
-      "unique": true,
-      "required": true
     }
   }
 }

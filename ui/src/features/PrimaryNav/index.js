@@ -83,18 +83,6 @@ Nav.defaultProps = {
   activeMenuItem: null,
   onMenuItemClick: () => console.log("onMenuItemClick clicked!"),
   onClick: () => console.log("onClick clicked!"),
-  renderLink: (props) => {
-    const splitText = props.text.split(' ');
-    const lastText = splitText.pop();
-    return (
-      <a href={props.link} {...props}>
-        {splitText.join(' ')}
-        <span className="last">
-          {lastText}
-        </span>
-      </a>
-    );
-  },
   open: "Menu",
   close: "Close",
 };

@@ -16,7 +16,6 @@
     "fullWidth": {
       "type": "boolean"
     },
-
     "images": {
       "type": "component",
       "repeatable": true,

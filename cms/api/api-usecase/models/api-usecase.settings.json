@@ -40,7 +40,12 @@
     },
     "contactRole": {
       "type": "enumeration",
-      "enum": ["governmentEmployee", "academica", "industry", "other"]
+      "enum": [
+        "governmentEmployee",
+        "academica",
+        "industry",
+        "other"
+      ]
     },
     "aiRole": {
       "type": "enumeration",
@@ -90,7 +95,10 @@
     },
     "metadataDevelopmentPhase": {
       "type": "enumeration",
-      "enum": ["operationalUse", "researchProject"]
+      "enum": [
+        "operationalUse",
+        "researchProject"
+      ]
     },
     "metadataAiMlTechniques": {
       "type": "enumeration",
