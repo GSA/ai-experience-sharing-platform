@@ -1,0 +1,107 @@
+h1, h2 {
+    font-weight: 400;
+}
+
+h1 {
+    font-size: 36px;
+}
+
+.usa-app {
+    background: $x-randombg;
+    color: $x-charcoal;
+}
+
+.usa-hero {
+    color: $x-charcoal;
+}
+
+.usa-header {
+    background-color: $x-charcoal;
+    .usa-logo__text {
+        color: $x-whiteish;
+        border: none;
+        font-size: 24px;
+        padding: 1.5rem;
+    }
+    a.usa-logo {
+        text-decoration: none;
+        font-style: normal;
+        font-weight: 700;
+        font-size: 24px;
+    }
+    div.grid-row.align-items-center {
+        padding-top: 1em;
+    }
+}
+
+.usa-header > div.grid-bg {
+    min-height: 110px;
+}
+
+.usa-nav__primary > .usa-nav__primary-item > a {
+    .last {
+        color: $x-whiteish;
+    }
+    color: $x-ocean;
+    font-size: 20px;
+    line-height: 25px;
+}
+
+main#main-content {
+    border: none;
+  }
+  
+  .usa-hero > h1 > span {
+    font-size: 56px;
+    display: block;
+    background-color: rgba(255, 255, 255, .85);
+    width: fit-content;
+    padding-right: 2em;
+    padding-left: .5em;
+    margin-left: .5em;
+    filter: drop-shadow(0px 16px 20px rgba(0, 0, 0, 0.1));
+  }
+
+.usa-banner .usa-banner__header {
+    color: #fff;
+    border-bottom: 1px solid $x-space-gray;
+  }
+
+  .usa-banner .usa-banner__button:active, .usa-banner .usa-banner__button:focus, .usa-banner .usa-banner__button:visited {
+    color: $x-sky;
+  }
+
+  .usa-banner {
+    background-color: transparent;
+  }
+
+  .usa-banner .usa-banner__content {
+      color: $x-whiteish;
+  }
+
+  .usa-banner .usa-banner__button .usa-banner__button-text:after {
+      color: $x-whiteish;
+  }
+
+  .usa-nav .usa-accordion {
+    @include u-font-family('serif');
+  }
+
+  .usa-footer {
+      background-color: $x-charcoal;
+      color: $x-whiteish;
+      .usa-footer__primary-section, .usa-footer__secondary-section, .usa-footer__primary-link {
+        background-color: $x-charcoal;
+        color: $x-whiteish;
+      }
+  }
+
+  .usa-footer__secondary-section {
+      a, a:visited {
+          color: $x-ocean;
+      }
+  }
+
+  .usa-social-link {
+      filter: invert(1);
+  }

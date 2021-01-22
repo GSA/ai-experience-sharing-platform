@@ -2,7 +2,8 @@
   .USCallout,
   .USCards,
   .USList,
-  .USMarkdown {
+  .USMarkdown,
+  .carousel-root {
     @include u-margin-bottom(4);
   }
 }

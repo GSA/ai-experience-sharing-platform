@@ -47,7 +47,7 @@ const Layout = ({ items, data, renderTitles }) => {
           <Comp key={`USLayout-${++i}`} {...props} data={data} />
         </>
       ) : (
-        <Grid key={`layout-${++i}`}>
+        <Grid key={`layout-${++i}`} className={props.className}>
           {renderTitles && props.title && (
             <h2 id={kebab(props.title)}>{props.title}</h2>
           )}

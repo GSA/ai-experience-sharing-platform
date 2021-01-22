@@ -11,7 +11,7 @@ export const Carousel = ({
 }) => {
 
   return (
-    <ReactCarousel showArrows={false} showThumbs={false} showStatus={false}>
+    <ReactCarousel showArrows={false} showThumbs={false} showStatus={false} autoPlay={true}>
       {images && images.length && images.map((image, i) => {
         return (
           <div key={image.text + image.imageUrl + image.linkUrl}>

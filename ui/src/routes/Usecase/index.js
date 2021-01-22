@@ -12,7 +12,9 @@ import { getUsecaseSettings, getUsecaseFilters } from "app/SiteModule";
 
 export const Usecase = () => {
   const dispatch = useDispatch();
+  const params = useParams();
   const { type = "usecases", slug } = useParams();
+  const pageSlug = slug ? slug : params.slug;
   const { data, error } = useSelector((state) => state.content.page);
   const { isAuth } = useSelector((state) => state.auth);
 
@@ -30,22 +32,24 @@ export const Usecase = () => {
   }
   return (
     <Login>
-      <Grid>
-        <Row>
-          <Col size={2}>
-            <h4>Sections</h4>
-            <ContentNav items={data.content} />
-          </Col>
-          <Col size={8} className="padding-right-4">
-            <h1>{title}</h1>
-            <Layout items={data.content} renderTitles={true} />
-          </Col>
-          <Col size={2}>
-            <Details title="Details" items={data} />
-          </Col>
-        </Row>
-      </Grid>
-    </Login>
+      <div className={`USLayout US__usecases US__${pageSlug}`}>
+        <Grid>
+          <Row>
+            <Col size={2}>
+              <h4>Sections</h4>
+              <ContentNav items={data.content} />
+            </Col>
+            <Col size={8} className="padding-right-4">
+              <Grid><h1>{title}</h1></Grid>
+              <Layout items={data.content} renderTitles={true} />
+            </Col>
+            <Col size={2}>
+              <Details title="Details" items={data} />
+            </Col>
+          </Row>
+        </Grid>
+        </div>
+      </Login>
   );
 };
 
