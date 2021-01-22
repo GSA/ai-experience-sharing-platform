@@ -22,6 +22,7 @@ const Search = (props) => {
         autoComplete="off"
         className="usa-input"
         type="search"
+        placeholder="Search"
       />
       <button
         className="usa-button usa-button--primary-lighter"

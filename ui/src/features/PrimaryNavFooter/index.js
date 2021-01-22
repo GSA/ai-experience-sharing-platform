@@ -5,6 +5,7 @@ import { useLocation } from "react-router-dom";
 import Link from "features/Link";
 import { setRedirect, logout } from "app/AuthModule";
 import NavItem from "features/PrimaryNav/NavItem"
+import {ReactComponent as Svg} from './logingov.svg'
 
 const PrimaryNavFooter = () => {
   const { pathname } = useLocation();
@@ -57,7 +58,12 @@ const PrimaryNavFooter = () => {
             />
           </ul>
         ) : (
-          <div className="sign-in"><Link onClick={handleLogin} url="login">Sign In</Link></div>
+          <div className="sign-in">
+            <Link onClick={handleLogin} url="login">
+              Sign In
+              <Svg/>
+            </Link>
+          </div>
         )}
       </div>
   );

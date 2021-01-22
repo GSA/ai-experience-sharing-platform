@@ -62,12 +62,12 @@ const Header = ({ className, variant }) => {
         <Row>
           <Col size="12">
             <Row className="align-items-center">
-              <Col size="4">
+              <Col size="2">
                 <Link url="/" className="usa-logo">
                   <span className="usa-logo__text">{title}</span>
                 </Link>
               </Col>
-              <Col size="8" className="usa-header__nav">
+              <Col size="10" className="usa-header__nav">
                 <Row className="flex-align-center height-full">
                   <PrimaryNav
                     items={items}

@@ -83,9 +83,47 @@ main#main-content {
       color: $x-whiteish;
   }
 
-  .usa-nav .usa-accordion {
-    @include u-font-family('serif');
+  .usa-nav {
+    .usa-accordion {
+        @include u-font-family('serif');
+    }
+    .sign-in {
+        svg {
+            position: absolute;
+            right: -42px;
+            top: 2.5rem;
+            transform: scale(.65);
+        }
+        a, a:visited {
+            color: $x-whiteish;
+            @include u-font-family("serif");
+            font-size: 20px;
+            text-decoration: none;
+        }
+    }
+}
+
+@media (min-width: 75em){
+  .usa-header--basic .usa-nav {
+    justify-content: start;
   }
+}
+
+.usa-footer--big .usa-footer__primary-content--collapsible .usa-list--unstyled {
+    padding-right: 1rem;
+}
+
+.usa-search.usa-search--small {
+    .usa-input, .usa-button {
+        height: 50px;
+    }
+    .usa-button {
+        background-color: transparent;
+        position: absolute;
+        filter: invert(1);
+        right: 0;
+    }
+}
 
   .usa-footer {
       background-color: $x-charcoal;
@@ -96,6 +134,7 @@ main#main-content {
       }
   }
 
+ 
   .usa-footer__secondary-section {
       a, a:visited {
           color: $x-ocean;
