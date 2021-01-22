@@ -84,7 +84,7 @@ Nav.defaultProps = {
   onMenuItemClick: () => console.log("onMenuItemClick clicked!"),
   onClick: () => console.log("onClick clicked!"),
   renderLink: (props) => {
-    const splitText = props.text.split(' ');
+    const splitText = (props.text || '').split(' ');
     const lastText = splitText.pop();
     return (
       <a href={props.link} {...props}>
@@ -96,7 +96,7 @@ Nav.defaultProps = {
     );
   },
   renderMenuItem: (props) => {
-    const splitText = props.title.split(' ');
+    const splitText = (props.title || '').split(' ');
     const lastText = splitText.pop();
     return (
       <button {...props}>
