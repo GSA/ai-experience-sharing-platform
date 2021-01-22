@@ -247,6 +247,8 @@ jobs:
 
     strategy:
       matrix: ${{ fromJson(needs.build_deploy_build_matrix.outputs.matrix) }}
+    # Don't terminate another deploy mid-deploy and leave a mess
+    fail-fast: false
 
     env:
       AWS_ACCESS_KEY_ID: ${{ secrets[matrix.aws_access_key_id_secret] }}
