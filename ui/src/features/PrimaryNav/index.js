@@ -95,6 +95,17 @@ Nav.defaultProps = {
       </a>
     );
   },
+  renderMenuItem: (props) => {
+    const splitText = props.title.split(' ');
+    const lastText = splitText.pop();
+    return (
+      <button {...props}>
+        {splitText.join(' ')}
+        <span className="last">
+          {lastText}
+        </span>
+      </button>);
+  },
   open: "Menu",
   close: "Close",
 };
