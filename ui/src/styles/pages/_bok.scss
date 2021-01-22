@@ -1,0 +1,15 @@
+.US__bok-bg {
+    h1 {
+        margin-bottom: 3rem;
+    }
+    h1, h2, h3, h4 {
+        @include u-font-family('sans');
+    }
+    background: linear-gradient(180deg, rgba(120, 227, 251, 0.088) 0%, rgba(41, 42, 43, 0.1) 51.77%, rgba(120, 227, 251, 0.088) 87.5%);
+}
+.US__bok-container {
+    .grid-row.grid-gap-2 {
+        padding-top: 1rem;
+    }
+}
+

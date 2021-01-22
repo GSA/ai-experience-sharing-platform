@@ -1,4 +1,4 @@
-h1, h2 {
+h1, h2, h3, h4 {
     font-weight: 400;
 }
 
@@ -105,3 +105,21 @@ main#main-content {
   .usa-social-link {
       filter: invert(1);
   }
+
+  .sections {
+    li {
+        list-style-type: none;
+        margin-bottom: 1rem;
+        a {
+            color: $x-charcoal;
+        }
+    }
+    ul {
+        padding-left: 0;
+    }
+    .panel {
+        background-color: $x-whiteish;
+        filter: drop-shadow(0px 16px 20px rgba(0, 0, 0, 0.1));
+        padding: .5rem;
+    }
+}

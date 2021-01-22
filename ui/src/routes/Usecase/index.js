@@ -35,12 +35,19 @@ export const Usecase = () => {
       <div className={`USLayout US__usecases US__${pageSlug}`}>
         <Grid>
           <Row>
-            <Col size={2}>
-              <h4>Sections</h4>
-              <ContentNav items={data.content} />
+            <Col size={2} className="sections">
+              <div className="panel">
+                <h4>Sections</h4>
+                <ContentNav items={data.content} />
+              </div>
             </Col>
-            <Col size={8} className="padding-right-4">
+            <Col size={8} className="padding-right-4 usecase-header">
               <Grid><h1>{title}</h1></Grid>
+              <Grid className="usecase-header-details">
+                {data.version && <><span className="desc">Version </span><span className="value">{data.version} </span></>}
+                {data.version && data.interview_date && <><span className="seperator"> | </span></>}
+                {data.interview_date && <><span><span className="desc">Interview Date </span><span>{data.interview_date}</span></span></>}
+              </Grid>
               <Layout items={data.content} renderTitles={true} />
             </Col>
             <Col size={2}>

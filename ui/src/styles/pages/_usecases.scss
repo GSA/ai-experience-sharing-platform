@@ -2,7 +2,30 @@
     padding-top: 2rem;
     background: linear-gradient(179.89deg, rgba(120, 227, 251, 0.15) 0.1%, rgba(255, 255, 255, 0.5) 2.64%, rgba(255, 255, 255, 0.5) 94.97%, rgba(120, 227, 251, 0.08) 97.61%);
 
+    h1, h2, h3, h4 {
+        @include u-font-family('sans');
+    }
+
     h1, .usa-prose > h1 {
         margin-bottom: 1rem;
+        font-weight: 700;
     }
+
+    h4 {
+        font-size: 28px;
+    }
+
+    .usecase-header-details-container {
+        margin-bottom: 3rem;
+        .desc {
+            font-weight: 700;
+        }
+    }
+
+
+    h2 {
+        font-size: 18px;
+        font-weight: 700;
+    }
+    
 }

@@ -27,6 +27,7 @@
     "css-loader": "^2.1.1",
     "grant": "5.4.5",
     "knex": "<0.20.0",
+    "immer": ">=8.0.1",
     "node-fetch": ">=2.6.1",
     "node-forge": ">=0.10.0",
     "object-path": ">=0.11.5",
