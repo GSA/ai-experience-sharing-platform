@@ -6,6 +6,7 @@ export const name = "content";
 export const initialState = {
   list: {
     pending: false,
+    type: "",
     filter: {},
     sort: { name: "", dir: "" },
     data: [],
@@ -21,36 +22,31 @@ export const getPage = createAsyncThunk(
     return await context.getContentTypeByName({ type, slug, thunkAPI });
   }
 );
-export const getTaxonomy = createAsyncThunk(
-  `${name}/getTaxonomy`,
-  async ({ type }, thunkAPI) => {
-    return await context.getTaxonomyByContentType({ type, thunkAPI });
-  }
-);
 
 export const getList = createAsyncThunk(
   `${name}/getList`,
-  async ({ type, query }, thunkAPI) => {
-    return await context.getAllByContentType({ type, query, thunkAPI });
+  async (props, thunkAPI) => {
+    console.log("getList");
+    return await context.getAllByContentType({ thunkAPI });
   }
 );
 
 const pending = (key, state) => {
   return {
     ...state,
-    [key]: { ...initialState[key], pending: true },
+    [key]: { ...state[key], pending: true },
   };
 };
 const fulfilled = (key, state, action) => {
   return {
     ...state,
-    [key]: { ...initialState[key], data: action.payload },
+    [key]: { ...state[key], data: action.payload, pending: false },
   };
 };
 const rejected = (key, state, action) => {
   return {
     ...state,
-    [key]: { ...initialState[key], error: action.error },
+    [key]: { ...state[key], error: action.error, pending: false },
   };
 };
 
@@ -61,23 +57,30 @@ export const ContentModule = createSlice({
     reset: () => initialState,
     clearPage: (state) => ({ ...state, page: initialState.page }),
     clearList: (state) => ({ ...state, list: initialState.list }),
+    setListType: (state, action) => ({
+      ...state,
+      list: { ...state.list, type: action.payload },
+    }),
     setListFilter: (state, action) => {
       const { filter: currentFilter = {} } = state.list;
       const filter = { ...currentFilter };
-      const { name, value } = action.payload;
+
+      const { name: filterName, value } = action.payload;
       // does name exist in filter
-      if (filter[name]) {
+      if (filterName in filter) {
         // exists
         // does value exist in filter name list
-        if (filter[name].includes(value)) {
-          filter[name] = filter[name].filter((item) => item !== value);
+        if (filter[filterName].includes(value)) {
+          filter[filterName] = filter[filterName].filter(
+            (item) => item !== value
+          );
         } else {
           // else, add to filter name list
-          filter[name] = [...filter[name], value];
+          filter[filterName] = [...filter[filterName], value];
         }
       } else {
         // else add name list with value to filter
-        filter[name] = [value];
+        filter[filterName] = [value];
       }
       return { ...state, list: { ...state.list, filter } };
     },
@@ -104,11 +107,6 @@ export const ContentModule = createSlice({
     [getList.pending]: (state) => pending("list", state),
     [getList.fulfilled]: (state, action) => fulfilled("list", state, action),
     [getList.rejected]: (state, action) => rejected("list", state, action),
-    [getTaxonomy.pending]: (state) => pending("taxonomy", state),
-    [getTaxonomy.fulfilled]: (state, action) =>
-      fulfilled("taxonomy", state, action),
-    [getTaxonomy.rejected]: (state, action) =>
-      rejected("taxonomy", state, action),
   },
 });
 
@@ -116,6 +114,7 @@ export const {
   reset,
   clearPage,
   clearList,
+  setListType,
   setListFilter,
   resetListFilter,
   setListSort,

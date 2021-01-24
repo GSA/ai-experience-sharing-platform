@@ -1,13 +1,20 @@
 import React from "react";
 import Select from "components/Select";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { name } from "app/SiteModule";
+import { setListSort } from "app/ContentModule";
 
 const Sort = () => {
+  const dispatch = useDispatch();
   const { keymaps, sort } = useSelector((state) => state[name]);
-  console.log(keymaps);
+
+  const handleChange = (e) => {
+    const { currentTarget: { value: name } = {} } = e;
+    dispatch(setListSort({ name }));
+  };
+
   const items = sort.map((value) => ({ key: keymaps[value], value }));
-  console.log(items);
+
   return (
     <div className="USContentList__sort-control">
       <span className="USContentList__sort-label">{"Sort by: "}</span>
@@ -16,7 +23,7 @@ const Sort = () => {
         id={"content-list-sort"}
         items={items}
         placeholder={""}
-        onChange={() => null}
+        onChange={handleChange}
       />
     </div>
   );

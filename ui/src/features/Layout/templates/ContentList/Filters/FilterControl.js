@@ -1,5 +1,7 @@
 import React, { useRef, useState } from "react";
 import PropTypes from "prop-types";
+import classnames from "classnames";
+import Icon from "components/Icon";
 
 const FilterControl = ({ id, title, name, onChange, items, values }) => {
   const [isExpanded, setExpanded] = useState(false);
@@ -18,7 +20,7 @@ const FilterControl = ({ id, title, name, onChange, items, values }) => {
     <div className="USFilterControl usa-accordion">
       <div className="USFilterControl__title usa-accordion__heading">
         <button
-          class="usa-accordion__button"
+          className="usa-accordion__button"
           aria-expanded={isExpanded}
           aria-controls={id}
           onClick={handleClick}
@@ -32,23 +34,25 @@ const FilterControl = ({ id, title, name, onChange, items, values }) => {
         hidden={!isExpanded}
         ref={listRef}
       >
-        {items.map((item) => (
-          <div className="USFilterControl__item">
-            <input
-              id={`${name}-${item.name}`}
-              className="USFilterControl__item-control"
-              type="checkbox"
-              defaultChecked={values.includes(item.name)}
-              onChange={() => handleChange(item.name)}
-            />
-            <label
-              className="USFilterControl__item-label"
-              for={`${name}-${item.name}`}
+        {items.map((item) => {
+          const isChecked = values.includes(item.name);
+          return (
+            <div
+              className="USFilterControl__item"
+              onClick={() => handleChange(item.name)}
             >
-              {item.title}
-            </label>
-          </div>
-        ))}
+              <Icon
+                variant={isChecked ? "solid" : "regular"}
+                icon={isChecked ? "check-square" : "square"}
+                className={classnames({
+                  "text-primary": isChecked,
+                  "text-ink": !isChecked,
+                })}
+              />
+              <span className="USFilterControl__item-label">{item.title}</span>
+            </div>
+          );
+        })}
       </div>
     </div>
   );

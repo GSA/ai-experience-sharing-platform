@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import Filters from "./Filters";
-import { getUsecaseFilters, getUsecaseSettings } from "app/SiteModule";
+import { getUsecaseSettings } from "app/SiteModule";
 import { useDispatch, useSelector } from "react-redux";
 import { Row, Col } from "components/Grid";
-import { getList, name as contentName } from "app/ContentModule";
+import { getList, setListType, name as contentName } from "app/ContentModule";
 import Card from "components/Card";
 import Button from "features/Button";
 import Icon from "components/Icon";
@@ -24,11 +24,12 @@ const ContentList = ({
 
   const handleVariant = (value) => setVariant(value);
 
-  const { list: { data } = {} } = useSelector((state) => state[contentName]);
+  const state = useSelector((state) => state[contentName]);
+  const { list: { data } = {} } = state;
 
   useEffect(() => {
     dispatch(getUsecaseSettings());
-    dispatch(getUsecaseFilters());
+    dispatch(setListType(type));
     dispatch(getList({ type }));
   }, [dispatch, type]);
 

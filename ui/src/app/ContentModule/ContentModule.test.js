@@ -3,7 +3,6 @@ import reducer, {
   initialState,
   getPage,
   getList,
-  getTaxonomy,
   reset,
   clearPage,
   clearList,
@@ -56,21 +55,6 @@ describe("ContentModule", () => {
       await store.dispatch(getPage({}));
       const data = await store.getState();
       expect(data.page.error.message).toBe("Invalid Name.");
-    });
-  });
-
-  describe(".getTaxonomy", () => {
-    beforeEach(async () => await store.dispatch(reset()));
-
-    it("should load a taxonomy list", async () => {
-      await store.dispatch(getTaxonomy({ type: "test" }));
-      const data = await store.getState();
-      expect(data.taxonomy.data.length).toBe(1);
-    });
-    it("should load an error when no type is passed", async () => {
-      await store.dispatch(getTaxonomy({ type: "error" }));
-      const data = await store.getState();
-      expect(data.taxonomy.error.message).toBe("Invalid Type.");
     });
   });
 

@@ -93,7 +93,20 @@
         "transport": "Transport",
         "transportationSecurity": "Transportation Security",
         "vendorOrContractor": "Vendor Or Contractor",
-        "verificationAndValidation": "Verification and Validation"
+        "verificationAndValidation": "Verification and Validation",
+        "eq": "No suffix or Equal",
+        "ne": "Not equal",
+        "lt": "Less than",
+        "gt": "Greater than",
+        "lte": "Less than or equal to",
+        "gte": "Greater than or equal to",
+        "in": "Included in an array",
+        "nin": "Not included in an array",
+        "contains": "Contains",
+        "ncontains": "Does not contain",
+        "containss": "Contains, case sensitive",
+        "ncontainss": "Does not contain, case sensitive",
+        "null": "Is null or not null"
       }
     },
     "usecaseMetadataOrder": {

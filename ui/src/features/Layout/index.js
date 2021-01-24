@@ -30,7 +30,7 @@ const components = {
   title: Title,
   "usecase-list": () => (
     <ContentList
-      filters={false}
+      filters={true}
       layout={true}
       sidebar={true}
       defaultLayout={"vertical"}
