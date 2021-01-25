@@ -28,15 +28,17 @@ const components = {
     </div>
   ),
   title: Title,
-  "usecase-list": () => (
+  "usecase-list": (props) => (
     <ContentList
       filters={true}
       layout={true}
       sidebar={true}
       defaultLayout={"vertical"}
       sort={true}
+      type={"usecases"}
     />
   ),
+  "content-list": ContentList,
 };
 
 const Layout = ({ items, data, renderTitles }) => {

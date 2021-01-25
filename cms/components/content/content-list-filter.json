@@ -2,21 +2,13 @@
   "collectionName": "components_content_content_list_filters",
   "info": {
     "name": "contentListFilter",
-    "icon": "filter"
+    "icon": "filter",
+    "description": ""
   },
   "options": {},
   "attributes": {
     "key": {
       "type": "string"
-    },
-    "opperand": {
-      "type": "enumeration",
-      "enum": [
-        "eq",
-        "neq",
-        "in"
-      ],
-      "default": "eq"
     },
     "value": {
       "type": "string"

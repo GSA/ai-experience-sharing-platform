@@ -25,7 +25,8 @@
         "content.callout",
         "content.cards",
         "content.carousel",
-        "usecase.usecase-list"
+        "usecase.usecase-list",
+        "content.content-list"
       ]
     }
   }

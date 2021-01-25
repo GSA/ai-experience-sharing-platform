@@ -4,7 +4,11 @@ import Filters from "./Filters";
 import { getUsecaseSettings } from "app/SiteModule";
 import { useDispatch, useSelector } from "react-redux";
 import { Row, Col } from "components/Grid";
-import { getList, setListType, name as contentName } from "app/ContentModule";
+import {
+  setListDefaults,
+  name as contentName,
+  clearList,
+} from "app/ContentModule";
 import Card from "components/Card";
 import Button from "features/Button";
 import Icon from "components/Icon";
@@ -12,12 +16,16 @@ import Sort from "./Sort";
 
 const ContentList = ({
   type = "usecases",
-  filters,
+  filter,
+  defaultFilter,
   sort,
+  defaultSort,
   sidebar,
   layout,
   defaultLayout,
+  renderCard,
 }) => {
+  const Comp = renderCard;
   const dispatch = useDispatch();
 
   const [variant, setVariant] = useState(defaultLayout);
@@ -28,15 +36,28 @@ const ContentList = ({
   const { list: { data } = {} } = state;
 
   useEffect(() => {
-    dispatch(getUsecaseSettings());
-    dispatch(setListType(type));
-    dispatch(getList({ type }));
+    if (type === "usecases") {
+      dispatch(getUsecaseSettings());
+    }
   }, [dispatch, type]);
+
+  useEffect(() => {
+    dispatch(
+      setListDefaults({
+        type,
+        filter: defaultFilter || {},
+        sort: defaultSort || { name: "", dir: "" },
+      })
+    );
+    return () => {
+      dispatch(clearList());
+    };
+  }, [dispatch, type, defaultFilter, defaultSort]);
 
   const setWidth = () => {
     let size = 12;
 
-    if (filters) {
+    if (filter) {
       size = size - 3;
     }
     if (sidebar) {
@@ -45,15 +66,14 @@ const ContentList = ({
     if (variant === "vertical" && sidebar) {
       size = size + 3;
     }
-
     return size.toString();
   };
 
   return (
     <div>
-      {(filters || sort || layout) && (
+      {(filter || sort || layout) && (
         <Row gap="2" className="USContentList__header">
-          <Col desktop="3">{filters && <strong>Filter by</strong>}</Col>
+          <Col desktop="3">{filter && <strong>Filter by</strong>}</Col>
           <Col desktop="6"></Col>
           {(sort || layout) && (
             <Col desktop="3">
@@ -81,7 +101,7 @@ const ContentList = ({
         </Row>
       )}
       <Row gap="2">
-        {filters && (
+        {filter && (
           <Col desktop="3">
             <Filters />
           </Col>
@@ -90,13 +110,7 @@ const ContentList = ({
           <Row gap="2">
             {data.map((item) => (
               <Col desktop={variant === "horizontal" ? "12" : "6"}>
-                <Card variant={variant} className="USContentList__card">
-                  <h2>{item.title}</h2>
-                  <Button url={`/usecases/${item.slug}`}>
-                    {"Read use case"}
-                  </Button>
-                  <span />
-                </Card>
+                <Comp {...item} variant={variant} />
               </Col>
             ))}
           </Row>
@@ -108,10 +122,16 @@ const ContentList = ({
 };
 
 ContentList.defaultProps = {
-  filters: false,
+  filter: false,
   sort: false,
   sidebar: false,
   layout: false,
+  renderCard: (props) => (
+    <Card variant={props.variant} className="USContentList__card">
+      <h2>{props.title}</h2>
+      <span />
+    </Card>
+  ),
 };
 
 ContentList.propTypes = {

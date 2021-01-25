@@ -26,7 +26,6 @@ export const getPage = createAsyncThunk(
 export const getList = createAsyncThunk(
   `${name}/getList`,
   async (props, thunkAPI) => {
-    console.log("getList");
     return await context.getAllByContentType({ thunkAPI });
   }
 );
@@ -57,10 +56,12 @@ export const ContentModule = createSlice({
     reset: () => initialState,
     clearPage: (state) => ({ ...state, page: initialState.page }),
     clearList: (state) => ({ ...state, list: initialState.list }),
-    setListType: (state, action) => ({
-      ...state,
-      list: { ...state.list, type: action.payload },
-    }),
+    setListDefaults: (state, { payload = {} }) => {
+      return {
+        ...state,
+        list: { ...state.list, ...payload },
+      };
+    },
     setListFilter: (state, action) => {
       const { filter: currentFilter = {} } = state.list;
       const filter = { ...currentFilter };
@@ -114,7 +115,7 @@ export const {
   reset,
   clearPage,
   clearList,
-  setListType,
+  setListDefaults,
   setListFilter,
   resetListFilter,
   setListSort,

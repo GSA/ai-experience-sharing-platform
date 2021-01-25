@@ -2,27 +2,20 @@ import watch from "redux-watch";
 import { getList, name } from "app/ContentModule";
 
 export default (store) => {
-  let filterWatch = watch(store.getState, `${name}.list.filter`);
+  const watcher = watch(store.getState, `${name}.list`);
   store.subscribe(
-    filterWatch((newVal, oldVal) => {
-      const newV = JSON.stringify(newVal);
-      const oldV = JSON.stringify(oldVal);
-      if (newV !== oldV) {
-        console.log("FILTER WATCHER", oldV, newV);
-        store.dispatch(getList());
-      }
-    })
-  );
+    watcher(
+      (
+        { pending: p1, error: e1, data: d1, ...newVal },
+        { pending: p2, error: e2, data: d2, ...oldVal }
+      ) => {
+        const newV = JSON.stringify(newVal);
+        const oldV = JSON.stringify(oldVal);
 
-  let sortWatch = watch(store.getState, `${name}.list.sort`);
-  store.subscribe(
-    sortWatch((newVal, oldVal) => {
-      const newV = JSON.stringify(newVal);
-      const oldV = JSON.stringify(oldVal);
-      if (newV !== oldV) {
-        console.log("SORT WATCHER", oldV, newV);
-        store.dispatch(getList());
+        if (newV !== oldV) {
+          store.dispatch(getList());
+        }
       }
-    })
+    )
   );
 };

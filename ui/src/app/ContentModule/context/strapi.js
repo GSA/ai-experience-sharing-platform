@@ -28,14 +28,15 @@ const generateQuery = (state) => {
 };
 
 export const getAllByContentType = async ({ thunkAPI }) => {
-  console.log("strapi");
   const state = thunkAPI.getState();
   const type = state?.content?.list?.type;
   const token = getToken(type, state);
   const options = getOptions(token);
   const query = generateQuery(state);
-  console.log("query", query);
   let data;
+  if (!type) {
+    throw new Error("Type is not defined.");
+  }
   try {
     const response = await fetch(
       `${ROOT_URL}/api-${type}${query ? `?${query}` : ""}`,

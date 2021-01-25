@@ -19,7 +19,7 @@
     "filter": {
       "type": "boolean"
     },
-    "key": {
+    "type": {
       "type": "enumeration",
       "enum": [
         "pages",
