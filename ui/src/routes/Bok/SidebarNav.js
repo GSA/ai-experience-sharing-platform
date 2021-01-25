@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import classnames from "classnames";
 import { name as contentName, getList } from "app/ContentModule";
 import { name as siteName } from "app/SiteModule";
 import Link from "features/Link";
@@ -28,15 +29,25 @@ const SidebarNav = ({ current = "" }) => {
 
   const bokModuleItems = bokList.filter(({ bokSectionId: childId = "" }) => {
     return childId.includes(`${currentBokModuleId}-`);
+  }).sort((a, b) =>{
+    const aModuleId = a.bokSectionId.toLowerCase();
+    const bModuleId = b.bokSectionId.toLowerCase();
+
+    if (aModuleId < bModuleId)
+      return -1;
+    if (aModuleId > bModuleId)
+      return 1;
+    return 0;
   });
   return (
     <div>
-      {bokModules.map((item) => (
-        <div>
-          <Link url={`/bok/${bokModuleSlugs[item.key]}`}>{item.title}</Link>
+      {bokModules.map((item, i) => (
+        <div className={classnames({"bok-module": true, active: item.bokSectionId === current})} key={i}>
+          {console.log(item)}
+          <Link url={`/bok/module${item.key}-0`}>{item.title}</Link>
           {currentBokModuleId === item.key &&
-            bokModuleItems.map((child) => (
-              <div className="padding-left-2">
+             bokModuleItems.map((child, ci) => (
+               <div className={classnames({"bok-section": true, "padding-left-2": true, active: child.bokSectionId === current})} key={ci}>
                 <Link url={`/bok/${child.slug}`}>{child.title}</Link>
               </div>
             ))}

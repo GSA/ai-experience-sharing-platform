@@ -22,7 +22,7 @@ export const getAllByContentType = async ({ type, token, query }) => {
   return data;
 };
 
-export const getContentTypeByName = async ({ type, slug, token }) => {
+export const getContentTypeByName = async ({ type, slug, token, liftHero }) => {
   const options = getOptions(token);
   let data;
   try {
@@ -47,7 +47,13 @@ export const getContentTypeByName = async ({ type, slug, token }) => {
   if (data.length > 1) {
     throw new Error("Query returned more than one result.");
   }
-  return data[0] || {};
+
+  data = data[0] || {};
+  data = {
+    liftHero,
+    ...data
+  };
+  return data;
 };
 
 export const getTaxonomyByContentType = async (type, token) => {

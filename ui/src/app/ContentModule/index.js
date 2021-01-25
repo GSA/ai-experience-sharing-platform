@@ -18,10 +18,10 @@ const getToken = (type, state) => {
 
 export const getPage = createAsyncThunk(
   `${name}/getPage`,
-  async ({ type = "pages", slug = "" }, thunkAPI) => {
+  async ({ type = "pages", slug = "", liftHero = false }, thunkAPI) => {
     const token = getToken(type, thunkAPI.getState());
 
-    return await context.getContentTypeByName({ type, slug, token });
+    return await context.getContentTypeByName({ type, slug, token, liftHero });
   }
 );
 export const getTaxonomy = createAsyncThunk(
@@ -60,6 +60,24 @@ const rejected = (key, state, action) => {
     [key]: { ...initialState[key], error: action.error },
   };
 };
+const fulfilledPage = (key, state, action) => {
+  let payload;
+
+  if((action.payload || {}).liftHero) {
+    const heroContent = (action.payload.content || []).filter(c => c.__component === "content.markdown" && (c.className || '').includes('usa-hero'));
+    payload = {
+      heroContent,
+      ...action.payload,
+      content: (action.payload.content || []).filter(c => c !== heroContent[0]),
+    };
+  } else {
+    payload = action.payload;
+  }
+  return {
+    ...state,
+    [key]: { ...initialState[key], data: payload },
+  };
+};
 
 export const ContentModule = createSlice({
   name,
@@ -71,7 +89,7 @@ export const ContentModule = createSlice({
   },
   extraReducers: {
     [getPage.pending]: (state) => pending("page", state),
-    [getPage.fulfilled]: (state, action) => fulfilled("page", state, action),
+    [getPage.fulfilled]: (state, action) => fulfilledPage("page", state, action),
     [getPage.rejected]: (state, action) => rejected("page", state, action),
     [getList.pending]: (state) => pending("list", state),
     [getList.fulfilled]: (state, action) => fulfilled("list", state, action),

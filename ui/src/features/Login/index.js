@@ -32,7 +32,7 @@ const Login = ({ children, oAuthUrl }) => {
         )}
       </div>
       <Row>
-        <Col size="4" offset="4" className="text-left margin-y-5 padding-y-5">
+        <Col size="4" offset="4" className="text-center margin-y-5 padding-y-5">
           This is a U.S. government service. Your use indicates your consent to monitoring, recording, and no expectation of privacy. Misuse is subject to criminal and civil penalties.
         </Col>
       </Row>

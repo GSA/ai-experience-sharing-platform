@@ -47,6 +47,17 @@ h1 {
     line-height: 25px;
 }
 
+.usa-nav__footer {
+    .usa-nav__link {
+        color: $x-whiteish;
+        line-height: 20px;
+        > span {
+            color: $x-ocean;
+            font-size: 20px;
+        }
+    }
+}
+
 main#main-content {
     border: none;
   }

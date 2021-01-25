@@ -15,7 +15,7 @@ const Initializer = ({ updatePlugin }) => {
 
   // const handleOnIdle = event => {
   //   auth.clearAppStorage();
-  //   window.location.href = '/adminlogin';
+  //   window.location.href = '/loginadmin';
   // }
 
   // const { reset } = useIdleTimer({
