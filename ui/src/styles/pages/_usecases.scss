@@ -1,3 +1,5 @@
+$bgImgDir: "~styles/images";
+
 .US__usecases {
     padding-top: 2rem;
     background: linear-gradient(179.89deg, rgba(120, 227, 251, 0.15) 0.1%, rgba(255, 255, 255, 0.5) 2.64%, rgba(255, 255, 255, 0.5) 94.97%, rgba(120, 227, 251, 0.08) 97.61%);
@@ -15,6 +17,35 @@
         font-size: 28px;
     }
 
+    &.US__page {
+        .intro-bg {
+            background: linear-gradient(180deg, rgba(120, 227, 251, 0.15) 0%, rgba(255, 255, 255, 0.5) 6.46%, rgba(255, 255, 255, 0) 83.37%, rgba(120, 227, 251, 0) 87.5%);
+            padding-top: 65px;
+        }
+        padding-top: 0;
+    }
+    .usa-hero {
+        &.USMarkdown {
+          margin-bottom: 0;
+        }
+
+        h1 {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%)
+        }
+
+        background-image: url($bgImgDir + "/usecases_hero.svg");
+        height: 476px;
+        position: relative;
+      }
+
+      // background: linear-gradient(180deg, #F4F3F3 0%, #78E3FB 100%);
+      .usa-hero-bg {
+        background: linear-gradient(180deg, #F4F3F3 0%, #78E3FB 100%);
+        background-size: auto 300%;
+      }
+
     .usecase-header-details-container {
         margin-bottom: 3rem;
         .desc {
@@ -28,4 +59,19 @@
         font-weight: 700;
     }
     
+    .submit-use-case {
+        .usa-card__container {
+            border-radius: 0;
+            border-width: 0;
+            background-color: $x-dark-card;
+            color: $x-whiteish;
+            box-shadow: 0px 10px 24px rgba(0, 0, 0, 0.15);
+        }
+        button:only-of-type {
+            border-radius: 1.5rem;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    }
 }
