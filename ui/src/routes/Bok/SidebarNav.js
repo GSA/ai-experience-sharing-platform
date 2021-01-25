@@ -20,12 +20,12 @@ const SidebarNav = ({ current = "" }) => {
 
   const currentBokModuleId = current.split("-")[0];
 
-  const bokModuleSlugs = bokList.reduce((acc, cur) => {
-    if (cur.bokSectionId.includes("-1")) {
-      return { ...acc, [cur.bokSectionId.split("-")[0]]: cur.slug };
-    }
-    return acc;
-  }, {});
+  // const bokModuleSlugs = bokList.reduce((acc, cur) => {
+  //   if (cur.bokSectionId.includes("-1")) {
+  //     return { ...acc, [cur.bokSectionId.split("-")[0]]: cur.slug };
+  //   }
+  //   return acc;
+  // }, {});
 
   const bokModuleItems = bokList.filter(({ bokSectionId: childId = "" }) => {
     return childId.includes(`${currentBokModuleId}-`);
