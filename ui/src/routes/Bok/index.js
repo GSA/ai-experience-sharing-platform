@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { Grid, Row, Col } from "components/Grid";
-import SidebarNav from "./SidebarNav";
+import BokSidebarNav from "./BokSidebarNav";
 import Layout from "features/Layout";
 import { useDispatch, useSelector } from "react-redux";
 import { name as contentName, getPage } from "app/ContentModule";
@@ -20,7 +20,7 @@ const Bok = ({ slug: slugOverride }) => {
     <Grid>
       <Row gap="2">
         <Col size={2}>
-          <SidebarNav current={data.bokSectionId} />
+          <BokSidebarNav current={data.bokSectionId} />
         </Col>
         <Col size={10}>
           <Layout items={data.content} renderTitles={true} />

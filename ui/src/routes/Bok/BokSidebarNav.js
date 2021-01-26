@@ -1,16 +1,17 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { name as contentName, getList } from "app/ContentModule";
+import React, { useEffect, useState } from "react";
 import Link from "features/Link";
 
 const SidebarNav = ({ current = "" }) => {
-  const dispatch = useDispatch();
-
-  const state = useSelector((state) => state);
-  const { [contentName]: { list: { data: bokList = [] } = {} } = {} } = state;
+  const [bokList, setBokList] = useState([]);
   useEffect(() => {
-    dispatch(getList({ type: "boks" }));
-  }, [dispatch]);
+    const fetchData = async () => {
+      const response = await fetch(`/api-boks`);
+      const data = await response.json();
+      console.log(data);
+      setBokList(data);
+    };
+    fetchData();
+  }, []);
 
   const currentBokModuleId = current.split("-")[0];
 
@@ -30,7 +31,7 @@ const SidebarNav = ({ current = "" }) => {
             `${currentBokModuleId}-`
           );
           return (
-            <li className="usa-sidenav__item">
+            <li key={item.slug} className="usa-sidenav__item">
               <Link
                 url={`/bok/${[item.slug]}`}
                 className={isCurrentModule ? "usa-current" : ""}
@@ -40,7 +41,7 @@ const SidebarNav = ({ current = "" }) => {
               {isCurrentModule && (
                 <ul className="usa-sidenav__sublist">
                   {bokModuleItems.map((child) => (
-                    <li className="usa-sidenav__item">
+                    <li key={child.slug} className="usa-sidenav__item">
                       <Link url={`/bok/${child.slug}`}>{child.title}</Link>
                     </li>
                   ))}
