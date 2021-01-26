@@ -30,7 +30,7 @@ const Bok = () => {
           </Col>
           <Col size={10}>
             <Grid><h1 className="title">{data.title}</h1></Grid>
-            <Layout items={data.content} renderTitles={true} />
+            <Layout items={data.content} renderTitles={true} className="content" />
           </Col>
         </Row>
       </Grid>
