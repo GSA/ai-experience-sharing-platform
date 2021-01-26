@@ -14,13 +14,17 @@ const getToken = (type, state) => {
 const generateQuery = (state) => {
   const list = state?.content?.list;
   const { filter, sort } = list;
-  const count = Object.values(filter)
-    .map((value) => value)
-    .flat();
+  console.log(filter);
+
   let query = "";
-  if (count.length) {
-    query = `${query}${qs.stringify({ _where: filter })}`;
+  if (filter.length) {
+    const filterQuery = filter
+      .map((item) => `${item.key}_${item.operand}=${item.value}`)
+      .join("&");
+    console.log(filterQuery);
+    query = `${query}${filterQuery}`;
   }
+
   if (sort.name) {
     query = `${query}&_sort=${sort.name}:ASC`;
   }

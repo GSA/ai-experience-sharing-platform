@@ -38,7 +38,10 @@ const components = {
       type={"usecases"}
     />
   ),
-  "content-list": ContentList,
+  "content-list": (props) => {
+    console.log(props);
+    return <ContentList {...props} />;
+  },
 };
 
 const Layout = ({ items, data, renderTitles }) => {

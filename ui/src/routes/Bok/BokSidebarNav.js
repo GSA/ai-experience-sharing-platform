@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from "react";
 import Link from "features/Link";
 
-const SidebarNav = ({ current = "" }) => {
+const BokSidebarNav = ({ current = "" }) => {
   const [bokList, setBokList] = useState([]);
   useEffect(() => {
     const fetchData = async () => {
       const response = await fetch(`/api-boks`);
       const data = await response.json();
-      console.log(data);
       setBokList(data);
     };
     fetchData();
@@ -23,6 +22,7 @@ const SidebarNav = ({ current = "" }) => {
   const bokModules = bokList.filter(({ bokSectionId: childId = "" }) => {
     return childId.includes(`-0`);
   });
+
   return (
     <nav aria-label="Body of Knowledge Navigation">
       <ul className="usa-sidenav">
@@ -55,6 +55,6 @@ const SidebarNav = ({ current = "" }) => {
   );
 };
 
-SidebarNav.propTypes = {};
+BokSidebarNav.propTypes = {};
 
-export default SidebarNav;
+export default BokSidebarNav;

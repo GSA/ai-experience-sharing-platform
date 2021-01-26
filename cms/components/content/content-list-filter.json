@@ -12,6 +12,23 @@
     },
     "value": {
       "type": "string"
+    },
+    "operand": {
+      "type": "enumeration",
+      "enum": [
+        "eq",
+        "ne",
+        "lt",
+        "gt",
+        "lte",
+        "gte",
+        "in",
+        "nin",
+        "contains",
+        "ncontains",
+        "containss",
+        "ncontainss"
+      ]
     }
   }
 }
