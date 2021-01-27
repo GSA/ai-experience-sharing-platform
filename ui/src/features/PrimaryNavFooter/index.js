@@ -43,7 +43,7 @@ const PrimaryNavFooter = () => {
   };
 
   return (
-      <div>
+      <div className="grid-row">
         <Search />
         {isAuth ? (
           <ul className="usa-accordion usa-nav__primary">
@@ -59,7 +59,7 @@ const PrimaryNavFooter = () => {
           </ul>
         ) : (
           <div className="sign-in">
-            <Link onClick={handleLogin} url="login">
+            <Link onClick={handleLogin} url="/login">
               Sign In
               <Svg/>
             </Link>

@@ -16,7 +16,7 @@ export const Carousel = ({
         return (
           <div key={image.text + image.imageUrl + image.linkUrl}>
             <Link url={image.linkUrl || '#'}>
-              <img src={image.imageUrl} alt={image.text} />p
+              <img src={image.imageUrl} alt={image.text} />
             </Link>
           </div>
                );

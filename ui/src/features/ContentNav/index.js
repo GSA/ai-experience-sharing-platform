@@ -9,7 +9,7 @@ const ContentNav = ({ items }) => {
         {items.map(
           (item) =>
             item.title && (
-              <li>
+              <li key={`#${kebab(item.title)}`}>
                 <a href={`#${kebab(item.title)}`}>{item.title}</a>
               </li>
             )
