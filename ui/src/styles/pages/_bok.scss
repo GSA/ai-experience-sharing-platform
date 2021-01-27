@@ -3,7 +3,7 @@ $bgImgDir: "~styles/images";
 .US__bok_bok {
     .usa-hero {
         &.USMarkdown {
-            background-image: url($bgImgDir + "/bok_hero.svg");
+            background-image: url($bgImgDir + "/bok_hero.png");
         }
     }
     .US__bok-bg {
@@ -64,7 +64,7 @@ $bgImgDir: "~styles/images";
 
        .usa-hero.usa-hero1 {
         &.USMarkdown {
-            background-image: url($bgImgDir + "/bok1_hero.svg");
+            background-image: url($bgImgDir + "/bok1_hero.png");
         }
     }
 }
