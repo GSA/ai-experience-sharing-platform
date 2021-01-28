@@ -177,6 +177,9 @@
         "content.list",
         "content.markdown"
       ]
+    },
+    "description": {
+      "type": "text"
     }
   }
 }

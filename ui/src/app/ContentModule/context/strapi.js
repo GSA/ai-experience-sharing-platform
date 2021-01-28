@@ -1,6 +1,5 @@
 /* istanbul ignore file */
 const { getOptions } = require("utils/http");
-const qs = require("qs");
 
 const ROOT_URL = process.env.REACT_APP_API_URL || "";
 
@@ -14,14 +13,12 @@ const getToken = (type, state) => {
 const generateQuery = (state) => {
   const list = state?.content?.list;
   const { filter, sort } = list;
-  console.log(filter);
 
   let query = "";
   if (filter.length) {
     const filterQuery = filter
       .map((item) => `${item.key}_${item.operand}=${item.value}`)
       .join("&");
-    console.log(filterQuery);
     query = `${query}${filterQuery}`;
   }
 

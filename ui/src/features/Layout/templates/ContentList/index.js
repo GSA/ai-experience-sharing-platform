@@ -1,18 +1,19 @@
 import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
-import Filters from "./Filters";
-import { getUsecaseSettings } from "app/SiteModule";
 import { useDispatch, useSelector } from "react-redux";
-import { Row, Col } from "components/Grid";
+import classnames from "classnames";
 import {
   setListDefaults,
   name as contentName,
   clearList,
 } from "app/ContentModule";
-import Card from "components/Card";
-import Button from "features/Button";
+import { getUsecaseSettings } from "app/SiteModule";
+import { Row, Col } from "components/Grid";
 import Icon from "components/Icon";
+import Button from "features/Button";
 import Sort from "./Sort";
+import CardTemplate from "./CardTemplate";
+import Filters from "./Filters";
 
 const ContentList = ({
   type = "usecases",
@@ -23,9 +24,9 @@ const ContentList = ({
   sidebar,
   layout,
   defaultLayout,
-  renderCard,
+  template,
+  markdown,
 }) => {
-  const Comp = renderCard;
   const dispatch = useDispatch();
 
   const [variant, setVariant] = useState(defaultLayout);
@@ -70,7 +71,12 @@ const ContentList = ({
   };
 
   return (
-    <div>
+    <div
+      className={classnames({
+        "usa-content-list": true,
+        [`usa-content-list--${variant}`]: Boolean(variant),
+      })}
+    >
       {(filter || sort || layout) && (
         <Row gap="2" className="USContentList__header">
           <Col desktop="3">{filter && <strong>Filter by</strong>}</Col>
@@ -110,7 +116,11 @@ const ContentList = ({
           <Row gap="2">
             {data.map((item) => (
               <Col desktop={variant === "horizontal" ? "12" : "6"}>
-                <Comp {...item} variant={variant} />
+                <CardTemplate
+                  template={template}
+                  data={item}
+                  markdown={markdown}
+                />
               </Col>
             ))}
           </Row>
@@ -126,12 +136,6 @@ ContentList.defaultProps = {
   sort: false,
   sidebar: false,
   layout: false,
-  renderCard: (props) => (
-    <Card variant={props.variant} className="USContentList__card">
-      <h2>{props.title}</h2>
-      <span />
-    </Card>
-  ),
 };
 
 ContentList.propTypes = {

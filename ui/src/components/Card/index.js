@@ -38,8 +38,8 @@ const Card = ({
       >
         {(title || meta || subtitle) && (
           <header className="usa-card__header">
-            {title && <h2 className="usa-card__heading">{title}</h2>}
-            {subtitle && <h3 className="usa-card__subhead">{subtitle}</h3>}
+            {title && <span className="usa-card__heading">{title}</span>}
+            {subtitle && <span className="usa-card__subhead">{subtitle}</span>}
             {meta && <span className="usa-card__meta">{meta}</span>}
           </header>
         )}

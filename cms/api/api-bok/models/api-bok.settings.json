@@ -28,13 +28,14 @@
       "components": [
         "content.markdown",
         "content.content-list",
-        "content.list-item",
         "content.cards",
         "content.list",
         "content.carousel",
-        "content.card-item",
         "content.callout"
       ]
+    },
+    "description": {
+      "type": "text"
     }
   }
 }

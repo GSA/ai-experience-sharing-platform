@@ -24,7 +24,8 @@
       "enum": [
         "pages",
         "usecases",
-        "boks"
+        "boks",
+        "markdown"
       ],
       "required": true
     },
@@ -50,6 +51,17 @@
         "vertical",
         "horizontal"
       ]
+    },
+    "template": {
+      "type": "enumeration",
+      "enum": [
+        "usecase",
+        "bok",
+        "markdown"
+      ]
+    },
+    "markdown": {
+      "type": "richtext"
     }
   }
 }

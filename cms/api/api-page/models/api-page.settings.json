@@ -28,6 +28,9 @@
         "usecase.usecase-list",
         "content.content-list"
       ]
+    },
+    "description": {
+      "type": "text"
     }
   }
 }

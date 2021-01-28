@@ -45,6 +45,7 @@ const components = {
 };
 
 const Layout = ({ items, data, renderTitles }) => {
+  console.log(items);
   return items.map(({ __component, fullwidth, ...props }, i) => {
     const compType = __component.split(".");
     const Comp = components[compType[1]];

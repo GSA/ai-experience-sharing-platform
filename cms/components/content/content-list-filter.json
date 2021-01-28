@@ -10,9 +10,6 @@
     "key": {
       "type": "string"
     },
-    "value": {
-      "type": "string"
-    },
     "operand": {
       "type": "enumeration",
       "enum": [
@@ -28,7 +25,11 @@
         "ncontains",
         "containss",
         "ncontainss"
-      ]
+      ],
+      "default": "eq"
+    },
+    "value": {
+      "type": "string"
     }
   }
 }
