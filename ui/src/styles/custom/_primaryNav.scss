@@ -6,6 +6,7 @@
   bottom: 0;
   width: 100%;
   background-color: $x-charcoal;
+  flex-direction: row;
   @include u-padding(4);
   &.is-visible {
     animation: unset;
@@ -43,6 +44,7 @@
   }
   .usa-nav__primary {
     text-align: left;
+    @include u-margin-left(1);
     button {
       padding: 0;
       .usa-nav__url-prefix {
@@ -50,25 +52,7 @@
       }
     }
   }
-  .usa-nav__submenu {
-    @include u-padding-top(1);
-    @include u-padding-left(2);
-    @include u-margin-bottom(2);
 
-    &[hidden] {
-      display: inline-block;
-    }
-    button {
-      @include u-margin-bottom(2);
-    }
-  }
-  ul,
-  li {
-    border: none;
-    padding: 0;
-    margin: 0;
-    width: 50%;
-  }
   .usa-nav__footer {
     @include u-margin-top(2);
     text-align: left;
@@ -153,12 +137,13 @@
 }
 
 .usa-nav__footer {
-  .usa-nav__link {
+  .usa-nav__link, button:hover {
       color: $x-whiteish;
       line-height: 20px;
       > span {
           color: $x-ocean;
           font-size: 20px;
+          display: block;
       }
   }
 }
@@ -167,12 +152,15 @@
   .usa-accordion {
       @include u-font-family('serif');
   }
+  .sign-out span {
+    display: block;
+  }
   .sign-in {
       svg {
           transform: scale(.65);
           display: block;
       }
-      a, a:visited {
+      a, a:visited, a:hover {
           color: $x-whiteish;
           @include u-font-family("serif");
           font-size: 20px;
@@ -223,4 +211,35 @@
   .usa-header--basic .usa-nav {
     justify-content: start;
   }
+  .usa-nav {
+    .usa-nav__submenu {
+      @include u-padding-top(1);
+      @include u-padding-left(2);
+      @include u-margin-bottom(2);
+
+      // &[hidden] {
+      //   display: inline-block;
+      // }
+      button {
+        @include u-margin-bottom(2);
+      }
+    }
+    ul,
+    li {
+      border: none;
+      padding: 0;
+      margin: 0;
+      width: 50%;
+    }
+  }
+  .usa-nav__primary > .usa-nav__primary-item > a {
+    font-weight: 700;
+  }
+}
+
+.usa-nav__primary {
+  display: flex;
+}
+.usa-nav__primary-item {
+  border-top-width: 0;
 }
