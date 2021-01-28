@@ -56,3 +56,24 @@ Subsequently, there is a helper that will handle the export and apply in one ste
 ### Login.gov Configuration
 
 After bootstraping cloud.gov `manage.sh` will create public and private rsa keys in `./deployment` in the format of `deployment/login-gov-${organization_name}-${space_name}-cert.pem`. The public key needs to be added to https://dashboard.int.identitysandbox.gov/service_providers/YOUR_NUMBER_HERE . You will also need to configure redirect URIs for your new environment.
+
+
+## Content Syncing
+
+There is a helper script to move data across environments. Below is an example to move some content from staging to development. Images will need to be moved manually, image links will change. This script depends on axios being available.
+
+```bash
+SOURCEURL="https://strapi-api-host-staging.app.cloud.gov" DESTURL="https://strapi-api-host-dev.app.cloud.gov" DESTTOKEN="TOKEN_HERE" SOURCETOKEN="TOKEN_HERE" node ./cms-content-sync.js
+```
+
+Output will look like below. Any number that isn't 200 indicates there was a problem. Output: content type, action, http status, slug.
+
+```bash
+api-menu updated 200 primary
+api-page updated 200 login
+api-page updated 200 logout
+api-page updated 200 homepage
+api-page updated 200 bok
+api-page updated 200 about
+
+```
