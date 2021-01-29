@@ -11,7 +11,6 @@ export default (store) => {
       ) => {
         const newV = JSON.stringify(newVal);
         const oldV = JSON.stringify(oldVal);
-
         if (newV !== oldV) {
           store.dispatch(getList());
         }

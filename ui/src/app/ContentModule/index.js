@@ -3,11 +3,42 @@ import context from "./context";
 
 export const name = "content";
 
+const filterTypes = {
+  boolean: ({ filter = [], filterName, value, operand, type }) => {
+    const foundFilter = filter.find((item) => item.name === filterName);
+    let rVal;
+    if (foundFilter) {
+      const filterList = filter.filter((item) => item.name !== filterName);
+      rVal = [...filterList, { name: filterName, value, operand, type }];
+    } else {
+      rVal = [...filter, { name: filterName, value, operand, type }];
+    }
+    return rVal;
+  },
+  enumeration: ({ filter = [], filterName, value, operand, type }) => {
+    const foundFilter = filter.find((item) => item.name === filterName);
+    let rVal;
+    if (foundFilter) {
+      const filterList = filter.filter((item) => item.name !== filterName);
+      const newValues = foundFilter.value.includes(value)
+        ? foundFilter.value.filter((item) => item !== value)
+        : [...foundFilter.value, value];
+      rVal = [
+        ...filterList,
+        { name: filterName, value: newValues, operand, type },
+      ];
+    } else {
+      rVal = [...filter, { name: filterName, value: [value], operand, type }];
+    }
+    return rVal;
+  },
+};
+
 export const initialState = {
   list: {
     pending: false,
     type: "",
-    filter: {},
+    filter: [],
     sort: { name: "", dir: "" },
     data: [],
     error: null,
@@ -63,26 +94,21 @@ export const ContentModule = createSlice({
       };
     },
     setListFilter: (state, action) => {
-      const { filter: currentFilter = {} } = state.list;
-      const filter = { ...currentFilter };
+      const { filter: currentFilter = [] } = state.list;
 
-      const { name: filterName, value } = action.payload;
+      const { name: filterName, value, operand, type } = action.payload;
       // does name exist in filter
-      if (filterName in filter) {
-        // exists
-        // does value exist in filter name list
-        if (filter[filterName].includes(value)) {
-          filter[filterName] = filter[filterName].filter(
-            (item) => item !== value
-          );
-        } else {
-          // else, add to filter name list
-          filter[filterName] = [...filter[filterName], value];
-        }
-      } else {
-        // else add name list with value to filter
-        filter[filterName] = [value];
-      }
+      const filter =
+        type in filterTypes
+          ? filterTypes[type]({
+              filter: currentFilter,
+              filterName,
+              value,
+              operand,
+              type,
+            })
+          : [...currentFilter];
+
       return { ...state, list: { ...state.list, filter } };
     },
     resetListFilter: (state) => ({

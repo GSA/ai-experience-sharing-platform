@@ -17,7 +17,12 @@ const generateQuery = (state) => {
   let query = "";
   if (filter.length) {
     const filterQuery = filter
-      .map((item) => `${item.key}_${item.operand}=${item.value}`)
+      .filter((item) => {
+        return item.type === "boolean"
+          ? Boolean(item.value)
+          : Boolean(item.value.length);
+      })
+      .map((item) => `${item.name}_${item.operand}=${item.value}`)
       .join("&");
     query = `${query}${filterQuery}`;
   }

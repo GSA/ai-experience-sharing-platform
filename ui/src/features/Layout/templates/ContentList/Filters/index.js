@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import FilterControl from "./FilterControl";
 import { useDispatch, useSelector } from "react-redux";
 import { getUsecaseFilters, name as siteName } from "app/SiteModule";
-import { setListFilter, name as contentName } from "app/ContentModule";
+import { setListFilter } from "app/ContentModule";
 
 const Filters = () => {
   const dispatch = useDispatch();
@@ -12,7 +12,6 @@ const Filters = () => {
   }, [dispatch]);
   const state = useSelector((state) => state);
   const { filters, keymaps } = state[siteName];
-  const { list: { filter: filterValues = {} } = {} } = state[contentName];
   const filterData = Object.entries(filters).reduce((acc, [key, value]) => {
     const title = keymaps[key] || key;
     const enums = value.enum || [];
@@ -27,20 +26,14 @@ const Filters = () => {
     return [...acc, filterItem];
   }, []);
 
-  const handleChange = ({ name, value }) => {
-    dispatch(setListFilter({ name, value }));
+  const handleChange = (props) => {
+    dispatch(setListFilter(props));
   };
 
   return (
     <div>
       {filterData.map((filter) => {
-        return (
-          <FilterControl
-            onChange={handleChange}
-            {...filter}
-            values={filterValues[filter.name]}
-          />
-        );
+        return <FilterControl onChange={handleChange} {...filter} />;
       })}
     </div>
   );

@@ -1,5 +1,7 @@
 import React, { useRef, useState } from "react";
 import PropTypes from "prop-types";
+import { useSelector } from "react-redux";
+import { name as contentName } from "app/ContentModule";
 import FilterEnum from "./FilterEnum";
 import FilterBool from "./FilterBool";
 
@@ -9,7 +11,10 @@ const filterTypes = {
   default: ({ type }) => <span>{`Filter type "${type}" is not defined.`}</span>,
 };
 
-const FilterControl = ({ id, title, name, onChange, items, values, type }) => {
+const FilterControl = ({ id, title, name, onChange, items, type }) => {
+  const state = useSelector((state) => state);
+
+  const { list: { filter: filterValues = [] } = {} } = state[contentName];
   const Comp = Object.keys(filterTypes).includes(type)
     ? filterTypes[type]
     : filterTypes.default;
@@ -21,9 +26,13 @@ const FilterControl = ({ id, title, name, onChange, items, values, type }) => {
       listRef.current.scrollTop = 0;
     }
   };
-  const handleChange = (value) => {
-    onChange({ name, value });
+  const handleChange = ({ value, operand }) => {
+    onChange({ name, type, value, operand });
   };
+
+  const findValue = filterValues.find((item) => item.name === name);
+
+  const value = findValue ? findValue.value : type === "boolean" ? null : [];
   return (
     <div className="USFilterControl usa-accordion">
       <div className="USFilterControl__title usa-accordion__heading">
@@ -42,14 +51,13 @@ const FilterControl = ({ id, title, name, onChange, items, values, type }) => {
         hidden={!isExpanded}
         ref={listRef}
       >
-        <Comp items={items} values={values} onChange={handleChange} />
+        <Comp items={items} name={name} value={value} onChange={handleChange} />
       </div>
     </div>
   );
 };
 FilterControl.defaultProps = {
   items: [],
-  values: [],
   onChange: (props) => console.log(props),
 };
 FilterControl.propTypes = {
@@ -59,7 +67,7 @@ FilterControl.propTypes = {
   name: PropTypes.string,
   items: PropTypes.array,
   onChange: PropTypes.func,
-  values: PropTypes.array,
+  value: PropTypes.node,
 };
 
 export default FilterControl;

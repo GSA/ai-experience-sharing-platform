@@ -1,16 +1,17 @@
 import React, { useState } from "react";
+import PropTypes from "prop-types";
 import Icon from "components/Icon";
 import classnames from "classnames";
 
-const FilterBool = ({ values, name, onChange }) => {
-  const [value, setValue] = useState(values[0]);
+const FilterBool = ({ value: defaultValue, name, onChange, operand }) => {
+  const [value, setValue] = useState(defaultValue);
 
   const items = ["true", "false"];
 
   const handleClick = (val) => {
     const newVal = val === value ? null : val;
     setValue(newVal);
-    onChange({ name, value: newVal });
+    onChange({ name, value: newVal, operand });
   };
   return (
     <div className="USFilterControl__boolean">
@@ -18,6 +19,7 @@ const FilterBool = ({ values, name, onChange }) => {
         const isChecked = value === item;
         return (
           <span
+            key={`us-filter-bool-${item}`}
             tabIndex={-1}
             className="USFilterControl__item"
             onClick={() => handleClick(item)}
@@ -29,7 +31,7 @@ const FilterBool = ({ values, name, onChange }) => {
                 "text-primary": isChecked,
                 "text-ink": !isChecked,
               })}
-            />{" "}
+            />
             <span className="USFilterControl__item-label">{item}</span>
           </span>
         );
@@ -39,9 +41,15 @@ const FilterBool = ({ values, name, onChange }) => {
 };
 
 FilterBool.defaultProps = {
-  values: [null],
+  value: null,
+  operand: "eq",
 };
 
-FilterBool.propTypes = {};
+FilterBool.propTypes = {
+  operand: PropTypes.string,
+  value: PropTypes.string,
+  name: PropTypes.string,
+  onChange: PropTypes.func,
+};
 
 export default FilterBool;
