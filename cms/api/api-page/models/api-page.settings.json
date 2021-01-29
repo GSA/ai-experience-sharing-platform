@@ -17,6 +17,9 @@
     "slug": {
       "type": "uid"
     },
+    "description": {
+      "type": "text"
+    },
     "content": {
       "type": "dynamiczone",
       "components": [
@@ -28,9 +31,6 @@
         "usecase.usecase-list",
         "content.content-list"
       ]
-    },
-    "description": {
-      "type": "text"
     }
   }
 }

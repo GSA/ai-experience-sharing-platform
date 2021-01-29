@@ -64,19 +64,24 @@ export const getList = createAsyncThunk(
 const pending = (key, state) => {
   return {
     ...state,
-    [key]: { ...state[key], pending: true },
+    [key]: { ...state[key], error: null, pending: true },
   };
 };
 const fulfilled = (key, state, action) => {
   return {
     ...state,
-    [key]: { ...state[key], data: action.payload, pending: false },
+    [key]: { ...state[key], data: action.payload, error: null, pending: false },
   };
 };
 const rejected = (key, state, action) => {
   return {
     ...state,
-    [key]: { ...state[key], error: action.error, pending: false },
+    [key]: {
+      ...state[key],
+      data: action.payload,
+      error: action.error,
+      pending: false,
+    },
   };
 };
 
@@ -130,10 +135,12 @@ export const ContentModule = createSlice({
   extraReducers: {
     [getPage.pending]: (state) => pending("page", state),
     [getPage.fulfilled]: (state, action) => fulfilled("page", state, action),
-    [getPage.rejected]: (state, action) => rejected("page", state, action),
+    [getPage.rejected]: (state, action) =>
+      rejected("page", state, { ...action, payload: {} }),
     [getList.pending]: (state) => pending("list", state),
     [getList.fulfilled]: (state, action) => fulfilled("list", state, action),
-    [getList.rejected]: (state, action) => rejected("list", state, action),
+    [getList.rejected]: (state, action) =>
+      rejected("list", state, { ...action, payload: [] }),
   },
 });
 

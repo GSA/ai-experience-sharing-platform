@@ -46,7 +46,7 @@ const ContentList = ({
     dispatch(
       setListDefaults({
         type,
-        filter: defaultFilter || {},
+        filter: defaultFilter || [],
         sort: defaultSort || { name: "", dir: "" },
       })
     );

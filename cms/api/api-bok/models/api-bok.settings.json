@@ -17,6 +17,9 @@
     "slug": {
       "type": "uid"
     },
+    "description": {
+      "type": "text"
+    },
     "bokSectionId": {
       "type": "string",
       "regex": "\\d-\\d",
@@ -33,9 +36,6 @@
         "content.carousel",
         "content.callout"
       ]
-    },
-    "description": {
-      "type": "text"
     }
   }
 }

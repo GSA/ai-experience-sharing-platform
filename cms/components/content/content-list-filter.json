@@ -7,8 +7,9 @@
   },
   "options": {},
   "attributes": {
-    "key": {
-      "type": "string"
+    "name": {
+      "type": "string",
+      "required": true
     },
     "operand": {
       "type": "enumeration",
