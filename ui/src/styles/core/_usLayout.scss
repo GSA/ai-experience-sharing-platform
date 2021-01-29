@@ -26,16 +26,21 @@
   }
   &__item {
     display: flex;
-    align-items: center;
-    @include u-padding(1);
+    align-items: flex-start;
+    @include u-margin(1);
+    cursor: pointer;
+
+    svg {
+      margin-top: 0.25rem;
+    }
   }
   &__item-label {
     @include u-padding-left(2);
   }
-  &__item-label,
-  &__item-control {
-    &:hover {
-      cursor: pointer;
+
+  &__boolean {
+    .USFilterControl__item-label {
+      text-transform: capitalize;
     }
   }
 }

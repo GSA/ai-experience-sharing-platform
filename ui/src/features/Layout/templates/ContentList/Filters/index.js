@@ -16,8 +16,9 @@ const Filters = () => {
   const filterData = Object.entries(filters).reduce((acc, [key, value]) => {
     const title = keymaps[key] || key;
     const enums = value.enum || [];
+    const type = value.type;
     const items = enums.map((enm) => ({ name: enm, title: keymaps[enm] }));
-    const filterItem = { key, name: key, title, items };
+    const filterItem = { key, name: key, title, items, type };
 
     if (!keymaps[key]) {
       console.warn(`No kepmap found for ${key}`);

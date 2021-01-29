@@ -1,14 +1,24 @@
 import React from "react";
 import PropTypes from "prop-types";
+import Card from "components/Card";
+import Button from "features/Button";
 
-const BokTemplate = (props) => {
+const BokTemplate = ({ title, description, slug }) => {
   return (
-    <div>
-      <h4>BOK Template</h4>
-    </div>
+    <Card
+      className="ai-bok"
+      title={title}
+      footer={<Button url={`/bok/${slug}`}>Begin Module</Button>}
+    >
+      <p>{description}</p>
+    </Card>
   );
 };
 
-BokTemplate.propTypes = {};
+BokTemplate.propTypes = {
+  title: PropTypes.string,
+  description: PropTypes.string,
+  slug: PropTypes.string,
+};
 
 export default BokTemplate;

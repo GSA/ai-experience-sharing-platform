@@ -4,7 +4,6 @@ import { useSelector } from "react-redux";
 import { name as siteName } from "app/SiteModule";
 
 const Keymap = ({ value }) => {
-  console.log(value);
   const state = useSelector((state) => state);
   const { keymaps = {} } = state[siteName];
   return <>{keymaps[value]}</>;

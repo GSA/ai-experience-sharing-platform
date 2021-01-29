@@ -22,24 +22,33 @@ const UsecaseTemplate = (props) => {
       className="ai-uc"
       title={title}
       meta={metadataAgency}
-      footer={metaDataList
-        .filter((item) => Boolean(props[item]))
-        .map((item) => (
-          <span className="font-sans-xs text-underline display-inline-block margin-right-1">
-            <Keymap value={props[item]} />
-          </span>
-        ))}
+      footer={<Button url={`/usecases/${slug}`}>Read use case</Button>}
     >
-      <div className="font-sans-xs">
+      <div className="font-sans-2xs">
         Published: <Date format="M/D/YYYY">{publishedDate}</Date>
       </div>
       <p>{description}</p>
-      <Button url={`/usecases/${slug}`}>Read use case</Button>
+      <p>
+        {metaDataList
+          .filter((item) => Boolean(props[item]))
+          .map((item, i) => (
+            <span key={`ai-uc-${i}`} className="ai-uc__meta">
+              <Keymap value={props[item]} />
+            </span>
+          ))}
+      </p>
+
       <span />
     </Card>
   );
 };
 
-UsecaseTemplate.propTypes = {};
+UsecaseTemplate.propTypes = {
+  description: PropTypes.string,
+  title: PropTypes.string,
+  metadataAgency: PropTypes.string,
+  publishedDate: PropTypes.string,
+  slug: PropTypes.string,
+};
 
 export default UsecaseTemplate;

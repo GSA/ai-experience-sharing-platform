@@ -1,9 +1,18 @@
 import React, { useRef, useState } from "react";
 import PropTypes from "prop-types";
-import classnames from "classnames";
-import Icon from "components/Icon";
+import FilterEnum from "./FilterEnum";
+import FilterBool from "./FilterBool";
 
-const FilterControl = ({ id, title, name, onChange, items, values }) => {
+const filterTypes = {
+  enumeration: FilterEnum,
+  boolean: FilterBool,
+  default: ({ type }) => <span>{`Filter type "${type}" is not defined.`}</span>,
+};
+
+const FilterControl = ({ id, title, name, onChange, items, values, type }) => {
+  const Comp = Object.keys(filterTypes).includes(type)
+    ? filterTypes[type]
+    : filterTypes.default;
   const [isExpanded, setExpanded] = useState(false);
   const listRef = useRef();
   const handleClick = () => {
@@ -15,7 +24,6 @@ const FilterControl = ({ id, title, name, onChange, items, values }) => {
   const handleChange = (value) => {
     onChange({ name, value });
   };
-
   return (
     <div className="USFilterControl usa-accordion">
       <div className="USFilterControl__title usa-accordion__heading">
@@ -34,25 +42,7 @@ const FilterControl = ({ id, title, name, onChange, items, values }) => {
         hidden={!isExpanded}
         ref={listRef}
       >
-        {items.map((item) => {
-          const isChecked = values.includes(item.name);
-          return (
-            <div
-              className="USFilterControl__item"
-              onClick={() => handleChange(item.name)}
-            >
-              <Icon
-                variant={isChecked ? "solid" : "regular"}
-                icon={isChecked ? "check-square" : "square"}
-                className={classnames({
-                  "text-primary": isChecked,
-                  "text-ink": !isChecked,
-                })}
-              />
-              <span className="USFilterControl__item-label">{item.title}</span>
-            </div>
-          );
-        })}
+        <Comp items={items} values={values} onChange={handleChange} />
       </div>
     </div>
   );
@@ -63,10 +53,13 @@ FilterControl.defaultProps = {
   onChange: (props) => console.log(props),
 };
 FilterControl.propTypes = {
+  id: PropTypes.string,
   title: PropTypes.string,
+  type: PropTypes.string,
   name: PropTypes.string,
   items: PropTypes.array,
   onChange: PropTypes.func,
+  values: PropTypes.array,
 };
 
 export default FilterControl;

@@ -39,13 +39,11 @@ const components = {
     />
   ),
   "content-list": (props) => {
-    console.log(props);
     return <ContentList {...props} />;
   },
 };
 
 const Layout = ({ items, data, renderTitles }) => {
-  console.log(items);
   return items.map(({ __component, fullwidth, ...props }, i) => {
     const compType = __component.split(".");
     const Comp = components[compType[1]];
@@ -63,7 +61,7 @@ const Layout = ({ items, data, renderTitles }) => {
           <Comp key={`USLayout-${++i}`} {...props} data={data} />
         </>
       ) : (
-        <Grid key={`layout-${++i}`}>
+        <Grid className="margin-bottom-4" key={`layout-${++i}`}>
           {renderTitles && props.title && (
             <h2 id={kebab(props.title)}>{props.title}</h2>
           )}

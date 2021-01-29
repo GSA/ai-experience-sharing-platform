@@ -114,8 +114,11 @@ const ContentList = ({
         )}
         <Col desktop={setWidth()}>
           <Row gap="2">
-            {data.map((item) => (
-              <Col desktop={variant === "horizontal" ? "12" : "6"}>
+            {data.map((item, i) => (
+              <Col
+                key={`content-list-item-${i}`}
+                desktop={variant === "horizontal" ? "12" : "6"}
+              >
                 <CardTemplate
                   template={template}
                   data={item}
