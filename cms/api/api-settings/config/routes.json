@@ -1,0 +1,28 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/api-settings",
+      "handler": "api-settings.find",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/api-settings",
+      "handler": "api-settings.update",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/api-settings",
+      "handler": "api-settings.delete",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}

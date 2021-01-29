@@ -1,0 +1,23 @@
+{
+  "collectionName": "components_content_markdowns",
+  "info": {
+    "name": "Markdown",
+    "icon": "atlas",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "body": {
+      "type": "richtext"
+    },
+    "className": {
+      "type": "string"
+    },
+    "fullwidth": {
+      "type": "boolean"
+    },
+    "title": {
+      "type": "string"
+    }
+  }
+}

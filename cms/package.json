@@ -1,0 +1,73 @@
+{
+  "name": "ai-experience-sharing-platform-cms",
+  "private": true,
+  "version": "0.1.1",
+  "description": "A CMS that has public and private content, initially focused on AI Use Case sharing.",
+  "scripts": {
+    "data:model": "find cms/api/*/models/*settings.json -exec cat {} \\;",
+    "develop": "strapi develop",
+    "start": "strapi start",
+    "build": "strapi build",
+    "build:dev": "strapi build --no-optimization",
+    "strapi": "strapi",
+    "pm2": "pm2 -i 0 --no-daemon start server.js",
+    "test": "jest --forceExit --detectOpenHandles",
+    "preinstall": "npx npm-force-resolutions"
+  },
+  "devDependencies": {
+    "jest": "^26.6.0",
+    "npm-force-resolutions": "0.0.3",
+    "react-idle-timer": "^4.5.0",
+    "supertest": "^5.0.0",
+    "webpack": "^4.44.2",
+    "webpack-cli": "^3.3.12"
+  },
+  "dependencies": {
+    "aws-sdk": "2.762.0",
+    "css-loader": "^2.1.1",
+    "grant": "5.4.5",
+    "knex": "<0.20.0",
+    "immer": ">=8.0.1",
+    "node-fetch": ">=2.6.1",
+    "node-forge": ">=0.10.0",
+    "object-path": ">=0.11.5",
+    "pg": "^8.3.3",
+    "pino": "^6.7.0",
+    "pm2": "^4.5.1",
+    "serialize-javascript": ">=3.1.0",
+    "slugify": "^1.4.5",
+    "sqlite3": "^5.0.1",
+    "strapi": "3.4.1",
+    "strapi-admin": "3.4.1",
+    "strapi-connector-bookshelf": "3.4.1",
+    "strapi-plugin-content-manager": "3.4.1",
+    "strapi-plugin-content-type-builder": "3.4.1",
+    "strapi-plugin-email": "3.4.1",
+    "strapi-plugin-sitemap": "^1.1.4",
+    "strapi-plugin-upload": "3.4.1",
+    "strapi-plugin-users-permissions": "3.4.1",
+    "strapi-provider-upload-aws-s3-auth": "github:flexion/strapi-provider-upload-aws-s3-auth#v0.0.4",
+    "strapi-utils": "3.4.1",
+    "systeminformation": "^4.34.3"
+  },
+  "resolutions": {
+    "grant": "5.4.5"
+  },
+  "author": {
+    "name": "A Strapi developer"
+  },
+  "strapi": {},
+  "engines": {
+    "node": "12.x",
+    "npm": "6.x"
+  },
+  "license": "MIT",
+  "jest": {
+    "testPathIgnorePatterns": [
+      "/node_modules/",
+      ".tmp",
+      ".cache"
+    ],
+    "testEnvironment": "node"
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "collectionName": "logingov-admin_user",
+  "info": {
+    "name": "logingovuser",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false,
+    "timestamps": false
+  },
+  "attributes": {
+    "userId": {
+      "type": "integer",
+      "unique": true,
+      "configurable": false,
+      "private": true,
+      "required": true
+    },
+    "lastlogin": {
+      "type": "datetime",
+      "configurable": false,
+      "private": true,
+      "required": true
+    }
+  }
+}

@@ -1,0 +1,33 @@
+$bgImgDir: "~styles/images";
+
+.US__homepage {
+  .usa-hero {
+    &.USMarkdown {
+      margin-bottom: 0;
+    }
+    //background-image: url($bgImgDir + "/home_hero.svg");
+    background-image: url($bgImgDir + "/home_hero3.png");
+    height: 476px;
+    position: relative;
+  }
+
+  h1 {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%)
+  }
+
+  // background: linear-gradient(180deg, #F4F3F3 0%, #78E3FB 100%);
+  .usa-hero-bg {
+    background: linear-gradient(180deg, #F4F3F3 0%, #78E3FB 100%);
+    background-size: auto 300%;
+  }
+  .intro-bg {
+    background: linear-gradient(180deg, rgba(120,227,251,0.15) 0%, rgba(255,255,255,1) 40%);
+    padding-top: 4rem;
+  }
+
+  p, .usa-prose > p {
+    max-width: initial;
+  }
+}

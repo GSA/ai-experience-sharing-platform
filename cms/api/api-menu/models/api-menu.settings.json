@@ -1,0 +1,31 @@
+{
+  "kind": "collectionType",
+  "collectionName": "Menu",
+  "info": {
+    "name": "api-menu",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "slug": {
+      "type": "uid"
+    },
+    "items": {
+      "type": "dynamiczone",
+      "components": [
+        "content.list-item",
+        "content.list"
+      ]
+    }
+  }
+}

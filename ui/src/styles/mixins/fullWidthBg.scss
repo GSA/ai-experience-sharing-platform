@@ -1,0 +1,6 @@
+@mixin fullWidthBg($img) {
+  background-image: url("~styles/images/#{$img}");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-position: center center;
+}

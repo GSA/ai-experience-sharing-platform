@@ -1,0 +1,11 @@
+US__about-content {
+    h1, h2, h3, h4 {
+        @include u-font-family('sans');
+    }
+
+    h1 {
+        font-weight: 700;
+    }
+    
+    margin-top: 6.5rem;
+}

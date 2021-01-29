@@ -1,0 +1,32 @@
+{
+  "collectionName": "components_content_lists",
+  "info": {
+    "name": "List",
+    "icon": "clipboard-list",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "items": {
+      "type": "component",
+      "repeatable": true,
+      "component": "content.list-item"
+    },
+    "title": {
+      "type": "string"
+    },
+    "columns": {
+      "type": "enumeration",
+      "enum": [
+        "one",
+        "two"
+      ]
+    },
+    "className": {
+      "type": "string"
+    },
+    "fullwidth": {
+      "type": "boolean"
+    }
+  }
+}

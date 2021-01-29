@@ -1,0 +1,40 @@
+.usa-footer--big .usa-footer__primary-content--collapsible .usa-list--unstyled {
+    padding-right: 1rem;
+}
+
+.usa-footer {
+    background-color: $x-charcoal;
+    color: $x-whiteish;
+    .usa-footer__primary-section, .usa-footer__secondary-section, .usa-footer__primary-link {
+    background-color: $x-charcoal;
+    color: $x-whiteish;
+    }
+}
+ 
+.usa-footer__secondary-section, .usa-footer__return-to-top, .usa-footer__primary-section {
+    a, a:visited {
+        color: $x-ocean;
+    }
+}
+
+.usa-social-link {
+    filter: invert(1);
+}
+
+.sections {
+    li {
+        list-style-type: none;
+        margin-bottom: 1rem;
+        a {
+            color: $x-charcoal;
+        }
+    }
+    ul {
+        padding-left: 0;
+    }
+    .panel {
+        background-color: $x-whiteish;
+        filter: drop-shadow(0px 16px 20px rgba(0, 0, 0, 0.1));
+        padding: .5rem;
+    }
+}

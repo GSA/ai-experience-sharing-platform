@@ -1,0 +1,28 @@
+{
+  "kind": "singleType",
+  "collectionName": "settings",
+  "info": {
+    "name": "api-settings",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "footer": {
+      "type": "component",
+      "repeatable": true,
+      "component": "content.list"
+    },
+    "bokModules": {
+      "type": "component",
+      "repeatable": true,
+      "component": "bok.bok-modules"
+    }
+  }
+}

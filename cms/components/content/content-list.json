@@ -1,0 +1,31 @@
+{
+  "collectionName": "components_content_content_lists",
+  "info": {
+    "name": "contentList",
+    "icon": "list-alt",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "key": {
+      "type": "enumeration",
+      "enum": [
+        "pages",
+        "usecases",
+        "bodyOfKnowledge"
+      ]
+    },
+    "className": {
+      "type": "string"
+    },
+    "fullwidth": {
+      "type": "boolean"
+    },
+    "title": {
+      "type": "string"
+    },
+    "filter": {
+      "type": "boolean"
+    }
+  }
+}

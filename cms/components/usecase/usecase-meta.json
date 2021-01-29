@@ -1,0 +1,16 @@
+{
+  "collectionName": "components_usecase_usecase_metas",
+  "info": {
+    "name": "usecaseMeta",
+    "icon": "database"
+  },
+  "options": {},
+  "attributes": {
+    "metaFieldOne": {
+      "type": "string"
+    },
+    "metaFieldTwo": {
+      "type": "string"
+    }
+  }
+}

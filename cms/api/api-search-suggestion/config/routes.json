@@ -1,0 +1,52 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/api-search-suggestions",
+      "handler": "api-search-suggestion.find",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api-search-suggestions/count",
+      "handler": "api-search-suggestion.count",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api-search-suggestions/:id",
+      "handler": "api-search-suggestion.findOne",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/api-search-suggestions",
+      "handler": "api-search-suggestion.create",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/api-search-suggestions/:id",
+      "handler": "api-search-suggestion.update",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/api-search-suggestions/:id",
+      "handler": "api-search-suggestion.delete",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}

@@ -1,0 +1,31 @@
+h1, h2, h3, h4 {
+    font-weight: 400;
+}
+
+h1 {
+    font-size: 36px;
+}
+
+.usa-app {
+    background: $x-randombg;
+    color: $x-charcoal;
+}
+
+.usa-hero {
+    color: $x-charcoal;
+}
+
+main#main-content {
+    border: none;
+}
+  
+.usa-hero > h1 > span {
+    font-size: 56px;
+    display: block;
+    background-color: rgba(255, 255, 255, .85);
+    width: fit-content;
+    padding-right: 2em;
+    padding-left: .5em;
+    margin-left: .5em;
+    filter: drop-shadow(0px 16px 20px rgba(0, 0, 0, 0.1));
+}

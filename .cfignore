@@ -1,0 +1,6 @@
+.cache
+.terraform
+.tmp
+bin
+deployment
+node_modules

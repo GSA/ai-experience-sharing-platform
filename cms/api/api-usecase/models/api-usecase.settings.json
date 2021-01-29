@@ -1,0 +1,182 @@
+{
+  "kind": "collectionType",
+  "collectionName": "Usecase",
+  "info": {
+    "name": "api-usecase",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "slug": {
+      "type": "uid"
+    },
+    "version": {
+      "type": "decimal"
+    },
+    "interviewDate": {
+      "type": "datetime"
+    },
+    "publishedDate": {
+      "type": "datetime"
+    },
+    "businessProblem": {
+      "type": "string"
+    },
+    "contactName": {
+      "type": "string"
+    },
+    "contactAgency": {
+      "type": "string"
+    },
+    "contactRole": {
+      "type": "enumeration",
+      "enum": [
+        "governmentEmployee",
+        "academica",
+        "industry",
+        "other"
+      ]
+    },
+    "aiRole": {
+      "type": "enumeration",
+      "enum": [
+        "itProfessional",
+        "systemOperator",
+        "systemManager",
+        "outputConsumer",
+        "dataProfessional",
+        "legal",
+        "governance",
+        "vendorOrContractor",
+        "other"
+      ]
+    },
+    "contactOffice": {
+      "type": "string"
+    },
+    "contactEmail": {
+      "type": "string"
+    },
+    "contactApprovalRequiredBy": {
+      "type": "string"
+    },
+    "metadataBenefits": {
+      "type": "enumeration",
+      "enum": [
+        "decreaseCycleTime",
+        "increaseAccuracy",
+        "increaseOutputs",
+        "improveCustomerService",
+        "newServiceOrCapability",
+        "increaseCompliance",
+        "other"
+      ]
+    },
+    "metadataProcurement": {
+      "type": "enumeration",
+      "enum": [
+        "developedInHouse",
+        "commercialOffTheShelf",
+        "jointDevelopmentWithExternalPartner",
+        "customBuiltByNonFederalGovernmentEntity",
+        "jointProjectWithAnotherFederalAgency",
+        "other"
+      ]
+    },
+    "metadataDevelopmentPhase": {
+      "type": "enumeration",
+      "enum": [
+        "operationalUse",
+        "researchProject"
+      ]
+    },
+    "metadataAiMlTechniques": {
+      "type": "enumeration",
+      "enum": [
+        "imageRecognition",
+        "patternAndAnomalyDetection",
+        "conversationalAiAndChatbots",
+        "naturalLanguageProcessingOrGeneration",
+        "autonomousSystems",
+        "predictiveAnalyticsAndDecisionMaking",
+        "goalDrivenSystems",
+        "recommendationsAndPersonalization",
+        "intelligentAutomation"
+      ]
+    },
+    "metadataAiLifecycleStage": {
+      "type": "enumeration",
+      "enum": [
+        "planningAndDesign",
+        "verificationAndValidation",
+        "dataCollectionAndProcessing",
+        "deployment",
+        "modelBuildingAndInterpretation",
+        "operationAndMonitoring"
+      ]
+    },
+    "metadataEnvironment": {
+      "type": "enumeration",
+      "enum": [
+        "agriculture",
+        "environment",
+        "socialAndWelfareIssues",
+        "competition",
+        "financeAndInsurance",
+        "tax",
+        "corporateGovernance",
+        "health",
+        "trade",
+        "development",
+        "industryAndEntrepreneurship",
+        "transport",
+        "digitalEconomy",
+        "innovation",
+        "economy",
+        "investment",
+        "education",
+        "publicGovernance",
+        "employment",
+        "scienceAndTechnology",
+        "lawEnforcement",
+        "transportationSecurity",
+        "criticalInfrastructure",
+        "humanResources",
+        "immigration",
+        "defenseAndIntelligence",
+        "acquisitionAndProcurement",
+        "other"
+      ]
+    },
+    "metadataSpiiPiiUse": {
+      "type": "boolean"
+    },
+    "metadataAgency": {
+      "type": "string"
+    },
+    "metadataSubAgency": {
+      "type": "string"
+    },
+    "content": {
+      "type": "dynamiczone",
+      "components": [
+        "content.callout",
+        "content.card-item",
+        "content.cards",
+        "content.list-item",
+        "content.list",
+        "content.markdown"
+      ]
+    },
+    "keywords": {
+      "type": "string"
+    }
+  }
+}
