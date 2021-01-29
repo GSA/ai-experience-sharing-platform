@@ -4,6 +4,7 @@ import Date from "components/Date";
 import { useSelector } from "react-redux";
 import { name as siteName } from "app/SiteModule";
 
+/* eslint-disable */
 const Format = ({ name, value }) => {
   if (name === "date") {
     return <Date>{value}</Date>;

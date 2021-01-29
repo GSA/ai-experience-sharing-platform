@@ -10,6 +10,8 @@ import Image from "components/Image";
 import List from "components/List";
 import Select from "components/Select";
 import ContentList from "features/ContentList";
+import Login from "features/Login";
+import Logout from "features/Logout";
 
 import Link from "features/Link";
 
@@ -27,6 +29,8 @@ export const shortcodes = {
   Col,
   Select,
   ContentList,
+  Login,
+  Logout
 };
 
 const Mdx = ({ children, className, components, scope }) => {

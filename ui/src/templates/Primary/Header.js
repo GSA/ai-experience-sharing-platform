@@ -8,8 +8,8 @@ import Link from "features/Link";
 import PrimaryNav from "features/PrimaryNav";
 import useMenuSelector from "utils/useMenuSelector";
 import { name as siteName } from "app/SiteModule";
-import Search from "./Search";
 import { useSelector } from "react-redux";
+import PrimaryNavFooter from "features/PrimaryNavFooter";
 
 const CustomText = ({ text }) => {
   const parts = text.split(".");
@@ -46,6 +46,14 @@ const Header = ({ className, variant }) => {
     history.push(value.link);
   };
 
+  const getFooter = () => {
+    return (
+      <>
+        <PrimaryNavFooter />
+      </>
+    );
+  };
+
   // For menu item matches current path
   const currentMenuItem = history.location.pathname;
   const { items = [] } = useMenuSelector("primary");
@@ -69,12 +77,12 @@ const Header = ({ className, variant }) => {
         <Row>
           <Col size="12">
             <Row className="align-items-center">
-              <Col size="4">
+              <Col size="2">
                 <Link url="/" className="usa-logo">
                   <span className="usa-logo__text">{title}</span>
                 </Link>
               </Col>
-              <Col size="8" className="usa-header__nav">
+              <Col size="10" className="usa-header__nav">
                 <Row className="flex-align-center height-full">
                   <PrimaryNav
                     items={menuItems}
@@ -85,7 +93,7 @@ const Header = ({ className, variant }) => {
                     currentMenuItem={currentMenuItem}
                     onClick={handleClick}
                     onMenuItemClick={handleMenuItemClick}
-                    footer={<Search />}
+                    footer={getFooter()}
                   />
                 </Row>
               </Col>

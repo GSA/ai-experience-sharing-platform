@@ -13,17 +13,17 @@ import { auth } from "strapi-helper-plugin";
 const Initializer = ({ updatePlugin }) => {
   const ref = useRef();
 
-  // const handleOnIdle = event => {
-  //   auth.clearAppStorage();
-  //   window.location.href = '/adminlogin';
-  // }
+  const handleOnIdle = event => {
+    auth.clearAppStorage();
+    window.location.href = '/loginadmin';
+  }
 
-  // const { reset } = useIdleTimer({
-  //   timeout: 1000 * 60 * 15,
-  //   onIdle: handleOnIdle,
-  //   debounce: 500
-  // });
-  // reset();
+  const { reset } = useIdleTimer({
+    timeout: 1000 * 60 * 15,
+    onIdle: handleOnIdle,
+    debounce: 500
+  });
+  reset();
 
   ref.current = updatePlugin;
 

@@ -36,7 +36,8 @@ jobs:
       - id: set-matrix-main
         if: github.ref == 'refs/heads/main'
         # run: echo "::set-output name=matrix::{\"include\":[{\"deployenv\":\"prod\",\"logingovurl\":\"https://idp.int.identitysandbox.gov/openid_connect/authorize\",\"strapiloginurl\":\"https://strapi-api-host-main.app.cloud.gov/connect/logingov/callback\"}]}"
-        run: echo "::set-output name=matrix::{\"include\":[{\"deployenv\":\"dev\",\"logingovurl\":\"https://idp.int.identitysandbox.gov/openid_connect/authorize\",\"strapiloginurl\":\"https://strapi-api-host-main.app.cloud.gov/connect/logingov/callback\"}]}"
+        # run: echo "::set-output name=matrix::{\"include\":[{\"deployenv\":\"dev\",\"logingovurl\":\"https://idp.int.identitysandbox.gov/openid_connect/authorize\",\"strapiloginurl\":\"https://strapi-api-host-main.app.cloud.gov/connect/logingov/callback\"}]}"
+        run: echo "::set-output name=matrix::{\"include\":[{\"deployenv\":\"dev\",\"logingovurl\":\"https://idp.int.identitysandbox.gov/openid_connect/authorize\",\"strapiloginurl\":\"https://strapi-api-host-main.app.cloud.gov/connect/logingov/callback\"},{\"deployenv\":\"staging\",\"logingovurl\":\"https://idp.int.identitysandbox.gov/openid_connect/authorize\",\"strapiloginurl\":\"https://strapi-api-host-main.app.cloud.gov/connect/logingov/callback\"}]}"
       - id: set-matrix-pr-develop
         if: github.event_name == 'pull_request' && github.base_ref == 'develop'
         run: echo "::set-output name=matrix::{\"include\":[{\"deployenv\":\"dev\",\"logingovurl\":\"https://idp.int.identitysandbox.gov/openid_connect/authorize\",\"strapiloginurl\":\"https://strapi-api-host-main.app.cloud.gov/connect/logingov/callback\"}]}"
@@ -46,7 +47,8 @@ jobs:
         run: echo "::set-output name=matrix::{\"include\":[{\"deployenv\":\"dev\",\"logingovurl\":\"https://idp.int.identitysandbox.gov/openid_connect/authorize\",\"strapiloginurl\":\"https://strapi-api-host-main.app.cloud.gov/connect/logingov/callback\"}]}"
       - id: set-matrix-develop
         if: github.ref == 'refs/heads/develop'
-        run: echo "::set-output name=matrix::{\"include\":[{\"deployenv\":\"dev\",\"logingovurl\":\"https://idp.int.identitysandbox.gov/openid_connect/authorize\",\"strapiloginurl\":\"https://strapi-api-host-main.app.cloud.gov/connect/logingov/callback\"},{\"deployenv\":\"staging\",\"logingovurl\":\"https://idp.int.identitysandbox.gov/openid_connect/authorize\",\"strapiloginurl\":\"https://strapi-api-host-main.app.cloud.gov/connect/logingov/callback\"}]}"
+        # run: echo "::set-output name=matrix::{\"include\":[{\"deployenv\":\"dev\",\"logingovurl\":\"https://idp.int.identitysandbox.gov/openid_connect/authorize\",\"strapiloginurl\":\"https://strapi-api-host-main.app.cloud.gov/connect/logingov/callback\"},{\"deployenv\":\"staging\",\"logingovurl\":\"https://idp.int.identitysandbox.gov/openid_connect/authorize\",\"strapiloginurl\":\"https://strapi-api-host-main.app.cloud.gov/connect/logingov/callback\"}]}"
+        run: echo "::set-output name=matrix::{\"include\":[]}"
 
   # build_frontend_build_matrix_debug:
   #   name: "debug a matrix of frontends"
@@ -218,14 +220,16 @@ jobs:
       - id: set-matrix-main
         if: github.ref == 'refs/heads/main'
         # run: echo "::set-output name=matrix::{\"include\":[{\"deployenv\":\"prod\",\"deployorg\":\"tts-ai-digitalpresence\",\"aws_access_key_id_secret\":\"AWS_ACCESS_KEY_ID_PROD\",\"aws_secret_access_key_secret\":\"AWS_SECRET_ACCESS_KEY_PROD\",\"aws_default_region\":\"us-gov-west-1\",\"cf_user_secret\":\"CF_USER_PROD\",\"cf_password_secret\":\"CF_PASSWORD_PROD\"}]}"
-        run: echo "::set-output name=matrix::{\"include\":[{\"deployenv\":\"dev\",\"deployorg\":\"tts-ai-digitalpresence\",\"aws_access_key_id_secret\":\"AWS_ACCESS_KEY_ID_DEV\",\"aws_secret_access_key_secret\":\"AWS_SECRET_ACCESS_KEY_DEV\",\"aws_default_region\":\"us-gov-west-1\",\"cf_user_secret\":\"CF_USER_DEV\",\"cf_password_secret\":\"CF_PASSWORD_DEV\"}]}"
+        # run: echo "::set-output name=matrix::{\"include\":[{\"deployenv\":\"dev\",\"deployorg\":\"tts-ai-digitalpresence\",\"aws_access_key_id_secret\":\"AWS_ACCESS_KEY_ID_DEV\",\"aws_secret_access_key_secret\":\"AWS_SECRET_ACCESS_KEY_DEV\",\"aws_default_region\":\"us-gov-west-1\",\"cf_user_secret\":\"CF_USER_DEV\",\"cf_password_secret\":\"CF_PASSWORD_DEV\"}]}"
+        run: echo "::set-output name=matrix::{\"include\":[{\"deployenv\":\"dev\",\"deployorg\":\"tts-ai-digitalpresence\",\"aws_access_key_id_secret\":\"AWS_ACCESS_KEY_ID_DEV\",\"aws_secret_access_key_secret\":\"AWS_SECRET_ACCESS_KEY_DEV\",\"aws_default_region\":\"us-gov-west-1\",\"cf_user_secret\":\"CF_USER_DEV\",\"cf_password_secret\":\"CF_PASSWORD_DEV\"},{\"deployenv\":\"staging\",\"deployorg\":\"tts-ai-digitalpresence\",\"aws_access_key_id_secret\":\"AWS_ACCESS_KEY_ID_STAGING\",\"aws_secret_access_key_secret\":\"AWS_SECRET_ACCESS_KEY_STAGING\",\"aws_default_region\":\"us-gov-west-1\",\"cf_user_secret\":\"CF_USER_STAGING\",\"cf_password_secret\":\"CF_PASSWORD_STAGING\"}]}"
       - id: set-matrix-pr-main
         if: github.event_name == 'pull_request' && github.base_ref == 'main'
         # run: echo "::set-output name=matrix::{\"include\":[{\"deployenv\":\"prod\",\"deployorg\":\"tts-ai-digitalpresence\",\"aws_access_key_id_secret\":\"AWS_ACCESS_KEY_ID_PROD\",\"aws_secret_access_key_secret\":\"AWS_SECRET_ACCESS_KEY_PROD\",\"aws_default_region\":\"us-gov-west-1\",\"cf_user_secret\":\"CF_USER_PROD\",\"cf_password_secret\":\"CF_PASSWORD_PROD\"}]}"
         run: echo "::set-output name=matrix::{\"include\":[{\"deployenv\":\"dev\",\"deployorg\":\"tts-ai-digitalpresence\",\"aws_access_key_id_secret\":\"AWS_ACCESS_KEY_ID_DEV\",\"aws_secret_access_key_secret\":\"AWS_SECRET_ACCESS_KEY_DEV\",\"aws_default_region\":\"us-gov-west-1\",\"cf_user_secret\":\"CF_USER_DEV\",\"cf_password_secret\":\"CF_PASSWORD_DEV\"}]}"
       - id: set-matrix-develop
         if: github.ref == 'refs/heads/develop'
-        run: echo "::set-output name=matrix::{\"include\":[{\"deployenv\":\"dev\",\"deployorg\":\"tts-ai-digitalpresence\",\"aws_access_key_id_secret\":\"AWS_ACCESS_KEY_ID_DEV\",\"aws_secret_access_key_secret\":\"AWS_SECRET_ACCESS_KEY_DEV\",\"aws_default_region\":\"us-gov-west-1\",\"cf_user_secret\":\"CF_USER_DEV\",\"cf_password_secret\":\"CF_PASSWORD_DEV\"},{\"deployenv\":\"staging\",\"deployorg\":\"tts-ai-digitalpresence\",\"aws_access_key_id_secret\":\"AWS_ACCESS_KEY_ID_STAGING\",\"aws_secret_access_key_secret\":\"AWS_SECRET_ACCESS_KEY_STAGING\",\"aws_default_region\":\"us-gov-west-1\",\"cf_user_secret\":\"CF_USER_STAGING\",\"cf_password_secret\":\"CF_PASSWORD_STAGING\"}]}"
+        # run: echo "::set-output name=matrix::{\"include\":[{\"deployenv\":\"dev\",\"deployorg\":\"tts-ai-digitalpresence\",\"aws_access_key_id_secret\":\"AWS_ACCESS_KEY_ID_DEV\",\"aws_secret_access_key_secret\":\"AWS_SECRET_ACCESS_KEY_DEV\",\"aws_default_region\":\"us-gov-west-1\",\"cf_user_secret\":\"CF_USER_DEV\",\"cf_password_secret\":\"CF_PASSWORD_DEV\"},{\"deployenv\":\"staging\",\"deployorg\":\"tts-ai-digitalpresence\",\"aws_access_key_id_secret\":\"AWS_ACCESS_KEY_ID_STAGING\",\"aws_secret_access_key_secret\":\"AWS_SECRET_ACCESS_KEY_STAGING\",\"aws_default_region\":\"us-gov-west-1\",\"cf_user_secret\":\"CF_USER_STAGING\",\"cf_password_secret\":\"CF_PASSWORD_STAGING\"}]}"
+        run: echo "::set-output name=matrix::{\"include\":[]}"
       - id: set-matrix-pr-develop
         if: github.event_name == 'pull_request' && github.base_ref == 'develop'
         run: echo "::set-output name=matrix::{\"include\":[{\"deployenv\":\"dev\",\"deployorg\":\"tts-ai-digitalpresence\",\"aws_access_key_id_secret\":\"AWS_ACCESS_KEY_ID_DEV\",\"aws_secret_access_key_secret\":\"AWS_SECRET_ACCESS_KEY_DEV\",\"aws_default_region\":\"us-gov-west-1\",\"cf_user_secret\":\"CF_USER_DEV\",\"cf_password_secret\":\"CF_PASSWORD_DEV\"}]}"
@@ -244,6 +248,8 @@ jobs:
     runs-on: ubuntu-latest
 
     strategy:
+      # Don't terminate another deploy mid-deploy and leave a mess
+      fail-fast: false
       matrix: ${{ fromJson(needs.build_deploy_build_matrix.outputs.matrix) }}
 
     env:
@@ -321,5 +327,5 @@ jobs:
             </details>
 
       - name: Terraform Apply
-        if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/develop'
+        if: github.ref == 'refs/heads/main' # || github.ref == 'refs/heads/develop'
         run: terraform apply -input=false -auto-approve deployment/workspaces/${{ matrix.deployenv }}

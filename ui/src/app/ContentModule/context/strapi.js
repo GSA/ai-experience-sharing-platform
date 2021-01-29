@@ -59,7 +59,12 @@ export const getAllByContentType = async ({ thunkAPI }) => {
   return data;
 };
 
-export const getContentTypeByName = async ({ type, slug, thunkAPI }) => {
+export const getContentTypeByName = async ({
+  type,
+  slug,
+  thunkAPI,
+  liftHero,
+}) => {
   const token = getToken(type, thunkAPI.getState());
   const options = getOptions(token);
   let data;
@@ -85,5 +90,11 @@ export const getContentTypeByName = async ({ type, slug, thunkAPI }) => {
   if (data.length > 1) {
     throw new Error("Query returned more than one result.");
   }
-  return data[0] || {};
+
+  data = data[0] || {};
+  data = {
+    liftHero,
+    ...data,
+  };
+  return data;
 };

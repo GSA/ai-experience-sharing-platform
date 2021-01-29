@@ -51,7 +51,6 @@ const NavItem = ({
               <li key={idx} className="usa-nav__submenu-item">
                 <Sub
                   {...item}
-                  isCurrent={currentMenuItem.includes(item.link)}
                   onClick={(e) => {
                     handleEvent(e);
                     onClick(item);

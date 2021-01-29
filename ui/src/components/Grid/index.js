@@ -11,14 +11,19 @@ const computeSizes = (amount = 12) =>
 
 export const Grid = ({ className, children, ...props }) => {
   return (
-    <div
-      className={classnames({
-        "grid-container": true,
-        [className]: className,
-      })}
-      {...props}
-    >
-      {children}
+    <div className={classnames({
+      "grid-bg": true,
+      [`${className}-bg`]: className,
+         })}>
+      <div
+        className={classnames({
+          "grid-container": true,
+          [`${className}-container`]: className,
+        })}
+        {...props}
+      >
+        {children}
+      </div>
     </div>
   );
 };

@@ -4,6 +4,7 @@
   "version": "0.1.1",
   "description": "A CMS that has public and private content, initially focused on AI Use Case sharing.",
   "scripts": {
+    "data:model": "find cms/api/*/models/*settings.json -exec cat {} \\;",
     "develop": "strapi develop",
     "start": "strapi start",
     "build": "strapi build",
@@ -25,6 +26,7 @@
     "aws-sdk": "2.762.0",
     "css-loader": "^2.1.1",
     "grant": "5.4.5",
+    "immer": ">=8.0.1",
     "knex": "<0.20.0",
     "node-fetch": ">=2.6.1",
     "node-forge": ">=0.10.0",
@@ -46,7 +48,8 @@
     "strapi-plugin-users-permissions": "3.4.1",
     "strapi-provider-upload-aws-s3-auth": "github:flexion/strapi-provider-upload-aws-s3-auth#v0.0.4",
     "strapi-utils": "3.4.1",
-    "systeminformation": "^4.34.3"
+    "systeminformation": "^4.34.3",
+    "ttl": "^1.3.1"
   },
   "resolutions": {
     "grant": "5.4.5"

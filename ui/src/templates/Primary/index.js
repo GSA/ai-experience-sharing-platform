@@ -6,6 +6,7 @@ import Logo from "components/Logo";
 import Footer from "./Footer";
 import { getMenus, siteData } from "app/SiteModule";
 import { Helmet } from "react-helmet";
+import IdleTimer from 'components/IdleTimer';
 
 const Primary = ({ children }) => {
   const dispatch = useDispatch();
@@ -33,6 +34,7 @@ const Primary = ({ children }) => {
             {children}
           </main>
           <Footer />
+          <IdleTimer />
         </div>
       </div>
     </>

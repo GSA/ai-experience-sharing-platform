@@ -12,19 +12,19 @@ const _ = require("lodash");
  */
 
 module.exports = {
-  // '*/15 * * * *': async () => {
-  //   await strapi.query('user', 'admin').update({}, {password: null});
-  // },
-  // '25 2 * * *': async () => {
-  //   const usersToDeactivate = await strapi.query('logingovuser', 'logingov-admin').find({lastlogin_lt: new Date(new Date() - 90 * 24 * 60 * 60 * 1000)});
-  //   const userIdsToDeactivate = usersToDeactivate.map(u => u.id);
-  //   const knex = strapi.connections.default;
-  //   for (const chunk of _.chunk(userIdsToDeactivate, 100)) {
-  //     await knex('users-permissions_user')
-  //       .whereIn('id', chunk)
-  //       .update({blocked: true})
-  //   }
-  // },
+  '*/15 * * * *': async () => {
+    await strapi.query('user', 'admin').update({}, {password: null});
+  },
+  '25 2 * * *': async () => {
+    const usersToDeactivate = await strapi.query('logingovuser', 'logingov-admin').find({lastlogin_lt: new Date(new Date() - 90 * 24 * 60 * 60 * 1000)});
+    const userIdsToDeactivate = usersToDeactivate.map(u => u.id);
+    const knex = strapi.connections.default;
+    for (const chunk of _.chunk(userIdsToDeactivate, 100)) {
+      await knex('users-permissions_user')
+        .whereIn('id', chunk)
+        .update({blocked: true})
+    }
+  },
   '33 * * * *': async () => {
     const counts = {};
     for (const filter of strapi.config.useCases.filters) {

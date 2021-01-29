@@ -84,6 +84,30 @@ const rejected = (key, state, action) => {
     },
   };
 };
+const fulfilledPage = (key, state, action) => {
+  let payload;
+
+  if ((action.payload || {}).liftHero) {
+    const heroContent = (action.payload.content || []).filter(
+      (c) =>
+        c.__component === "content.markdown" &&
+        (c.className || "").includes("usa-hero")
+    );
+    payload = {
+      heroContent,
+      ...action.payload,
+      content: (action.payload.content || []).filter(
+        (c) => c !== heroContent[0]
+      ),
+    };
+  } else {
+    payload = action.payload;
+  }
+  return {
+    ...state,
+    [key]: { ...initialState[key], data: payload },
+  };
+};
 
 export const ContentModule = createSlice({
   name,
@@ -134,7 +158,8 @@ export const ContentModule = createSlice({
   },
   extraReducers: {
     [getPage.pending]: (state) => pending("page", state),
-    [getPage.fulfilled]: (state, action) => fulfilled("page", state, action),
+    [getPage.fulfilled]: (state, action) =>
+      fulfilledPage("page", state, action),
     [getPage.rejected]: (state, action) =>
       rejected("page", state, { ...action, payload: {} }),
     [getList.pending]: (state) => pending("list", state),

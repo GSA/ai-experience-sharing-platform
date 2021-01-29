@@ -159,26 +159,26 @@ $theme-typeface-tokens: (
     src: (
       dir: "Lato",
       roman: (
-        100: "lato-thin",
-        200: "lato-thin",
-        300: "lato-light",
-        400: "lato-regular",
-        500: "lato-regular",
-        600: "lato-regular",
-        700: "lato-bold",
-        800: "lato-bold",
-        900: "lato-black",
+        100: "Lato-Thin",
+        200: "Lato-Thin",
+        300: "Lato-Light",
+        400: "Lato-Regular",
+        500: "Lato-Regular",
+        600: "Lato-Regular",
+        700: "Lato-Bold",
+        800: "Lato-Bold",
+        900: "Lato-Black",
       ),
       italic: (
-        100: "lato-thinitalic",
-        200: "lato-thinitalic",
-        300: "lato-lightitalic",
-        400: "lato-italic",
-        500: "lato-italic",
-        600: "lato-italic",
-        700: "lato-bolditalic",
-        800: "lato-bolditalic",
-        900: "lato-blackitalic",
+        100: "Lato-ThinItalic",
+        200: "Lato-ThinItalic",
+        300: "Lato-LightItalic",
+        400: "Lato-Italic",
+        500: "Lato-Italic",
+        600: "Lato-Italic",
+        700: "Lato-BoldItalic",
+        800: "Lato-BoldItalic",
+        900: "Lato-BlackItalic",
       ),
     ),
   ),
@@ -212,7 +212,7 @@ $theme-typeface-tokens: (
       ),
     ),
   ),
-  qualy: (
+  /*qualy: (
     display-name: "Qualy",
     cap-height: 362px,
     stack: $theme-font-sans-custom-stack,
@@ -241,7 +241,7 @@ $theme-typeface-tokens: (
         900: "Qualy-Bold",
       ),
     ),
-  ),
+  ),*/
 );
 
 /*
@@ -267,7 +267,7 @@ $theme-typeface-tokens.
 */
 
 // condensed
-$theme-font-type-cond: "qualy";
+$theme-font-type-cond: "faustina";
 
 // icon
 $theme-font-type-icon: false;
@@ -406,8 +406,8 @@ $theme-font-weight-thin: 100;
 $theme-font-weight-light: 300;
 $theme-font-weight-normal: 400;
 $theme-font-weight-medium: 500;
-$theme-font-weight-semibold: 600;
-$theme-font-weight-bold: 700;
+$theme-font-weight-semibold: 400;
+$theme-font-weight-bold: 400;
 $theme-font-weight-heavy: 900;
 
 // If USWDS is generating your @font-face rules,

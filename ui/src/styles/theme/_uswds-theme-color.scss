@@ -43,6 +43,14 @@ $x-ocean-dark: #309898;
 $x-smoke: #d8d8d8;
 $x-lead: #4e5164;
 $x-charcoal: #292a2b;
+$x-dark-card: #565C65;
+
+$x-whiteish: #fffdf8;
+$x-space-gray: #bedbdb;
+
+$x-royal: #015fa4;
+
+$x-randombg: #f6f6f6;
 
 // Base colors
 $theme-color-base-family: "gray-cool";
@@ -60,10 +68,10 @@ $theme-color-primary-family: "blue";
 $theme-color-primary-lightest: "blue-5";
 $theme-color-primary-lighter: $x-lilac-light;
 $theme-color-primary-light: $x-lilac;
-$theme-color-primary: $x-grimace;
+$theme-color-primary: $x-royal;
 $theme-color-primary-vivid: "blue-warm-60v";
-$theme-color-primary-dark: $x-grimace-light;
-$theme-color-primary-darker: $x-grimace;
+$theme-color-primary-dark: $x-royal;
+$theme-color-primary-darker: $x-royal;
 $theme-color-primary-darkest: "blue-warm-80v";
 
 // Secondary colors
@@ -149,8 +157,8 @@ General colors
 
 // Links
 $theme-link-color: "primary";
-$theme-link-visited-color: "violet-70v";
-$theme-link-hover-color: "primary-dark";
+$theme-link-visited-color: "blue-cool-70v";
+$theme-link-hover-color: "primary-light";
 $theme-link-active-color: "primary-darker";
 $theme-link-reverse-color: "base-lighter";
 $theme-link-reverse-hover-color: "base-lightest";

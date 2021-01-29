@@ -63,11 +63,17 @@ Using nodejs's inspector, https://nodejs.org/en/docs/guides/debugging-getting-st
 
 ### Github Actions
 
-.github/workflows/main.yml - Builds, tests, deploys the AI Sharing Platform for dev, staging, and prod.
-.github/workflows/codeql-analysis.yml - Scans for code quality and security issues in the AI Sharing Platform and it's dependancies.
+ * .github/workflows/main.yml - Builds, tests, deploys the AI Sharing Platform for dev, staging, and prod.
+ * .github/workflows/codeql-analysis.yml - Scans for code quality and security issues in the AI Sharing Platform and it's dependancies.
+ * .github/worklows/restage.yml - Monthly restage of deployed images to catch updates to the base images.
 
+### Strapi Knowledge
+
+New models added or modified may not get the correct permissions in the admin UI automatically. This will require intervention in the UI or via code. API permissions are not automatic in any way and need to be automated via bootstrap functions.
 
 ## Strapi design considerations
 
  + 404's are handled by the SPA and not strapi to enable modern SPA url's.
  + Streaming media is handled via signed S3 urls because there are currently rough edges around https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/Request.html#createReadStream-property
+ + Seperate content types are used for usecases, bok, and pages. Another approach is to use relations to boil down the content type into a single one. This other approach also improves search. This approach was not taken because of deadlines.
+ + This CMS intentionally reduces external dependencies for development and operations to increase its ability to be reused.

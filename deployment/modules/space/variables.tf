@@ -17,3 +17,11 @@ variable "cf_s3_strapi_image_plan" {
 variable "strapi_hostname" {
   description = "Cloud.gov app/host name"
 }
+
+variable "strapi_memory" {
+  description = "How much memory each strapi instance gets"
+}
+
+variable "strapi_instances" {
+  description = "How many strapi instances are deployed"
+}

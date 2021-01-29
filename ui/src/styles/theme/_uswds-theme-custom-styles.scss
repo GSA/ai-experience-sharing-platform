@@ -25,16 +25,3 @@ i.e.
 @import "~styles/mixins/index.scss";
 @import "~styles/core";
 @import "~styles/custom";
-
-main#main-content {
-  border: none;
-}
-
-.usa-hero > h1 > span {
-  display: block;
-  background-color: rgba(229, 229, 229, 0.85);
-  width: fit-content;
-  padding-right: 2em;
-  padding-left: 0.5em;
-  margin-left: 0.5em;
-}
