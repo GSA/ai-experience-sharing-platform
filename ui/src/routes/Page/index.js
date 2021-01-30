@@ -9,6 +9,7 @@ import Head from "routes/Head";
 import Layout from "features/Layout";
 import useAssertion from "utils/useAssertion";
 import useScrollToTop from "utils/useScrollToTop";
+import Hero from "components/Hero";
 
 const Page = ({ slug }) => {
   const dispatch = useDispatch();
@@ -21,6 +22,12 @@ const Page = ({ slug }) => {
   }, [dispatch, pageSlug]);
   useAssertion();
   const { pending, data, error } = page;
+  const { content = [] } = data;
+  const hero = content.find((item) => item.__component === "content.hero");
+  const layoutContent = content.filter(
+    (item) => item.__component !== "content.hero"
+  );
+  console.log("pending", pending);
   if (pending) {
     return (
       <Grid>
@@ -39,9 +46,10 @@ const Page = ({ slug }) => {
   return (
     <div className={`USLayout US__page US__${pageSlug}`}>
       <div className="usa-app__bg">
+        {hero && <Hero {...hero} />}
         <Head title={data.title} />
         <div className={`US__${data.slug}-content`}>
-          <Layout items={data.content} renderTitles={false} />
+          <Layout items={layoutContent} renderTitles={false} />
         </div>
       </div>
     </div>

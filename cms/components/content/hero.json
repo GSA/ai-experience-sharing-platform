@@ -1,0 +1,31 @@
+{
+  "collectionName": "components_content_heroes",
+  "info": {
+    "name": "hero",
+    "icon": "life-ring",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "body": {
+      "type": "richtext"
+    },
+    "heroImage": {
+      "model": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos"
+      ],
+      "plugin": "upload",
+      "required": false
+    },
+    "title": {
+      "type": "string"
+    },
+    "className": {
+      "type": "string"
+    }
+  }
+}

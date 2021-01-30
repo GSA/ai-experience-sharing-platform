@@ -59,12 +59,7 @@ export const getAllByContentType = async ({ thunkAPI }) => {
   return data;
 };
 
-export const getContentTypeByName = async ({
-  type,
-  slug,
-  thunkAPI,
-  liftHero,
-}) => {
+export const getContentTypeByName = async ({ type, slug, thunkAPI }) => {
   const token = getToken(type, thunkAPI.getState());
   const options = getOptions(token);
   let data;
@@ -93,7 +88,6 @@ export const getContentTypeByName = async ({
 
   data = data[0] || {};
   data = {
-    liftHero,
     ...data,
   };
   return data;

@@ -34,7 +34,8 @@
         "content.cards",
         "content.list",
         "content.carousel",
-        "content.callout"
+        "content.callout",
+        "content.hero"
       ]
     }
   }

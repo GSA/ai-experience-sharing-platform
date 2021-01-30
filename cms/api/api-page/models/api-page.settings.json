@@ -29,7 +29,8 @@
         "content.cards",
         "content.carousel",
         "usecase.usecase-list",
-        "content.content-list"
+        "content.content-list",
+        "content.hero"
       ]
     }
   }
