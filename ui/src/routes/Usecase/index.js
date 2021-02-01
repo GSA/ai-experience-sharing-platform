@@ -21,7 +21,7 @@ export const Usecase = ({ slug: overrideSlug }) => {
   const page = useSelector((state) => state[contentName].page);
   const { isAuth } = useSelector((state) => state.auth);
 
-  const { pending, data, error } = page;
+  const { data, error } = page;
   const { content = [] } = data;
   const hero = content.find((item) => item.__component === "content.hero");
   const layoutContent = content.filter(

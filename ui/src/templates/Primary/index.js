@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import classnames from "classnames";
 import Header from "./Header";
-import Logo from "components/Logo";
 import Footer from "./Footer";
 import { getMenus, siteData } from "app/SiteModule";
 import { Helmet } from "react-helmet";
