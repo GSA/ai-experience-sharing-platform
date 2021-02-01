@@ -57,7 +57,7 @@ export const getPage = createAsyncThunk(
 export const getList = createAsyncThunk(
   `${name}/getList`,
   async (props, thunkAPI) => {
-    return await context.getAllByContentType({ thunkAPI });
+    return await context.getAllByContentType({ thunkAPI, props });
   }
 );
 

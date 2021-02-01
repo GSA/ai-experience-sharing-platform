@@ -52,7 +52,7 @@ const testData = [
   },
 ];
 
-export const getAllByContentType = async (props) => {
+export const getAllByContentType = async ({thunkAPI, props}) => {
   if (props.type === "error") {
     throw new Error("Invalid Type.");
   }
