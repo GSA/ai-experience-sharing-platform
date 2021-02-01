@@ -17,24 +17,26 @@
     "slug": {
       "type": "uid"
     },
-    "content": {
-      "type": "dynamiczone",
-      "components": [
-        "content.markdown",
-        "content.content-list",
-        "content.list-item",
-        "content.cards",
-        "content.list",
-        "content.carousel",
-        "content.card-item",
-        "content.callout"
-      ]
+    "description": {
+      "type": "text"
     },
     "bokSectionId": {
       "type": "string",
       "regex": "\\d-\\d",
       "unique": true,
       "required": true
+    },
+    "content": {
+      "type": "dynamiczone",
+      "components": [
+        "content.markdown",
+        "content.content-list",
+        "content.cards",
+        "content.list",
+        "content.carousel",
+        "content.callout",
+        "content.hero"
+      ]
     }
   }
 }

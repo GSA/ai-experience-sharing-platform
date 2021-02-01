@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import classnames from "classnames";
 import Header from "./Header";
-import Logo from "components/Logo";
 import Footer from "./Footer";
 import { getMenus, siteData } from "app/SiteModule";
 import { Helmet } from "react-helmet";
@@ -29,7 +28,7 @@ const Primary = ({ children }) => {
         })}
       >
         <div className="usa-app__bg">
-          <Header logo={<Logo title="title2" />} variant="basic" />
+          <Header variant="basic" />
           <main role="main" id="main-content" style={{ minHeight: "42vh" }}>
             {children}
           </main>

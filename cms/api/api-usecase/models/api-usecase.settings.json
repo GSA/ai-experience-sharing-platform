@@ -17,6 +17,12 @@
     "slug": {
       "type": "uid"
     },
+    "description": {
+      "type": "text"
+    },
+    "keywords": {
+      "type": "string"
+    },
     "version": {
       "type": "decimal"
     },
@@ -172,11 +178,9 @@
         "content.cards",
         "content.list-item",
         "content.list",
-        "content.markdown"
+        "content.markdown",
+        "content.hero"
       ]
-    },
-    "keywords": {
-      "type": "string"
     }
   }
 }

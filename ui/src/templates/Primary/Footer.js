@@ -1,9 +1,9 @@
 import React from "react";
 import { Grid, Row, Col } from "components/Grid";
-import GSAFooter from "./GSAFooter";
 import Link from "features/Link";
 import { useSelector } from "react-redux";
 import { name as siteName } from "app/SiteModule";
+import Identifier from "features/Identifier";
 
 const Footer = () => {
   const { title, footer = [] } = useSelector((state) => state[siteName]);
@@ -18,18 +18,7 @@ const Footer = () => {
   return (
     <footer className="usa-footer usa-footer--big">
       <div className="grid-container usa-footer__return-to-top">
-        <a href="#">Return to top</a>
-      </div>
-      <div className="usa-footer__primary-section">
-        <Grid>
-          <Row>
-            <Col>
-              <div className="margin-y-4">
-                <GSAFooter />
-              </div>
-            </Col>
-          </Row>
-        </Grid>
+        <a href="/#">Return to top</a>
       </div>
 
       <div className="usa-footer__secondary-section">
@@ -47,7 +36,10 @@ const Footer = () => {
                           </h4>
                           <ul className="usa-list usa-list--unstyled">
                             {foot.items.map((item) => (
-                              <li key={item.id} className="usa-footer__secondary-link">
+                              <li
+                                key={item.id}
+                                className="usa-footer__secondary-link"
+                              >
                                 <Link url={item.link}>{item.text}</Link>
                               </li>
                             ))}
@@ -79,6 +71,9 @@ const Footer = () => {
             </Col>
           </Row>
         </Grid>
+      </div>
+      <div className="usa-footer__primary-section">
+        <Identifier />
       </div>
     </footer>
   );

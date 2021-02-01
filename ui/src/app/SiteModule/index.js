@@ -17,6 +17,7 @@ export const initialState = {
   },
   keymaps: {},
   filters: {},
+  sort: [],
   bokModules: [],
   dapAgency: "",
 };
@@ -55,7 +56,7 @@ export const SiteModule = createSlice({
       return { ...state, menus: action.payload };
     },
     [getUsecaseSettings.fulfilled]: (state, action) => {
-      return { ...state, keymaps: action.payload };
+      return { ...state, ...action.payload };
     },
     [getUsecaseFilters.fulfilled]: (state, action) => {
       return { ...state, filters: action.payload };

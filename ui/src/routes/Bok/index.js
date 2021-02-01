@@ -1,39 +1,67 @@
 import React, { useEffect } from "react";
 import { Grid, Row, Col } from "components/Grid";
-import SidebarNav from "./SidebarNav";
+import BokSidebarNav from "./BokSidebarNav";
 import Layout from "features/Layout";
 import { useDispatch, useSelector } from "react-redux";
 import { name as contentName, getPage } from "app/ContentModule";
 import { useParams } from "react-router-dom";
+import Hero from "components/Hero";
+import useScrollToTop from "utils/useScrollToTop";
+import useAssertion from "utils/useAssertion";
+import Head from "routes/Head";
+import Loading from "components/Loading";
+import FourOhFour from "routes/FourOhFour";
 
-const Bok = () => {
-  const { type = "boks", slug = "bok" } = useParams();
+const Bok = ({ slug: slugOverride }) => {
   const dispatch = useDispatch();
+  const params = useParams();
+  const slug = slugOverride ? slugOverride : params.slug;
+  const page = useSelector((state) => state[contentName].page);
+  useScrollToTop();
   useEffect(() => {
-    dispatch(getPage({ liftHero: true, type, slug }));
-  }, [dispatch, slug, type]);
-  const { page: { data = {} } = {} } = useSelector(
-    (state) => state[contentName]
+    dispatch(getPage({ type: "boks", slug }));
+  }, [dispatch, slug]);
+  useAssertion();
+  const { pending, data, error } = page;
+  const { content = [] } = data;
+  const hero = content.find((item) => item.__component === "content.hero");
+  const layoutContent = content.filter(
+    (item) => item.__component !== "content.hero"
   );
+
+  if (pending) {
+    return (
+      <Grid>
+        <Head title="Loading..." />
+        <div className="margin-y-9 margin-x-auto">
+          <Loading isLoading={true}>
+            <span />
+          </Loading>
+        </div>
+      </Grid>
+    );
+  }
+  if (error) {
+    return <FourOhFour />;
+  }
   return (
-    <div className={`US__bok US__bok_${slug}`}>
-      <Grid className="usa-hero">
-        {data.heroContent && data.heroContent.length ? <Layout items={data.heroContent} renderTitles={true} /> : null}
-      </Grid>
-      <Grid className="bok-content">
-        <Row gap="2">
-          <Col size={2} className="sections">
-            <div className="panel">
-              <h4>Sections</h4>
-              <SidebarNav current={data.bokSectionId} />
-            </div>
-          </Col>
-          <Col size={10}>
-            <Grid><h1 className="title">{data.title}</h1></Grid>
-            <Layout items={data.content} renderTitles={true} className="content" />
-          </Col>
-        </Row>
-      </Grid>
+    <div className={`USLayout US__page US__${slug}`}>
+      <div className="usa-app__bg">
+        <Head title={data.title} />
+        {hero && <Hero {...hero} />}
+        <div className={`US__${data.slug}-content`}>
+          <Grid>
+            <Row gap="2">
+              <Col size={2}>
+                <BokSidebarNav current={data.bokSectionId} />
+              </Col>
+              <Col size={10}>
+                <Layout items={layoutContent} renderTitles={true} />
+              </Col>
+            </Row>
+          </Grid>
+        </div>
+      </div>
     </div>
   );
 };

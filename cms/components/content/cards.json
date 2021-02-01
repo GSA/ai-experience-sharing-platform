@@ -7,11 +7,6 @@
   },
   "options": {},
   "attributes": {
-    "cardItem": {
-      "type": "component",
-      "repeatable": true,
-      "component": "content.card-item"
-    },
     "title": {
       "type": "string"
     },
@@ -30,6 +25,11 @@
         "four"
       ],
       "default": "two"
+    },
+    "cardItem": {
+      "type": "component",
+      "repeatable": true,
+      "component": "content.card-item"
     }
   }
 }

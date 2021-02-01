@@ -2,6 +2,8 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import QS from "query-string";
 import context from "./context";
 
+export const name = "auth";
+
 export const initialState = {
   isAuth: false,
   isAdminAuth: false,
@@ -28,7 +30,7 @@ export const initialState = {
 };
 
 export const login = createAsyncThunk(
-  "auth/login",
+  `${name}/login`,
   async ({ provider, search }) => context.createSession({ provider, search })
 );
 
@@ -44,16 +46,17 @@ export const loginAdminUrl = () => {
 };
 
 export const logout = createAsyncThunk(
-  "auth/logout",
+  `${name}/logout`,
   async (props) => await context.endSession(props)
 );
 
-export const loginAdmin = createAsyncThunk("auth/loginAdmin", async (props) =>
-  context.createAdminSession(props)
+export const loginAdmin = createAsyncThunk(
+  `${name}/loginAdmin`,
+  async (props) => context.createAdminSession(props)
 );
 
 const AuthModule = createSlice({
-  name: "auth",
+  name,
   initialState,
   reducers: {
     reset: () => initialState,

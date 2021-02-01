@@ -3,9 +3,46 @@ const { getOptions } = require("utils/http");
 
 const ROOT_URL = process.env.REACT_APP_API_URL || "";
 
-export const getAllByContentType = async ({ type, token, query }) => {
+const getToken = (type, state) => {
+  const sendToken = state?.auth?.authenticatedTypes
+    ? state.auth.authenticatedTypes[type]
+    : false;
+  return sendToken ? state.auth.token : null;
+};
+
+const generateQuery = (state) => {
+  const list = state?.content?.list;
+  const { filter, sort } = list;
+
+  let query = "";
+  if (filter.length) {
+    const filterQuery = filter
+      .filter((item) => {
+        return item.type === "boolean"
+          ? Boolean(item.value)
+          : Boolean(item.value.length);
+      })
+      .map((item) => `${item.name}_${item.operand}=${item.value}`)
+      .join("&");
+    query = `${query}${filterQuery}`;
+  }
+
+  if (sort.name) {
+    query = `${query}&_sort=${sort.name}:ASC`;
+  }
+  return query;
+};
+
+export const getAllByContentType = async ({ thunkAPI }) => {
+  const state = thunkAPI.getState();
+  const type = state?.content?.list?.type;
+  const token = getToken(type, state);
   const options = getOptions(token);
+  const query = generateQuery(state);
   let data;
+  if (!type) {
+    throw new Error("Type is not defined.");
+  }
   try {
     const response = await fetch(
       `${ROOT_URL}/api-${type}${query ? `?${query}` : ""}`,
@@ -22,7 +59,8 @@ export const getAllByContentType = async ({ type, token, query }) => {
   return data;
 };
 
-export const getContentTypeByName = async ({ type, slug, token, liftHero }) => {
+export const getContentTypeByName = async ({ type, slug, thunkAPI }) => {
+  const token = getToken(type, thunkAPI.getState());
   const options = getOptions(token);
   let data;
   try {
@@ -38,7 +76,7 @@ export const getContentTypeByName = async ({ type, slug, token, liftHero }) => {
     throw new Error(e);
   }
 
-  if (!data) {
+  if (!Boolean(data.length)) {
     throw new Error(`${type} "${slug}" not found.`);
   }
   if (!Array.isArray(data)) {
@@ -50,29 +88,7 @@ export const getContentTypeByName = async ({ type, slug, token, liftHero }) => {
 
   data = data[0] || {};
   data = {
-    liftHero,
-    ...data
+    ...data,
   };
-  return data;
-};
-
-export const getTaxonomyByContentType = async (type, token) => {
-  const options = getOptions(token);
-  let data;
-  try {
-    const response = await fetch(
-      `${ROOT_URL}/content/${type}/taxonomy.json`,
-      options
-    );
-    data = await response.json();
-    if (!response.ok) {
-      throw new Error(data.message);
-    }
-  } catch (e) {
-    throw new Error(e);
-  }
-  if (!data) {
-    throw new Error(`Taxonomy "${type}" not found.`);
-  }
   return data;
 };

@@ -10,7 +10,8 @@ const testData = [
     type: "usecase",
     content: [
       {
-        __component: 'content.markdown' }
+        __component: "content.markdown",
+      },
     ],
     toc: [
       {
@@ -32,7 +33,8 @@ const testData = [
     type: "usecase",
     content: [
       {
-        __component: 'content.markdown' }
+        __component: "content.markdown",
+      },
     ],
     toc: [
       {
@@ -49,9 +51,8 @@ const testData = [
     ],
   },
 ];
-const testTax = [{}];
 
-export const getAllByContentType = async (props) => {
+export const getAllByContentType = async ({thunkAPI, props}) => {
   if (props.type === "error") {
     throw new Error("Invalid Type.");
   }
@@ -73,11 +74,4 @@ export const getContentTypeByName = async (props) => {
   }
 
   return testData[0];
-};
-
-export const getTaxonomyByContentType = async (props) => {
-  if (props.type === "error") {
-    throw new Error("Invalid Type.");
-  }
-  return testTax;
 };

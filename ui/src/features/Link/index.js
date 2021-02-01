@@ -26,6 +26,10 @@ export const Link = ({ children, url, external, ...props }) => {
   );
 };
 
+Link.defaultProps = {
+  url: "",
+};
+
 Link.propTypes = {
   /** component children to be rendered */
   children: PropTypes.node,

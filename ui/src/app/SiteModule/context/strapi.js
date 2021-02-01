@@ -56,6 +56,7 @@ export const getUsecaseSettings = async () => {
   return {
     keymaps: data.usecaseFilterTitles,
     metadata: data.usecaseMetadataOrder,
+    sort: data.usecaseSortFields,
   };
 };
 

@@ -1,0 +1,36 @@
+{
+  "collectionName": "components_content_content_list_filters",
+  "info": {
+    "name": "contentListFilter",
+    "icon": "filter",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "operand": {
+      "type": "enumeration",
+      "enum": [
+        "eq",
+        "ne",
+        "lt",
+        "gt",
+        "lte",
+        "gte",
+        "in",
+        "nin",
+        "contains",
+        "ncontains",
+        "containss",
+        "ncontainss"
+      ],
+      "default": "eq"
+    },
+    "value": {
+      "type": "string"
+    }
+  }
+}
