@@ -2,16 +2,19 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Search from "./Search";
 import { useLocation } from "react-router-dom";
-import Link from "features/Link";
 import { setRedirect, logout } from "app/AuthModule";
-import NavItem from "features/PrimaryNav/NavItem"
-import {ReactComponent as Svg} from './logingov.svg'
+import NavItem from "features/PrimaryNav/NavItem";
+import { ReactComponent as Svg } from "./logingov.svg";
+import { Col, Row } from "components/Grid";
 
 const PrimaryNavFooter = () => {
   const { pathname } = useLocation();
   const dispatch = useDispatch();
-  const { isAuth, user: { email } } = useSelector((state) => state.auth);
-  const nodeId = 'sign-out';
+  const {
+    isAuth,
+    user: { email },
+  } = useSelector((state) => state.auth);
+  const nodeId = "sign-out";
 
   // For menu item with subitems
   const [activeMenuItem, setActiveMenuItem] = useState(null);
@@ -34,23 +37,33 @@ const PrimaryNavFooter = () => {
 
   const data = {
     id: nodeId,
-    title: (<><span>Hello</span> {email}</>),
-    items: [{
-      id: 1,
-      link: '/',
-      text: 'Sign Out'
-    }]
+    title: `Hello, ${email}`,
+    items: [
+      {
+        id: 1,
+        link: "/",
+        text: "Sign Out",
+      },
+    ],
   };
 
   return (
-      <div className="grid-row">
+    <Row gap="2" className="flex-align-center">
+      <Col
+        size="12"
+        desktop="auto"
+        className="margin-bottom-4 desktop:margin-bottom-0"
+      >
         <Search />
+      </Col>
+
+      <Col size="12" desktop="auto">
         {isAuth ? (
           <ul className="usa-accordion usa-nav__primary">
             <NavItem
-              id='sign-out'
+              id="sign-out"
               data={data}
-              currentMenuItem=''
+              currentMenuItem=""
               activeMenuItem={activeMenuItem}
               onMenuItemClick={handleMenuItemClick}
               isOpen={activeMenuItem === nodeId}
@@ -58,14 +71,17 @@ const PrimaryNavFooter = () => {
             />
           </ul>
         ) : (
-          <div className="sign-in">
-            <Link onClick={handleLogin} url="/login">
-              Sign In
-              <Svg/>
-            </Link>
-          </div>
+          <button
+            className="usa-auth-button"
+            onClick={handleLogin}
+            url="/login"
+          >
+            <span>Sign In</span>
+            <Svg />
+          </button>
         )}
-      </div>
+      </Col>
+    </Row>
   );
 };
 

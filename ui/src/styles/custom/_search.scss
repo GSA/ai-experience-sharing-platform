@@ -1,0 +1,26 @@
+.usa-search {
+  display: flex;
+  align-items: center;
+  width: auto !important;
+  @include u-bg("white");
+  @include at-media("desktop") {
+    max-width: 12rem;
+  }
+
+  input {
+    border: none;
+    background-color: transparent;
+
+    &::placeholder {
+      @include u-font("sans", "xs");
+      @include u-color("secondary");
+      font-weight: 200;
+    }
+  }
+
+  .usa-button {
+    background: transparent;
+    border-radius: 0;
+    @include u-color("ink");
+  }
+}

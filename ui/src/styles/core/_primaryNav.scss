@@ -30,7 +30,6 @@
 }
 
 .usa-nav-close {
-  float: right;
   @include at-media("desktop") {
     display: none;
   }
@@ -39,15 +38,4 @@
 .usa-nav__link > .last {
   display: block;
   text-transform: uppercase;
-}
-
-@media (min-width: 75em) {
-  .usa-header [role="search"] {
-    float: left;
-    width: 65%;
-  }
-}
-
-.usa-header .usa-search {
-  float: left;
 }

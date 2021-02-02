@@ -38,14 +38,16 @@ const Nav = ({
         })}
       >
         <div className="usa-nav__inner">
-          <button
-            id="usa-nav-close"
-            type="button"
-            className="usa-nav-close"
-            onClick={onMobileMenuClick}
-          >
-            {close}
-          </button>
+          <div className="text-right">
+            <button
+              id="usa-nav-close"
+              type="button"
+              className="usa-nav-close"
+              onClick={onMobileMenuClick}
+            >
+              {close}
+            </button>
+          </div>
           {header && <div className="usa-nav__header">{header}</div>}
           <ul className="usa-accordion usa-nav__primary">
             {items.map((item, idx) => {

@@ -1,0 +1,27 @@
+@mixin linkVariant--light {
+  @include u-color("primary-light");
+  &:active,
+  &:focus {
+    @include u-color("primary-light");
+  }
+  &:visited {
+    @include u-color("base-light");
+  }
+  &:hover {
+    @include u-color("primary-lighter");
+  }
+}
+
+@mixin linkVariant--dark {
+  @include u-color("primary-darker");
+  &:active,
+  &:focus {
+    @include u-color("primary-darker");
+  }
+  &:visited {
+    @include u-color("base");
+  }
+  &:hover {
+    @include u-color("primary-dark");
+  }
+}
