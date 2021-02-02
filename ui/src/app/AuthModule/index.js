@@ -26,6 +26,7 @@ export const initialState = {
   redirect: "",
   authenticatedTypes: {
     usecases: true,
+    'usecase-settings': true,
   },
 };
 

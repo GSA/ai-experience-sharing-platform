@@ -5,18 +5,20 @@ import Mdx from "features/Mdx";
 
 const Hero = ({ body, className, heroImage }) => {
   return (
-    <section
-      className={classnames({
-        "usa-hero": true,
-        [className]: className,
-      })}
-      aria-label="Introduction"
-      style={{backgroundImage: `url(${heroImage.url})`}}
-    >
-      <div className="grid-container">
-        <Mdx>{body}</Mdx>
-      </div>
-    </section>
+    <div className="usa-hero-bg">
+      <section
+        className={classnames({
+          "usa-hero": true,
+          [className]: className,
+        })}
+        aria-label="Introduction"
+        style={{background: `url(${heroImage.url}) center center no-repeat`}}
+      >
+        <div className="grid-container">
+          <Mdx>{body}</Mdx>
+        </div>
+      </section>
+    </div>
   );
 };
 

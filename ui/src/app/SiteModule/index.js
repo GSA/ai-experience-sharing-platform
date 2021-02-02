@@ -34,12 +34,12 @@ export const getMenus = createAsyncThunk(
 
 export const getUsecaseSettings = createAsyncThunk(
   `${name}/getUsecaseSettings`,
-  async () => await context.getUsecaseSettings()
+  async (props, thunkAPI) => await context.getUsecaseSettings({ thunkAPI })
 );
 
 export const getUsecaseFilters = createAsyncThunk(
   `${name}/getUsecaseFilters`,
-  async () => await context.getUsecaseFilters()
+  async (props, thunkAPI) => await context.getUsecaseFilters({ thunkAPI })
 );
 
 export const SiteModule = createSlice({

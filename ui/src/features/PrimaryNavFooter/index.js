@@ -6,10 +6,12 @@ import { setRedirect, logout } from "app/AuthModule";
 import NavItem from "features/PrimaryNav/NavItem";
 import { ReactComponent as Svg } from "./logingov.svg";
 import { Col, Row } from "components/Grid";
+import { useHistory } from "react-router-dom";
 
 const PrimaryNavFooter = () => {
   const { pathname } = useLocation();
   const dispatch = useDispatch();
+  const history = useHistory();
   const {
     isAuth,
     user: { email },
@@ -29,6 +31,7 @@ const PrimaryNavFooter = () => {
 
   const handleLogin = () => {
     dispatch(setRedirect(pathname));
+    history.push('/login');
   };
 
   const handleLogout = () => {
@@ -37,7 +40,7 @@ const PrimaryNavFooter = () => {
 
   const data = {
     id: nodeId,
-    title: `Hello, ${email}`,
+    title: <><span className="CustomText__prefix">Hello</span><span className="CustomText__suffix">{email}</span></>,
     items: [
       {
         id: 1,
