@@ -5,7 +5,7 @@ const BokSidebarNav = ({ current = "" }) => {
   const [bokList, setBokList] = useState([]);
   useEffect(() => {
     const fetchData = async () => {
-      const response = await fetch(`/api-boks`);
+      const response = await fetch(`/api-boks?_sort=bokSectionId:ASC`);
       const data = await response.json();
       setBokList(data);
     };

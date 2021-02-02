@@ -15,6 +15,7 @@ module.exports = function (app) {
     "api-usecases/filters/all",
     "api-usecases",
     "upload-auth",
+    "upload",
     "logingov-admin",
   ];
   for (const route of strapiRoutes) {

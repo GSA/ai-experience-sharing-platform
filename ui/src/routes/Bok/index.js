@@ -45,7 +45,7 @@ const Bok = ({ slug: slugOverride }) => {
     return <FourOhFour />;
   }
   return (
-    <div className={`USLayout US__page US__${slug}`}>
+    <div className={`USLayout US__page US__bok US__${slug}`}>
       <div className="usa-app__bg">
         <Head title={data.title} />
         {hero && <Hero {...hero} />}
