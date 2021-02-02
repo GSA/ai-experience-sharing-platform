@@ -52,10 +52,14 @@ const Bok = ({ slug: slugOverride }) => {
         <div className={`US__${data.slug}-content`}>
           <Grid>
             <Row gap="2">
-              <Col size={2}>
+              <Col
+                size="12"
+                desktop="2"
+                className="margin-bottom-2 desktop:margin-bottom-0"
+              >
                 <BokSidebarNav current={data.bokSectionId} />
               </Col>
-              <Col size={10}>
+              <Col size="12" desktop="10">
                 <Layout items={layoutContent} renderTitles={true} />
               </Col>
             </Row>
