@@ -1,14 +1,8 @@
 /* istanbul ignore file */
 const { getOptions } = require("utils/http");
+const { getToken } = require("utils/getToken");
 
 const ROOT_URL = process.env.REACT_APP_API_URL || "";
-
-const getToken = (type, state) => {
-  const sendToken = state?.auth?.authenticatedTypes
-    ? state.auth.authenticatedTypes[type]
-    : false;
-  return sendToken ? state.auth.token : null;
-};
 
 const generateQuery = (state) => {
   const list = state?.content?.list;

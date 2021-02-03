@@ -70,6 +70,7 @@ const ContentList = ({
     return size.toString();
   };
 
+  const [showFilters, setShowFilters] = useState(false);
   return (
     <div
       className={classnames({
@@ -79,10 +80,23 @@ const ContentList = ({
     >
       {(filter || sort || layout) && (
         <Row gap="2" className="USContentList__header">
-          <Col desktop="3">{filter && <strong>Filter by</strong>}</Col>
+          <Col desktop="3">
+            {filter && (
+              <strong onClick={() => setShowFilters((state) => !state)}>
+                Filters
+              </strong>
+            )}
+          </Col>
           <Col desktop="6"></Col>
           {(sort || layout) && (
-            <Col desktop="3">
+            <Col
+              desktop="3"
+              className={
+                showFilters
+                  ? "USContentList__filter"
+                  : "USContentList__filter--hidden"
+              }
+            >
               {layout && (
                 <div className="USContentList__layout-control">
                   <Button
@@ -108,7 +122,14 @@ const ContentList = ({
       )}
       <Row gap="2">
         {filter && (
-          <Col desktop="3">
+          <Col
+            desktop="3"
+            className={
+              showFilters
+                ? "USContentList__filter"
+                : "USContentList__filter--hidden"
+            }
+          >
             <Filters />
           </Col>
         )}

@@ -1,0 +1,17 @@
+.usa-logo {
+  display: inline-block;
+  @include u-padding-y(1);
+
+  &__text {
+    border: none;
+    @include u-font("sans", "lg");
+    font-weight: 700;
+    text-decoration: none;
+    font-style: normal;
+    @include u-color("white");
+
+    &:hover {
+      border: none;
+    }
+  }
+}

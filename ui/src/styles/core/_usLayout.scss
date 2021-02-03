@@ -94,4 +94,13 @@
     display: inline-block;
     @include u-padding-right(1);
   }
+
+  &__filter {
+    &--hidden {
+      display: none;
+      @include at-media("desktop") {
+        display: inline-block;
+      }
+    }
+  }
 }

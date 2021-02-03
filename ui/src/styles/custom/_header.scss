@@ -1,6 +1,14 @@
-.CustomText {
-  &__prefix,
-  &__suffix {
-    display: block;
+.usa-header {
+  @include u-bg("base-darkest");
+
+  &__nav {
+    flex-grow: 1;
+    text-align: right;
+    @include u-padding-right(1);
+
+    @include at-media("desktop") {
+      text-align: left;
+      padding: 0;
+    }
   }
 }
