@@ -1,0 +1,14 @@
+{
+  "collectionName": "components_usecase_usecase_lists",
+  "info": {
+    "name": "usecaseList",
+    "icon": "atom"
+  },
+  "options": {},
+  "attributes": {
+    "filter": {
+      "type": "boolean",
+      "default": true
+    }
+  }
+}

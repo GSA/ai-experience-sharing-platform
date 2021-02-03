@@ -12,7 +12,7 @@ describe("<PrimaryNavFooter />", () => {
           <PrimaryNavFooter />
         </TestProvider>
       );
-      const button = wrapper.find(".sign-in a");
+      const button = wrapper.find(".usa-auth-button");
       button.simulate("click");
       wrapper.update();
     });

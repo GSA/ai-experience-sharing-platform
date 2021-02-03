@@ -3,79 +3,85 @@ import context from "./context";
 
 export const name = "content";
 
+const filterTypes = {
+  boolean: ({ filter = [], filterName, value, operand, type }) => {
+    const foundFilter = filter.find((item) => item.name === filterName);
+    let rVal;
+    if (foundFilter) {
+      const filterList = filter.filter((item) => item.name !== filterName);
+      rVal = [...filterList, { name: filterName, value, operand, type }];
+    } else {
+      rVal = [...filter, { name: filterName, value, operand, type }];
+    }
+    return rVal;
+  },
+  enumeration: ({ filter = [], filterName, value, operand, type }) => {
+    const foundFilter = filter.find((item) => item.name === filterName);
+    let rVal;
+    if (foundFilter) {
+      const filterList = filter.filter((item) => item.name !== filterName);
+      const newValues = foundFilter.value.includes(value)
+        ? foundFilter.value.filter((item) => item !== value)
+        : [...foundFilter.value, value];
+      rVal = [
+        ...filterList,
+        { name: filterName, value: newValues, operand, type },
+      ];
+    } else {
+      rVal = [...filter, { name: filterName, value: [value], operand, type }];
+    }
+    return rVal;
+  },
+};
+
 export const initialState = {
-  list: { pending: false, data: [], error: null },
+  list: {
+    pending: false,
+    type: "",
+    filter: [],
+    sort: { name: "", dir: "" },
+    data: [],
+    error: null,
+  },
   page: { pending: false, data: {}, error: null },
   taxonomy: { pending: false, data: [], error: null },
 };
 
-const getToken = (type, state) => {
-  const sendToken = state?.auth?.authenticatedTypes
-    ? state.auth.authenticatedTypes[type]
-    : false;
-  return sendToken ? state.auth.token : null;
-};
-
 export const getPage = createAsyncThunk(
   `${name}/getPage`,
-  async ({ type = "pages", slug = "", liftHero = false }, thunkAPI) => {
-    const token = getToken(type, thunkAPI.getState());
-
-    return await context.getContentTypeByName({ type, slug, token, liftHero });
-  }
-);
-export const getTaxonomy = createAsyncThunk(
-  `${name}/getTaxonomy`,
-  async ({ type }, thunkAPI) => {
-    const token = getToken(type, thunkAPI.getState());
-
-    return await context.getTaxonomyByContentType({ type, token });
+  async ({ type = "pages", slug = "" }, thunkAPI) => {
+    return await context.getContentTypeByName({ type, slug, thunkAPI });
   }
 );
 
 export const getList = createAsyncThunk(
   `${name}/getList`,
-  async ({ type, query }, thunkAPI) => {
-    const token = getToken(type, thunkAPI.getState());
-
-    return await context.getAllByContentType({ type, query, token });
+  async (props, thunkAPI) => {
+    return await context.getAllByContentType({ thunkAPI, props });
   }
 );
 
 const pending = (key, state) => {
   return {
     ...state,
-    [key]: { ...initialState[key], pending: true },
+    [key]: { ...state[key], error: null, pending: true },
   };
 };
 const fulfilled = (key, state, action) => {
   return {
     ...state,
-    [key]: { ...initialState[key], data: action.payload },
+    [key]: { ...state[key], data: action.payload, error: null, pending: false },
   };
 };
 const rejected = (key, state, action) => {
   return {
     ...state,
-    [key]: { ...initialState[key], error: action.error },
-  };
-};
-const fulfilledPage = (key, state, action) => {
-  let payload;
-
-  if((action.payload || {}).liftHero) {
-    const heroContent = (action.payload.content || []).filter(c => c.__component === "content.markdown" && (c.className || '').includes('usa-hero'));
-    payload = {
-      heroContent,
-      ...action.payload,
-      content: (action.payload.content || []).filter(c => c !== heroContent[0]),
-    };
-  } else {
-    payload = action.payload;
-  }
-  return {
-    ...state,
-    [key]: { ...initialState[key], data: payload },
+    [key]: {
+      ...state[key],
+      data: action.payload,
+      error: action.error,
+      pending: false,
+    },
   };
 };
 
@@ -86,22 +92,67 @@ export const ContentModule = createSlice({
     reset: () => initialState,
     clearPage: (state) => ({ ...state, page: initialState.page }),
     clearList: (state) => ({ ...state, list: initialState.list }),
+    setListDefaults: (state, { payload = {} }) => {
+      return {
+        ...state,
+        list: { ...state.list, ...payload },
+      };
+    },
+    setListFilter: (state, action) => {
+      const { filter: currentFilter = [] } = state.list;
+
+      const { name: filterName, value, operand, type } = action.payload;
+      // does name exist in filter
+      const filter =
+        type in filterTypes
+          ? filterTypes[type]({
+              filter: currentFilter,
+              filterName,
+              value,
+              operand,
+              type,
+            })
+          : [...currentFilter];
+
+      return { ...state, list: { ...state.list, filter } };
+    },
+    resetListFilter: (state) => ({
+      ...state,
+      list: { ...state.list, filter: {} },
+    }),
+    setListSort: (state, action) => {
+      const { name = "", dir = "ASC" } = action.payload;
+      return {
+        ...state,
+        list: { ...state.list, sort: { name, dir } },
+      };
+    },
+    resetListSort: (state) => ({
+      ...state,
+      list: { ...state.list, sort: initialState.list.sort },
+    }),
   },
   extraReducers: {
     [getPage.pending]: (state) => pending("page", state),
-    [getPage.fulfilled]: (state, action) => fulfilledPage("page", state, action),
-    [getPage.rejected]: (state, action) => rejected("page", state, action),
+    [getPage.fulfilled]: (state, action) => fulfilled("page", state, action),
+    [getPage.rejected]: (state, action) =>
+      rejected("page", state, { ...action, payload: {} }),
     [getList.pending]: (state) => pending("list", state),
     [getList.fulfilled]: (state, action) => fulfilled("list", state, action),
-    [getList.rejected]: (state, action) => rejected("list", state, action),
-    [getTaxonomy.pending]: (state) => pending("taxonomy", state),
-    [getTaxonomy.fulfilled]: (state, action) =>
-      fulfilled("taxonomy", state, action),
-    [getTaxonomy.rejected]: (state, action) =>
-      rejected("taxonomy", state, action),
+    [getList.rejected]: (state, action) =>
+      rejected("list", state, { ...action, payload: [] }),
   },
 });
 
-export const { reset, clearPage, clearList } = ContentModule.actions;
+export const {
+  reset,
+  clearPage,
+  clearList,
+  setListDefaults,
+  setListFilter,
+  resetListFilter,
+  setListSort,
+  resetListSort,
+} = ContentModule.actions;
 
 export default ContentModule.reducer;

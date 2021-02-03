@@ -11,6 +11,7 @@ import List from "./templates/List";
 import Mdx from "features/Mdx";
 import Carousel from "features/Carousel";
 import Title from "./templates/Title";
+import ContentList from "./templates/ContentList";
 import kebab from "utils/kebab";
 
 const components = {
@@ -21,12 +22,25 @@ const components = {
   grid: GridModule,
   links: Links,
   list: List,
-  markdown: ({ body, className, renderTitles }) => (
+  markdown: ({ body, className }) => (
     <div className={classnames({ USMarkdown: true, [className]: className })}>
       <Mdx>{body}</Mdx>
     </div>
   ),
   title: Title,
+  "usecase-list": (props) => (
+    <ContentList
+      filters={true}
+      layout={true}
+      sidebar={true}
+      defaultLayout={"vertical"}
+      sort={true}
+      type={"usecases"}
+    />
+  ),
+  "content-list": (props) => {
+    return <ContentList {...props} />;
+  },
 };
 
 const Layout = ({ items, data, renderTitles }) => {
@@ -35,7 +49,7 @@ const Layout = ({ items, data, renderTitles }) => {
     const Comp = components[compType[1]];
 
     if (!Comp) {
-      console.warn(`Module type "${compType}" not defined.`);
+      console.warn(`Module type "${compType[1]}" not defined.`);
       return null;
     }
     return Comp ? (
@@ -47,7 +61,10 @@ const Layout = ({ items, data, renderTitles }) => {
           <Comp key={`USLayout-${++i}`} {...props} data={data} />
         </>
       ) : (
-        <Grid key={`layout-${++i}`} className={props.className}>
+        <Grid
+          key={`layout-${++i}`}
+          className={`margin-bottom-4 ${props.className}`}
+        >
           {renderTitles && props.title && (
             <h2 id={kebab(props.title)}>{props.title}</h2>
           )}
@@ -61,6 +78,7 @@ const Layout = ({ items, data, renderTitles }) => {
 Layout.defaultProps = {
   items: [],
   data: {},
+  renderTitles: false,
 };
 
 Layout.propTypes = {

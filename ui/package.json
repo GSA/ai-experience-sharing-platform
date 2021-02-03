@@ -7,7 +7,7 @@
     "@fortawesome/free-regular-svg-icons": "^5.14.0",
     "@fortawesome/free-solid-svg-icons": "^5.13.1",
     "@fortawesome/react-fontawesome": "^0.1.11",
-    "@mdx-js/runtime": "^1.6.11",
+    "@mdx-js/runtime": "^1.6.22",
     "@reduxjs/toolkit": "^1.5.0",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
@@ -21,6 +21,7 @@
     "node-env-run": "^4.0.2",
     "node-sass": "^4.14.1",
     "prop-types": "^15.7.2",
+    "qs": "^6.9.6",
     "query-string": "^6.13.5",
     "react": "^16.13.1",
     "react-axe": "^3.5.3",
@@ -33,6 +34,7 @@
     "react-responsive-carousel": "^3.2.11",
     "react-router-dom": "^5.2.0",
     "react-scripts": "^4.0.1",
+    "redux-watch": "^1.2.0",
     "uswds": "^2.9.0"
   },
   "scripts": {

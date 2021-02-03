@@ -8,7 +8,11 @@
   "options": {
     "increments": true,
     "timestamps": true,
-    "draftAndPublish": false
+    "draftAndPublish": false,
+    "privateAttributes": [
+      "contactName",
+      "contactEmail"
+    ]
   },
   "attributes": {
     "title": {
@@ -16,6 +20,12 @@
     },
     "slug": {
       "type": "uid"
+    },
+    "description": {
+      "type": "text"
+    },
+    "keywords": {
+      "type": "string"
     },
     "version": {
       "type": "decimal"
@@ -30,7 +40,8 @@
       "type": "string"
     },
     "contactName": {
-      "type": "string"
+      "type": "string",
+      "private": true
     },
     "contactAgency": {
       "type": "string"
@@ -62,7 +73,8 @@
       "type": "string"
     },
     "contactEmail": {
-      "type": "string"
+      "type": "string",
+      "private": true
     },
     "contactApprovalRequiredBy": {
       "type": "string"
@@ -172,11 +184,17 @@
         "content.cards",
         "content.list-item",
         "content.list",
-        "content.markdown"
+        "content.markdown",
+        "content.hero"
       ]
     },
-    "keywords": {
-      "type": "string"
+    "featuredOrder": {
+      "type": "integer"
+    },
+    "related": {
+      "type": "component",
+      "repeatable": true,
+      "component": "menu.menu"
     }
   }
 }

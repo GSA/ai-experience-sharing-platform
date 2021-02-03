@@ -7,13 +7,8 @@
   },
   "options": {},
   "attributes": {
-    "key": {
-      "type": "enumeration",
-      "enum": [
-        "pages",
-        "usecases",
-        "bodyOfKnowledge"
-      ]
+    "title": {
+      "type": "string"
     },
     "className": {
       "type": "string"
@@ -21,11 +16,52 @@
     "fullwidth": {
       "type": "boolean"
     },
-    "title": {
-      "type": "string"
-    },
     "filter": {
       "type": "boolean"
+    },
+    "type": {
+      "type": "enumeration",
+      "enum": [
+        "pages",
+        "usecases",
+        "boks",
+        "markdown"
+      ],
+      "required": true
+    },
+    "defaultFilter": {
+      "type": "component",
+      "repeatable": true,
+      "component": "content.content-list-filter"
+    },
+    "sort": {
+      "type": "boolean"
+    },
+    "defaultSort": {
+      "type": "component",
+      "repeatable": false,
+      "component": "content.content-list-sort"
+    },
+    "layout": {
+      "type": "boolean"
+    },
+    "defaultLayout": {
+      "type": "enumeration",
+      "enum": [
+        "vertical",
+        "horizontal"
+      ]
+    },
+    "template": {
+      "type": "enumeration",
+      "enum": [
+        "usecase",
+        "bok",
+        "markdown"
+      ]
+    },
+    "markdown": {
+      "type": "richtext"
     }
   }
 }

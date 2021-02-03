@@ -1,0 +1,20 @@
+{
+  "collectionName": "components_content_content_list_sorts",
+  "info": {
+    "name": "contentListSort",
+    "icon": "sort-alpha-down"
+  },
+  "options": {},
+  "attributes": {
+    "key": {
+      "type": "string"
+    },
+    "direction": {
+      "type": "enumeration",
+      "enum": [
+        "asc",
+        "desc"
+      ]
+    }
+  }
+}

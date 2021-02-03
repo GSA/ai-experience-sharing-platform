@@ -17,6 +17,7 @@ export const initialState = {
   },
   keymaps: {},
   filters: {},
+  sort: [],
   bokModules: [],
   dapAgency: "",
 };
@@ -33,12 +34,12 @@ export const getMenus = createAsyncThunk(
 
 export const getUsecaseSettings = createAsyncThunk(
   `${name}/getUsecaseSettings`,
-  async () => await context.getUsecaseSettings()
+  async (props, thunkAPI) => await context.getUsecaseSettings({ thunkAPI })
 );
 
 export const getUsecaseFilters = createAsyncThunk(
   `${name}/getUsecaseFilters`,
-  async () => await context.getUsecaseFilters()
+  async (props, thunkAPI) => await context.getUsecaseFilters({ thunkAPI })
 );
 
 export const SiteModule = createSlice({
@@ -55,7 +56,7 @@ export const SiteModule = createSlice({
       return { ...state, menus: action.payload };
     },
     [getUsecaseSettings.fulfilled]: (state, action) => {
-      return { ...state, keymaps: action.payload };
+      return { ...state, ...action.payload };
     },
     [getUsecaseFilters.fulfilled]: (state, action) => {
       return { ...state, filters: action.payload };

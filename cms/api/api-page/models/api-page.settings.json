@@ -17,6 +17,9 @@
     "slug": {
       "type": "uid"
     },
+    "description": {
+      "type": "text"
+    },
     "content": {
       "type": "dynamiczone",
       "components": [
@@ -24,13 +27,10 @@
         "content.markdown",
         "content.callout",
         "content.cards",
-        "content.carousel"
-      ]
-    },
-    "leftSidebar": {
-      "type": "dynamiczone",
-      "components": [
-        "menu.menu"
+        "content.carousel",
+        "usecase.usecase-list",
+        "content.content-list",
+        "content.hero"
       ]
     }
   }

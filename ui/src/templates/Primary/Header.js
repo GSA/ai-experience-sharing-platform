@@ -10,6 +10,17 @@ import useMenuSelector from "utils/useMenuSelector";
 import { name as siteName } from "app/SiteModule";
 import { useSelector } from "react-redux";
 import PrimaryNavFooter from "features/PrimaryNavFooter";
+import Icon from "components/Icon";
+
+const CustomText = ({ text }) => {
+  const parts = text.split(".");
+  return (
+    <>
+      <span className="CustomText__prefix">{parts[0]}</span>
+      <span className="CustomText__suffix">{parts[1]}</span>
+    </>
+  );
+};
 
 const Header = ({ className, variant }) => {
   const history = useHistory();
@@ -33,21 +44,19 @@ const Header = ({ className, variant }) => {
   // For all menu links
   const handleClick = (value) => {
     setActiveMenuItem(null);
+    setMenuOpen(false);
     history.push(value.link);
-  };
-
-  const getFooter = () => {
-    return (
-      <>
-        <PrimaryNavFooter />
-      </>
-    );
   };
 
   // For menu item matches current path
   const currentMenuItem = history.location.pathname;
   const { items = [] } = useMenuSelector("primary");
   const { title } = useSelector((state) => state[siteName]);
+
+  const menuItems = items.map((item) => ({
+    ...item,
+    text: <CustomText text={item.text} />,
+  }));
 
   return (
     <header
@@ -61,26 +70,26 @@ const Header = ({ className, variant }) => {
       <Grid className="margin-y-2">
         <Row>
           <Col size="12">
-            <Row className="align-items-center">
-              <Col size="2">
+            <Row gap="2" className="flex-align-center">
+              <Col className="usa-header__logo">
                 <Link url="/" className="usa-logo">
                   <span className="usa-logo__text">{title}</span>
                 </Link>
               </Col>
-              <Col size="10" className="usa-header__nav">
-                <Row className="flex-align-center height-full">
-                  <PrimaryNav
-                    items={items}
-                    varaint="basic"
-                    isMobileMenuOpen={isMenuOpen}
-                    onMobileMenuClick={handleMenuToggle}
-                    activeMenuItem={activeMenuItem}
-                    currentMenuItem={currentMenuItem}
-                    onClick={handleClick}
-                    onMenuItemClick={handleMenuItemClick}
-                    footer={getFooter()}
-                  />
-                </Row>
+              <Col className="usa-header__nav">
+                <PrimaryNav
+                  items={menuItems}
+                  varaint="basic"
+                  isMobileMenuOpen={isMenuOpen}
+                  onMobileMenuClick={handleMenuToggle}
+                  activeMenuItem={activeMenuItem}
+                  currentMenuItem={currentMenuItem}
+                  onClick={handleClick}
+                  onMenuItemClick={handleMenuItemClick}
+                  footer={<PrimaryNavFooter />}
+                  open={<Icon icon="bars" />}
+                  close={<Icon icon="times" />}
+                />
               </Col>
             </Row>
           </Col>
@@ -91,9 +100,8 @@ const Header = ({ className, variant }) => {
 };
 
 Header.propTypes = {
-  logo: PropTypes.node,
-  nav: PropTypes.node,
-  hero: PropTypes.node,
+  className: PropTypes.string,
+  varaint: PropTypes.string,
 };
 
 export default Header;

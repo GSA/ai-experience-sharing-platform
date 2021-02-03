@@ -7,21 +7,14 @@
   },
   "options": {},
   "attributes": {
-    "items": {
-      "type": "component",
-      "repeatable": true,
-      "component": "content.markdown",
-      "max": 3,
-      "min": 1
+    "title": {
+      "type": "string"
     },
     "className": {
       "type": "string"
     },
     "fullwidth": {
       "type": "boolean"
-    },
-    "title": {
-      "type": "string"
     },
     "variant": {
       "type": "enumeration",
@@ -31,6 +24,13 @@
       ],
       "required": true,
       "default": "checkmark"
+    },
+    "items": {
+      "type": "component",
+      "repeatable": true,
+      "component": "content.markdown",
+      "max": 3,
+      "min": 1
     }
   }
 }

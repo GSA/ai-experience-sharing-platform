@@ -1,0 +1,11 @@
+.usa-auth-button {
+  background: transparent;
+  border: none;
+  outline: none;
+
+  span {
+    display: block;
+    @include u-font-family("serif");
+    @include u-color("white");
+  }
+}

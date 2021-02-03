@@ -38,14 +38,16 @@ const Nav = ({
         })}
       >
         <div className="usa-nav__inner">
-          <button
-            id="usa-nav-close"
-            type="button"
-            className="usa-nav-close"
-            onClick={onMobileMenuClick}
-          >
-            {close}
-          </button>
+          <div className="text-right">
+            <button
+              id="usa-nav-close"
+              type="button"
+              className="usa-nav-close"
+              onClick={onMobileMenuClick}
+            >
+              {close}
+            </button>
+          </div>
           {header && <div className="usa-nav__header">{header}</div>}
           <ul className="usa-accordion usa-nav__primary">
             {items.map((item, idx) => {
@@ -83,29 +85,6 @@ Nav.defaultProps = {
   activeMenuItem: null,
   onMenuItemClick: () => console.log("onMenuItemClick clicked!"),
   onClick: () => console.log("onClick clicked!"),
-  renderLink: (props) => {
-    const splitText = (props.text || '').split(' ');
-    const lastText = splitText.pop();
-    return (
-      <a href={props.link} {...props}>
-        {splitText.join(' ')}
-        <span className="last">
-          {lastText}
-        </span>
-      </a>
-    );
-  },
-  renderMenuItem: (props) => {
-    const splitText = (props.title || '').split(' ');
-    const lastText = splitText.pop();
-    return (
-      <button {...props}>
-        {splitText.join(' ')}
-        <span className="last">
-          {lastText}
-        </span>
-      </button>);
-  },
   open: "Menu",
   close: "Close",
 };

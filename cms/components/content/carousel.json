@@ -7,14 +7,14 @@
   },
   "options": {},
   "attributes": {
+    "title": {
+      "type": "string"
+    },
     "className": {
       "type": "string"
     },
     "fullWidth": {
       "type": "boolean"
-    },
-    "title": {
-      "type": "string"
     },
     "images": {
       "type": "component",
