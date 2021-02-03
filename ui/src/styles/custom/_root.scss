@@ -29,3 +29,11 @@ main#main-content {
     margin-left: .5em;
     filter: drop-shadow(0px 16px 20px rgba(0, 0, 0, 0.1));
 }
+
+.usa-button--primary.usa-button--unstyled {
+    color: $x-charcoal;
+}
+
+.usa-accordion__button {
+    background-color: #ffffff;
+}
