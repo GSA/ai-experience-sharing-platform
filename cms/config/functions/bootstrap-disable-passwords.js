@@ -5,7 +5,7 @@ const disableAdminPasswords = async () => {
     if (attrs && attrs.password) {
       attrs.password = null;
     }
-    strapi.log.info(`Admin user change: ${_.pick(attrs, ['id', 'username', 'email'])}`);
+    strapi.log.info(`Admin user change: ${JSON.stringify(_.pick(attrs, ['id', 'username', 'email']))}`);
     return callback(id, attrs);
   };
   const auditAdminDelete = async (callback, where) => {
