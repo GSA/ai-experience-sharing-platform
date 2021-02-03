@@ -40,6 +40,7 @@ export const initialState = {
     type: "",
     filter: [],
     sort: { name: "", dir: "" },
+    searchTerm: "",
     data: [],
     error: null,
   },
@@ -131,6 +132,12 @@ export const ContentModule = createSlice({
       ...state,
       list: { ...state.list, sort: initialState.list.sort },
     }),
+    setSearchTerm: (state, action) => {
+      return {
+        ...state,
+        list: { ...state.list, searchTerm: action.payload },
+      }
+    },
   },
   extraReducers: {
     [getPage.pending]: (state) => pending("page", state),
@@ -153,6 +160,7 @@ export const {
   resetListFilter,
   setListSort,
   resetListSort,
+  setSearchTerm,
 } = ContentModule.actions;
 
 export default ContentModule.reducer;
