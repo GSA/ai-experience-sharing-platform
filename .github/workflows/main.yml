@@ -29,7 +29,7 @@ jobs:
     name: "build a matrix of frontend builds"
     runs-on: ubuntu-latest
     outputs:
-      matrix: ${{ steps.set-matrix-main.outputs.matrix }} ${{ steps.set-matrix-pr-develop.outputs.matrix }} ${{ steps.set-matrix-pr-main.outputs.matrix }} ${{ steps.set-matrix-develop.outputs.matrix }}
+      matrix: ${{ steps.set-matrix-main.outputs.matrix }} ${{ steps.set-matrix-pr-develop.outputs.matrix }} ${{ steps.set-matrix-pr-main.outputs.matrix }} ${{ steps.set-matrix-develop.outputs.matrix }} ${{ steps.set-matrix-release.outputs.matrix }} ${{ steps.set-matrix-pr-release.outputs.matrix }}
     steps:
       - id: debug-info
         run: echo ${{ github.event_name }} ${{ github.base_ref }}
