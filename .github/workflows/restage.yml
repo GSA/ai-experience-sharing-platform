@@ -2,7 +2,7 @@ name: "Cloud.gov periodic restage"
 
 on:
   schedule:
-    - cron: '5 3 4 * *'
+    - cron: '5 3 * * *'
 
 jobs:
 
@@ -25,6 +25,10 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+
+      - name: Display structure of cwd
+        run: ls -R
+        working-directory: .
 
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v1
