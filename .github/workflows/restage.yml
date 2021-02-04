@@ -56,8 +56,7 @@ jobs:
       - name: Setup CF CLI
         run: |
           curl -L "https://packages.cloudfoundry.org/stable?release=linux64-binary&source=github&version=v6" | tar -zx
-          ls -R
-          cf version
+          ./cf version
         working-directory: .
 
       - name: Display structure of cwd
@@ -65,5 +64,5 @@ jobs:
         working-directory: .
 
       - name: Restage deployed images
-        run: cf target -o tts-ai-digitalpresence -s ${{ matrix.deployenv }} && cf restage strapi-api-host --strategy rolling
+        run: ./cf target -o tts-ai-digitalpresence -s ${{ matrix.deployenv }} && ./cf restage strapi-api-host --strategy rolling
         working-directory: .
