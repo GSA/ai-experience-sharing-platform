@@ -21,15 +21,19 @@ jobs:
         working-directory: cms
 
     strategy:
+      fail-fast: false
       matrix:
         include: 
           - deployenv: dev
+            cfenv: dev
             cf_user_secret: CF_USER_DEV
             cf_password_secret: CF_PASSWORD_DEV
           - deployenv: staging
+            cfenv: staging
             cf_user_secret: CF_USER_STAGING
             cf_password_secret: CF_PASSWORD_STAGING
           - deployenv: production
+            cfenv: prod
             cf_user_secret: CF_USER_PROD
             cf_password_secret: CF_PASSWORD_PROD
 
@@ -55,6 +59,6 @@ jobs:
         run: |
           ./cf api https://api.fr.cloud.gov 
           ./cf auth
-          ./cf target -o tts-ai-digitalpresence -s ${{ matrix.deployenv }} 
+          ./cf target -o tts-ai-digitalpresence -s ${{ matrix.cfenv }} 
           ./cf restage strapi-api-host --strategy rolling
         working-directory: .
