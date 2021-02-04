@@ -65,8 +65,8 @@ jobs:
 
       - name: Restage deployed images
         run: |
-          ./cf auth
           ./cf api https://api.fr.cloud.gov 
+          ./cf auth
           ./cf target -o tts-ai-digitalpresence -s ${{ matrix.deployenv }} 
           ./cf restage strapi-api-host --strategy rolling
         working-directory: .
