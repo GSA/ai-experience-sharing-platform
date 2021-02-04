@@ -6,7 +6,7 @@ const ROOT_URL = process.env.REACT_APP_API_URL || "";
 
 const generateQuery = (state) => {
   const list = state?.content?.list;
-  const { filter, sort } = list;
+  const { filter, sort, searchTerm } = list;
 
   let query = "";
   if (filter.length) {
@@ -22,7 +22,12 @@ const generateQuery = (state) => {
   }
 
   if (sort.name) {
-    query = `${query}&_sort=${sort.name}:ASC`;
+    const joiner = query.length ? '&' : '';
+    query = `${query}${joiner}_sort=${sort.name}:ASC`;
+  }
+  if (searchTerm && searchTerm.length) {
+    const joiner = query.length ? '&' : '';
+    query = `${query}${joiner}keywords_contains=${searchTerm}`
   }
   return query;
 };

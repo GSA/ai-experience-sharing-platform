@@ -27,7 +27,7 @@ const Page = ({ slug }) => {
   const layoutContent = content.filter(
     (item) => item.__component !== "content.hero"
   );
-  console.log("pending", pending);
+
   if (pending) {
     return (
       <Grid>

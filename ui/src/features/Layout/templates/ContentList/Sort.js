@@ -6,14 +6,14 @@ import { setListSort } from "app/ContentModule";
 
 const Sort = () => {
   const dispatch = useDispatch();
-  const { keymaps, sort } = useSelector((state) => state[name]);
+  const { keymaps, sort = [] } = useSelector((state) => state[name]);
 
   const handleChange = (e) => {
     const { currentTarget: { value: name } = {} } = e;
     dispatch(setListSort({ name }));
   };
 
-  const items = sort.map((value) => ({ key: keymaps[value], value }));
+  const items = sort ? sort.map((value) => ({ key: keymaps[value], value })) : [];
 
   return (
     <div className="USContentList__sort-control">
