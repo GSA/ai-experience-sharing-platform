@@ -37,3 +37,19 @@ main#main-content {
 .usa-accordion__button {
     background-color: #ffffff;
 }
+
+.usa-accordion__button {
+    background-color: #ffffff;
+}
+
+.USFilterControl.usa-accordion {
+    @include u-margin-bottom(2);
+}
+
+.usa-accordion__button[aria-expanded="false"] {
+    @include add-background-svg("chevron");
+}
+
+.usa-accordion__button {
+    @include add-background-svg("chevron");
+}
