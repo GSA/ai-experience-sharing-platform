@@ -53,17 +53,14 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name: Setup Terraform
-        uses: hashicorp/setup-terraform@v1
-        with:
-          terraform_version: 0.13.4
+      - name: Setup CF CLI
+        run: |
+          curl -L "https://packages.cloudfoundry.org/stable?release=linux64-binary&source=github&version=v6" | tar -zx
+          cf version
+        working-directory: .
 
       - name: Display structure of cwd
         run: ls -R
-        working-directory: .
-
-      - name: Terraform Init
-        run: terraform init -input=false deployment/workspaces/${{ matrix.deployenv }}
         working-directory: .
 
       - name: Restage deployed images
