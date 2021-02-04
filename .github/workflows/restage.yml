@@ -26,27 +26,15 @@ jobs:
           - deployenv: dev
             cf_user_secret: CF_USER_DEV
             cf_password_secret: CF_PASSWORD_DEV
-            aws_access_key_id_secret: AWS_ACCESS_KEY_ID_DEV
-            aws_secret_access_key_secret: AWS_SECRET_ACCESS_KEY_DEV
-            aws_default_region: us-gov-west-1
           - deployenv: staging
             cf_user_secret: CF_USER_STAGING
             cf_password_secret: CF_PASSWORD_STAGING
-            aws_access_key_id_secret: AWS_ACCESS_KEY_ID_STAGING
-            aws_secret_access_key_secret: AWS_SECRET_ACCESS_KEY_STAGING
-            aws_default_region: us-gov-west-1
           - deployenv: production
             cf_user_secret: CF_USER_PROD
             cf_password_secret: CF_PASSWORD_PROD
-            aws_access_key_id_secret: AWS_ACCESS_KEY_ID_PROD
-            aws_secret_access_key_secret: AWS_SECRET_ACCESS_KEY_PROD
-            aws_default_region: us-gov-west-1
 
     env:
-      AWS_ACCESS_KEY_ID: ${{ secrets[matrix.aws_access_key_id_secret] }}
-      AWS_SECRET_ACCESS_KEY: ${{ secrets[matrix.aws_secret_access_key_secret] }}
-      AWS_DEFAULT_REGION: ${{ secrets[matrix.aws_default_region] }}
-      CF_USER: ${{ secrets[matrix.cf_user_secret] }}
+      CF_USERNAME: ${{ secrets[matrix.cf_user_secret] }}
       CF_PASSWORD: ${{ secrets[matrix.cf_password_secret] }}
 
     steps:
