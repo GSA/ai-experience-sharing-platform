@@ -3,6 +3,12 @@ name: "Cloud.gov periodic restage"
 on:
   schedule:
     - cron: '5 3 * * *'
+  workflow_dispatch:
+    inputs:
+      logLevel:
+        description: 'Log level'     
+        required: true
+        default: 'warning'
 
 jobs:
 
