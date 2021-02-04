@@ -32,14 +32,14 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name: Display structure of cwd
-        run: ls -R
-        working-directory: .
-
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v1
         with:
           terraform_version: 0.13.4
+
+      - name: Display structure of cwd
+        run: ls -R
+        working-directory: .
 
       - name: Terraform Init
         run: terraform init -input=false deployment/workspaces/${{ matrix.deployenv }}
