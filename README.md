@@ -1,6 +1,6 @@
 # AI Experience Sharing Platform
 
-[![Actions Status](https://github.com/GSA/ai-experience-sharing-platform/workflows/ai.digital.gov/badge.svg)](https://github.com/GSA/ai-experience-sharing-platform/actions) ![CodeQL](https://github.com/GSA/ai-experience-sharing-platform/workflows/CodeQL/badge.svg)
+[![Actions Status](https://github.com/GSA/ai-experience-sharing-platform/workflows/ai.digital.gov/badge.svg)](https://github.com/GSA/ai-experience-sharing-platform/actions) ![CodeQL](https://github.com/GSA/ai-experience-sharing-platform/workflows/CodeQL/badge.svg) ![Cloud.gov periodic restage](https://github.com/GSA/ai-experience-sharing-platform/workflows/Cloud.gov%20periodic%20restage/badge.svg)
 
 Consists of
  - Community of Practice
