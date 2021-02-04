@@ -43,7 +43,7 @@ jobs:
 
       - name: Setup CF CLI
         run: |
-          curl -L "https://packages.cloudfoundry.org/stable?release=linux64-binary&source=github&version=v6" | tar -zx
+          curl -L "https://packages.cloudfoundry.org/stable?release=linux64-binary&source=github&version=v7" | tar -zx
           ./cf version
         working-directory: .
 
