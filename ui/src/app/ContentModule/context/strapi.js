@@ -1,6 +1,8 @@
 /* istanbul ignore file */
 const { getOptions } = require("utils/http");
 const { getToken } = require("utils/getToken");
+const { logout } = require("app/AuthModule");
+const qs = require('qs');
 
 const ROOT_URL = process.env.REACT_APP_API_URL || "";
 
@@ -16,7 +18,13 @@ const generateQuery = (state) => {
           ? Boolean(item.value)
           : Boolean(item.value.length);
       })
-      .map((item) => `${item.name}_${item.operand}=${item.value}`)
+          .map((item) => {
+            if (Array.isArray(item.value)) {
+              return item.value.map((value) => `${item.name}_${item.operand}=${value}`)
+            } else {
+              return `${item.name}_${item.operand}=${item.value}`
+            }})
+      .flat()
       .join("&");
     query = `${query}${filterQuery}`;
   }
@@ -33,6 +41,7 @@ const generateQuery = (state) => {
 };
 
 export const getAllByContentType = async ({ thunkAPI }) => {
+  const dispatch = thunkAPI.dispatch;
   const state = thunkAPI.getState();
   const type = state?.content?.list?.type;
   const token = getToken(type, state);
@@ -48,6 +57,9 @@ export const getAllByContentType = async ({ thunkAPI }) => {
       options
     );
     data = await response.json();
+    if (response.status === 401) {
+      dispatch(logout());
+    }
     if (!response.ok) {
       throw new Error(data.message);
     }
@@ -59,6 +71,7 @@ export const getAllByContentType = async ({ thunkAPI }) => {
 };
 
 export const getContentTypeByName = async ({ type, slug, thunkAPI }) => {
+  const dispatch = thunkAPI.dispatch;
   const token = getToken(type, thunkAPI.getState());
   const options = getOptions(token);
   let data;
@@ -68,6 +81,9 @@ export const getContentTypeByName = async ({ type, slug, thunkAPI }) => {
       options
     );
     data = await response.json();
+    if (response.status === 401) {
+      dispatch(logout());
+    }
     if (!response.ok) {
       throw new Error(data.message);
     }

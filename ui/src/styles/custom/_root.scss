@@ -6,7 +6,7 @@ h1 {
     font-size: 36px;
 }
 
-.usa-app {
+.usa-app, html {
     background: $x-randombg;
     color: $x-charcoal;
 }
@@ -27,7 +27,7 @@ main#main-content {
     padding-right: 2em;
     padding-left: .5em;
     margin-left: .5em;
-    filter: drop-shadow(0px 16px 20px rgba(0, 0, 0, 0.1));
+    filter: $x-drop-shadow;
 }
 
 .usa-button--primary.usa-button--unstyled {

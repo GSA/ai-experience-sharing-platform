@@ -49,7 +49,7 @@ const Bok = ({ slug: slugOverride }) => {
       <div className="usa-app__bg">
         <Head title={data.title} />
         {hero && <Hero {...hero} />}
-        <div className={`US__${data.slug}-content`}>
+        <div className={`US__content US__${data.slug}-content`}>
           <Grid>
             <Row gap="2">
               <Col
