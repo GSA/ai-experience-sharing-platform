@@ -2,7 +2,6 @@
 const { getOptions } = require("utils/http");
 const { getToken } = require("utils/getToken");
 const { logout } = require("app/AuthModule");
-const qs = require('qs');
 
 const ROOT_URL = process.env.REACT_APP_API_URL || "";
 

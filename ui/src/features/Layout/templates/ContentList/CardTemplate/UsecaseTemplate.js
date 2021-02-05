@@ -1,7 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
 import Button from "features/Button";
-import Date from "components/Date";
 import Keymap from "features/Keymap";
 import Card from "components/Card";
 
