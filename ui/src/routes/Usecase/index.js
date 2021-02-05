@@ -11,7 +11,9 @@ import Login from "features/Login";
 import ContentNav from "features/ContentNav";
 import FourOhFour from "routes/FourOhFour";
 import Layout from "features/Layout";
+import Date from "components/Date";
 import Details from "./Details";
+import Submit from "./Submit";
 
 export const Usecase = ({ slug: overrideSlug }) => {
   const dispatch = useDispatch();
@@ -51,6 +53,9 @@ export const Usecase = ({ slug: overrideSlug }) => {
                 <h4>Sections</h4>
                 <ContentNav items={data.content} />
               </div>
+              <div>
+                <Submit />
+              </div>
             </Col>
             <Col size={8} className="padding-right-4 usecase-header">
               <Grid>
@@ -72,7 +77,7 @@ export const Usecase = ({ slug: overrideSlug }) => {
                   <>
                     <span>
                       <span className="desc">Interview Date </span>
-                      <span>{data.interview_date}</span>
+                      <span><Date>{data.interview_date}</Date></span>
                     </span>
                   </>
                 )}

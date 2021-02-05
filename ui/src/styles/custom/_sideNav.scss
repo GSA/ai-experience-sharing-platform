@@ -1,0 +1,28 @@
+
+.usa-sidenav {
+    background-color: $x-whiteish;
+    border-bottom: 0;
+    filter: $x-drop-shadow;
+    a {
+        text-decoration: underline;
+    }
+}
+
+.usa-sidenav__item {
+    border-top: 0;
+    &.current {
+        background-color: $x-charcoal;
+    }
+    .usa-current {
+        color: $x-whiteish;
+        font-weight: 400;
+    }
+}
+
+.usa-sidenav__sublist {
+    background-color: $x-whiteish;
+}
+
+.usa-sidenav .usa-current::after {
+    background-color: initial;
+}

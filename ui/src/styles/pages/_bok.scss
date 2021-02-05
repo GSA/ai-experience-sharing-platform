@@ -38,9 +38,9 @@ $bgImgDir: "~styles/images";
         background: linear-gradient(180deg, #F4F3F3 0%, #78E3FB 100%);
         background-size: auto 300%;
     }
-    .bok-content-bg {
+    .US__content {
         .grid-row {
-            padding-top: 1rem;
+            @include u-padding-top(4);
         }
         background: linear-gradient(180deg, rgba(120, 227, 251, 0.088) 0%, rgba(41, 42, 43, 0.1) 51.77%, rgba(120, 227, 251, 0.088) 87.5%);
     }

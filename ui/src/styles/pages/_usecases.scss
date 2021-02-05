@@ -1,6 +1,6 @@
 $bgImgDir: "~styles/images";
 
-.US__usecases {
+.US__usecases, .US__usecase_home {
     padding-top: 2rem;
     background: linear-gradient(179.89deg, rgba(120, 227, 251, 0.15) 0.1%, rgba(255, 255, 255, 0.5) 2.64%, rgba(255, 255, 255, 0.5) 94.97%, rgba(120, 227, 251, 0.08) 97.61%);
 
@@ -54,6 +54,29 @@ $bgImgDir: "~styles/images";
             font-weight: 700;
         }
     }
+    
+    .sections {
+        li {
+          list-style-type: none;
+          margin-bottom: 1rem;
+          a {
+            color: $x-charcoal;
+          }
+        }
+        ul {
+          padding-left: 0;
+        }
+        .panel {
+          background-color: $x-whiteish;
+          filter: drop-shadow(0px 16px 20px rgba(0, 0, 0, 0.1));
+          padding: 0.5rem;
+        }
+    }
+    .use-case-details.panel {
+        background-color: $x-whiteish;
+        filter: drop-shadow(0px 16px 20px rgba(0, 0, 0, 0.1));
+        padding: 0.5rem;
+    }
 
 
     h2 {
@@ -63,17 +86,23 @@ $bgImgDir: "~styles/images";
     
     .submit-use-case {
         .usa-card__container {
-            border-radius: 0;
-            border-width: 0;
-            background-color: $x-dark-card;
-            color: $x-whiteish;
-            box-shadow: 0px 10px 24px rgba(0, 0, 0, 0.15);
         }
         button:only-of-type {
             border-radius: 1.5rem;
             display: block;
             margin-left: auto;
             margin-right: auto;
+        }
+    }
+    .view-all-use-cases {
+        .usa-button {
+            background-color: $x-whiteish;
+            border-color: $theme-color-primary;
+            color: $theme-color-primary;
+            border-width: 2px;
+            border-style: solid;
+            @include u-padding-left(4);
+            @include u-padding-right(4);
         }
     }
 }
