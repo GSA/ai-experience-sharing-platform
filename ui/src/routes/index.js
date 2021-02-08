@@ -15,7 +15,7 @@ export default ({ location }) => (
       <Bok />
     </Route>
     <Route path="/bok" exact>
-      <Bok slug="introduction" />
+      <Page slug="bok" />
     </Route>
     <Route path="/usecases/:slug">
       <Usecase />

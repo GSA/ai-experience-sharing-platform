@@ -16,7 +16,7 @@ describe("AdminLogin", () => {
         </TestProvider>
       );
       await runAsyncRender(wrapper);
-      expect(wrapper.find("button").text()).toMatch("Agree and Continue");
+      expect(wrapper.find("button.Login__link").text()).toMatch("Agree and Continue");
     });
   });
 });

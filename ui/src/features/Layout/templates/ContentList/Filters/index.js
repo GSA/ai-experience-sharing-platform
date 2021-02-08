@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getUsecaseFilters, name as siteName } from "app/SiteModule";
 import { setListFilter } from "app/ContentModule";
 
-const Filters = () => {
+const Filters = ({ footer }) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -35,6 +35,8 @@ const Filters = () => {
       {filterData.map((filter) => {
         return <FilterControl onChange={handleChange} {...filter} />;
       })}
+
+      {footer}
     </div>
   );
 };
