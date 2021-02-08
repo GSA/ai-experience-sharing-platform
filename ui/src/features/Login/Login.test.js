@@ -33,7 +33,7 @@ describe("<Login />", () => {
       expect(wrapper.find("h1#test-login").length).toBe(1);
     });
 
-    it("should set redirect", async () => {
+    xit("should set redirect", async () => {
       const wrapper = mount(
         <TestProvider store={store} route={["/test"]}>
           <Login>
@@ -48,7 +48,7 @@ describe("<Login />", () => {
       expect(redirect).toBe("/test");
     });
 
-    it("should render error", async () => {
+    xit("should render error", async () => {
       await store.dispatch(login({ provider: "error" }));
       const wrapper = mount(
         <TestProvider store={store} route={["/test"]}>

@@ -4,5 +4,16 @@ export const cms = {
     "interviewDate": true,
     "publishedDate": true,
     "updated_at": true,
-  }
+  },
+  usecaseDetailsOrder: [
+    'publishedDate',
+    'metadataBenefits',
+    'metadataDevelopmentPhase',
+    'metadataAiMlTechniques',
+    'metadataAiLifecycleStage',
+    'metadataEnvironment',
+    'metadataSpiiPiiUse',
+    'metadataAgency',
+    'metadataSubAgency'
+  ],
 };

@@ -6,7 +6,6 @@ import Card from "components/Card";
 
 const UsecaseTemplate = (props) => {
   const metaDataList = [
-    "metadataAgency",
     "metadataAiLifecycleStage",
     "metadataAiMlTechniques",
     "metadataDevelopmentPhase",
@@ -16,11 +15,12 @@ const UsecaseTemplate = (props) => {
     "metadataSpiiPiiUse",
   ];
 
-  const { description, title, /*publishedDate,*/ slug } = props;
+  const { description, title, metadataAgency, /*publishedDate,*/ slug } = props;
   return (
     <Card
       className="ai-uc"
       title={title}
+      meta={metadataAgency}
     >
       {/*<div className="font-sans-2xs">
         Published: <Date format="M/D/YYYY">{publishedDate}</Date>

@@ -49,3 +49,30 @@ export const createAdminSession = async ({ token }) => {
   }
   return data;
 };
+
+export const refreshToken = async ({ thunkAPI }) => {
+  const state = thunkAPI.getState();
+  const token = state?.auth?.token;
+
+  if (!token) {
+    return;
+  }
+
+  const options = getOptions(token);
+  options.method = "POST";
+  options.credentials = 'include';
+  options.headers['Content-type'] = 'application/json';
+  options.body = "{}";
+  const requestURL = `${ROOT_URL}/logingov-admin/refresh`;
+  let data;
+  try {
+    const response = await fetch(requestURL, options);
+    data = await response.json();
+    if (!response.ok) {
+      throw new Error(`${data.error} - ${data.message.message}`);
+    }
+  } catch (e) {
+    throw new Error(e);
+  }
+  return data;
+};

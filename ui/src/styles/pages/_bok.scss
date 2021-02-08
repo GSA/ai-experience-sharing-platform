@@ -1,11 +1,6 @@
 $bgImgDir: "~styles/images";
 
-.US__bok_bok {
-    .usa-hero {
-        &.USMarkdown {
-            background-image: url($bgImgDir + "/bok_hero.png");
-        }
-    }
+.US__introduction {
     .US__bok-bg {
         background: linear-gradient(180deg, rgba(120, 227, 251, 0.088) 0%, rgba(41, 42, 43, 0.1) 51.77%, rgba(120, 227, 251, 0.088) 87.5%);
     }
@@ -42,6 +37,9 @@ $bgImgDir: "~styles/images";
         .grid-row {
             @include u-padding-top(4);
         }
+        @include at-media("desktop") {
+            min-height: 52rem;
+        }
         background: linear-gradient(180deg, rgba(120, 227, 251, 0.088) 0%, rgba(41, 42, 43, 0.1) 51.77%, rgba(120, 227, 251, 0.088) 87.5%);
     }
 
@@ -66,6 +64,10 @@ $bgImgDir: "~styles/images";
         &.USMarkdown {
             background-image: url($bgImgDir + "/bok1_hero.png");
         }
+    }
+
+    p, .usa-prose > p {
+        max-width: initial;
     }
 }
 

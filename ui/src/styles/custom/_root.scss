@@ -53,3 +53,10 @@ main#main-content {
 .usa-accordion__button {
     @include add-background-svg("chevron");
 }
+
+.Login__link {
+    img {
+        display: block;
+        margin: .5rem auto 0 auto;
+    }
+}
