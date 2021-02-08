@@ -14,6 +14,7 @@ import Button from "features/Button";
 import Sort from "./Sort";
 import CardTemplate from "./CardTemplate";
 import Filters from "./Filters";
+import Sidebar from "./Sidebar";
 
 const ContentList = ({
   type = "usecases",
@@ -21,7 +22,6 @@ const ContentList = ({
   defaultFilter,
   sort,
   defaultSort,
-  sidebar,
   layout,
   defaultLayout,
   template,
@@ -30,12 +30,19 @@ const ContentList = ({
   const dispatch = useDispatch();
 
   const [variant, setVariant] = useState(defaultLayout);
+  const [sidebar, setSidebar] = useState(false);
 
   const handleVariant = (value) => setVariant(value);
 
   const state = useSelector((state) => state[contentName]);
   const { list: { data } = {} } = state;
 
+  useEffect(() => {
+    if (type === "usecases" && variant === "horizontal") {
+      setSidebar(true);
+    }
+  }, [type, variant]);
+  
   useEffect(() => {
     if (type === "usecases") {
       dispatch(getUsecaseSettings());
@@ -54,7 +61,7 @@ const ContentList = ({
       dispatch(clearList());
     };
   }, [dispatch, type, defaultFilter, defaultSort]);
-
+  
   const setWidth = () => {
     let size = 12;
 
@@ -70,6 +77,14 @@ const ContentList = ({
     return size.toString();
   };
 
+  const cardWidth = () => {
+    if (type === "boks" && variant === "vertical") {
+      return "4";
+    } else {
+      return "6";
+    }
+  };
+  
   const [showFilters, setShowFilters] = useState(false);
   return (
     <div
@@ -138,7 +153,7 @@ const ContentList = ({
             {data.map((item, i) => (
               <Col
                 key={`content-list-item-${i}`}
-                desktop={variant === "horizontal" ? "12" : "6"}
+                desktop={variant === "horizontal" ? "12" : cardWidth()}
               >
                 <CardTemplate
                   template={template}
@@ -149,7 +164,7 @@ const ContentList = ({
             ))}
           </Row>
         </Col>
-        {sidebar && variant === "horizontal" && <Col desktop="3">See also</Col>}
+        {sidebar && variant === "horizontal" && <Col desktop="3"><Sidebar /></Col>}
       </Row>
     </div>
   );
@@ -158,7 +173,6 @@ const ContentList = ({
 ContentList.defaultProps = {
   filter: false,
   sort: false,
-  sidebar: false,
   layout: false,
 };
 

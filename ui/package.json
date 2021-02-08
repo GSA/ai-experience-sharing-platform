@@ -15,6 +15,7 @@
     "classnames": "^2.2.6",
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.4",
+    "fetch-retry": "^4.0.1",
     "framer-motion": "^2.9.4",
     "http-proxy-middleware": "^1.0.6",
     "moment": "^2.29.1",

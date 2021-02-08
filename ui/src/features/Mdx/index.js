@@ -11,6 +11,10 @@ import List from "components/List";
 import Select from "components/Select";
 import ContentList from "features/ContentList";
 import Login from "features/Login";
+import LoginError from "features/Login/LoginError";
+import LoginMoreInfo from "features/Login/LoginMoreInfo";
+import LoginSetPath from "features/Login/LoginSetPath";
+import UsecaseLoginRedirect from "features/Login/UsecaseLoginRedirect";
 import Logout from "features/Logout";
 
 import Link from "features/Link";
@@ -30,7 +34,11 @@ export const shortcodes = {
   Select,
   ContentList,
   Login,
-  Logout
+  LoginError,
+  LoginMoreInfo,
+  LoginSetPath,
+  UsecaseLoginRedirect,
+  Logout,
 };
 
 const Mdx = ({ children, className, components, scope }) => {

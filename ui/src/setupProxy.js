@@ -13,6 +13,7 @@ module.exports = function (app) {
     "api-boks",
     "api-usecase-settings",
     "api-usecases/filters/all",
+    "api-search-suggestions",
     "api-usecases",
     "upload-auth",
     "upload",

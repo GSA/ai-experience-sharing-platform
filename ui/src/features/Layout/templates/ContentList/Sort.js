@@ -13,9 +13,12 @@ const Sort = () => {
     dispatch(setListSort({ name }));
   };
 
-  const items = sort ? sort.map((value) => ({ key: keymaps[value], value })) : [];
+  const items = sort ? sort.map((value) => {
+    const key = value === "publishedDate" ? "Most Recent" : keymaps[value]
+    return {key, value };
+  }) : [];
 
-  return (
+  return (<>
     <div className="USContentList__sort-control">
       <span className="USContentList__sort-label">{"Sort by: "}</span>
       <Select
@@ -26,7 +29,7 @@ const Sort = () => {
         onChange={handleChange}
       />
     </div>
-  );
+  </>);
 };
 
 export default Sort;

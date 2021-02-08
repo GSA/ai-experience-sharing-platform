@@ -6,13 +6,15 @@ export default (store) => {
   store.subscribe(
     watcher(
       (
-        { pending: p1, error: e1, data: d1, ...newVal },
-        { pending: p2, error: e2, data: d2, ...oldVal }
+        { pending: p1, error: e1, data: d1, errorCount: ec1, ...newVal },
+        { pending: p2, error: e2, data: d2, errorCount: ec2, ...oldVal }
       ) => {
         const newV = JSON.stringify(newVal);
         const oldV = JSON.stringify(oldVal);
         if (newV !== oldV) {
           store.dispatch(getList());
+        } else if (e1?.message?.includes('Forbidden') && ec2 < 5) {
+          setTimeout((() => store.dispatch(getList())), 500);
         }
       }
     )
