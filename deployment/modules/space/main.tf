@@ -62,6 +62,7 @@ resource "cloudfoundry_app" "strapi-api-host" {
   path             = "./deployment/strapi-build-image.zip"
   memory           = var.strapi_memory
   instances        = var.strapi_instances
+  disk_quota       = 1536
   source_code_hash = data.archive_file.strapi-image-zip.output_base64sha256
   strategy         = "blue-green"
   timeout          = 600

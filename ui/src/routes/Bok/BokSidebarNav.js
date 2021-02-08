@@ -32,7 +32,7 @@ const BokSidebarNav = ({ current = "" }) => {
             `${currentBokModuleId}-`
           );
           return (
-            <li key={item.slug} className={classnames({"usa-sidenav__item": true, current: isCurrentModule})}>
+            <li key={item.slug} className={classnames({"usa-sidenav__item": true, current: item.bokSectionId === current})}>
               <Link
                 url={`/bok/${[item.slug]}`}
                 className={isCurrentModule ? "usa-current" : ""}
@@ -41,11 +41,12 @@ const BokSidebarNav = ({ current = "" }) => {
               </Link>
               {isCurrentModule && (
                 <ul className="usa-sidenav__sublist">
-                  {bokModuleItems.map((child) => (
-                    <li key={child.slug} className="usa-sidenav__item">
-                      <Link url={`/bok/${child.slug}`}>{child.title}</Link>
-                    </li>
-                  ))}
+                  {bokModuleItems.map((child) => {
+                    const isCurrentModule = child.bokSectionId === current;
+                    return <li key={child.slug} className={classnames({"usa-sidenav__item": true, current: isCurrentModule})}>
+                             <Link url={`/bok/${child.slug}`}>{child.title}</Link>
+                           </li>;
+                  })}
                 </ul>
               )}
             </li>

@@ -7,6 +7,7 @@ import { Grid, Row, Col } from "components/Grid";
 import { Loading } from "components/Loading";
 import LoginMoreInfo from "features/Login/LoginMoreInfo";
 import LoginError from "features/Login/LoginError";
+import LoginSetPath from "features/Login/LoginSetPath";
 
 export const AdminLogin = ({ match: { url } }) => {
   const dispatch = useDispatch();
@@ -33,7 +34,7 @@ export const AdminLogin = ({ match: { url } }) => {
             <Grid className="text-center margin-y-10 padding-y-10">
           <div className="text-center">
             <h1>You must be logged in to view this content.</h1>
-            <LoginError />
+            <LoginError /><LoginSetPath postLoginUrl="/loginadmin" />
           </div>
           <Row>
             <Col size="4" offset="4" className="text-center margin-y-5 padding-y-5">
