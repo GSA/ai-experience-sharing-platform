@@ -12,9 +12,14 @@
     border-top: 0;
     &.current {
         background-color: $x-charcoal;
+        color: $x-whiteish;
+        a {
+            background-color: $x-charcoal;
+            color: $x-whiteish;
+        }
     }
     .usa-current {
-        color: $x-whiteish;
+        color: $x-charcoal;
         font-weight: 400;
     }
 }
@@ -25,4 +30,5 @@
 
 .usa-sidenav .usa-current::after {
     background-color: initial;
+    color: $x-charcoal;
 }
