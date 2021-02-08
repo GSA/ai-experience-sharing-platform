@@ -48,7 +48,7 @@ const Page = ({ slug }) => {
       <div className="usa-app__bg">
         {hero && <Hero {...hero} />}
         <Head title={data.title} />
-        <div className={`US__${data.slug}-content`}>
+        <div className={`US__content US__${data.slug}-content`}>
           <Layout items={layoutContent} renderTitles={false} />
         </div>
       </div>

@@ -54,6 +54,10 @@ main#main-content {
     @include add-background-svg("chevron");
 }
 
+.US__content {
+    @include u-padding-top(4);
+}
+
 .Login__link {
     img {
         display: block;

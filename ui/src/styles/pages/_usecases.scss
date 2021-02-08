@@ -1,7 +1,13 @@
 $bgImgDir: "~styles/images";
 
+.US__page.US__usecases {
+    .US__usecases-content {
+        @include u-padding-top(4);
+    }
+}
+
 .US__usecases, .US__usecase_home {
-    padding-top: 2rem;
+    @include u-padding-top(4);
     background: linear-gradient(179.89deg, rgba(120, 227, 251, 0.15) 0.1%, rgba(255, 255, 255, 0.5) 2.64%, rgba(255, 255, 255, 0.5) 94.97%, rgba(120, 227, 251, 0.08) 97.61%);
 
     h1, h2, h3, h4 {

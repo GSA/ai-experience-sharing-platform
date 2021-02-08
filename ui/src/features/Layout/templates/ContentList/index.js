@@ -15,6 +15,8 @@ import Sort from "./Sort";
 import CardTemplate from "./CardTemplate";
 import Filters from "./Filters";
 import Sidebar from "./Sidebar";
+import UsecaseSubmit from "features/UsecaseSubmit";
+
 
 const ContentList = ({
   type = "usecases",
@@ -35,7 +37,7 @@ const ContentList = ({
   const handleVariant = (value) => setVariant(value);
 
   const state = useSelector((state) => state[contentName]);
-  const { list: { data } = {} } = state;
+  const { list: { data, searchTerm } = {} } = state;
 
   useEffect(() => {
     if (type === "usecases" && variant === "horizontal") {
@@ -84,6 +86,14 @@ const ContentList = ({
       return "6";
     }
   };
+
+  const filterFooter = () => {
+    if (type === 'usecases') {
+      return <UsecaseSubmit />
+    } else {
+      return null;
+    }
+  };
   
   const [showFilters, setShowFilters] = useState(false);
   return (
@@ -102,7 +112,9 @@ const ContentList = ({
               </strong>
             )}
           </Col>
-          <Col desktop="6"></Col>
+          <Col desktop="6">
+            {searchTerm.length ? <h2>Search results for "{searchTerm}"</h2> : null}
+          </Col>
           {(sort || layout) && (
             <Col
               desktop="3"
@@ -145,7 +157,7 @@ const ContentList = ({
                 : "USContentList__filter--hidden"
             }
           >
-            <Filters />
+            <Filters footer={filterFooter()} />
           </Col>
         )}
         <Col desktop={setWidth()}>
