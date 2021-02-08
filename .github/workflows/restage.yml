@@ -2,7 +2,13 @@ name: "Cloud.gov periodic restage"
 
 on:
   schedule:
-    - cron: '5 3 4 * *'
+    - cron: '5 3 * * *'
+  workflow_dispatch:
+    inputs:
+      logLevel:
+        description: 'Log level'     
+        required: true
+        default: 'warning'
 
 jobs:
 
@@ -15,24 +21,44 @@ jobs:
         working-directory: cms
 
     strategy:
+      fail-fast: false
       matrix:
-        deployenv: [dev, staging, production]
+        include: 
+          - deployenv: dev
+            cfenv: dev
+            cf_user_secret: CF_USER_DEV
+            cf_password_secret: CF_PASSWORD_DEV
+          - deployenv: staging
+            cfenv: staging
+            cf_user_secret: CF_USER_STAGING
+            cf_password_secret: CF_PASSWORD_STAGING
+          - deployenv: production
+            cfenv: prod
+            cf_user_secret: CF_USER_PROD
+            cf_password_secret: CF_PASSWORD_PROD
 
     env:
-      CF_USER: ${{ secrets[matrix.cf_user_secret] }}
+      CF_USERNAME: ${{ secrets[matrix.cf_user_secret] }}
       CF_PASSWORD: ${{ secrets[matrix.cf_password_secret] }}
 
     steps:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name: Setup Terraform
-        uses: hashicorp/setup-terraform@v1
-        with:
-          terraform_version: 0.13.4
+      - name: Setup CF CLI
+        run: |
+          curl -L "https://packages.cloudfoundry.org/stable?release=linux64-binary&source=github&version=v7" | tar -zx
+          ./cf version
+        working-directory: .
 
-      - name: Terraform Init
-        run: terraform init -input=false deployment/workspaces/${{ matrix.deployenv }}
+      - name: Display structure of cwd
+        run: ls -R
+        working-directory: .
 
       - name: Restage deployed images
-        run: cf target -o tts-ai-digitalpresence -s ${{ matrix.deployenv }} && cf restage strapi-api-host --strategy rolling
+        run: |
+          ./cf api https://api.fr.cloud.gov 
+          ./cf auth
+          ./cf target -o tts-ai-digitalpresence -s ${{ matrix.cfenv }} 
+          ./cf restage strapi-api-host --strategy rolling
+        working-directory: .

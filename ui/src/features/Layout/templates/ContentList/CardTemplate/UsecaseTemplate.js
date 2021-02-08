@@ -1,12 +1,12 @@
 import React from "react";
 import PropTypes from "prop-types";
 import Button from "features/Button";
-import Date from "components/Date";
 import Keymap from "features/Keymap";
 import Card from "components/Card";
 
 const UsecaseTemplate = (props) => {
   const metaDataList = [
+    "metadataAgency",
     "metadataAiLifecycleStage",
     "metadataAiMlTechniques",
     "metadataDevelopmentPhase",
@@ -16,18 +16,17 @@ const UsecaseTemplate = (props) => {
     "metadataSpiiPiiUse",
   ];
 
-  const { description, title, metadataAgency, publishedDate, slug } = props;
+  const { description, title, /*publishedDate,*/ slug } = props;
   return (
     <Card
       className="ai-uc"
       title={title}
-      meta={metadataAgency}
-      footer={<Button url={`/usecases/${slug}`}>Read use case</Button>}
     >
-      <div className="font-sans-2xs">
+      {/*<div className="font-sans-2xs">
         Published: <Date format="M/D/YYYY">{publishedDate}</Date>
-      </div>
+        </div>*/}
       <p>{description}</p>
+      <Button url={`/usecases/${slug}`}>Read use case</Button>
       <p>
         {metaDataList
           .filter((item) => Boolean(props[item]))

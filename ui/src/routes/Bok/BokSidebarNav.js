@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Link from "features/Link";
+import classnames from "classnames";
 
 const BokSidebarNav = ({ current = "" }) => {
   const [bokList, setBokList] = useState([]);
@@ -31,7 +32,7 @@ const BokSidebarNav = ({ current = "" }) => {
             `${currentBokModuleId}-`
           );
           return (
-            <li key={item.slug} className="usa-sidenav__item">
+            <li key={item.slug} className={classnames({"usa-sidenav__item": true, current: isCurrentModule})}>
               <Link
                 url={`/bok/${[item.slug]}`}
                 className={isCurrentModule ? "usa-current" : ""}
