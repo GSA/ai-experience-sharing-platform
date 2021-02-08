@@ -15,6 +15,14 @@
       "config": {
         "policies": []
       }
+    },
+    {
+      "method": "POST",
+      "path": "/refresh",
+      "handler": "logingov-refresh.index",
+      "config": {
+        "policies": []
+      }
     }
   ]
 }

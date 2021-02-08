@@ -16,7 +16,7 @@ describe("AdminLogin", () => {
         </TestProvider>
       );
       await runAsyncRender(wrapper);
-      expect(wrapper.find("h1").text()).toMatch("logged");
+      expect(wrapper.find("button").text()).toMatch("Agree and Continue");
     });
   });
 });

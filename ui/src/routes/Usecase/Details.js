@@ -9,7 +9,10 @@ import { cms } from "utils/cms";
 const Format = ({ name, value }) => {
   if (cms.dates[name]) {
     return <Date format="long">{value}</Date>;
+  } else if ( typeof value === 'boolean') {
+    return value ? 'Yes' : 'No';
   }
+  
   return Array.isArray(value) ? value.join(", ") : value;
 };
 
@@ -18,12 +21,15 @@ const Details = ({ items }) => {
 
   const { keymaps = {} } = site;
   const mapKeys = keymaps !== null ? keymaps : {};
+
   return (
     <div>
       <div className="use-case-details panel">
         <h4>Details</h4>
-        {Object.entries(items).map(([key, value], i) => {
-          if (key in mapKeys) {
+        {cms.usecaseDetailsOrder.map((detailKey, i) => {
+          if (!!items[detailKey] && detailKey in mapKeys) {
+            const key = detailKey;
+            const value = items[detailKey];
             const title = key in mapKeys ? mapKeys[key] : key;
             const text = value in mapKeys ? mapKeys[value] : Format({name: key, value});
             return <div key={i}>

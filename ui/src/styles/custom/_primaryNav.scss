@@ -276,7 +276,9 @@
       display: block;
     }
   }
-
+  &__suffix {
+    text-transform: uppercase;
+  }
   &__prefix {
     display: inline-block;
     @include u-margin-right(1);

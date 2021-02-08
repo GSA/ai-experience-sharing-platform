@@ -13,7 +13,7 @@ import FourOhFour from "routes/FourOhFour";
 import Layout from "features/Layout";
 import Date from "components/Date";
 import Details from "./Details";
-import Submit from "./Submit";
+import UsecaseSubmit from "features/UsecaseSubmit";
 
 export const Usecase = ({ slug: overrideSlug }) => {
   const dispatch = useDispatch();
@@ -54,7 +54,7 @@ export const Usecase = ({ slug: overrideSlug }) => {
                 <ContentNav items={data.content} />
               </div>
               <div>
-                <Submit />
+                <UsecaseSubmit />
               </div>
             </Col>
             <Col size={8} className="padding-right-4 usecase-header">
