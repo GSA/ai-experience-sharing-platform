@@ -9,10 +9,10 @@ const Footer = () => {
   const { title, footer = [] } = useSelector((state) => state[siteName]);
 
   const social = [
-    { key: "facebook", title: "Facebook", link: "/#" },
-    { key: "twitter", title: "Twitter", link: "/#" },
-    { key: "youtube", title: "YouTube", link: "/#" },
-    { key: "rss", title: "RSS", link: "/#" },
+    { key: "facebook", title: "Facebook", link: "https://www.facebook.com/GSA/" },
+    { key: "twitter", title: "Twitter", link: "https://twitter.com/usgsa" },
+    { key: "youtube", title: "YouTube", link: "https://www.youtube.com/usgsa" },
+    { key: "rss", title: "RSS", link: "http://www.gsa.gov/_rssfeed/newsReleases.xml" },
   ];
 
   return (
@@ -73,7 +73,16 @@ const Footer = () => {
         </Grid>
       </div>
       <div className="usa-footer__primary-section">
-        <Identifier />
+        <Identifier
+          agencyUrl="https://www.gsa.gov"
+          aboutUrl="https://www.gsa.gov/about-us"
+          a11yUrl="https://www.gsa.gov/website-information/accessibility-aids"
+          foiaUrl="https://www.gsa.gov/reference/freedom-of-information-act-foia"
+          fealUrl="https://www.gsa.gov/reference/civil-rights-programs/notification-and-federal-employee-antidiscrimination-and-retaliation-act-of-2002"
+          oigUrl="https://www.gsaig.gov/"
+          reportsUrl="https://www.gsa.gov/reference/gsa-plans-and-reports"
+          privacyUrl="https://www.gsa.gov/website-information/website-policies"
+        />
       </div>
     </footer>
   );

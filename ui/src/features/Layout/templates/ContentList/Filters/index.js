@@ -12,11 +12,20 @@ const Filters = ({ footer }) => {
   }, [dispatch]);
   const state = useSelector((state) => state);
   const { filters, keymaps } = state[siteName];
+  const sortTitles = (a, b) => {
+    const compA = a.title.toUpperCase();
+    const compB = b.title.toUpperCase();
+    if (compA < compB)
+      return -1;
+    if (compA > compB)
+      return 1;
+    return 0;
+  };
   const filterData = Object.entries(filters).reduce((acc, [key, value]) => {
     const title = keymaps[key] || key;
     const enums = value.enum || [];
     const type = value.type;
-    const items = enums.map((enm) => ({ name: enm, title: keymaps[enm] }));
+    const items = enums.map((enm) => ({ name: enm, title: keymaps[enm] })).sort(sortTitles);
     const filterItem = { key, name: key, title, items, type };
 
     if (!keymaps[key]) {
@@ -24,7 +33,7 @@ const Filters = ({ footer }) => {
     }
 
     return [...acc, filterItem];
-  }, []);
+  }, []).sort(sortTitles);
 
   const handleChange = (props) => {
     dispatch(setListFilter(props));

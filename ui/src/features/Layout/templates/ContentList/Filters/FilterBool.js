@@ -7,6 +7,10 @@ const FilterBool = ({ value: defaultValue, name, onChange, operand }) => {
   const [value, setValue] = useState(defaultValue);
 
   const items = ["true", "false"];
+  const translations = {
+    "true": "yes",
+    "false": "no",
+  };
 
   const handleClick = (val) => {
     const newVal = val === value ? null : val;
@@ -32,7 +36,7 @@ const FilterBool = ({ value: defaultValue, name, onChange, operand }) => {
                 "text-ink": !isChecked,
               })}
             />
-            <span className="USFilterControl__item-label">{item}</span>
+            <span className="USFilterControl__item-label">{translations[item]}</span>
           </span>
         );
       })}
