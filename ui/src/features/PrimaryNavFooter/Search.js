@@ -1,5 +1,5 @@
-import React from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import Icon from "components/Icon";
 import { setSearchTerm } from "app/ContentModule";
 import { useHistory } from "react-router-dom";
@@ -7,11 +7,19 @@ import { useHistory } from "react-router-dom";
 const Search = (props) => {
   const dispatch = useDispatch();
   const history = useHistory();
-  const { list: { searchTerm } } = useSelector((state) => state.content);
+  const [searchInput, setSearchInput] = useState('');
 
   const handleChange = (event) => {
-    dispatch(setSearchTerm(event.target.value));
+    setSearchInput(event.target.value);
+    if (event.target.value === "") {
+      dispatch(setSearchTerm(event.target.value));
+    }
+  };
+
+  const handleSubmit = (event) => {
+    dispatch(setSearchTerm(searchInput));
     history.push('/usecases');
+    event.preventDefault();
   };
 
   return (
@@ -21,7 +29,8 @@ const Search = (props) => {
       acceptCharset="UTF-8"
       id="search_form"
       method="get"
-    >
+      onSubmit={handleSubmit}
+      >
       <input name="utf8" type="hidden" value="&#x2713;" />
       <input type="hidden" name="affiliate" id="affiliate" value="AI" />
       <label className="usa-sr-only" htmlFor="query">
@@ -34,7 +43,7 @@ const Search = (props) => {
         className="usa-input"
         type="search"
         placeholder="Search"
-        value={searchTerm}
+        value={searchInput}
         onChange={handleChange}
       />
       <button
