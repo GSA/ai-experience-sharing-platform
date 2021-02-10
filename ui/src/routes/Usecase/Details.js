@@ -4,6 +4,7 @@ import Date from "components/Date";
 import { useSelector } from "react-redux";
 import { name as siteName } from "app/SiteModule";
 import { cms } from "utils/cms";
+import Link from "features/Link";
 
 /* eslint-disable */
 const Format = ({ name, value }) => {

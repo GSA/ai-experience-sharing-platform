@@ -85,7 +85,7 @@ NavItem.defaultProps = {
       {props.text}
     </a>
   ),
-  renderMenuItem: (props) => <button {...props}>{props.title}</button>,
+  renderMenuItem: (props) => <button {...props} title={props.title}>{props.title}</button>,
   renderSubItem: (props) => (
     <a href={props.link} {...props}>
       {props.text}
