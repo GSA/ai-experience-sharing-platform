@@ -37,7 +37,7 @@ const ContentList = ({
   const handleVariant = (value) => setVariant(value);
 
   const state = useSelector((state) => state[contentName]);
-  const { list: { data, searchTerm } = {} } = state;
+  const { searchTerm, list: { data } = {} } = state;
 
   useEffect(() => {
     if (type === "usecases" && variant === "horizontal") {

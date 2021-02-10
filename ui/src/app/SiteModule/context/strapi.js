@@ -65,6 +65,7 @@ export const getUsecaseSettings = async ({ thunkAPI }) => {
     keymaps: data.usecaseFilterTitles,
     metadata: data.usecaseMetadataOrder,
     sort: data.usecaseSortFields,
+    usecaseFilterCounts: data.usecaseFilterCounts,
   };
 };
 

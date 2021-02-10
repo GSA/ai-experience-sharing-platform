@@ -7,7 +7,7 @@ import { getPage, name as contentName } from "app/ContentModule";
 
 import Hero from "components/Hero";
 import { Grid, Row, Col } from "components/Grid";
-import Login from "features/Login";
+import { LoginContent } from "features/LoginContent";
 import ContentNav from "features/ContentNav";
 import FourOhFour from "routes/FourOhFour";
 import Layout from "features/Layout";
@@ -43,7 +43,7 @@ export const Usecase = ({ slug: overrideSlug }) => {
     return <FourOhFour />;
   }
   return (
-    <Login>
+    <LoginContent>
       <div className={`USLayout US__usecases US__${slug}`}>
         {hero && <Hero {...hero} />}
         <Grid>
@@ -90,7 +90,7 @@ export const Usecase = ({ slug: overrideSlug }) => {
           </Row>
         </Grid>
       </div>
-    </Login>
+    </LoginContent>
   );
 };
 

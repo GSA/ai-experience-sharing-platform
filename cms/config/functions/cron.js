@@ -28,9 +28,12 @@ module.exports = {
   '33 * * * *': async () => {
     const counts = {};
     for (const filter of strapi.config.useCases.filters) {
-      counts[filter] = await strapi.services['api-usecase'].count({
-        [filter]: strapi.models['api-usecase'].attributes[filter]['enum'],
-      });
+      counts[filter] = counts[filter] ? counts[filter] : {};
+      for (const filterOption of (strapi.models['api-usecase'].attributes[filter]['enum'] || [])) {
+        counts[filter][filterOption] = await strapi.services['api-usecase'].count({
+          [filter]: filterOption
+        });
+      }
     }
 
     const settings = await strapi.services['api-usecase-settings'].find() || {};

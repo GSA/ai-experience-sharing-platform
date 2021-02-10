@@ -9,6 +9,7 @@ import Head from "routes/Head";
 import Layout from "features/Layout";
 import useAssertion from "utils/useAssertion";
 import useScrollToTop from "utils/useScrollToTop";
+import useSearchString from "utils/useSearchString";
 import Hero from "components/Hero";
 
 const Page = ({ slug }) => {
@@ -21,6 +22,7 @@ const Page = ({ slug }) => {
     dispatch(getPage({ slug: pageSlug }));
   }, [dispatch, pageSlug]);
   useAssertion();
+  useSearchString();
   const { pending, data, error } = page;
   const { content = [] } = data;
   const hero = content.find((item) => item.__component === "content.hero");
