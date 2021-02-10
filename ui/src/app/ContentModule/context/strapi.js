@@ -7,7 +7,8 @@ const ROOT_URL = process.env.REACT_APP_API_URL || "";
 
 const generateQuery = (state) => {
   const list = state?.content?.list;
-  const { filter, sort, searchTerm } = list;
+  const { filter, sort } = list;
+  const { searchTerm } = state?.content;
 
   let query = "";
   if (filter.length) {

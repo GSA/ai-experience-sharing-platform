@@ -11,7 +11,7 @@ const Filters = ({ footer }) => {
     dispatch(getUsecaseFilters());
   }, [dispatch]);
   const state = useSelector((state) => state);
-  const { filters, keymaps } = state[siteName];
+  const { filters, keymaps, usecaseFilterCounts } = state[siteName];
   const sortTitles = (a, b) => {
     const compA = a.title.toUpperCase();
     const compB = b.title.toUpperCase();
@@ -25,7 +25,9 @@ const Filters = ({ footer }) => {
     const title = keymaps[key] || key;
     const enums = value.enum || [];
     const type = value.type;
-    const items = enums.map((enm) => ({ name: enm, title: keymaps[enm] })).sort(sortTitles);
+    const items = enums.map((enm) => ({ name: enm, title: keymaps[enm] }))
+          .sort(sortTitles)
+          .filter((f) => usecaseFilterCounts[key][f.name] > 0);
     const filterItem = { key, name: key, title, items, type };
 
     if (!keymaps[key]) {
