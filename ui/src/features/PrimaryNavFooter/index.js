@@ -51,6 +51,8 @@ const PrimaryNavFooter = () => {
     ],
   };
 
+  const renderMenuItem = (props) => <button {...props} title={`Hello ${email}`}>{props.title}</button>;
+
   return (
     <Row gap="2" className="flex-align-center">
       <Col
@@ -72,6 +74,7 @@ const PrimaryNavFooter = () => {
               onMenuItemClick={handleMenuItemClick}
               isOpen={activeMenuItem === nodeId}
               onClick={handleLogout}
+              renderMenuItem={renderMenuItem}
             />
           </ul>
         ) : (

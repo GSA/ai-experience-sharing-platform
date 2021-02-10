@@ -13,7 +13,7 @@
     &.current {
         background-color: $x-charcoal;
         color: $x-whiteish;
-        a {
+        > a {
             background-color: $x-charcoal;
             color: $x-whiteish;
         }
