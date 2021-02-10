@@ -10,7 +10,9 @@ export default () => {
   const { redirect } = useSelector((state) => state.auth);
 
   useEffect(() => {
-    if (search) {
+    const params = new URLSearchParams(search);
+
+    if (params.get('id_token')) {
       dispatch(login({ provider: "logingov", search }));
       if (redirect) {
         push(redirect);

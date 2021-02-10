@@ -40,13 +40,13 @@ export const initialState = {
     type: "",
     filter: [],
     sort: { name: "publishedDate", dir: "ASC" },
-    searchTerm: "",
     data: [],
     error: null,
     errorCount: 0,
   },
   page: { pending: false, data: {}, error: null },
   taxonomy: { pending: false, data: [], error: null },
+  searchTerm: "",
 };
 
 export const getPage = createAsyncThunk(
@@ -137,13 +137,21 @@ export const ContentModule = createSlice({
     setSearchTerm: (state, action) => {
       return {
         ...state,
-        list: { ...state.list, searchTerm: action.payload },
+        searchTerm: action.payload,
       }
     },
   },
   extraReducers: {
     [getPage.pending]: (state) => pending("page", state),
-    [getPage.fulfilled]: (state, action) => fulfilled("page", state, action),
+    [getPage.fulfilled]: (state, action) => {
+      if (!(action.payload.slug || '').toLowerCase().startsWith('usecase')) {
+        state = {
+          ...state,
+          searchTerm: '',
+        };
+      }
+      return fulfilled("page", state, action)
+    },
     [getPage.rejected]: (state, action) =>
       rejected("page", state, { ...action, payload: {} }),
     [getList.pending]: (state) => pending("list", state),

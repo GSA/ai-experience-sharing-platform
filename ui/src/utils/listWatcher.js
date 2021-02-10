@@ -19,4 +19,12 @@ export default (store) => {
       }
     )
   );
+  const searchWatcher = watch(store.getState, `${name}.searchTerm`);
+  store.subscribe(
+    searchWatcher((newVal, oldVal ) => {
+        if (newVal !== oldVal) {
+          store.dispatch(getList());
+        }
+    })
+  );
 };

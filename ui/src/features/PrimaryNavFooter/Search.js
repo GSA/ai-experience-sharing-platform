@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import Icon from "components/Icon";
 import { setSearchTerm } from "app/ContentModule";
 import { useHistory } from "react-router-dom";
@@ -7,6 +7,7 @@ import { useHistory } from "react-router-dom";
 const Search = (props) => {
   const dispatch = useDispatch();
   const history = useHistory();
+  const { searchTerm } = useSelector((state) => state.content);
   const [searchInput, setSearchInput] = useState('');
 
   const handleChange = (event) => {
@@ -21,6 +22,10 @@ const Search = (props) => {
     history.push('/usecases');
     event.preventDefault();
   };
+
+  useEffect(() => {
+    setSearchInput(searchTerm)
+  }, [searchTerm]);
 
   return (
     <form
