@@ -6,6 +6,7 @@ import Button from "features/Button";
 import Keymap from "features/Keymap";
 import Card from "components/Card";
 import Date from "components/Date";
+import Link from "features/Link";
 
 const UsecaseTemplate = (props) => {
   const dispatch = useDispatch();
@@ -24,17 +25,20 @@ const UsecaseTemplate = (props) => {
   const handleClick = (props) => {
     dispatch(setListFilter(props));
   };
+
+  const url = `/usecases/${slug}`;
+
   return (
     <Card
       className="ai-uc"
-      title={title}
+      title={<Link to={url}>{title}</Link>}
       meta={metadataAgency}
     >
       <div className="font-sans-2xs">
         Published: <Date format="short">{publishedDate}</Date>
         </div>
       <p>{description}</p>
-      <Button url={`/usecases/${slug}`}>Read use case</Button>
+      <Button url={url}>Read use case</Button>
       <p>
         {Object.keys(metaDataList)
           .filter((item) => Boolean(props[item]))

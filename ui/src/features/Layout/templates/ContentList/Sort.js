@@ -10,7 +10,8 @@ const Sort = () => {
 
   const handleChange = (e) => {
     const { currentTarget: { value: name } = {} } = e;
-    dispatch(setListSort({ name }));
+    const direction = (name || '').toLowerCase().includes('date') ? 'desc' : 'asc';
+    dispatch(setListSort({ name, dir: direction }));
   };
 
   const items = sort ? sort.map((value) => {

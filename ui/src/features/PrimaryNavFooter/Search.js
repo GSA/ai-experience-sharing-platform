@@ -39,7 +39,7 @@ const Search = (props) => {
       <input name="utf8" type="hidden" value="&#x2713;" />
       <input type="hidden" name="affiliate" id="affiliate" value="AI" />
       <label className="usa-sr-only" htmlFor="query">
-        Search
+        Search Use Cases
       </label>
       <input
         name="query"
@@ -47,7 +47,7 @@ const Search = (props) => {
         autoComplete="off"
         className="usa-input"
         type="search"
-        placeholder="Search"
+        placeholder="Search Use Cases"
         value={searchInput}
         onChange={handleChange}
       />

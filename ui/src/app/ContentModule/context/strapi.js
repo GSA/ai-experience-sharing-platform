@@ -31,7 +31,8 @@ const generateQuery = (state) => {
 
   if (sort.name) {
     const joiner = query.length ? '&' : '';
-    query = `${query}${joiner}_sort=${sort.name}:ASC`;
+    const direction = sort.dir ? sort.dir.toUpperCase() : 'ASC'
+    query = `${query}${joiner}_sort=${sort.name}:${direction}`;
   }
   if (searchTerm && searchTerm.length) {
     const joiner = query.length ? '&' : '';
