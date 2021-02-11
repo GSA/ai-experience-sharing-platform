@@ -2,25 +2,23 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { name as contentName, setSearchTerm } from "app/ContentModule";
 import Button from "features/Button";
+import { getOptions } from "utils/http";
 
 const Sidebar = () => {
   const dispatch = useDispatch();
   const state = useSelector((state) => state[contentName]);
   const token = useSelector((state) => state.auth.token);
-  const { list: { searchTerm } = {} } = state;
+  const { searchTerm = '' } = state;
   const [relatedSearchTerms, setRelatedSearchTerms] = useState([]);
   
   useEffect(() => {
     const fetchData = async () => {
       if (searchTerm && token) {
+        const options = getOptions(token);
+        const searchTermLower = searchTerm.toLowerCase();
         const response = await fetch(
-          `/api-search-suggestions?searchTerm_eq=${encodeURIComponent(searchTerm)}`,
-          {
-            credentials: 'include',
-            headers: {
-              "Authorization": `Bearer ${token}`,
-            },
-          }
+          `/api-search-suggestions?searchTerm_eq=${encodeURIComponent(searchTermLower)}`,
+          options
         );
         setRelatedSearchTerms(await response.json());
       } else {
