@@ -52,11 +52,12 @@ const ContentList = ({
   }, [dispatch, type]);
 
   useEffect(() => {
+    const initialSort = defaultSort ? {name: defaultSort.key, dir: defaultSort.direction} : [];
     dispatch(
       setListDefaults({
         type,
         filter: defaultFilter || [],
-        sort: defaultSort || { name: "", dir: "" },
+        sort: initialSort,
       })
     );
     return () => {
@@ -93,6 +94,13 @@ const ContentList = ({
     } else {
       return null;
     }
+  };
+
+  const noResults = (data) => {
+    if ((data || []).length === 0) {
+      return <h2>No Results Found.</h2>;
+    }
+    return null;
   };
   
   const [showFilters, setShowFilters] = useState(false);
@@ -174,6 +182,7 @@ const ContentList = ({
                 />
               </Col>
             ))}
+            {noResults(data)}
           </Row>
         </Col>
         {sidebar && variant === "horizontal" && <Col desktop="3"><Sidebar /></Col>}
