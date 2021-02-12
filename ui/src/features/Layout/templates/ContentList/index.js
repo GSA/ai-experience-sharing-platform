@@ -51,6 +51,17 @@ const ContentList = ({
     }
   }, [dispatch, type]);
 
+  const resetAll = () => {
+    const initialSort = defaultSort ? {name: defaultSort.key, dir: defaultSort.direction} : [];
+    dispatch(
+      setListDefaults({
+        type,
+        filter: defaultFilter || [],
+        sort: initialSort,
+      })
+    );
+  };
+
   useEffect(() => {
     const initialSort = defaultSort ? {name: defaultSort.key, dir: defaultSort.direction} : [];
     dispatch(
@@ -102,7 +113,7 @@ const ContentList = ({
     }
     return null;
   };
-  
+
   const [showFilters, setShowFilters] = useState(false);
   return (
     <div
@@ -115,9 +126,17 @@ const ContentList = ({
         <Row gap="2" className="USContentList__header">
           <Col desktop="3">
             {filter && (
-              <strong onClick={() => setShowFilters((state) => !state)}>
-                Filters
-              </strong>
+                <Row>
+                <Col desktop="7">
+                  <strong className="USContentList__filter--text" onClick={() => setShowFilters((state) => !state)}>
+                    Filters
+                  </strong>
+                  <Button className="USContentList__filter--button" onClick={() => setShowFilters((state) => !state)}>Filters</Button>
+                </Col>
+                <Col desktop="5">
+                  <Button onClick={resetAll}>Reset All</Button>
+                </Col>
+                </Row>
             )}
           </Col>
           <Col desktop="6">
