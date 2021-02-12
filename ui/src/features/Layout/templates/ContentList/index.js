@@ -37,7 +37,7 @@ const ContentList = ({
   const handleVariant = (value) => setVariant(value);
 
   const state = useSelector((state) => state[contentName]);
-  const { searchTerm, list: { data } = {} } = state;
+  const { searchTerm, list: { data, pending } = {} } = state;
 
   useEffect(() => {
     if (type === "usecases" && variant === "horizontal") {
@@ -108,7 +108,7 @@ const ContentList = ({
   };
 
   const noResults = (data) => {
-    if ((data || []).length === 0) {
+    if ((data || []).length === 0 && !pending) {
       return <h2>No Results Found.</h2>;
     }
     return null;

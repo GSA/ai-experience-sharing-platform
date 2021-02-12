@@ -5,6 +5,8 @@ const { logout } = require("app/AuthModule");
 
 const ROOT_URL = process.env.REACT_APP_API_URL || "";
 
+const generateUrlSuffix = (searchTerm) => searchTerm ? '/search/all' : '';
+
 const generateQuery = (state) => {
   const list = state?.content?.list;
   const { filter, sort } = list;
@@ -31,14 +33,15 @@ const generateQuery = (state) => {
 
   if (sort.name) {
     const joiner = query.length ? '&' : '';
-    const direction = sort.dir ? sort.dir.toUpperCase() : 'ASC'
+    const direction = sort.dir ? sort.dir.toUpperCase() : 'ASC';
     query = `${query}${joiner}_sort=${sort.name}:${direction}`;
   }
   if (searchTerm && searchTerm.length) {
     const joiner = query.length ? '&' : '';
-    query = `${query}${joiner}keywords_contains=${searchTerm}`
+    query = `${query}${joiner}q=${searchTerm}`
   }
-  return query;
+  const urlSuffix = generateUrlSuffix(searchTerm);
+  return { query, urlSuffix };
 };
 
 export const getAllByContentType = async ({ thunkAPI }) => {
@@ -47,14 +50,15 @@ export const getAllByContentType = async ({ thunkAPI }) => {
   const type = state?.content?.list?.type;
   const token = getToken(type, state);
   const options = getOptions(token);
-  const query = generateQuery(state);
+  const { query, urlSuffix } = generateQuery(state);
+
   let data;
   if (!type) {
     throw new Error("Type is not defined.");
   }
   try {
     const response = await fetch(
-      `${ROOT_URL}/api-${type}${query ? `?${query}` : ""}`,
+      `${ROOT_URL}/api-${type}${urlSuffix}${query ? `?${query}` : ""}`,
       options
     );
     data = await response.json();
