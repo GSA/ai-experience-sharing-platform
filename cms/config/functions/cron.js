@@ -46,4 +46,7 @@ module.exports = {
     settings.usecaseFilterCounts = counts;
     await strapi.services['api-usecase-settings'].createOrUpdate(settings);
   },
+  '0 */1 * * *': () => {
+    strapi.plugins.sitemap.services.sitemap.createSitemap();
+  },
 };

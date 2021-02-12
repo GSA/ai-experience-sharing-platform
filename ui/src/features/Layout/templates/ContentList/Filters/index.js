@@ -13,8 +13,8 @@ const Filters = ({ footer }) => {
   const state = useSelector((state) => state);
   const { filters, keymaps, usecaseFilterCounts } = state[siteName];
   const sortTitles = (a, b) => {
-    const compA = a.title.toUpperCase();
-    const compB = b.title.toUpperCase();
+    const compA = a?.title?.toUpperCase();
+    const compB = b?.title?.toUpperCase();
     if (compA < compB)
       return -1;
     if (compA > compB)

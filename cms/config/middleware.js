@@ -16,6 +16,10 @@ module.exports = ({ env }) => {
       authCookie: {
         enabled: true,
       },
+      cache: {
+        enabled: true,
+        models: [{model: 'api-settings', singleType: true}, 'api-menu', 'api-usecase', 'api-page', 'api-bok'],
+      },
       customLogger: {
         enabled: true,
       },
