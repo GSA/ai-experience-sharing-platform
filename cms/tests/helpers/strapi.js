@@ -41,19 +41,19 @@ async function bootstrapUsers() {
     provider: 'local',
   };
 
-  const advanced = await strapi
-        .store({
-          environment: '',
-          type: 'plugin',
-          name: 'users-permissions',
-          key: 'advanced',
-        })
-        .get();
+  // const advanced = await strapi
+  //       .store({
+  //         environment: '',
+  //         type: 'plugin',
+  //         name: 'users-permissions',
+  //         key: 'advanced',
+  //       })
+  //       .get();
 
   if (!user.role) {
     const defaultRole = await strapi
           .query('role', 'users-permissions')
-          .findOne({ type: advanced.default_role }, []);
+          .findOne({ type: 'authenticated' }, []);
 
     user.role = defaultRole.id;
   }

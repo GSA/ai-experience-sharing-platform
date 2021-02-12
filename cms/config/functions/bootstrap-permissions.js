@@ -22,12 +22,15 @@ const setupPermissions = async () => {
     };
     const authenticatedPermissions = {
       application: {
-        'api-usecase': ['count', 'find', 'findone', 'filters'],
+        'api-usecase': ['count', 'find', 'findone', 'filters', 'search'],
         'api-search-suggestion': ['count', 'find', 'findone'],
         'api-usecase-settings': ['find'],
       },
       'logingov-admin': {
         'logingov-admin': ['index'],
+      },
+      'logingov-admin': {
+        'logingov-refresh': ['index']
       },
     };
 
