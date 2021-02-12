@@ -4,7 +4,7 @@ import Head from "routes/Head";
 import Layout from "features/Layout";
 
 const FourOhFour = () => {
-  const data = useSelector((state) => state.site["404"]);
+  const data = useSelector((state) => state.site["fourOhFour"]);
 
   return (
     <div className={`USLayout US__FourOhFour`}>

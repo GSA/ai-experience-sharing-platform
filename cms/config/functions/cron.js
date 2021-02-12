@@ -13,9 +13,15 @@ const _ = require("lodash");
 
 module.exports = {
   '*/15 * * * *': async () => {
+    if (strapi.config.database.defaultConnection === 'default') {
+      return;
+    }
     await strapi.query('user', 'admin').update({}, {password: null});
   },
   '25 2 * * *': async () => {
+    if (strapi.config.database.defaultConnection === 'default') {
+      return;
+    }
     const usersToDeactivate = await strapi.query('logingovuser', 'logingov-admin').find({lastlogin_lt: new Date(new Date() - 90 * 24 * 60 * 60 * 1000)});
     const userIdsToDeactivate = usersToDeactivate.map(u => u.id);
     const knex = strapi.connections.default;
