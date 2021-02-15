@@ -37,7 +37,7 @@ const ContentList = ({
   const handleVariant = (value) => setVariant(value);
 
   const state = useSelector((state) => state[contentName]);
-  const { searchTerm, list: { data, pending } = {} } = state;
+  const { searchTerm, list: { data, pending, error } = {} } = state;
 
   useEffect(() => {
     if (type === "usecases" && variant === "horizontal") {
@@ -108,7 +108,7 @@ const ContentList = ({
   };
 
   const noResults = (data) => {
-    if ((data || []).length === 0 && !pending) {
+    if ((data || []).length === 0 && !pending && !error) {
       return <h2>No Results Found.</h2>;
     }
     return null;
@@ -134,13 +134,13 @@ const ContentList = ({
                   <Button className="USContentList__filter--button" onClick={() => setShowFilters((state) => !state)}>Filters</Button>
                 </Col>
                 <Col desktop="5">
-                  <Button onClick={resetAll}>Reset All</Button>
+                  <Button className="USContentList__filter--reset" onClick={resetAll}>Reset All</Button>
                 </Col>
                 </Row>
             )}
           </Col>
           <Col desktop="6">
-            {searchTerm.length ? <h2>Search results for "{searchTerm}"</h2> : null}
+            {searchTerm.length ? <h1>Search results for "{searchTerm}"</h1> : null}
           </Col>
           {(sort || layout) && (
             <Col
