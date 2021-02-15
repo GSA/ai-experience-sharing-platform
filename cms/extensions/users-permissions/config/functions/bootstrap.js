@@ -63,8 +63,6 @@ module.exports = async () => {
       oauth: 2,
       access_url: loginGovCredentials['accessUrl'] || 'https://idp.int.identitysandbox.gov/api/openid_connect/token',
       token_endpoint_auth_method: 'private_key_jwt',
-      public_key: loginGovCredentials['certificate'],
-      private_key: loginGovCredentials['privateKey'],
       state: `${uuid()}${uuid()}`,
       nonce: `${uuid()}${uuid()}`,
       custom_params: {
