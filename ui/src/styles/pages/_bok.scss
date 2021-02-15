@@ -65,9 +65,10 @@ $bgImgDir: "~styles/images";
             background-image: url($bgImgDir + "/bok1_hero.png");
         }
     }
-
-    p, .usa-prose > p {
-        max-width: initial;
+    .usa-content-list--vertical {
+        .usa-card__container {
+            min-height: 27rem;
+        }
     }
 }
 

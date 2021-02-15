@@ -14,6 +14,7 @@
     @include u-font("sans", "2xs");
     @include u-color("ink");
     text-decoration: underline;
+    text-transform: none;
   }
   .usa-card__container {
     margin: 0;
@@ -31,8 +32,15 @@
     .usa-card__heading,
     .usa-card__meta {
       @include u-font("serif", "sm");
-      text-transform: uppercase;
       @include u-color("white");
+      text-transform: uppercase;
+      a {
+        text-decoration: none;
+        font-weight: bold;
+      }
+      a:hover {
+        text-decoration: underline;
+      }
     }
   }
   .usa-card__body {
@@ -42,6 +50,11 @@
   .usa-card__footer {
     @include u-padding(2);
     @include u-padding-bottom(4);
+  }
+  .usa-content-list--vertical {
+    .usa-card__heading a {
+      color: #FFFDF8;
+    }
   }
 }
 
@@ -58,12 +71,30 @@
       padding-bottom: 0;
       .usa-card__heading,
       .usa-card__meta {
+        color: $x-charcoal;
         @include u-font("serif", "md");
         @include u-color("ink");
       }
     }
     .usa-card__body {
       padding-top: 0;
+    }
+  }
+}
+
+.usa-content-list {
+  .USContentList__header {
+    .USContentList__filter--reset {
+      margin-left: auto;
+      display: block;
+    }
+  }
+}
+
+.usa-content-list--vertical {
+  .ai-uc {
+    .usa-card__heading a {
+      color: #FFFDF8;
     }
   }
 }
