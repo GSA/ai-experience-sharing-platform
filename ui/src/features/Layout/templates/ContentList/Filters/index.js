@@ -25,9 +25,9 @@ const Filters = ({ footer }) => {
     const title = keymaps[key] || key;
     const enums = value.enum || [];
     const type = value.type;
-    const items = enums.map((enm) => ({ name: enm, title: keymaps[enm] }))
+    const items = enums.map((enm) => ({ name: enm, title: keymaps[enm] ? keymaps[enm] : enm }))
           .sort(sortTitles)
-          .filter((f) => usecaseFilterCounts[key][f.name] > 0);
+          .filter((f) => (usecaseFilterCounts && usecaseFilterCounts[key] && usecaseFilterCounts[key][f.name]) ? usecaseFilterCounts[key][f.name] > 0 : true);
     const filterItem = { key, name: key, title, items, type };
 
     if (!keymaps[key]) {

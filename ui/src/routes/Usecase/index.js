@@ -48,7 +48,7 @@ export const Usecase = ({ slug: overrideSlug }) => {
         {hero && <Hero {...hero} />}
         <Grid>
           <Row>
-            <Col size={2} className="sections">
+            <Col desktop={2} className="sections">
               <div className="panel">
                 <h4>Sections</h4>
                 <ContentNav items={data.content} />
@@ -57,7 +57,7 @@ export const Usecase = ({ slug: overrideSlug }) => {
                 <UsecaseSubmit />
               </div>
             </Col>
-            <Col size={8} className="padding-right-4 usecase-header">
+            <Col desktop={8} className="padding-right-4 usecase-header">
               <Grid>
                 <h1>{title}</h1>
               </Grid>
@@ -84,7 +84,7 @@ export const Usecase = ({ slug: overrideSlug }) => {
               </Grid>
               <Layout items={layoutContent} renderTitles={true} />
             </Col>
-            <Col size={2}>
+            <Col desktop={2}>
               <Details title="Details" items={data} />
             </Col>
           </Row>

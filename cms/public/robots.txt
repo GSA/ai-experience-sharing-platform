@@ -1,2 +1,5 @@
+User-agent: usasearch
+Allow: /
+
 User-agent: *
 Disallow: /

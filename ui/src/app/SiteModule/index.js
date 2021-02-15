@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import context from "./context";
+import { cms } from "utils/cms";
 
 export const name = "site";
 
@@ -34,7 +35,15 @@ export const getMenus = createAsyncThunk(
 
 export const getUsecaseSettings = createAsyncThunk(
   `${name}/getUsecaseSettings`,
-  async (props, thunkAPI) => await context.getUsecaseSettings({ thunkAPI })
+  async (props, thunkAPI) => {
+    const state = thunkAPI.getState();
+    if (state.auth.pending) {
+      new Promise((resolve, reject) => {
+        setTimeout(reject, cms.authenticatedErrorDelay);
+      });
+    }
+    return await context.getUsecaseSettings({ thunkAPI })
+  },
 );
 
 export const getUsecaseFilters = createAsyncThunk(

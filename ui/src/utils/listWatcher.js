@@ -1,5 +1,6 @@
 import watch from "redux-watch";
 import { getList, name } from "app/ContentModule";
+import { cms } from "utils/cms";
 
 export default (store) => {
   const watcher = watch(store.getState, `${name}.list`);
@@ -14,7 +15,7 @@ export default (store) => {
         if (newV !== oldV) {
           store.dispatch(getList());
         } else if (e1?.message?.includes('Forbidden') && ec2 < 5) {
-          setTimeout((() => store.dispatch(getList())), 500);
+          setTimeout((() => store.dispatch(getList())), cms.errorRetryDelay);
         }
       }
     )
