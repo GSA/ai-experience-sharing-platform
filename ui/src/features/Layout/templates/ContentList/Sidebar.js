@@ -2,7 +2,9 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { name as contentName, setSearchTerm } from "app/ContentModule";
 import Button from "features/Button";
+import Link from "features/Link";
 import { getOptions } from "utils/http";
+
 
 const Sidebar = () => {
   const dispatch = useDispatch();
@@ -40,7 +42,7 @@ const Sidebar = () => {
                return searchSuggestion.suggestions.map((suggestion, i) => {
                  return <li key={i}>
                           {suggestion.url ?
-                           <Button variant="link" to={suggestion.url}>{suggestion.text}</Button> :
+                           <Link variant="link" to={suggestion.url}>{suggestion.text}</Link> :
                            <Button variant="link" onClick={(e) => handleClick(suggestion.text, e)}>{suggestion.text}</Button>
                           }
                         </li>
