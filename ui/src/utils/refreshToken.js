@@ -9,5 +9,5 @@ export const refreshToken = (dispatch) => {
   const refresh = () => {
     dispatch(refreshTokenRedux());
   };
-  return timerId = setInterval(refresh, 7 * 60 * 1000);
+  return timerId = setInterval(refresh, 5 * 60 * 1000);
 };
