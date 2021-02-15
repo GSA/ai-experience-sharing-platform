@@ -11,12 +11,12 @@ import Link from "features/Link";
 const UsecaseTemplate = (props) => {
   const dispatch = useDispatch();
   const metaDataList = {
+    "metadataAgency": "enumeration",
     "metadataAiLifecycleStage": "enumeration",
     "metadataAiMlTechniques": "enumeration",
     "metadataDevelopmentPhase": "enumeration",
     "metadataEnvironment": "enumeration",
     "metadataProcurement": "enumeration",
-    "metadataSubAgency": "enumeration",
     "metadataSpiiPiiUse": "boolean",
   };
 

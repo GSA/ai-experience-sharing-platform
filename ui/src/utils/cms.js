@@ -16,4 +16,6 @@ export const cms = {
     'metadataAgency',
     'metadataSubAgency'
   ],
+  authenticatedErrorDelay: 200,
+  errorRetryDelay: 500,
 };

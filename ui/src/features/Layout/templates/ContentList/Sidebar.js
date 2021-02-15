@@ -39,7 +39,10 @@ const Sidebar = () => {
              {relatedSearchTerms.map((searchSuggestion) => {
                return searchSuggestion.suggestions.map((suggestion, i) => {
                  return <li key={i}>
-                          <Button variant="link" onClick={(e) => handleClick(suggestion.text, e)}>{suggestion.text}</Button>
+                          {suggestion.url ?
+                           <Button variant="link" to={suggestion.url}>{suggestion.text}</Button> :
+                           <Button variant="link" onClick={(e) => handleClick(suggestion.text, e)}>{suggestion.text}</Button>
+                          }
                         </li>
                });
              })}
