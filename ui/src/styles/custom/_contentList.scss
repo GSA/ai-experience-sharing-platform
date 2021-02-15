@@ -1,14 +1,15 @@
 .usa-content-list--vertical {
-    .usa-card__container {
-        min-height: 27rem;
-    }
     .usa-card__footer {
         .usa-button {
             margin-left: auto;
             margin-right: auto;
-            display: block;
+            display: inline-block;
             @include u-padding-left(4);
             @include u-padding-right(4);
         }
+    }
+    .usa-card__heading a {
+        text-decoration: none;
+        color: $x-charcoal;
     }
 }

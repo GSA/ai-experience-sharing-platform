@@ -16,11 +16,15 @@
         > a {
             background-color: $x-charcoal;
             color: $x-whiteish;
+            text-decoration: none;
         }
     }
     .usa-current {
         color: $x-charcoal;
         font-weight: 400;
+    }
+    a:hover {
+        text-decoration: underline;
     }
 }
 

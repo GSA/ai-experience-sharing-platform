@@ -18,6 +18,7 @@ module.exports = ({ env }) => {
       },
       cache: {
         enabled: true,
+        maxAge: 10 * 60 * 1000,
         models: [{model: 'api-settings', singleType: true}, 'api-menu', 'api-usecase', 'api-page', 'api-bok'],
       },
       customLogger: {
