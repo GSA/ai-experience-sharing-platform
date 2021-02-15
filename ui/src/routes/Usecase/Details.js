@@ -45,8 +45,8 @@ const Details = ({ items }) => {
         <div className="use-case-related">
           <h4>Related</h4>
           <ul>
-            {items.related && items.related.map((relatedItem) => {
-              return <li>
+            {items.related && items.related.map((relatedItem, i) => {
+              return <li key={i}>
                        <Link to={relatedItem.link}>{relatedItem.text}</Link>
                      </li>;
             })}

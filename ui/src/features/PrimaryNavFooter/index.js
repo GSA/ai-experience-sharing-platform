@@ -37,6 +37,7 @@ const PrimaryNavFooter = () => {
 
   const handleLogout = () => {
     dispatch(logout());
+    history.push('/');
   };
 
   const data = {
