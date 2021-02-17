@@ -1,18 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Link from "features/Link";
 import classnames from "classnames";
 
-const BokSidebarNav = ({ current = "" }) => {
-  const [bokList, setBokList] = useState([]);
-  useEffect(() => {
-    const fetchData = async () => {
-      const response = await fetch(`/api-boks?_sort=bokSectionId:ASC`);
-      const data = await response.json();
-      setBokList(data);
-    };
-    fetchData();
-  }, []);
-
+const BokSidebarNav = ({ current = "", bokList = [] }) => {
   const currentBokModuleId = current.split("-")[0];
 
   const bokModuleItems = bokList.filter(({ bokSectionId: childId = "" }) => {

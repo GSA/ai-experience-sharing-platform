@@ -38,6 +38,7 @@ export const getUsecaseSettings = createAsyncThunk(
   async (props, thunkAPI) => {
     const state = thunkAPI.getState();
     if (state.auth.pending) {
+      debugger;
       new Promise((resolve, reject) => {
         setTimeout(reject, cms.authenticatedErrorDelay);
       });

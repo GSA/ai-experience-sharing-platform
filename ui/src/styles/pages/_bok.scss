@@ -70,6 +70,20 @@ $bgImgDir: "~styles/images";
             min-height: 27rem;
         }
     }
+
+    .bok-bottom-nav {
+        .usa-button {
+            width: 12rem;
+            display: block;
+        }
+        .next {
+            margin-left: auto;
+        }
+        .previous {
+            background-color: $x-whiteish;
+            color: $x-royal;
+        }
+    }
 }
 
 .US__bok-bg {

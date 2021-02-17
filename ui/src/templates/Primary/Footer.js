@@ -18,7 +18,7 @@ const Footer = () => {
   return (
     <footer className="usa-footer usa-footer--big">
       <div className="grid-container usa-footer__return-to-top">
-        <a href="/#">Return to top</a>
+        <a href="#top">Return to top</a>
       </div>
 
       <div className="usa-footer__secondary-section">
