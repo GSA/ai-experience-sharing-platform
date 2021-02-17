@@ -21,13 +21,19 @@ const Filters = ({ footer }) => {
       return 1;
     return 0;
   };
+
   const filterData = Object.entries(filters).reduce((acc, [key, value]) => {
     const title = keymaps[key] || key;
     const enums = value.enum || [];
     const type = value.type;
     const items = enums.map((enm) => ({ name: enm, title: keymaps[enm] ? keymaps[enm] : enm }))
           .sort(sortTitles)
-          .filter((f) => (usecaseFilterCounts && usecaseFilterCounts[key] && usecaseFilterCounts[key][f.name]) ? usecaseFilterCounts[key][f.name] > 0 : true);
+          .filter((f) => {
+            return (usecaseFilterCounts &&
+                    usecaseFilterCounts[key] &&
+                    usecaseFilterCounts[key][f.name] !== null) ?
+              usecaseFilterCounts[key][f.name] > 0 : true
+          });
     const filterItem = { key, name: key, title, items, type };
 
     if (!keymaps[key]) {

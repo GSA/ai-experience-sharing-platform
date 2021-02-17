@@ -1,10 +1,11 @@
 import React from "react";
 import PropTypes from "prop-types";
 import Date from "components/Date";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { name as siteName } from "app/SiteModule";
 import { cms } from "utils/cms";
 import Link from "features/Link";
+import { useHistory } from "react-router-dom";
 
 /* eslint-disable */
 const Format = ({ name, value }) => {
@@ -18,10 +19,16 @@ const Format = ({ name, value }) => {
 };
 
 const Details = ({ items }) => {
+  const dispatch = useDispatch();
+  const history = useHistory();
   const site = useSelector((state) => state[siteName]);
 
-  const { keymaps = {} } = site;
+  const { keymaps = {}, filters } = site;
   const mapKeys = keymaps !== null ? keymaps : {};
+
+  const handleClick = (key, value) => {
+    history.push(`/usecases?${key}=${value}`);
+  };
 
   return (
     <div>
@@ -35,7 +42,7 @@ const Details = ({ items }) => {
             const text = value in mapKeys ? mapKeys[value] : Format({name: key, value});
             return <div key={i}>
                      <dt>{title}</dt>
-                     <dd>{text}</dd>
+                     <dd onClick={() => handleClick(key, value)}>{text}</dd>
                    </div>;
           }
           return;
@@ -43,7 +50,7 @@ const Details = ({ items }) => {
       </div>
       {items.related && items.related.length ? (
         <div className="use-case-related">
-          <h4>Related</h4>
+          <h4>Related Use Cases</h4>
           <ul>
             {items.related && items.related.map((relatedItem, i) => {
               return <li key={i}>
