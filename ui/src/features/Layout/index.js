@@ -63,7 +63,7 @@ const Layout = ({ items, data, renderTitles }) => {
       ) : (
         <Grid
           key={`layout-${++i}`}
-          className={`padding-bottom-4 ${props.className}`}
+          className={`padding-bottom-2 ${props.className}`}
         >
           {renderTitles && props.title && (
             <h2 id={kebab(props.title)}>{props.title}</h2>

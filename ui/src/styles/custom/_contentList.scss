@@ -13,3 +13,11 @@
         color: $x-charcoal;
     }
 }
+
+.USFilterControl__filter--status {
+    svg {
+        width: .7rem;
+        height: .7rem;
+    }
+    @include u-margin-right(1);
+}

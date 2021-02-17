@@ -1,19 +1,21 @@
 import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import { useDispatch, useSelector } from "react-redux";
+import { useLocation } from "react-router-dom";
 import classnames from "classnames";
 import {
   setListDefaults,
   name as contentName,
   clearList,
 } from "app/ContentModule";
-import { getUsecaseSettings } from "app/SiteModule";
+import { getUsecaseSettings, name as siteName } from "app/SiteModule";
 import { Row, Col } from "components/Grid";
 import Icon from "components/Icon";
 import Button from "features/Button";
 import Sort from "./Sort";
 import CardTemplate from "./CardTemplate";
 import Filters from "./Filters";
+import { FilterStatus } from "./Filters/FilterStatus";
 import Sidebar from "./Sidebar";
 import UsecaseSubmit from "features/UsecaseSubmit";
 
@@ -30,6 +32,7 @@ const ContentList = ({
   markdown,
 }) => {
   const dispatch = useDispatch();
+  const location = useLocation()
 
   const [variant, setVariant] = useState(defaultLayout);
   const [sidebar, setSidebar] = useState(false);
@@ -38,6 +41,7 @@ const ContentList = ({
 
   const state = useSelector((state) => state[contentName]);
   const { searchTerm, list: { data, pending, error } = {} } = state;
+  const { filters = {} } = useSelector((state) => state[siteName]);
 
   useEffect(() => {
     if (type === "usecases" && variant === "horizontal") {
@@ -64,17 +68,30 @@ const ContentList = ({
 
   useEffect(() => {
     const initialSort = defaultSort ? {name: defaultSort.key, dir: defaultSort.direction} : [];
+    const params = new URLSearchParams(location.search);
+    const paramFilter = [];
+    params.forEach((value, key) => {
+      if (value && filters[key]) {
+        paramFilter.push({
+          name: key,
+          operand: 'eq',
+          type: filters[key].type,
+          value: [value],
+        });
+      }
+    });
+
     dispatch(
       setListDefaults({
         type,
-        filter: defaultFilter || [],
+        filter: defaultFilter && defaultFilter.length > 0 ? defaultFilter : paramFilter,
         sort: initialSort,
       })
     );
     return () => {
       dispatch(clearList());
     };
-  }, [dispatch, type, defaultFilter, defaultSort]);
+  }, [dispatch, type, defaultFilter, defaultSort, filters, location.search]);
   
   const setWidth = () => {
     let size = 12;
@@ -131,6 +148,7 @@ const ContentList = ({
                   <strong className="USContentList__filter--text" onClick={() => setShowFilters((state) => !state)}>
                     Filters
                   </strong>
+                  <FilterStatus/>
                   <Button className="USContentList__filter--button" onClick={() => setShowFilters((state) => !state)}>Filters</Button>
                 </Col>
                 <Col desktop="5">
