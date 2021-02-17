@@ -2,6 +2,7 @@
   .usa-banner__button {
     @include u-margin-left(2);
     @include u-margin-top(2);
+    border: 0;
 
     &:after {
       display: none;
