@@ -118,7 +118,7 @@ const ContentList = ({
 
   const filterFooter = () => {
     if (type === 'usecases') {
-      return <UsecaseSubmit />
+      return <UsecaseSubmit />;
     } else {
       return null;
     }
@@ -144,16 +144,21 @@ const ContentList = ({
           <Col desktop="3">
             {filter && (
                 <Row>
-                <Col desktop="7">
-                  <strong className="USContentList__filter--text" onClick={() => setShowFilters((state) => !state)}>
-                    Filters
-                  </strong>
-                  <FilterStatus/>
-                  <Button className="USContentList__filter--button" onClick={() => setShowFilters((state) => !state)}>Filters</Button>
-                </Col>
-                <Col desktop="5">
-                  <Button className="USContentList__filter--reset" onClick={resetAll}>Reset All</Button>
-                </Col>
+                  <Col desktop="7">
+                    <strong className="USContentList__filter--text" onClick={() => setShowFilters((state) => !state)}>
+                      Filters
+                    </strong>
+                    <FilterStatus/>
+                    <Button color="secondary" className="USContentList__filter--button" onClick={() => setShowFilters((state) => !state)}>Filters</Button>
+                  </Col>
+                  <Col desktop="5">
+                    <Button color="secondary" className="USContentList__filter--reset" onClick={resetAll}>Reset All</Button>
+                  </Col>
+                  {type === 'usecases' ?
+                   <Col className="mobile">
+                    <UsecaseSubmit className="margin-top-2" />
+                   </Col>
+                   : null}
                 </Row>
             )}
           </Col>

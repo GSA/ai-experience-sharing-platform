@@ -25,6 +25,7 @@ const Primary = ({ children }) => {
     <>
       <Helmet></Helmet>
       <div
+        id="top"
         className={classnames({
           "usa-app": true,
           [`usa-app__theme-${theme}`]: Boolean(theme),

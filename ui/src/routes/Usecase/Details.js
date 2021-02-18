@@ -18,6 +18,8 @@ const Format = ({ name, value }) => {
   return Array.isArray(value) ? value.join(", ") : value;
 };
 
+const omitLinks = ['publishedDate'];
+
 const Details = ({ items }) => {
   const dispatch = useDispatch();
   const history = useHistory();
@@ -25,10 +27,6 @@ const Details = ({ items }) => {
 
   const { keymaps = {}, filters } = site;
   const mapKeys = keymaps !== null ? keymaps : {};
-
-  const handleClick = (key, value) => {
-    history.push(`/usecases?${key}=${value}`);
-  };
 
   return (
     <div>
@@ -42,7 +40,9 @@ const Details = ({ items }) => {
             const text = value in mapKeys ? mapKeys[value] : Format({name: key, value});
             return <div key={i}>
                      <dt>{title}</dt>
-                     <dd onClick={() => handleClick(key, value)}>{text}</dd>
+                     <dd>
+                       {omitLinks.some((l) => l === key) ? <>{text}</> : <Link to={`/usecases?${key}=${value}`}>{text}</Link>}
+                     </dd>
                    </div>;
           }
           return;
@@ -54,7 +54,7 @@ const Details = ({ items }) => {
           <ul>
             {items.related && items.related.map((relatedItem, i) => {
               return <li key={i}>
-                       <Link to={relatedItem.link}>{relatedItem.text}</Link>
+                       <Link to={relatedItem.url}>{relatedItem.text}</Link>
                      </li>;
             })}
           </ul>

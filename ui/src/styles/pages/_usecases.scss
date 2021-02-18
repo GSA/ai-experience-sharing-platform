@@ -75,7 +75,13 @@ $bgImgDir: "~styles/images";
         filter: drop-shadow(0px 16px 20px rgba(0, 0, 0, 0.1));
         padding: 0.5rem;
     }
-
+    .usecase-scroll-to-top {
+        @include at-media("desktop") {
+            position: -webkit-sticky;
+            position: sticky;
+            top: 2rem;
+        }
+    }
 
     h2 {
         font-size: 18px;
@@ -83,8 +89,6 @@ $bgImgDir: "~styles/images";
     }
     
     .submit-use-case {
-        .usa-card__container {
-        }
         button:only-of-type {
             border-radius: 1.5rem;
             display: block;
@@ -119,6 +123,22 @@ $bgImgDir: "~styles/images";
         ul {
             list-style-type: none;
             padding-left: 0;
+        }
+    }
+
+    .USContentList__filter {
+        .US__usecase-submit-cta {
+            display: none;
+            @include at-media("desktop") {
+                display: inline-block;
+              }
+        }
+    }
+    .USContentList__header {
+        .US__usecase-submit-cta {
+            @include at-media("desktop") {
+                display: none;
+            }
         }
     }
 }

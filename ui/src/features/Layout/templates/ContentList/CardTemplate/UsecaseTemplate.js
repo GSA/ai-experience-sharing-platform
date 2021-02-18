@@ -39,7 +39,7 @@ const UsecaseTemplate = (props) => {
         </div>
       <p>{description}</p>
       <Button url={url}>Read use case</Button>
-      <p>
+      <p className="ai-uc__meta-container">
         {Object.keys(metaDataList)
           .filter((item) => Boolean(props[item]))
           .map((item, i) => (
