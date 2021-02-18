@@ -9,7 +9,7 @@ module.exports = ({ env }) => {
 
   return {
     load: {
-      before: ['responseTime', 'requestContext', 'logger', 'customLogger', 'cors', 'responses', 'gzip'],
+      before: ['responseTime', 'requestContext', 'logger', 'customLogger', 'cors', 'csp', 'responses', 'gzip'],
       after: ['spa', 'authCookie', 'requestContextLogging', 'parser', 'router'],
     },
     settings: {
@@ -21,7 +21,25 @@ module.exports = ({ env }) => {
         maxAge: 10 * 60 * 1000,
         models: [{model: 'api-settings', singleType: true}, 'api-menu', 'api-usecase', 'api-page', 'api-bok'],
       },
+      cors: {
+        credentials: false,
+        origin: [
+          'https://strapi-api-host-dev.app.cloud.gov',
+          'https://strapi-api-host-staging.app.cloud.gov',
+          'https://strapi-api-host-prod.app.cloud.gov',
+          'https://ai.gsa.gov'
+        ],
+      },
       customLogger: {
+        enabled: true,
+      },
+      csp: {
+        enabled: true,
+        policy: {
+          'default-src': '\'self\' https://dap.digitalgov.gov https://www.google-analytics.com',
+        },
+      },
+      gzip: {
         enabled: true,
       },
       logger: {
