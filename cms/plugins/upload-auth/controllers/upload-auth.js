@@ -49,10 +49,15 @@ module.exports = {
         });
         ctx.redirect(surl);
       } else {
-        const data = await s3.getObject(options).promise();
-        ctx.type = data.ContentType;
-        ctx.response.length = data.ContentLength;
-        return ctx.send(data.Body);
+        try {
+          const data = await s3.getObject(options).promise();
+          ctx.type = data.ContentType;
+          ctx.response.length = data.ContentLength;
+          return ctx.send(data.Body);
+        } catch (e) {
+          ctx.status = 404;
+          return;
+        }
       }
     } else {
       ctx.status = 404;
