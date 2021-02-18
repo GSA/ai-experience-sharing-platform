@@ -112,6 +112,7 @@
       @include at-media("desktop") {
         display: none;
       }
+      @include u-margin-bottom(1);
     }
   }
 }

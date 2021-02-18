@@ -56,6 +56,7 @@ export const Usecase = ({ slug: overrideSlug }) => {
               <div>
                 <UsecaseSubmit />
               </div>
+              <a className="usecase-scroll-to-top" href="#top">Return to top</a>
             </Col>
             <Col desktop={8} className="padding-right-4 usecase-header">
               <Grid>

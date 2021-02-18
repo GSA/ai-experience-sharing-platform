@@ -12,11 +12,12 @@
     border-top: 0;
     &.current {
         background-color: $x-charcoal;
-        color: $x-whiteish;
+        color: #ffffff;
         > a {
             background-color: $x-charcoal;
             color: $x-whiteish;
             text-decoration: none;
+            filter: $x-drop-shadow;
         }
     }
     .usa-current {
@@ -29,7 +30,7 @@
 }
 
 .usa-sidenav__sublist {
-    background-color: $x-whiteish;
+    background-color: #ffffff;
 }
 
 .usa-sidenav .usa-current::after {
