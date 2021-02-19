@@ -1,0 +1,30 @@
+name: "Cloud.gov periodic restage"
+
+on:
+  schedule:
+    - cron: '5 4 * * *'
+  workflow_dispatch:
+    inputs:
+      logLevel:
+        description: 'Log level'     
+        required: true
+        default: 'warning'
+
+jobs:
+
+  zap_scan:
+    name: "OWASP ZAP Full Scan"
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: cms
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: ZAP Scan
+        uses: zaproxy/action-full-scan@v0.2.0
+        with:
+          target: 'http://strapi-api-host-staging.app.cloud.gov/'
