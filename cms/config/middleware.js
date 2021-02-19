@@ -42,6 +42,7 @@ module.exports = ({ env }) => {
           'style-src': "'self' 'unsafe-inline'",
           'style-src-elem': "'self' 'unsafe-inline'",
           'img-src': "'self' data:",
+          'connect-src': "'self' https://www.google-analytics.com",
         },
       },
       gzip: {
