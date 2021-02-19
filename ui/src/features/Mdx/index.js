@@ -16,8 +16,8 @@ import LoginMoreInfo from "features/Login/LoginMoreInfo";
 import LoginSetPath from "features/Login/LoginSetPath";
 import UsecaseLoginRedirect from "features/Login/UsecaseLoginRedirect";
 import Logout from "features/Logout";
-
 import Link from "features/Link";
+import sanitize from "rehype-sanitize";
 
 export const shortcodes = {
   Break,
@@ -43,7 +43,7 @@ export const shortcodes = {
 
 const Mdx = ({ children, className, components, scope }) => {
   return (
-    <MDX components={{ ...shortcodes, ...components }} scope={scope}>
+    <MDX components={{ ...shortcodes, ...components }} scope={scope} rehypePlugins={[sanitize]}>
       {children}
     </MDX>
   );

@@ -65,7 +65,7 @@ async function bootstrapUsers() {
 
 async function setupStrapi() {
   if (!instance) {
-    jest.setTimeout(32 * 1000);
+    jest.setTimeout(62 * 1000);
     await setupFakeSpaIndex();
     /** the following code in copied from `./node_modules/strapi/lib/Strapi.js` */
     await Strapi().load();

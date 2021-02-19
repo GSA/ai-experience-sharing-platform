@@ -36,7 +36,12 @@ module.exports = ({ env }) => {
       csp: {
         enabled: true,
         policy: {
-          'default-src': '\'self\' https://dap.digitalgov.gov https://www.google-analytics.com',
+          'default-src': "'self'",
+          'script-src': "'self' 'unsafe-inline' 'unsafe-eval' https://dap.digitalgov.gov https://www.google-analytics.com",
+          'script-src-attr': "'self' 'unsafe-inline' 'unsafe-eval' https://dap.digitalgov.gov https://www.google-analytics.com",
+          'style-src': "'self' 'unsafe-inline'",
+          'style-src-elem': "'self' 'unsafe-inline'",
+          'img-src': "'self' data:",
         },
       },
       gzip: {
