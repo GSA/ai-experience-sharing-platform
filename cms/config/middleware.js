@@ -36,7 +36,7 @@ module.exports = ({ env }) => {
       csp: {
         enabled: true,
         policy: {
-          'default-src': '\'self\' \'unsafe-inline\' https://dap.digitalgov.gov https://www.google-analytics.com',
+          'default-src': '\'self\' \'unsafe-inline\' \'unsafe-eval\' https://dap.digitalgov.gov https://www.google-analytics.com',
         },
       },
       gzip: {
