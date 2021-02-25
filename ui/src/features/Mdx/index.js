@@ -17,7 +17,9 @@ import LoginSetPath from "features/Login/LoginSetPath";
 import UsecaseLoginRedirect from "features/Login/UsecaseLoginRedirect";
 import Logout from "features/Logout";
 import Link from "features/Link";
-import sanitize from "rehype-sanitize";
+import merge from "deepmerge";
+import gh from "hast-util-sanitize/lib/github";
+import clean from "hast-util-sanitize";
 
 export const shortcodes = {
   Break,
@@ -42,8 +44,26 @@ export const shortcodes = {
 };
 
 const Mdx = ({ children, className, components, scope }) => {
+  const schema = merge(gh, {
+    tagNames: Object.keys(shortcodes),
+    jsx: Object.keys(shortcodes),
+    attributes: {
+      '*': [
+        'className',
+        'offset',
+        'size'
+      ],
+    },
+  });
+
+  const sanitize = (options) => {
+    return (tree) => {
+      return clean(tree, options);
+    };
+  };
+
   return (
-    <MDX components={{ ...shortcodes, ...components }} scope={scope} rehypePlugins={[sanitize]}>
+    <MDX components={{ ...shortcodes, ...components }} scope={scope} rehypePlugins={[[sanitize, schema]]}>
       {children}
     </MDX>
   );
