@@ -17,6 +17,7 @@
     "enzyme-adapter-react-16": "^1.15.4",
     "fetch-retry": "^4.0.1",
     "framer-motion": "^2.9.4",
+    "hast-util-sanitize": "git+https://github.com/flexion/hast-util-sanitize.git",
     "http-proxy-middleware": "^1.0.6",
     "moment": "^2.29.1",
     "node-env-run": "^4.0.2",
