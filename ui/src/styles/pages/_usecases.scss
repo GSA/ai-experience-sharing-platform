@@ -1,7 +1,13 @@
 $bgImgDir: "~styles/images";
 
-.US__usecases {
-    padding-top: 2rem;
+.US__page.US__usecases {
+    .US__usecases-content {
+        @include u-padding-top(4);
+    }
+}
+
+.US__usecases, .US__usecase_home {
+    @include u-padding-top(4);
     background: linear-gradient(179.89deg, rgba(120, 227, 251, 0.15) 0.1%, rgba(255, 255, 255, 0.5) 2.64%, rgba(255, 255, 255, 0.5) 94.97%, rgba(120, 227, 251, 0.08) 97.61%);
 
     h1, h2, h3, h4 {
@@ -14,7 +20,7 @@ $bgImgDir: "~styles/images";
     }
 
     h4 {
-        font-size: 28px;
+        font-size: 26px;
     }
 
     &.US__page {
@@ -27,26 +33,14 @@ $bgImgDir: "~styles/images";
     .margin-bottom-4.usa-hero-container {
         margin-bottom: 0;
     }
-    .usa-hero {
-        &.USMarkdown {
-            margin-bottom: 0;
-        }
-        h1 {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%)
-        }
-
-        background-image: url($bgImgDir + "/usecases_hero.png");
-        height: 476px;
-        position: relative;
-      }
-
-      // background: linear-gradient(180deg, #F4F3F3 0%, #78E3FB 100%);
-      .usa-hero-bg {
+    .usa-hero-bg {
         background: linear-gradient(180deg, #F4F3F3 0%, #78E3FB 100%);
         background-size: auto 300%;
-      }
+    }
+
+    .USMarkdown {
+        margin-bottom: 0;
+    }
 
     .usecase-header-details-container {
         margin-bottom: 3rem;
@@ -54,7 +48,40 @@ $bgImgDir: "~styles/images";
             font-weight: 700;
         }
     }
+    
+    .sections {
+        li {
+          list-style-type: none;
+          margin-bottom: 1rem;
+          a {
+            color: $x-charcoal;
+          }
+        }
+        ul {
+          padding-left: 0;
+        }
+        .panel {
+          //background-color: $x-whiteish;
+          background-color: #ffffff;
+          filter: drop-shadow(0px 16px 20px rgba(0, 0, 0, 0.1));
+          padding: 0.5rem;
+          margin-bottom: 1rem;
+        }
 
+    }
+    .use-case-details.panel {
+        //background-color: $x-whiteish;
+        background-color: #ffffff;
+        filter: drop-shadow(0px 16px 20px rgba(0, 0, 0, 0.1));
+        padding: 0.5rem;
+    }
+    .usecase-scroll-to-top {
+        @include at-media("desktop") {
+            position: -webkit-sticky;
+            position: sticky;
+            top: 2rem;
+        }
+    }
 
     h2 {
         font-size: 18px;
@@ -62,18 +89,56 @@ $bgImgDir: "~styles/images";
     }
     
     .submit-use-case {
-        .usa-card__container {
-            border-radius: 0;
-            border-width: 0;
-            background-color: $x-dark-card;
-            color: $x-whiteish;
-            box-shadow: 0px 10px 24px rgba(0, 0, 0, 0.15);
-        }
         button:only-of-type {
             border-radius: 1.5rem;
             display: block;
             margin-left: auto;
             margin-right: auto;
+        }
+    }
+    .view-all-use-cases {
+        .usa-button {
+            background-color: $x-whiteish;
+            border-color: $theme-color-primary;
+            color: $theme-color-primary;
+            border-width: 2px;
+            border-style: solid;
+            @include u-padding-left(4);
+            @include u-padding-right(4);
+        }
+    }
+    .use-case-details {
+        dt {
+            font-weight: 600;
+            font-size: 1.2rem;
+        }
+        dd {
+            margin-inline-start: 0;
+            font-size: 1rem;
+            @include u-margin-bottom(2);
+        }
+    }
+    .use-case-related {
+        @include u-margin-top(4);
+        ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+    }
+
+    .USContentList__filter {
+        .US__usecase-submit-cta {
+            display: none;
+            @include at-media("desktop") {
+                display: inline-block;
+              }
+        }
+    }
+    .USContentList__header {
+        .US__usecase-submit-cta {
+            @include at-media("desktop") {
+                display: none;
+            }
         }
     }
 }

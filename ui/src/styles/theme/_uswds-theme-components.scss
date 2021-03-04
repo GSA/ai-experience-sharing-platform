@@ -47,14 +47,14 @@ $theme-breadcrumb-separator-color: "base";
 
 // Button
 $theme-button-font-family: "ui";
-$theme-button-border-radius: "md";
+$theme-button-border-radius: "pill";
 $theme-button-small-width: 6;
 $theme-button-stroke-width: 2px;
 
 // Card
 $theme-card-border-color: "base-lighter";
-$theme-card-border-radius: "lg";
-$theme-card-border-width: 2px;
+$theme-card-border-radius: 0;
+$theme-card-border-width: 0;
 $theme-card-gap: 2;
 $theme-card-flag-min-width: "tablet";
 $theme-card-flag-image-width: "card-lg";

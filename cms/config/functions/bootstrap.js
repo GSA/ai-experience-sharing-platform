@@ -5,6 +5,7 @@ const { setupLogging } = require('./bootstrap-logging');
 const { configureSignups } = require('./bootstrap-signups');
 const { setupApiSettings } = require('./bootstrap-api-settings');
 const { setupProviders } = require('./bootstrap-providers');
+const { setupCoreStoreOverride } = require('./bootstrap-core-store-override');
 
 /**
  * An asynchronous bootstrap function that runs before
@@ -24,4 +25,5 @@ module.exports = async () => {
   await disableAdminPasswords();
   await configureSignups();
   await setupProviders();
+  await setupCoreStoreOverride();
 };

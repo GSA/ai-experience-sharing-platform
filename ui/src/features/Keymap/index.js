@@ -6,7 +6,7 @@ import { name as siteName } from "app/SiteModule";
 const Keymap = ({ value }) => {
   const state = useSelector((state) => state);
   const { keymaps = {} } = state[siteName];
-  return <>{keymaps[value]}</>;
+  return <>{keymaps[value] ? keymaps[value] : value}</>;
 };
 
 Keymap.propTypes = {

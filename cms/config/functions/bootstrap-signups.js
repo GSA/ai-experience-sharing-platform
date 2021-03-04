@@ -5,7 +5,8 @@ const configureSignups = async () => {
     name: 'users-permissions',
     key: 'advanced',
   });
-  advancedSettings.allow_register = false;
+  advancedSettings.allow_register = true;
+  advancedSettings.default_role = 'authenticated';
   await strapi
     .store({
       environment: '',

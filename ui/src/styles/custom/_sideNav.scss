@@ -1,0 +1,39 @@
+
+.usa-sidenav {
+    background-color: $x-whiteish;
+    border-bottom: 0;
+    filter: $x-drop-shadow;
+    a {
+        text-decoration: underline;
+    }
+}
+
+.usa-sidenav__item {
+    border-top: 0;
+    &.current {
+        background-color: $x-charcoal;
+        color: #ffffff;
+        > a {
+            background-color: $x-charcoal;
+            color: $x-whiteish;
+            text-decoration: none;
+            filter: $x-drop-shadow;
+        }
+    }
+    .usa-current {
+        color: $x-charcoal;
+        font-weight: 400;
+    }
+    a:hover {
+        text-decoration: underline;
+    }
+}
+
+.usa-sidenav__sublist {
+    background-color: #ffffff;
+}
+
+.usa-sidenav .usa-current::after {
+    background-color: initial;
+    color: $x-charcoal;
+}

@@ -223,6 +223,26 @@
       padding-right: 0 !important;
       @include u-margin-bottom(1);
     }
+
+
+  .usa-nav__footer {
+    .usa-nav__primary {
+      .usa-nav__link:after, .usa-nav__link:hover:after {
+        @include add-background-svg("chevron");
+        background-color: transparent;
+        content: "";
+        width: 1rem;
+        height: 1rem;
+        position: absolute;
+        filter: invert(1);
+        right: 0;
+        top: 2.8rem;
+        bottom: unset;
+        left: unset;
+        background-size: contain;
+      }
+    }
+  }
   }
 }
 @include at-media("desktop-lg") {
@@ -276,7 +296,9 @@
       display: block;
     }
   }
-
+  &__suffix {
+    text-transform: uppercase;
+  }
   &__prefix {
     display: inline-block;
     @include u-margin-right(1);

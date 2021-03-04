@@ -7,11 +7,13 @@ import { getPage, name as contentName } from "app/ContentModule";
 
 import Hero from "components/Hero";
 import { Grid, Row, Col } from "components/Grid";
-import Login from "features/Login";
+import { LoginContent } from "features/LoginContent";
 import ContentNav from "features/ContentNav";
 import FourOhFour from "routes/FourOhFour";
 import Layout from "features/Layout";
+import Date from "components/Date";
 import Details from "./Details";
+import UsecaseSubmit from "features/UsecaseSubmit";
 
 export const Usecase = ({ slug: overrideSlug }) => {
   const dispatch = useDispatch();
@@ -41,18 +43,22 @@ export const Usecase = ({ slug: overrideSlug }) => {
     return <FourOhFour />;
   }
   return (
-    <Login>
+    <LoginContent>
       <div className={`USLayout US__usecases US__${slug}`}>
         {hero && <Hero {...hero} />}
         <Grid>
           <Row>
-            <Col size={2} className="sections">
+            <Col desktop={2} className="sections">
               <div className="panel">
                 <h4>Sections</h4>
                 <ContentNav items={data.content} />
               </div>
+              <div>
+                <UsecaseSubmit />
+              </div>
+              <a className="usecase-scroll-to-top" href="#top">Return to top</a>
             </Col>
-            <Col size={8} className="padding-right-4 usecase-header">
+            <Col desktop={8} className="padding-right-4 usecase-header">
               <Grid>
                 <h1>{title}</h1>
               </Grid>
@@ -72,20 +78,20 @@ export const Usecase = ({ slug: overrideSlug }) => {
                   <>
                     <span>
                       <span className="desc">Interview Date </span>
-                      <span>{data.interview_date}</span>
+                      <span><Date>{data.interview_date}</Date></span>
                     </span>
                   </>
                 )}
               </Grid>
               <Layout items={layoutContent} renderTitles={true} />
             </Col>
-            <Col size={2}>
+            <Col desktop={2}>
               <Details title="Details" items={data} />
             </Col>
           </Row>
         </Grid>
       </div>
-    </Login>
+    </LoginContent>
   );
 };
 

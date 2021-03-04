@@ -39,12 +39,14 @@ export const initialState = {
     pending: false,
     type: "",
     filter: [],
-    sort: { name: "", dir: "" },
+    sort: { name: "publishedDate", dir: "ASC" },
     data: [],
     error: null,
+    errorCount: 0,
   },
   page: { pending: false, data: {}, error: null },
   taxonomy: { pending: false, data: [], error: null },
+  searchTerm: "",
 };
 
 export const getPage = createAsyncThunk(
@@ -80,6 +82,7 @@ const rejected = (key, state, action) => {
       ...state[key],
       data: action.payload,
       error: action.error,
+      errorCount: state[key].errorCount + 1,
       pending: false,
     },
   };
@@ -131,10 +134,24 @@ export const ContentModule = createSlice({
       ...state,
       list: { ...state.list, sort: initialState.list.sort },
     }),
+    setSearchTerm: (state, action) => {
+      return {
+        ...state,
+        searchTerm: action.payload,
+      }
+    },
   },
   extraReducers: {
     [getPage.pending]: (state) => pending("page", state),
-    [getPage.fulfilled]: (state, action) => fulfilled("page", state, action),
+    [getPage.fulfilled]: (state, action) => {
+      if (!(action.payload.slug || '').toLowerCase().startsWith('usecase')) {
+        state = {
+          ...state,
+          searchTerm: '',
+        };
+      }
+      return fulfilled("page", state, action)
+    },
     [getPage.rejected]: (state, action) =>
       rejected("page", state, { ...action, payload: {} }),
     [getList.pending]: (state) => pending("list", state),
@@ -153,6 +170,7 @@ export const {
   resetListFilter,
   setListSort,
   resetListSort,
+  setSearchTerm,
 } = ContentModule.actions;
 
 export default ContentModule.reducer;

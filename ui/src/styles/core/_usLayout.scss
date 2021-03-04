@@ -102,5 +102,17 @@
         display: inline-block;
       }
     }
+    &--text {
+      display: none;
+      @include at-media("desktop") {
+        display: inline-block;
+      }
+    }
+    &--button {
+      @include at-media("desktop") {
+        display: none;
+      }
+      @include u-margin-bottom(1);
+    }
   }
 }

@@ -6,7 +6,7 @@ h1 {
     font-size: 36px;
 }
 
-.usa-app {
+.usa-app, html {
     background: $x-randombg;
     color: $x-charcoal;
 }
@@ -27,5 +27,44 @@ main#main-content {
     padding-right: 2em;
     padding-left: .5em;
     margin-left: .5em;
-    filter: drop-shadow(0px 16px 20px rgba(0, 0, 0, 0.1));
+    filter: $x-drop-shadow;
+}
+
+.usa-button--primary.usa-button--unstyled {
+    color: $x-charcoal;
+}
+
+.usa-accordion__button {
+    background-color: #ffffff;
+}
+
+.usa-accordion__button {
+    background-color: #ffffff;
+}
+
+.USFilterControl.usa-accordion {
+    @include u-margin-bottom(2);
+}
+
+.usa-accordion__button[aria-expanded="false"] {
+    @include add-background-svg("chevron");
+}
+
+.usa-accordion__button {
+    @include add-background-svg("chevron");
+}
+
+.US__content {
+    @include u-padding-top(4);
+}
+
+.Login__link {
+    img {
+        display: block;
+        margin: .5rem auto 0 auto;
+    }
+}
+
+p, .usa-prose > p {
+    max-width: initial;
 }

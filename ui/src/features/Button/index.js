@@ -19,7 +19,7 @@ export const Button = ({
   color,
   variant,
   raised,
-  url,
+  url = '',
   onClick,
   external,
   fullwidth,

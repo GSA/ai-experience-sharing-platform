@@ -1,13 +1,16 @@
 import React from "react";
 import PropTypes from "prop-types";
-import Moment from "react-moment";
 
-const Date = ({ format, children }) => {
-  return <Moment format={format}>{children}</Moment>;
+const RDate = ({ format, children }) => {
+  try {
+    return <span>{new Intl.DateTimeFormat('en-US', {dateStyle: format}).format(Date.parse(children))}</span>;
+  } catch (e) {
+    return null;
+  }
 };
 
 Date.defaultProps = {
-  format: "MMMM D, YYYY",
+  format: "long",
 };
 
 Date.propTypes = {
@@ -19,4 +22,4 @@ Date.propTypes = {
   ]),
 };
 
-export default Date;
+export default RDate;

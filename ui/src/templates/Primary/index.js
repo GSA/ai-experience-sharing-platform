@@ -6,6 +6,7 @@ import Footer from "./Footer";
 import { getMenus, siteData } from "app/SiteModule";
 import { Helmet } from "react-helmet";
 import IdleTimer from 'components/IdleTimer';
+import { refreshToken } from "utils/refreshToken";
 
 const Primary = ({ children }) => {
   const dispatch = useDispatch();
@@ -13,6 +14,8 @@ const Primary = ({ children }) => {
     dispatch(getMenus({}));
     dispatch(siteData());
   }, [dispatch]);
+
+  refreshToken(dispatch);
 
   const page = useSelector((state) => state.content.page);
   /* istanbul ignore next */
@@ -22,6 +25,7 @@ const Primary = ({ children }) => {
     <>
       <Helmet></Helmet>
       <div
+        id="top"
         className={classnames({
           "usa-app": true,
           [`usa-app__theme-${theme}`]: Boolean(theme),

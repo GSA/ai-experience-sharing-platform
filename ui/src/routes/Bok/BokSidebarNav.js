@@ -1,17 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Link from "features/Link";
+import classnames from "classnames";
 
-const BokSidebarNav = ({ current = "" }) => {
-  const [bokList, setBokList] = useState([]);
-  useEffect(() => {
-    const fetchData = async () => {
-      const response = await fetch(`/api-boks?_sort=bokSectionId:ASC`);
-      const data = await response.json();
-      setBokList(data);
-    };
-    fetchData();
-  }, []);
-
+const BokSidebarNav = ({ current = "", bokList = [] }) => {
   const currentBokModuleId = current.split("-")[0];
 
   const bokModuleItems = bokList.filter(({ bokSectionId: childId = "" }) => {
@@ -31,7 +22,7 @@ const BokSidebarNav = ({ current = "" }) => {
             `${currentBokModuleId}-`
           );
           return (
-            <li key={item.slug} className="usa-sidenav__item">
+            <li key={item.slug} className={classnames({"usa-sidenav__item": true, current: item.bokSectionId === current})}>
               <Link
                 url={`/bok/${[item.slug]}`}
                 className={isCurrentModule ? "usa-current" : ""}
@@ -40,11 +31,12 @@ const BokSidebarNav = ({ current = "" }) => {
               </Link>
               {isCurrentModule && (
                 <ul className="usa-sidenav__sublist">
-                  {bokModuleItems.map((child) => (
-                    <li key={child.slug} className="usa-sidenav__item">
-                      <Link url={`/bok/${child.slug}`}>{child.title}</Link>
-                    </li>
-                  ))}
+                  {bokModuleItems.map((child) => {
+                    const isCurrentModule = child.bokSectionId === current;
+                    return <li key={child.slug} className={classnames({"usa-sidenav__item": true, current: isCurrentModule})}>
+                             <Link url={`/bok/${child.slug}`}>{child.title}</Link>
+                           </li>;
+                  })}
                 </ul>
               )}
             </li>

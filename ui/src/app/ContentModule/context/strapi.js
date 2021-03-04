@@ -1,12 +1,16 @@
 /* istanbul ignore file */
 const { getOptions } = require("utils/http");
 const { getToken } = require("utils/getToken");
+const { logout } = require("app/AuthModule");
 
 const ROOT_URL = process.env.REACT_APP_API_URL || "";
+
+const generateUrlSuffix = (searchTerm) => searchTerm ? '/search/all' : '';
 
 const generateQuery = (state) => {
   const list = state?.content?.list;
   const { filter, sort } = list;
+  const { searchTerm } = state?.content;
 
   let query = "";
   if (filter.length) {
@@ -16,33 +20,51 @@ const generateQuery = (state) => {
           ? Boolean(item.value)
           : Boolean(item.value.length);
       })
-      .map((item) => `${item.name}_${item.operand}=${item.value}`)
+          .map((item) => {
+            if (Array.isArray(item.value)) {
+              return item.value.map((value) => `${item.name}_${item.operand}=${value}`)
+            } else {
+              return `${item.name}_${item.operand}=${item.value}`
+            }})
+      .flat()
       .join("&");
     query = `${query}${filterQuery}`;
   }
 
   if (sort.name) {
-    query = `${query}&_sort=${sort.name}:ASC`;
+    const joiner = query.length ? '&' : '';
+    const direction = sort.dir ? sort.dir.toUpperCase() : 'ASC';
+    query = `${query}${joiner}_sort=${sort.name}:${direction}`;
   }
-  return query;
+  if (searchTerm && searchTerm.length) {
+    const joiner = query.length ? '&' : '';
+    query = `${query}${joiner}q=${searchTerm}`
+  }
+  const urlSuffix = generateUrlSuffix(searchTerm);
+  return { query, urlSuffix };
 };
 
 export const getAllByContentType = async ({ thunkAPI }) => {
+  const dispatch = thunkAPI.dispatch;
   const state = thunkAPI.getState();
   const type = state?.content?.list?.type;
   const token = getToken(type, state);
   const options = getOptions(token);
-  const query = generateQuery(state);
+  const { query, urlSuffix } = generateQuery(state);
+
   let data;
   if (!type) {
     throw new Error("Type is not defined.");
   }
   try {
     const response = await fetch(
-      `${ROOT_URL}/api-${type}${query ? `?${query}` : ""}`,
+      `${ROOT_URL}/api-${type}${urlSuffix}${query ? `?${query}` : ""}`,
       options
     );
     data = await response.json();
+    if (response.status === 401) {
+      dispatch(logout());
+    }
     if (!response.ok) {
       throw new Error(data.message);
     }
@@ -54,6 +76,7 @@ export const getAllByContentType = async ({ thunkAPI }) => {
 };
 
 export const getContentTypeByName = async ({ type, slug, thunkAPI }) => {
+  const dispatch = thunkAPI.dispatch;
   const token = getToken(type, thunkAPI.getState());
   const options = getOptions(token);
   let data;
@@ -63,6 +86,9 @@ export const getContentTypeByName = async ({ type, slug, thunkAPI }) => {
       options
     );
     data = await response.json();
+    if (response.status === 401) {
+      dispatch(logout());
+    }
     if (!response.ok) {
       throw new Error(data.message);
     }

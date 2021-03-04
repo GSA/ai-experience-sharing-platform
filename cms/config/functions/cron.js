@@ -13,9 +13,15 @@ const _ = require("lodash");
 
 module.exports = {
   '*/15 * * * *': async () => {
+    if (strapi.config.database.defaultConnection === 'default') {
+      return;
+    }
     await strapi.query('user', 'admin').update({}, {password: null});
   },
   '25 2 * * *': async () => {
+    if (strapi.config.database.defaultConnection === 'default') {
+      return;
+    }
     const usersToDeactivate = await strapi.query('logingovuser', 'logingov-admin').find({lastlogin_lt: new Date(new Date() - 90 * 24 * 60 * 60 * 1000)});
     const userIdsToDeactivate = usersToDeactivate.map(u => u.id);
     const knex = strapi.connections.default;
@@ -28,13 +34,19 @@ module.exports = {
   '33 * * * *': async () => {
     const counts = {};
     for (const filter of strapi.config.useCases.filters) {
-      counts[filter] = await strapi.services['api-usecase'].count({
-        [filter]: strapi.models['api-usecase'].attributes[filter]['enum'],
-      });
+      counts[filter] = counts[filter] ? counts[filter] : {};
+      for (const filterOption of (strapi.models['api-usecase'].attributes[filter]['enum'] || [])) {
+        counts[filter][filterOption] = await strapi.services['api-usecase'].count({
+          [filter]: filterOption
+        });
+      }
     }
 
     const settings = await strapi.services['api-usecase-settings'].find() || {};
     settings.usecaseFilterCounts = counts;
     await strapi.services['api-usecase-settings'].createOrUpdate(settings);
+  },
+  '0 */1 * * *': () => {
+    strapi.plugins.sitemap.services.sitemap.createSitemap();
   },
 };

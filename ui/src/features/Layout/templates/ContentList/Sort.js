@@ -6,16 +6,20 @@ import { setListSort } from "app/ContentModule";
 
 const Sort = () => {
   const dispatch = useDispatch();
-  const { keymaps, sort } = useSelector((state) => state[name]);
+  const { keymaps, sort = [] } = useSelector((state) => state[name]);
 
   const handleChange = (e) => {
     const { currentTarget: { value: name } = {} } = e;
-    dispatch(setListSort({ name }));
+    const direction = (name || '').toLowerCase().includes('date') ? 'desc' : 'asc';
+    dispatch(setListSort({ name, dir: direction }));
   };
 
-  const items = sort.map((value) => ({ key: keymaps[value], value }));
+  const items = sort ? sort.map((value) => {
+    const key = value === "publishedDate" ? "Most Recent" : keymaps[value]
+    return {key, value };
+  }) : [];
 
-  return (
+  return (<>
     <div className="USContentList__sort-control">
       <span className="USContentList__sort-label">{"Sort by: "}</span>
       <Select
@@ -26,7 +30,7 @@ const Sort = () => {
         onChange={handleChange}
       />
     </div>
-  );
+  </>);
 };
 
 export default Sort;

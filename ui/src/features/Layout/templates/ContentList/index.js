@@ -1,19 +1,24 @@
 import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import { useDispatch, useSelector } from "react-redux";
+import { useLocation } from "react-router-dom";
 import classnames from "classnames";
 import {
   setListDefaults,
   name as contentName,
   clearList,
 } from "app/ContentModule";
-import { getUsecaseSettings } from "app/SiteModule";
+import { getUsecaseSettings, name as siteName } from "app/SiteModule";
 import { Row, Col } from "components/Grid";
 import Icon from "components/Icon";
 import Button from "features/Button";
 import Sort from "./Sort";
 import CardTemplate from "./CardTemplate";
 import Filters from "./Filters";
+import { FilterStatus } from "./Filters/FilterStatus";
+import Sidebar from "./Sidebar";
+import UsecaseSubmit from "features/UsecaseSubmit";
+
 
 const ContentList = ({
   type = "usecases",
@@ -21,40 +26,73 @@ const ContentList = ({
   defaultFilter,
   sort,
   defaultSort,
-  sidebar,
   layout,
   defaultLayout,
   template,
   markdown,
 }) => {
   const dispatch = useDispatch();
+  const location = useLocation()
 
   const [variant, setVariant] = useState(defaultLayout);
+  const [sidebar, setSidebar] = useState(false);
 
   const handleVariant = (value) => setVariant(value);
 
   const state = useSelector((state) => state[contentName]);
-  const { list: { data } = {} } = state;
+  const { searchTerm, list: { data, pending, error } = {} } = state;
+  const { filters = {} } = useSelector((state) => state[siteName]);
 
+  useEffect(() => {
+    if (type === "usecases" && variant === "horizontal") {
+      setSidebar(true);
+    }
+  }, [type, variant]);
+  
   useEffect(() => {
     if (type === "usecases") {
       dispatch(getUsecaseSettings());
     }
   }, [dispatch, type]);
 
-  useEffect(() => {
+  const resetAll = () => {
+    const initialSort = defaultSort ? {name: defaultSort.key, dir: defaultSort.direction} : [];
     dispatch(
       setListDefaults({
         type,
         filter: defaultFilter || [],
-        sort: defaultSort || { name: "", dir: "" },
+        sort: initialSort,
+      })
+    );
+  };
+
+  useEffect(() => {
+    const initialSort = defaultSort ? {name: defaultSort.key, dir: defaultSort.direction} : [];
+    const params = new URLSearchParams(location.search);
+    const paramFilter = [];
+    params.forEach((value, key) => {
+      if (value && filters[key]) {
+        paramFilter.push({
+          name: key,
+          operand: 'eq',
+          type: filters[key].type,
+          value: [value],
+        });
+      }
+    });
+
+    dispatch(
+      setListDefaults({
+        type,
+        filter: defaultFilter && defaultFilter.length > 0 ? defaultFilter : paramFilter,
+        sort: initialSort,
       })
     );
     return () => {
       dispatch(clearList());
     };
-  }, [dispatch, type, defaultFilter, defaultSort]);
-
+  }, [dispatch, type, defaultFilter, defaultSort, filters, location.search]);
+  
   const setWidth = () => {
     let size = 12;
 
@@ -70,6 +108,29 @@ const ContentList = ({
     return size.toString();
   };
 
+  const cardWidth = () => {
+    if (type === "boks" && variant === "vertical") {
+      return "4";
+    } else {
+      return "6";
+    }
+  };
+
+  const filterFooter = () => {
+    if (type === 'usecases') {
+      return <UsecaseSubmit />;
+    } else {
+      return null;
+    }
+  };
+
+  const noResults = (data) => {
+    if ((data || []).length === 0 && !pending && !error) {
+      return <h2>No Results Found.</h2>;
+    }
+    return null;
+  };
+
   const [showFilters, setShowFilters] = useState(false);
   return (
     <div
@@ -82,12 +143,28 @@ const ContentList = ({
         <Row gap="2" className="USContentList__header">
           <Col desktop="3">
             {filter && (
-              <strong onClick={() => setShowFilters((state) => !state)}>
-                Filters
-              </strong>
+                <Row>
+                  <Col desktop="7">
+                    <strong className="USContentList__filter--text" onClick={() => setShowFilters((state) => !state)}>
+                      Filters
+                    </strong>
+                    <FilterStatus/>
+                    <Button color="secondary" className="USContentList__filter--button" onClick={() => setShowFilters((state) => !state)}>Filters</Button>
+                  </Col>
+                  <Col desktop="5">
+                    <Button color="secondary" className="USContentList__filter--reset" onClick={resetAll}>Reset All</Button>
+                  </Col>
+                  {type === 'usecases' ?
+                   <Col className="mobile">
+                    <UsecaseSubmit className="margin-top-2" />
+                   </Col>
+                   : null}
+                </Row>
             )}
           </Col>
-          <Col desktop="6"></Col>
+          <Col desktop="6">
+            {searchTerm.length ? <h1>Search results for "{searchTerm}"</h1> : null}
+          </Col>
           {(sort || layout) && (
             <Col
               desktop="3"
@@ -130,7 +207,7 @@ const ContentList = ({
                 : "USContentList__filter--hidden"
             }
           >
-            <Filters />
+            <Filters footer={filterFooter()} />
           </Col>
         )}
         <Col desktop={setWidth()}>
@@ -138,7 +215,7 @@ const ContentList = ({
             {data.map((item, i) => (
               <Col
                 key={`content-list-item-${i}`}
-                desktop={variant === "horizontal" ? "12" : "6"}
+                desktop={variant === "horizontal" ? "12" : cardWidth()}
               >
                 <CardTemplate
                   template={template}
@@ -147,9 +224,10 @@ const ContentList = ({
                 />
               </Col>
             ))}
+            {noResults(data)}
           </Row>
         </Col>
-        {sidebar && variant === "horizontal" && <Col desktop="3">See also</Col>}
+        {sidebar && variant === "horizontal" && <Col desktop="3"><Sidebar /></Col>}
       </Row>
     </div>
   );
@@ -158,7 +236,6 @@ const ContentList = ({
 ContentList.defaultProps = {
   filter: false,
   sort: false,
-  sidebar: false,
   layout: false,
 };
 

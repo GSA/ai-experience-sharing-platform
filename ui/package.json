@@ -15,7 +15,9 @@
     "classnames": "^2.2.6",
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.4",
+    "fetch-retry": "^4.0.1",
     "framer-motion": "^2.9.4",
+    "hast-util-sanitize": "git+https://github.com/flexion/hast-util-sanitize.git",
     "http-proxy-middleware": "^1.0.6",
     "moment": "^2.29.1",
     "node-env-run": "^4.0.2",
@@ -35,6 +37,7 @@
     "react-router-dom": "^5.2.0",
     "react-scripts": "^4.0.1",
     "redux-watch": "^1.2.0",
+    "rehype-sanitize": "^4.0.0",
     "uswds": "^2.9.0"
   },
   "scripts": {
@@ -101,9 +104,9 @@
   "devDependencies": {
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.5",
-    "object-path": ">=0.11.5",
-    "pa11y-ci": "^2.4.0",
+    "immer": ">=8.0.1",
     "node-notifier": ">=8.0.1",
-    "immer": ">=8.0.1"
+    "object-path": ">=0.11.5",
+    "pa11y-ci": "^2.4.0"
   }
 }

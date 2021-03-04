@@ -33,6 +33,14 @@
       }
     },
     {
+      "method": "GET",
+      "path": "/api-usecases/search/all",
+      "handler": "api-usecase.search",
+      "config": {
+        "policies": []
+      }
+    },
+    {
       "method": "POST",
       "path": "/api-usecases",
       "handler": "api-usecase.create",

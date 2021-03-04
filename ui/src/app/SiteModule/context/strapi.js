@@ -65,13 +65,19 @@ export const getUsecaseSettings = async ({ thunkAPI }) => {
     keymaps: data.usecaseFilterTitles,
     metadata: data.usecaseMetadataOrder,
     sort: data.usecaseSortFields,
+    usecaseFilterCounts: data.usecaseFilterCounts,
   };
 };
 
-export const getUsecaseFilters = async () => {
+export const getUsecaseFilters = async ({ thunkAPI }) => {
+  const state = thunkAPI.getState();
+  const type = 'usecase-settings';
+  const token = getToken(type, state);
+  const options = getOptions(token);
+
   let data;
   try {
-    const response = await fetch(`${ROOT_URL}/api-usecases/filters/all`);
+    const response = await fetch(`${ROOT_URL}/api-usecases/filters/all`, options);
     data = await response.json();
     if (!response.ok) {
       throw new Error(data.message);

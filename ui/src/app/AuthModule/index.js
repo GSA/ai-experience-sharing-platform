@@ -27,6 +27,7 @@ export const initialState = {
   authenticatedTypes: {
     usecases: true,
     'usecase-settings': true,
+    'api-search-suggestions': true,
   },
 };
 
@@ -54,6 +55,11 @@ export const logout = createAsyncThunk(
 export const loginAdmin = createAsyncThunk(
   `${name}/loginAdmin`,
   async (props) => context.createAdminSession(props)
+);
+
+export const refreshToken = createAsyncThunk(
+  `${name}/refreshToken`,
+  async (props, thunkAPI) => context.refreshToken({ thunkAPI })
 );
 
 const AuthModule = createSlice({
@@ -130,6 +136,12 @@ const AuthModule = createSlice({
       return {
         ...state,
         error: action.error.message,
+      };
+    },
+    [refreshToken.fulfilled]: (state, action) => {
+      return {
+        ...state,
+        token: action.payload ? action.payload.token : state.token,
       };
     },
   },

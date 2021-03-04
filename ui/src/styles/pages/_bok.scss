@@ -1,11 +1,6 @@
 $bgImgDir: "~styles/images";
 
-.US__bok_bok {
-    .usa-hero {
-        &.USMarkdown {
-            background-image: url($bgImgDir + "/bok_hero.png");
-        }
-    }
+.US__introduction {
     .US__bok-bg {
         background: linear-gradient(180deg, rgba(120, 227, 251, 0.088) 0%, rgba(41, 42, 43, 0.1) 51.77%, rgba(120, 227, 251, 0.088) 87.5%);
     }
@@ -38,9 +33,12 @@ $bgImgDir: "~styles/images";
         background: linear-gradient(180deg, #F4F3F3 0%, #78E3FB 100%);
         background-size: auto 300%;
     }
-    .bok-content-bg {
+    .US__content {
         .grid-row {
-            padding-top: 1rem;
+            @include u-padding-top(4);
+        }
+        @include at-media("desktop") {
+            min-height: 52rem;
         }
         background: linear-gradient(180deg, rgba(120, 227, 251, 0.088) 0%, rgba(41, 42, 43, 0.1) 51.77%, rgba(120, 227, 251, 0.088) 87.5%);
     }
@@ -65,6 +63,25 @@ $bgImgDir: "~styles/images";
        .usa-hero.usa-hero1 {
         &.USMarkdown {
             background-image: url($bgImgDir + "/bok1_hero.png");
+        }
+    }
+    .usa-content-list--vertical {
+        .usa-card__container {
+            min-height: 27rem;
+        }
+    }
+
+    .bok-bottom-nav {
+        .usa-button {
+            width: 12rem;
+            display: block;
+        }
+        .next {
+            margin-left: auto;
+        }
+        .previous {
+            background-color: $x-whiteish;
+            color: $x-royal;
         }
     }
 }
