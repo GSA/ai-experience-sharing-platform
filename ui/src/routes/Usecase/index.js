@@ -14,11 +14,13 @@ import Layout from "features/Layout";
 import Date from "components/Date";
 import Details from "./Details";
 import UsecaseSubmit from "features/UsecaseSubmit";
+import useScrollToTop from "utils/useScrollToTop";
 
 export const Usecase = ({ slug: overrideSlug }) => {
   const dispatch = useDispatch();
   const params = useParams();
   const { type = "usecases" } = params;
+  useScrollToTop();
   const slug = overrideSlug ? overrideSlug : params.slug;
   const page = useSelector((state) => state[contentName].page);
   const { isAuth } = useSelector((state) => state.auth);
