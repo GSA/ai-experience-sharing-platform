@@ -10,7 +10,7 @@ const BokTemplate = ({ title, description, slug }) => {
     <Card
       className="ai-bok"
       title={<Link to={url}>{title}</Link>}
-      footer={<Button url={url}>Begin Chapter</Button>}
+      footer={<Button url={url}>Learn more</Button>}
     >
       <p>{description}</p>
     </Card>
