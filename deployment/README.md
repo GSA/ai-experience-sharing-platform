@@ -77,3 +77,7 @@ api-page updated 200 bok
 api-page updated 200 about
 
 ```
+
+## Monitoring
+https://upptime.js.org/ is located at https://github.com/GSA/ai-experience-sharing-upptime. Configuration is located at https://github.com/GSA/ai-experience-sharing-upptime/blob/master/.upptimerc.yml. Upptime uses GitHub PAT's to update the GitHub pages site. As development team members enter and leave this will need to be updated at https://github.com/GSA/ai-experience-sharing-upptime/settings/secrets/actions Additional configuration details can be found at https://upptime.js.org/docs/get-started/.
+
