@@ -10,7 +10,7 @@ export const BokBottomNav = ({current="", bokList}) => {
   return (
     <Grid>
       <Row className="margin-bottom-2 bok-bottom-nav">
-        <Col size="6">
+        <Col desktop="6">
           {!!previous ? <Button className="previous" to={`/bok/${previous.slug}`}>Previous</Button> : null}
         </Col>
         <Col size="6">
