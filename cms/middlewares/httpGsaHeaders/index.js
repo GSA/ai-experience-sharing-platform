@@ -4,6 +4,8 @@ module.exports = strapi => {
   return {
     initialize() {
       strapi.app.use(async (ctx, next) => {
+        ctx.set('Cache-Control', 'no-store');
+        ctx.set('Pragma', 'no-cache');
         ctx.set('Permissions-Policy', "microphone=(), geolocation=(), accelerometer=(), camera=(), fullscreen=(), gyroscope=(), magnetometer=(), payment=()");
         await next();
         if (ctx.method === 'OPTIONS' && (ctx.url && ctx.url.startsWith('/api-'))) {
