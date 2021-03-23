@@ -74,7 +74,7 @@ module.exports = ({ env }) => {
           httpOnly: true,
           maxAge: 12 * 60 * 60 * 1000,
           rewrite: true,
-          signed: false
+          signed: true,
         },
       },
       spa: {
