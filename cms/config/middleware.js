@@ -49,6 +49,9 @@ module.exports = ({ env }) => {
       gzip: {
         enabled: true,
       },
+      httpGsaHeaders: {
+        enabled: true,
+      },
       logger: {
         requests: false,
       },
