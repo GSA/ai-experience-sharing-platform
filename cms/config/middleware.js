@@ -49,6 +49,9 @@ module.exports = ({ env }) => {
       gzip: {
         enabled: true,
       },
+      httpGsaHeaders: {
+        enabled: true,
+      },
       logger: {
         requests: false,
       },
@@ -74,7 +77,7 @@ module.exports = ({ env }) => {
           httpOnly: true,
           maxAge: 12 * 60 * 60 * 1000,
           rewrite: true,
-          signed: false
+          signed: true,
         },
       },
       spa: {
