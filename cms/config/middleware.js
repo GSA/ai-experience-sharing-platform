@@ -1,3 +1,4 @@
+const crypto = require('crypto');
 const getServiceConfig = require('./cloud-foundry-data').getServiceConfig;
 
 module.exports = ({ env }) => {
@@ -72,6 +73,21 @@ module.exports = ({ env }) => {
         ttl: 12 * 60 * 60 * 1000,
         rolling: false,
         secretKeys: [env("SESSION_SECRET_1", sessionSecret1), env("SESSION_SECRET_2", sessionSecret2)],
+        encode: (obj) => {
+          const iv = crypto.randomBytes(16);
+          const cipher = crypto.createCipheriv('aes-256-gcm', strapi.app.keys[0], iv);
+          let enc = cipher.update(JSON.stringify(obj), 'utf8', 'hex');
+          enc += cipher.final('hex')
+          return `${enc}.${iv.toString('hex')}.${cipher.getAuthTag().toString('hex')}`;
+        },
+        decode: (str) => {
+          const parts = (str || '').split('.');
+          const decipher = crypto.createDecipheriv('aes-256-gcm', strapi.app.keys[0], Buffer.from(parts[1], 'hex'));
+          decipher.setAuthTag(Buffer.from(parts[2], 'hex'))
+          let enc = decipher.update(parts[0], 'hex', 'utf8');
+          enc += decipher.final('utf8');
+          return JSON.parse(enc || '');
+        },
         cookie: {
           path: "/",
           httpOnly: true,
