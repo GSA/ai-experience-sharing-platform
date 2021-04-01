@@ -82,6 +82,8 @@ module.exports = ({ env }) => {
         },
         decode: (str) => {
           const parts = (str || '').split('.');
+          if (parts.length !== 3)
+            return;
           const decipher = crypto.createDecipheriv('aes-256-gcm', strapi.app.keys[0], Buffer.from(parts[1], 'hex'));
           decipher.setAuthTag(Buffer.from(parts[2], 'hex'))
           let enc = decipher.update(parts[0], 'hex', 'utf8');
