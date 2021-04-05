@@ -37,6 +37,7 @@
     "serialize-javascript": ">=3.1.0",
     "slugify": "^1.4.5",
     "sqlite3": "^5.0.1",
+    "ssri": ">=8.0.1",
     "strapi": "3.4.6",
     "strapi-admin": "3.4.6",
     "strapi-connector-bookshelf": "3.4.6",
