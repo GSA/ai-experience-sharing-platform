@@ -60,7 +60,7 @@ After bootstraping cloud.gov `manage.sh` will create public and private rsa keys
 
 ## Content Syncing
 
-There is a helper script to move data across environments. Below is an example to move some content from staging to development. Images will need to be moved manually, image links will change. This script depends on axios being available.
+There is a helper script to move data across lower environments to higher environments, there can never be any syncing of content from a higher environment to a lower environment, for example do not move content from production to staging. Below is an example to move some content from development to staging. Images will need to be moved manually, image links will change. This script depends on axios being available.
 
 ```bash
 SOURCEURL="https://strapi-api-host-staging.app.cloud.gov" DESTURL="https://strapi-api-host-dev.app.cloud.gov" DESTTOKEN="TOKEN_HERE" SOURCETOKEN="TOKEN_HERE" node ./cms-content-sync.js
