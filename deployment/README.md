@@ -57,14 +57,23 @@ Subsequently, there is a helper that will handle the export and apply in one ste
 
 After bootstraping cloud.gov `manage.sh` will create public and private rsa keys in `./deployment` in the format of `deployment/login-gov-${organization_name}-${space_name}-cert.pem`. The public key needs to be added to https://dashboard.int.identitysandbox.gov/service_providers/YOUR_NUMBER_HERE . You will also need to configure redirect URIs for your new environment.
 
+## Service Accounts and Secret Rotation
+
+During certain business events secrets and service accounts need to be rotated. Below is an example of how to do this.
+
+```
+./manage.sh rotate -o <organization name> -s <space name>
+```
 
 ## Content Syncing
 
-There is a helper script to move data across lower environments to higher environments, there can never be any syncing of content from a higher environment to a lower environment, for example do not move content from production to staging. Below is an example to move some content from development to staging. Images will need to be moved manually, image links will change. This script depends on axios being available.
+There is a helper script to move data across lower environments to higher environments. Content can never be any synced from a higher environment to a lower environment, for example do not move content from production to staging. Below is an example to move some content from development to staging. Images will need to be moved manually, image links will change. This script depends on axios being available.
 
 ```bash
-SOURCEURL="https://strapi-api-host-staging.app.cloud.gov" DESTURL="https://strapi-api-host-dev.app.cloud.gov" DESTTOKEN="TOKEN_HERE" SOURCETOKEN="TOKEN_HERE" node ./cms-content-sync.js
+SOURCEURL="https://strapi-api-host-dev.app.cloud.gov" DESTURL="https://strapi-api-host-staging.app.cloud.gov" DESTTOKEN="TOKEN_HERE" SOURCETOKEN="TOKEN_HERE" node ./cms-content-sync.js
 ```
+
+After running the script CI/CD updates will be needed. The script will output what needs to be updated.
 
 Output will look like below. Any number that isn't 200 indicates there was a problem. Output: content type, action, http status, slug.
 
