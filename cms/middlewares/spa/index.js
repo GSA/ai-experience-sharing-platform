@@ -14,7 +14,7 @@ module.exports = strapi => {
         if (ctx.status === 404) {
           let spaIndex;
           try {
-            spaIndex = await fs.readFile(path.join(staticDir, 'index.html'));
+            spaIndex = await fs.readFile(path.join(staticDir, 'index.html'), {encoding: 'utf8'});
           } catch {
             return;
           }
