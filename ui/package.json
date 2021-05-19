@@ -21,7 +21,7 @@
     "http-proxy-middleware": "^1.0.6",
     "moment": "^2.29.1",
     "node-env-run": "^4.0.2",
-    "node-sass": "^4.14.1",
+    "node-sass": "^6.0.0",
     "prop-types": "^15.7.2",
     "qs": "^6.9.6",
     "query-string": "^6.13.5",
@@ -35,7 +35,7 @@
     "react-redux": "^7.2.0",
     "react-responsive-carousel": "^3.2.11",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "^4.0.1",
+    "react-scripts": "^4.0.3",
     "redux-watch": "^1.2.0",
     "rehype-sanitize": "^4.0.0",
     "uswds": "^2.9.0"
@@ -111,9 +111,12 @@
     "npm-force-resolutions": "0.0.10",
     "object-path": ">=0.11.5",
     "ssri": ">=8.0.1",
-    "pa11y-ci": "^2.4.0"
+    "pa11y-ci": "^2.4.0",
+    "postcss": "^8.2.10"
   },
   "resolutions": {
-    "hast-util-sanitize": "git+https://github.com/flexion/hast-util-sanitize.git#a6f5e00526490acce75651b18fc5a7027be9597b"
+    "hast-util-sanitize": "git+https://github.com/flexion/hast-util-sanitize.git#a6f5e00526490acce75651b18fc5a7027be9597b",
+    "trim": "0.0.3",
+    "css-loader": "5.2.4"
   }
 }
