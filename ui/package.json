@@ -38,6 +38,7 @@
     "react-scripts": "^4.0.3",
     "redux-watch": "^1.2.0",
     "rehype-sanitize": "^4.0.0",
+    "trim": ">=0.0.3",
     "uswds": "^2.9.0"
   },
   "scripts": {
