@@ -38,6 +38,7 @@
     "react-scripts": "^4.0.3",
     "redux-watch": "^1.2.0",
     "rehype-sanitize": "^4.0.0",
+    "trim": ">=0.0.3",
     "uswds": "^2.9.0"
   },
   "scripts": {
@@ -116,7 +117,6 @@
   },
   "resolutions": {
     "hast-util-sanitize": "git+https://github.com/flexion/hast-util-sanitize.git#a6f5e00526490acce75651b18fc5a7027be9597b",
-    "trim": "0.0.3",
-    "css-loader": "5.2.4"
+    "trim": "0.0.3"
   }
 }
