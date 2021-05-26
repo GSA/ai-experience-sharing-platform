@@ -6,7 +6,7 @@
   "scripts": {
     "data:model": "find cms/api/*/models/*settings.json -exec cat {} \\;",
     "develop": "strapi develop",
-    "start": "strapi start",
+    "start": "pm2 -i 0 --no-daemon start server.js",
     "build": "strapi build",
     "build:dev": "strapi build --no-optimization",
     "strapi": "strapi",
