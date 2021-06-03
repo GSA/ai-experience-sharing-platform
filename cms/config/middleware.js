@@ -11,7 +11,7 @@ module.exports = ({ env }) => {
   return {
     load: {
       before: ['responseTime', 'requestContext', 'logger', 'customLogger', 'cors', 'csp', 'responses', 'gzip'],
-      after: ['spa', 'authCookie', 'requestContextLogging', 'parser', 'router'],
+      after: ['spa', 'gsaXss', 'authCookie', 'requestContextLogging', 'parser', 'router'],
     },
     settings: {
       authCookie: {
@@ -46,6 +46,9 @@ module.exports = ({ env }) => {
           'connect-src': "'self' https://www.google-analytics.com",
           'font-src': "'self' data:",
         },
+      },
+      gsaXss: {
+        enabled: true,
       },
       gzip: {
         enabled: true,
