@@ -22,16 +22,17 @@ export const FilterStatus = () => {
   return (
     <div>
       {filters.map((filter, i) => {
-        return (filter.value || []).map((value, ii) => {
-          return <Button
-                   key={ii}
-                   onClick={() => handleClick(value, i)}
-                   variant="link"
-                   className="USFilterControl__filter--status"
-                 >
-                   <Close alt="Close" />
-                   <Keymap value={value}/>
-                 </Button>
+        const fvalue = filter.value && typeof filter.value === 'string' ? [filter.value] : filter.value;
+        return (fvalue || []).map((value, ii) => {
+            return <Button
+                     key={ii}
+                     onClick={() => handleClick(value, i)}
+                     variant="link"
+                     className="USFilterControl__filter--status"
+                   >
+                     <Close alt="Close" />
+                     <Keymap value={value}/>
+                   </Button>
         });
       })}
     </div>
