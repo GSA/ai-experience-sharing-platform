@@ -83,5 +83,7 @@ resource "cloudfoundry_app" "strapi-api-host" {
   }
   environment = {
     CMSURL = "https://${var.strapi_hostname}.${data.cloudfoundry_domain.app.name}"
+    WEB_CONCURRENCY = "32"
+    LOG_CONCURRENCY = "true"
   }
 }
