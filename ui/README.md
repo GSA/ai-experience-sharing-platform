@@ -2,16 +2,16 @@
 
 In the project directory, you can run:
 
-### `npm start`
+### `yarn start`
 
 Runs the app in the development mode.<br />
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-### `npm test`
+### `yarn test`
 
 Launches the test runner in the interactive watch mode.<br />
 
-### `npm run prebuild`
+### `yarn run prebuild`
 
 Launches a prebuild script that indexes content and prepares environment variables.
 
@@ -21,7 +21,7 @@ Launches a prebuild script that indexes content and prepares environment variabl
 
 **indexMenus()** - Creates an index.json file in the menu directory that contains all menu objects.
 
-### `npm run build`
+### `yarn run build`
 
 Builds the app for production to the `build` folder.
 
