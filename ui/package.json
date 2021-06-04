@@ -4,10 +4,10 @@
   "private": true,
   "dependencies": {
     "@babel/core": "7.12.9",
-    "@babel/traverse": "7.14.2",
-    "@babel/types": "7.14.4",
     "@babel/generator": "7.14.3",
     "@babel/parser": "7.14.3",
+    "@babel/traverse": "7.14.2",
+    "@babel/types": "7.14.4",
     "@fortawesome/fontawesome-svg-core": "^1.2.28",
     "@fortawesome/free-regular-svg-icons": "^5.14.0",
     "@fortawesome/free-solid-svg-icons": "^5.13.1",
@@ -31,6 +31,7 @@
     "qs": "^6.9.6",
     "query-string": "^6.13.5",
     "react": "^16.13.1",
+    "react-app-rewired": "^2.1.8",
     "react-axe": "^3.5.3",
     "react-dom": "^16.13.1",
     "react-helmet": "^6.1.0",
@@ -46,13 +47,12 @@
     "uswds": "^2.9.0"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
+    "start": "react-app-rewired start",
+    "build": "react-app-rewired build",
     "test": "react-scripts test",
     "test:pa11y": "pa11y-ci",
     "eject": "react-scripts eject",
-    "test:coverage": "npm test -- --coverage --watchAll=false",
-    "preinstall": "npx npm-force-resolutions"
+    "test:coverage": "npm test -- --coverage --watchAll=false"
   },
   "eslintConfig": {
     "extends": "react-app",
@@ -115,9 +115,9 @@
     "node-notifier": ">=8.0.1",
     "npm-force-resolutions": "0.0.10",
     "object-path": ">=0.11.5",
-    "ssri": ">=8.0.1",
     "pa11y-ci": "^2.4.0",
-    "postcss": "^8.2.10"
+    "postcss": "^8.2.10",
+    "ssri": ">=8.0.1"
   },
   "resolutions": {
     "hast-util-sanitize": "git+https://github.com/flexion/hast-util-sanitize.git#a6f5e00526490acce75651b18fc5a7027be9597b",
