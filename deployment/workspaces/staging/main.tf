@@ -20,8 +20,8 @@ provider "cloudfoundry" {
 module "ai_experience_environment" {
   source                        = "../../modules/space"
   strapi_hostname               = "strapi-api-host-staging"
-  strapi_memory                 = 1024
-  strapi_instances              = 6
+  strapi_memory                 = 2560
+  strapi_instances              = 2
   cf_org                        = "tts-ai-digitalpresence"
   cf_space                      = "staging"
   cf_rds_strapi_db_service_plan = "micro-psql"
