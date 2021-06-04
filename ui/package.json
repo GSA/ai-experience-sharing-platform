@@ -3,6 +3,11 @@
   "version": "0.2.0",
   "private": true,
   "dependencies": {
+    "@babel/core": "7.12.9",
+    "@babel/traverse": "7.14.2",
+    "@babel/types": "7.14.4",
+    "@babel/generator": "7.14.3",
+    "@babel/parser": "7.14.3",
     "@fortawesome/fontawesome-svg-core": "^1.2.28",
     "@fortawesome/free-regular-svg-icons": "^5.14.0",
     "@fortawesome/free-solid-svg-icons": "^5.13.1",
@@ -14,7 +19,7 @@
     "@testing-library/user-event": "^7.2.1",
     "classnames": "^2.2.6",
     "enzyme": "^3.11.0",
-    "enzyme-adapter-react-16": "^1.15.4",
+    "enzyme-adapter-react-16": "^1.15.5",
     "fetch-retry": "^4.0.1",
     "framer-motion": "^2.9.4",
     "hast-util-sanitize": "git+https://github.com/flexion/hast-util-sanitize.git#a6f5e00526490acce75651b18fc5a7027be9597b",
@@ -31,7 +36,6 @@
     "react-helmet": "^6.1.0",
     "react-idle-timer": "^4.5.0",
     "react-moment": "^0.9.7",
-    "react-oauth-popup": "^1.0.2",
     "react-redux": "^7.2.0",
     "react-responsive-carousel": "^3.2.11",
     "react-router-dom": "^5.2.0",
@@ -117,6 +121,11 @@
   },
   "resolutions": {
     "hast-util-sanitize": "git+https://github.com/flexion/hast-util-sanitize.git#a6f5e00526490acce75651b18fc5a7027be9597b",
-    "trim": "0.0.3"
+    "trim": "0.0.3",
+    "@babel/core": "7.12.9",
+    "@babel/traverse": "7.14.2",
+    "@babel/types": "7.14.4",
+    "@babel/generator": "7.14.3",
+    "@babel/parser": "7.14.3"
   }
 }

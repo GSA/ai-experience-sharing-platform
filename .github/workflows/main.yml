@@ -105,11 +105,11 @@ jobs:
 
       - name: Install dependencies
         if: steps.cache-node_modules.outputs.cache-hit != 'true'
-        run: npm ci
+        run: yarn
 
       - name: Test frontend
         # run: npm run test:coverage
-        run: npm run test
+        run: yarn run test
 
       # - name: Test pa11y
       #   run: npm run start & timeout 22 sh -c 'until nc -z $0 $1; do sleep 1; done' localhost 3000 && npm run test:pa11y
@@ -141,14 +141,14 @@ jobs:
         uses: actions/cache@v2
         with:
           path: ui/node_modules
-          key: ${{ runner.os }}-ui-node_modules-${{ hashFiles('ui/package-lock.json') }}
+          key: ${{ runner.os }}-ui-node_modules-${{ hashFiles('ui/yarn.lock') }}
 
       - name: Install dependencies
         if: steps.cache-node_modules.outputs.cache-hit != 'true'
-        run: npm ci
+        run: yarn
 
       - name: Build frontend
-        run: npm run build
+        run: yarn run build
         env:
           NODE_ENV: production
           REACT_APP_API_URL: ""
