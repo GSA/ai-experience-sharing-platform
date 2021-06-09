@@ -22,7 +22,7 @@ jobs:
     if: github.event_name == 'pull_request'
     steps:
       - name: Initialize plan comment
-        uses: marocchino/sticky-pull-request-comment@v1.1.0
+        uses: marocchino/sticky-pull-request-comment@v2.1.0
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           message: ":eyes: Generating Terraform plan..."
@@ -352,7 +352,7 @@ jobs:
 
       - name: Comment Terraform plan
         if: github.event_name == 'pull_request'
-        uses: marocchino/sticky-pull-request-comment@v1.1.0
+        uses: marocchino/sticky-pull-request-comment@v2.1.0
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           message: |
