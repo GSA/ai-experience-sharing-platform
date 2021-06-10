@@ -51,7 +51,7 @@ module.exports = ({ env }) => {
         enabled: true,
       },
       gzip: {
-        enabled: true,
+        enabled: false,
       },
       httpGsaHeaders: {
         enabled: true,
