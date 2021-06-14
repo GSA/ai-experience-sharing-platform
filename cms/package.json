@@ -44,7 +44,7 @@
     "strapi-connector-bookshelf": "3.6.2",
     "strapi-middleware-cache": "^1.4.1",
     "strapi-plugin-content-manager": "3.6.2",
-    "strapi-plugin-content-type-builder": "3.6.2",
+    "strapi-plugin-content-type-builder": "3.6.3",
     "strapi-plugin-email": "3.6.2",
     "strapi-plugin-sitemap": "^1.2.4",
     "strapi-plugin-upload": "3.6.2",
