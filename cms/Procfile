@@ -1,1 +1,1 @@
-strapi-api-host: npm start
+strapi-api-host: npm run pm2

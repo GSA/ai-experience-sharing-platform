@@ -77,4 +77,4 @@ New models added or modified may not get the correct permissions in the admin UI
  + Streaming media is handled via signed S3 urls because there are currently rough edges around https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/Request.html#createReadStream-property
  + Seperate content types are used for usecases, bok, and pages. Another approach is to use relations to boil down the content type into a single one. This other approach also improves search. This approach was not taken because of deadlines.
  + This CMS intentionally reduces external dependencies for development and operations to increase its ability to be reused.
- + Koa.js time to first byte performance is poor, at least for default configurations. To increase page speed express is used to serve up static assets. 
+ + Turning on gzip in Strapi leads to reduced nodejs concurrency.
