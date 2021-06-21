@@ -7,7 +7,7 @@ const Submit = ({className}) => {
 
   return <Card className={classnames({'US__usecase-submit-cta': true, [className]: className})} title="Do you have an AI project you would like to share?">
            We'd love to speak to you about including it in our growing library.
-           <Button url="/submit">Submit A Use Case</Button>
+           <Button url="https://touchpoints.app.cloud.gov/touchpoints/6fccf8ad/submit">Submit A Use Case</Button>
          </Card>
            
            

@@ -94,14 +94,14 @@ jobs:
       - name: Use Node.js
         uses: actions/setup-node@v2.1.5
         with:
-          node-version: 12
+          node-version: 14
 
-      - name: Cache node_modules
-        id: cache-node_modules
-        uses: actions/cache@v2
-        with:
-          path: ui/node_modules
-          key: ${{ runner.os }}-ui-node_modules-${{ hashFiles('ui/package-lock.json') }}
+      # - name: Cache node_modules
+      #   id: cache-node_modules
+      #   uses: actions/cache@v2
+      #   with:
+      #     path: ui/node_modules
+      #     key: ${{ runner.os }}-ui-node_modules-${{ hashFiles('ui/package-lock.json') }}
 
       - name: Install dependencies
         if: steps.cache-node_modules.outputs.cache-hit != 'true'
@@ -134,14 +134,14 @@ jobs:
       - name: Use Node.js
         uses: actions/setup-node@v2.1.5
         with:
-          node-version: 12
+          node-version: 14
 
-      - name: Cache node_modules
-        id: cache-node_modules
-        uses: actions/cache@v2
-        with:
-          path: ui/node_modules
-          key: ${{ runner.os }}-ui-node_modules-${{ hashFiles('ui/yarn.lock') }}
+      # - name: Cache node_modules
+      #   id: cache-node_modules
+      #   uses: actions/cache@v2
+      #   with:
+      #     path: ui/node_modules
+      #     key: ${{ runner.os }}-ui-node_modules-${{ hashFiles('ui/yarn.lock') }}
 
       - name: Install dependencies
         if: steps.cache-node_modules.outputs.cache-hit != 'true'
@@ -185,14 +185,14 @@ jobs:
       - name: Use Node.js
         uses: actions/setup-node@v2.1.5
         with:
-          node-version: 12
+          node-version: 14
 
-      - name: Cache node_modules
-        id: cache-node_modules
-        uses: actions/cache@v2
-        with:
-          path: cms/node_modules
-          key: ${{ runner.os }}-cms-node_modules-${{ hashFiles('cms/package-lock.json') }}
+      # - name: Cache node_modules
+      #   id: cache-node_modules
+      #   uses: actions/cache@v2
+      #   with:
+      #     path: cms/node_modules
+      #     key: ${{ runner.os }}-cms-node_modules-${{ hashFiles('cms/package-lock.json') }}
 
       - name: Install dependencies
         if: steps.cache-node_modules.outputs.cache-hit != 'true'
