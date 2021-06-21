@@ -23,7 +23,7 @@
     "webpack-cli": "^3.3.12"
   },
   "dependencies": {
-    "aws-sdk": "2.925.0",
+    "aws-sdk": "2.931.0",
     "css-loader": "^2.1.1",
     "grant": "5.4.5",
     "immer": ">=8.0.1",
