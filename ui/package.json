@@ -116,7 +116,7 @@
     "npm-force-resolutions": "0.0.10",
     "object-path": ">=0.11.5",
     "pa11y-ci": "^2.4.0",
-    "postcss": "^8.2.10",
+    "postcss": "^7.0.36",
     "ssri": ">=8.0.1"
   },
   "resolutions": {
