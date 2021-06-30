@@ -11,7 +11,7 @@ module.exports = ({ env }) => {
   return {
     load: {
       before: ['responseTime', 'requestContext', 'logger', 'customLogger', 'cors', 'csp', 'responses', 'gzip'],
-      after: ['spa', 'gsaXss', 'authCookie', 'requestContextLogging', 'parser', 'router'],
+      after: ['spa', 'gsaXss', 'sanitizeUrls', 'authCookie', 'requestContextLogging', 'parser', 'router'],
     },
     settings: {
       authCookie: {
@@ -63,6 +63,9 @@ module.exports = ({ env }) => {
         enabled: true,
       },
       requestContextLogging: {
+        enabled: true,
+      },
+      sanitizeUrls: {
         enabled: true,
       },
       session: {
