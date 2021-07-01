@@ -13,7 +13,6 @@ import Title from "./templates/Title";
 import ContentList from "./templates/ContentList";
 import kebab from "utils/kebab";
 import DOMPurify from "dompurify";
-import { shortcodes } from "features/Mdx";
 const Mdx = React.lazy(() => import("features/Mdx"));
 
 const components = {
@@ -25,7 +24,7 @@ const components = {
   links: Links,
   list: List,
   markdown: ({ body, bodyRendered, className }) => {
-    const shortcodesMatcher = new RegExp('<(' + Object.keys(shortcodes).join('|') + ')', 'i');
+    const shortcodesMatcher = new RegExp('<(Break|Button|Card|Date|Grid|Icon|Image|Link|List|Row|Col|Select|ContentList|Login|LoginError|LoginMoreInfo|LoginSetPath|UsecaseLoginRedirect|Logout)', 'i');
     const shortcodesFound = bodyRendered && shortcodesMatcher.test(bodyRendered);
     return (
       <div className={classnames({ USMarkdown: true, [className]: className })}>
