@@ -13,7 +13,7 @@ module.exports = function override(config, env) {
       name: 'parse-five',
     },
   };
-  delete config.optimization.splitChunks.name
-  config.optimization.splitChunks.cacheGroups = cacheGroups;
+  // delete config.optimization.splitChunks.name
+  // config.optimization.splitChunks.cacheGroups = cacheGroups;
   return config;
 }

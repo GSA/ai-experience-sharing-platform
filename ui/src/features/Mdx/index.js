@@ -1,5 +1,4 @@
-import React from "react";
-import MDX from "@mdx-js/runtime";
+import React, { Suspense } from "react";
 import Break from "components/Break";
 import Button from "features/Button";
 import Card from "components/Card";
@@ -20,6 +19,7 @@ import Link from "features/Link";
 import merge from "deepmerge";
 import gh from "hast-util-sanitize/lib/github";
 import clean from "hast-util-sanitize";
+const MDX = React.lazy(() => import("@mdx-js/runtime"));
 
 export const shortcodes = {
   Break,
@@ -63,9 +63,11 @@ const Mdx = ({ children, className, components, scope }) => {
   };
 
   return (
-    <MDX components={{ ...shortcodes, ...components }} scope={scope} rehypePlugins={[[sanitize, schema]]}>
-      {children}
-    </MDX>
+    <Suspense fallback={<div>Loading...</div>}>
+      <MDX components={{ ...shortcodes, ...components }} scope={scope} rehypePlugins={[[sanitize, schema]]}>
+        {children}
+      </MDX>
+    </Suspense>
   );
 };
 
