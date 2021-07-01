@@ -1,30 +1,32 @@
-import React from "react";
+import React, { Suspense, lazy } from "react";
 import { Switch, Route } from "react-router-dom";
-import Default from "./Default";
-import Page from "./Page";
-import AdminLogin from "./AdminLogin";
-import Usecase from "./Usecase";
-import Bok from "./Bok";
+const Default = lazy(() => import("./Default"));
+const Page = lazy(() => import("./Page"));
+const AdminLogin = lazy(() => import("./AdminLogin"));
+const Usecase = lazy(() => import("./Usecase"));
+const Bok = lazy(() => import("./Bok"));
 
 export default ({ location }) => (
   <Switch>
-    <Route key="page" path="/loginadmin" exact>
-      <AdminLogin />
-    </Route>
-    <Route path="/bok/:slug">
-      <Bok />
-    </Route>
-    <Route path="/bok" exact>
-      <Page slug="bok" />
-    </Route>
-    <Route path="/usecases/:slug">
-      <Usecase />
-    </Route>
-    <Route key="page" path="/:slug">
-      <Page />
-    </Route>
-    <Route key="default" path="/" exact>
-      <Default />
-    </Route>
+    <Suspense fallback={<div>Loading...</div>}>
+      <Route key="page" path="/loginadmin" exact>
+        <AdminLogin />
+      </Route>
+      <Route path="/bok/:slug">
+        <Bok />
+      </Route>
+      <Route path="/bok" exact>
+        <Page slug="bok" />
+      </Route>
+      <Route path="/usecases/:slug">
+        <Usecase />
+      </Route>
+      <Route path="/:slug">
+        <Page />
+      </Route>
+      <Route key="default" path="/" exact>
+        <Default />
+      </Route>
+    </Suspense>
   </Switch>
 );
