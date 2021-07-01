@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Suspense } from "react";
 import PropTypes from "prop-types";
 import classnames from "classnames";
 import { Grid } from "components/Grid";
@@ -8,11 +8,12 @@ import Cards from "./templates/Cards";
 import GridModule from "./templates/Grid";
 import Links from "./templates/Links";
 import List from "./templates/List";
-import Mdx from "features/Mdx";
 import Carousel from "features/Carousel";
 import Title from "./templates/Title";
 import ContentList from "./templates/ContentList";
 import kebab from "utils/kebab";
+import DOMPurify from "dompurify";
+const Mdx = React.lazy(() => import("features/Mdx"));
 
 const components = {
   break: Break,
@@ -22,11 +23,14 @@ const components = {
   grid: GridModule,
   links: Links,
   list: List,
-  markdown: ({ body, className }) => (
-    <div className={classnames({ USMarkdown: true, [className]: className })}>
-      <Mdx>{body}</Mdx>
-    </div>
-  ),
+  markdown: ({ body, bodyRendered, className }) => {
+    const shortcodesMatcher = new RegExp('<(Break|Button|Card|Date|Grid|Icon|Image|Link|List|Row|Col|Select|ContentList|Login|LoginError|LoginMoreInfo|LoginSetPath|UsecaseLoginRedirect|Logout)', 'i');
+    const shortcodesFound = bodyRendered && shortcodesMatcher.test(bodyRendered);
+    return (
+      <div className={classnames({ USMarkdown: true, [className]: className })}>
+        { bodyRendered && !shortcodesFound ? <div dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(bodyRendered)}}></div> : <Suspense fallback={<div>Loading...</div>}><Mdx>{body}</Mdx></Suspense> }
+      </div>
+    )},
   title: Title,
   "usecase-list": (props) => (
     <ContentList
