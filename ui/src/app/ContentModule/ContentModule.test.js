@@ -6,6 +6,12 @@ import reducer, {
   reset,
   clearPage,
   clearList,
+  setListFilter,
+  setListDefaults,
+  resetListFilter,
+  setListSort,
+  resetListSort,
+  setSearchTerm,
 } from "./index";
 
 const store = configureStore({ reducer });
@@ -24,7 +30,7 @@ describe("ContentModule", () => {
     it("should load a list of content", async () => {
       await store.dispatch(getList({ type: "test" }));
       const state = await store.getState();
-      expect(state.list.data.length).toBe(2);
+      expect(state.list.data.length).toBe(3);
     });
     it("should load an error", async () => {
       await store.dispatch(getList({ type: "error" }));
@@ -56,6 +62,12 @@ describe("ContentModule", () => {
       const data = await store.getState();
       expect(data.page.error.message).toBe("Invalid Name.");
     });
+    it("should reset the search term if we're viewing a usecase", async () => {
+      await store.dispatch(setSearchTerm('10x'));
+      await store.dispatch(getPage({ name: "test", slug: 2 }));
+      const state = await store.getState();
+      expect(state.searchTerm).toBe('');
+    });
   });
 
   describe("utilities", () => {
@@ -71,6 +83,107 @@ describe("ContentModule", () => {
       await store.dispatch(clearList());
       const data = await store.getState();
       expect(data.list.data.length).toBe(0);
+    });
+  });
+
+  describe('filters, sorts and defaults', () => {
+    beforeEach(async () => await store.dispatch(reset()));
+
+    it("should filter lists for enums", async () => {
+      await store.dispatch(setListFilter({
+        name: 'metadataAgency',
+        type: 'enumeration',
+        value: 'GSA',
+        operand: 'eq',
+      }));
+      await store.dispatch(setListFilter({
+        name: 'metadataAgency',
+        type: 'enumeration',
+        value: 'NIH',
+        operand: 'eq',
+      }));
+      await store.dispatch(setListFilter({
+        name: 'metadataAgency',
+        type: 'enumeration',
+        value: 'GSA',
+        operand: 'eq',
+      }));
+      const data = await store.getState();
+      expect(data.list.filter[0].name).toBe('metadataAgency');
+    });
+
+    it("should filter lists for bools", async () => {
+      await store.dispatch(setListFilter({
+        name: 'metadataSpiiPiiUse',
+        type: 'boolean',
+        value: 'true',
+        operand: 'eq',
+      }));
+      await store.dispatch(setListFilter({
+        name: 'metadataSpiiPiiUse',
+        type: 'boolean',
+        value: 'true',
+        operand: 'eq',
+      }));
+      const data = await store.getState();
+      expect(data.list.filter[0].name).toBe('metadataSpiiPiiUse');
+    });
+
+    it("should set list to a default", async () => {
+      await store.dispatch(setListFilter({
+        name: 'metadataAgency',
+        type: 'enumeration',
+        value: 'GSA',
+        operand: 'eq',
+      }));
+      let data = await store.getState();
+      expect(data.list.filter[0].name).toBe('metadataAgency');
+      await store.dispatch(setListDefaults({
+        filter: [],
+      }));
+      data = await store.getState();
+      expect(data.list.filter[0]).toBeUndefined();
+    });
+
+    it("should reset list", async () => {
+      await store.dispatch(setListFilter({
+        name: 'metadataAgency',
+        type: 'enumeration',
+        value: 'GSA',
+        operand: 'eq',
+      }));
+      let data = await store.getState();
+      expect(data.list.filter[0].name).toBe('metadataAgency');
+      await store.dispatch(resetListFilter());
+      data = await store.getState();
+      expect(data.list.filter[0]).toBeUndefined();
+    });
+
+    it("should sort a list", async () => {
+      await store.dispatch(setListSort({
+        name: 'metadataAgency',
+        dir: 'asc',
+      }));
+      const data = await store.getState();
+      expect(data.list.sort.name).toBe('metadataAgency');
+    });
+
+    it("should sort a list", async () => {
+      await store.dispatch(setListSort({
+        name: 'metadataAgency',
+        dir: 'asc',
+      }));
+      let data = await store.getState();
+      expect(data.list.sort.name).toBe('metadataAgency');
+      await store.dispatch(resetListSort());
+      data = await store.getState();
+      expect(data.list.sort.name).toBe('publishedDate');
+    });
+
+    it("should set a search term", async () => {
+      await store.dispatch(setSearchTerm('10x'));
+      const data = await store.getState();
+      expect(data.searchTerm).toBe('10x');
     });
   });
 });

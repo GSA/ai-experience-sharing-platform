@@ -8,7 +8,7 @@ jest.mock('react', () => {
   const Suspense = ({ children }) => {
     return children;
   };
-  
+
   const lazy = jest.fn().mockImplementation((fn) => {
     const Component = (props) => {
       const [C, setC] = React.useState();

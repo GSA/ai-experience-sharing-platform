@@ -75,7 +75,7 @@ const AuthModule = createSlice({
       ...state,
       redirect: "",
     }),
-    setAuth: (state) => ({
+    setAuth: /* istanbul ignore next */ (state) => ({
       ...state,
       isAuth: true,
       isAdminAuth: true,

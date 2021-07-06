@@ -6,6 +6,9 @@ import reducer, {
   logout,
   setRedirect,
   clearRedirect,
+  loginAdminUrl,
+  refreshToken,
+  loginAdmin,
 } from "./index";
 
 const store = configureStore({ reducer });
@@ -56,4 +59,28 @@ describe("AuthModule", () => {
       expect(state.redirect).toBe("");
     });
   });
+
+  it("should return the admin UI url", () => {
+    const url = loginAdminUrl();
+    expect(url).toBe("/admin/");
+  });
+
+  it("should refresh auth tokens", async () => {
+    await store.dispatch(refreshToken());
+    const state = await store.getState();
+    expect(state.token).toBeTruthy();
+  });
+
+  it("should allow admin users to login", async () => {
+    await store.dispatch(loginAdmin());
+    const state = await store.getState();
+    expect(state.adminToken).toBeTruthy();
+  });
+
+  it("should error when there is an issue with admin users to login", async () => {
+    await store.dispatch(loginAdmin('error'));
+    const state = await store.getState();
+    expect(state.error).toBe('Admin error.')
+  });
+
 });

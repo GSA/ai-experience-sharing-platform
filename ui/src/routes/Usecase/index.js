@@ -21,6 +21,7 @@ export const Usecase = ({ slug: overrideSlug }) => {
   const params = useParams();
   const { type = "usecases" } = params;
   useScrollToTop();
+  /* istanbul ignore next */
   const slug = overrideSlug ? overrideSlug : params.slug;
   const page = useSelector((state) => state[contentName].page);
   const { isAuth } = useSelector((state) => state.auth);

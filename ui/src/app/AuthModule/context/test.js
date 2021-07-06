@@ -16,3 +16,20 @@ export const endSession = async (props) => {
   }
   return { success: true };
 };
+
+export const refreshToken = async (props) => {
+  return {
+    token: "some-fake-token",
+  };
+};
+
+export const createAdminSession = async (props) => {
+  if (props !== "error") {
+    return {
+      token: "some-fake-token",
+      user: "admin1",
+    };
+  } else {
+    throw new Error("Admin error.");
+  }
+};

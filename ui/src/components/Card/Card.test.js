@@ -29,7 +29,6 @@ describe("<Card />", () => {
     });
     it("should render with no content", async () => {
       const props = {
-        className: "test",
         image: "test",
         imageAlt: "test",
         footer: "test",

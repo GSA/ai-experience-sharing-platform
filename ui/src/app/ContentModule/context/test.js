@@ -8,9 +8,25 @@ const testData = [
     excerpt: "test1",
     path: "test1",
     type: "usecase",
+    version: "1.0",
+    interview_date: "01/01/2021",
+    publishedDate: "01/01/2021",
+    metadataAiLifecycleStage: "verificationAndValidation",
+    metadataBenefits: "decreaseCycleTime",
     content: [
       {
         __component: "content.markdown",
+        body: "### Using deep learning to predict future events.\n",
+        title: 'Summary',
+      },
+      {
+        __component: "content.markdown",
+        body: "This is a process that can take as long as 100 minutes.",
+        title: "Business Problem",
+      },
+      {
+        __component: "content.hero",
+        title: 'Summary',
       },
     ],
     toc: [
@@ -31,6 +47,34 @@ const testData = [
     excerpt: "test2",
     path: "test2",
     type: "usecase",
+    slug: "usecase1",
+    content: [
+      {
+        __component: "content.markdown",
+      },
+    ],
+    toc: [
+      {
+        text: "test2-1",
+        url: "test2-1",
+      },
+    ],
+    fields: [
+      {
+        title: "test2-1",
+        key: "test2-1",
+        value: "test2-1",
+      },
+    ],
+  },
+   {
+    featured: true,
+    name: "test3",
+    title: "Test3",
+    excerpt: "test3",
+    path: "test3",
+    type: "page",
+    slug: "page3",
     content: [
       {
         __component: "content.markdown",
@@ -63,7 +107,7 @@ export const getContentTypeByName = async (props) => {
   if (props.type === "error") {
     throw new Error("Invalid Type.");
   }
-  if (!props.name) {
+  if (!props.name && !props.slug) {
     throw new Error("Invalid Name.");
   }
   if (props.name === "error") {
