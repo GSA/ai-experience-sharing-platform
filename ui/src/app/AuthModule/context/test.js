@@ -4,6 +4,9 @@ export const createSession = async ({ provider, search }) => {
   if (provider !== "error") {
     return {
       jwt: "some-fake-token",
+      user: {
+        email: 'test-user@example.com',
+      },
     };
   } else {
     throw new Error("Invalid Provider.");

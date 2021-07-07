@@ -58,7 +58,7 @@ export const getUsecaseSettings = async () => {
       goalDrivenSystems: 0,
       imageRecognition: 2,
     },
-    usecaseMetadataOrder: [
+    metadata: [
       "publishedDate",
       "solutionBenefits",
       "metadataDevelopmentPhase",
@@ -68,10 +68,38 @@ export const getUsecaseSettings = async () => {
       "metadataAgency",
       "metadataSubagency",
     ],
-    usecaseSortFields: [
+    sort: [
       'publishedDate',
       'metadataAgency',
     ],
+    keymaps: {
+      academica: "Academica",
+      acquisitionAndProcurement: "Acquisition and Procurement",
+      agriculture: "Agriculture",
+      autonomousSystems: "Autonomous Systems",
+      commercialOffTheShelf: "Commercial Off The Shelf",
+      competition: "Competition",
+      contains: "Contains",
+      conversationalAiAndChatbots: "Conversational AI and Chatbots",
+      corporateGovernance: "Corporate Governance",
+      customBuiltByNonFederalGovernmentEntity: "Custom Built By Non Federal GovernmentEntity",
+      dataCollectionAndProcessing: "Data Collection and Processing",
+      dataProfessional: "Data Professional",
+      decreaseCycleTime: "Decrease Cycle Time",
+      deployment: "Deployment",
+      developedInHouse: "Developed In House",
+      development: "Development",
+      digitalEconomy: "Digital Economy",
+      economy: "Economy",
+      education: "Education",
+      employment: "Employment",
+      environment: "Environment",
+      metadataAiLifecycleStage: 'metadataAiLifecycleStageKeyMap',
+      metadataBenefits: 'metadataBenefitsKeyMap',
+      publishedDate: 'publishedDateKeyMap',
+      metadataSpiiPiiUse: 'metadataSpiiPiiUseKeyMap',
+      metadataAgency: 'Agency',
+    },
   };
 };
 

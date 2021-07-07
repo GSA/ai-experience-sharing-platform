@@ -46,6 +46,11 @@ const waitForComponentToPaint = async (wrapper) => {
 };
 
 describe("<Usecase />", () => {
+
+  beforeEach(() => {
+    window.scrollTo = jest.fn();
+  });
+
   describe("default render", () => {
     window.scrollTo = jest.fn();
     it("should render", () => {
@@ -59,7 +64,6 @@ describe("<Usecase />", () => {
   });
   describe("load content when authenticated", () => {
     it("should render", async () => {
-      window.scrollTo = jest.fn();
       await store.dispatch(login({ token: "test" }));
       await store.dispatch(getUsecaseSettings());
       const wrapper = mount(
@@ -73,5 +77,18 @@ describe("<Usecase />", () => {
       await waitForComponentToPaint(wrapper);
       expect(wrapper.find("#business-problem").text()).toBe('Business Problem');
     });
+  });
+  it.skip("should render a 404 page", async () => {
+    await store.dispatch(getUsecaseSettings());
+    const wrapper = mount(
+      <TestProvider route={["/usecases/error"]}>
+        <Route path="/usecases/:slug">
+          <Usecase />
+        </Route>
+      </TestProvider>
+    );
+    await runAsyncRender(wrapper);
+    await waitForComponentToPaint(wrapper);
+    expect(wrapper.find(".US__FourOhFour")).toBeDefined()
   });
 });

@@ -9,10 +9,11 @@ const testData = [
     path: "test1",
     type: "usecase",
     version: "1.0",
-    interview_date: "01/01/2021",
+    interviewDate: "01/01/2021",
     publishedDate: "01/01/2021",
     metadataAiLifecycleStage: "verificationAndValidation",
     metadataBenefits: "decreaseCycleTime",
+    metadataSpiiPiiUse: true,
     content: [
       {
         __component: "content.markdown",
@@ -26,10 +27,10 @@ const testData = [
       },
       {
         __component: "content.hero",
-        title: 'Summary',
+        title: 'Hero',
       },
     ],
-    toc: [
+    related: [
       {
         text: "test1-1",
         url: "test1-1",
@@ -48,6 +49,7 @@ const testData = [
     path: "test2",
     type: "usecase",
     slug: "usecase1",
+    metadataSpiiPiiUse: true,
     content: [
       {
         __component: "content.markdown",
@@ -104,7 +106,7 @@ export const getAllByContentType = async ({thunkAPI, props}) => {
 };
 
 export const getContentTypeByName = async (props) => {
-  if (props.type === "error") {
+  if (props.type === "error" || props.slug === 'error') {
     throw new Error("Invalid Type.");
   }
   if (!props.name && !props.slug) {
