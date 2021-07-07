@@ -1,10 +1,13 @@
-import React from "react";
+import React, { Suspense } from "react";
 import PropTypes from "prop-types";
 import classnames from "classnames";
-import Mdx from "features/Mdx";
+import DOMPurify from "dompurify";
+import areShortCodesFound from "utils/areShortCodesFound";
+const Mdx = React.lazy(() => import("features/Mdx"));
 
-const Hero = ({ body, className, heroImage }) => {
+const Hero = ({ body, bodyRendered, className, heroImage }) => {
   const url = (heroImage && heroImage.url) ? heroImage.url : '';
+  const shortCodesFound = areShortCodesFound(bodyRendered);
   return (
     <div className="usa-hero-bg">
       <section
@@ -16,7 +19,7 @@ const Hero = ({ body, className, heroImage }) => {
         style={{background: `url(${url}) center center no-repeat`}}
       >
         <div className="grid-container">
-          <Mdx>{body}</Mdx>
+          { bodyRendered && !shortCodesFound ? <div dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(bodyRendered)}}></div> : <Suspense fallback={<div>Loading...</div>}><Mdx>{body}</Mdx></Suspense> }
         </div>
       </section>
     </div>
