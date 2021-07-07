@@ -13,7 +13,7 @@ module.exports = {
     const pages = await strapi.services['api-page'].find(ctx.query);
     for (const page of pages) {
       for (const content of page.content) {
-        if (content.__component === 'content.markdown') {
+        if (content.__component === 'content.markdown' || content.__component === 'content.hero') {
           content.bodyRendered = marked(content.body);
         }
       }
