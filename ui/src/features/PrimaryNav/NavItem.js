@@ -2,6 +2,7 @@ import React from "react";
 import classnames from "classnames";
 
 const handleEvent = (e) => {
+  /* istanbul ignore next */
   if (e.preventDefault) {
     e.preventDefault();
   }
@@ -37,6 +38,7 @@ const NavItem = ({
             className={classnames({
               "usa-nav__link": true,
               "usa-current": items.reduce(
+                /* istanbul ignore next */
                 (acc, cur) => (cur.link === currentMenuItem ? acc + 1 : acc),
                 0
               ),

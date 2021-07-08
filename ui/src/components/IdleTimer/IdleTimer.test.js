@@ -22,7 +22,7 @@ describe("<IdleTimer />", () => {
   describe("default render", () => {
     it("should render", () => {
       const store = createStore(() => [], {});
-      const useSelectorMock = jest.spyOn(reactRedux, 'useSelector').mockReturnValue({ auth: { isAuth: true }});
+      const useSelectorMock = jest.spyOn(reactRedux, 'useSelector').mockReturnValue({ isAuth: true });
 
       const wrapper = mount(
         <Provider store={store}>
@@ -36,7 +36,24 @@ describe("<IdleTimer />", () => {
     it("should log out user", () => {
       const store = createStore(() => [], {});
       const dispatchMock = jest.fn();
-      const useSelectorMock = jest.spyOn(reactRedux, 'useSelector').mockReturnValue({ auth: { isAuth: true }});
+      const useSelectorMock = jest.spyOn(reactRedux, 'useSelector').mockReturnValue({ isAuth: true });
+      const useDispatchMock = jest.spyOn(reactRedux, 'useDispatch').mockReturnValue(dispatchMock);
+
+      const wrapper = mount(
+        <Provider store={store}>
+          <IdleTimer />
+        </Provider>
+      );
+      jest.advanceTimersByTime(1000 * 60 * 20);
+      jest.clearAllTimers();
+      expect(useIdleTimer).toHaveBeenCalled();
+      useIdleTimer.mock.calls[0][0].onIdle();
+      expect(dispatchMock).toHaveBeenCalled();
+    });
+    it("should not change the url if no one is logged in", () => {
+      const store = createStore(() => [], {});
+      const dispatchMock = jest.fn();
+      const useSelectorMock = jest.spyOn(reactRedux, 'useSelector').mockReturnValue({ isAuth: false });
       const useDispatchMock = jest.spyOn(reactRedux, 'useDispatch').mockReturnValue(dispatchMock);
 
       const wrapper = mount(

@@ -145,6 +145,20 @@ describe("ContentModule", () => {
       expect(data.list.filter[0]).toBeUndefined();
     });
 
+    it("should set list to a default", async () => {
+      await store.dispatch(setListFilter({
+        name: 'metadataAgency',
+        type: 'enumeration',
+        value: 'GSA',
+        operand: 'eq',
+      }));
+      let data = await store.getState();
+      expect(data.list.filter[0].name).toBe('metadataAgency');
+      await store.dispatch(setListDefaults());
+      data = await store.getState();
+      expect(data.list.filter).toBeDefined();
+    });
+
     it("should reset list", async () => {
       await store.dispatch(setListFilter({
         name: 'metadataAgency',

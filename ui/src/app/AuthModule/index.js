@@ -59,7 +59,7 @@ export const loginAdmin = createAsyncThunk(
 
 export const refreshToken = createAsyncThunk(
   `${name}/refreshToken`,
-  async (props, thunkAPI) => context.refreshToken({ thunkAPI })
+  async (props, thunkAPI) => context.refreshToken({ props, thunkAPI })
 );
 
 const AuthModule = createSlice({

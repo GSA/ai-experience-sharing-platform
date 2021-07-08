@@ -20,7 +20,10 @@ export const endSession = async (props) => {
   return { success: true };
 };
 
-export const refreshToken = async (props) => {
+export const refreshToken = async ({ props, thunkAPI }) => {
+  if (props === 'error') {
+    return;
+  }
   return {
     token: "some-fake-token",
   };

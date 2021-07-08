@@ -8,12 +8,13 @@ import FilterBool from "./FilterBool";
 const filterTypes = {
   enumeration: FilterEnum,
   boolean: FilterBool,
-  default: ({ type }) => <span>{`Filter type "${type}" is not defined.`}</span>,
+  default: /* istanbul ignore next */ ({ type }) => <span>{`Filter type "${type}" is not defined.`}</span>,
 };
 
 const FilterControl = ({ id, title, name, onChange, items, type }) => {
   const state = useSelector((state) => state);
 
+  /* istanbul ignore next */
   const { list: { filter: filterValues = [] } = {} } = state[contentName];
   const Comp = Object.keys(filterTypes).includes(type)
     ? filterTypes[type]
@@ -22,6 +23,7 @@ const FilterControl = ({ id, title, name, onChange, items, type }) => {
   const listRef = useRef();
   const handleClick = () => {
     setExpanded((state) => !state);
+    /* istanbul ignore next */
     if (listRef.current.scrollTop) {
       listRef.current.scrollTop = 0;
     }

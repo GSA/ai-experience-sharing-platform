@@ -22,7 +22,9 @@ export const FilterStatus = () => {
   return (
     <div>
       {filters.map((filter, i) => {
+        /* istanbul ignore next */
         const fvalue = filter.value && typeof filter.value === 'string' ? [filter.value] : filter.value;
+        /* istanbul ignore next */
         return (fvalue || []).map((value, ii) => {
             return <Button
                      key={ii}
@@ -38,3 +40,4 @@ export const FilterStatus = () => {
     </div>
   );
 }
+export default FilterStatus;

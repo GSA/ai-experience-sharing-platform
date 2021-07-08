@@ -32,7 +32,9 @@ const components = {
       </div>
     )},
   title: Title,
-  "usecase-list": (props) => (
+  "usecase-list": (props) => {
+    /* istanbul ignore next */
+    return (
     <ContentList
       filters={true}
       layout={true}
@@ -40,8 +42,8 @@ const components = {
       defaultLayout={"vertical"}
       sort={true}
       type={"usecases"}
-    />
-  ),
+    />);
+    },
   "content-list": (props) => {
     return <ContentList {...props} />;
   },

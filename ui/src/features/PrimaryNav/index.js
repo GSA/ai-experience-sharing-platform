@@ -81,10 +81,10 @@ Nav.defaultProps = {
   items: [],
   renderText: Text,
   isMobileMenuOpen: false,
-  onMobileMenuClick: () => console.log("onMobileMenuClick clicked!"),
+  onMobileMenuClick: () => {},
   activeMenuItem: null,
-  onMenuItemClick: () => console.log("onMenuItemClick clicked!"),
-  onClick: () => console.log("onClick clicked!"),
+  onMenuItemClick: () => {},
+  onClick: () => {},
   open: "Menu",
   close: "Close",
 };

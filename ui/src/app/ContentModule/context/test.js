@@ -99,8 +99,13 @@ const testData = [
 ];
 
 export const getAllByContentType = async ({thunkAPI, props}) => {
-  if (props.type === "error") {
+  const state = thunkAPI.getState();
+  const type = state?.content?.list?.type;
+
+  if ((props && props.type === "error") || type === "error" ) {
     throw new Error("Invalid Type.");
+  } else if ((props && props.type === 'bok') || type === 'bok') {
+    return [];
   }
   return testData;
 };

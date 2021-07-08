@@ -99,6 +99,7 @@ export const getUsecaseSettings = async () => {
       publishedDate: 'publishedDateKeyMap',
       metadataSpiiPiiUse: 'metadataSpiiPiiUseKeyMap',
       metadataAgency: 'Agency',
+      metadataProcurement: 'Procurement',
     },
   };
 };
@@ -128,5 +129,8 @@ export const getUsecaseFilters = async () => {
         'other',
       ]
     },
+    metadataSpiiPiiUse: {
+      type: 'boolean',
+    }
   };
 };

@@ -71,6 +71,12 @@ describe("AuthModule", () => {
     expect(state.token).toBeTruthy();
   });
 
+  it("should not refresh empty auth tokens", async () => {
+    await store.dispatch(refreshToken('error'));
+    const state = await store.getState();
+    expect(state.token).toBeTruthy();
+  });
+
   it("should allow admin users to login", async () => {
     await store.dispatch(loginAdmin());
     const state = await store.getState();
