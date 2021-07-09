@@ -13,5 +13,10 @@ describe("<Date />", () => {
       const wrapper = mount(<Date format={"full"}>01/01/2020</Date>);
       expect(wrapper.text()).toBe("Wednesday, January 1, 2020");
     });
+
+    it("should not blow up on bad data", () => {
+      const wrapper = mount(<Date format={"full"}>z0134/42z01/24234020</Date>);
+      expect(wrapper.text()).toBe("");
+    });
   });
 });

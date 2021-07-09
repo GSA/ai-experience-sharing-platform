@@ -3,6 +3,11 @@ import { mount, render } from "enzyme";
 import Button from "features/Button";
 import Provider from "test/TestProvider";
 
+jest.mock('react', () => ({
+  ...jest.requireActual('react'),
+  useLayoutEffect: jest.requireActual('react').useEffect,
+}));
+
 describe("<Button />", () => {
   describe("default render", () => {
     it("should render", () => {

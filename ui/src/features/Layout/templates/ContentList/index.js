@@ -102,6 +102,7 @@ const ContentList = ({
     if (sidebar) {
       size = size - 3;
     }
+    /* istanbul ignore next */
     if (variant === "vertical" && sidebar) {
       size = size + 3;
     }
@@ -109,11 +110,7 @@ const ContentList = ({
   };
 
   const cardWidth = () => {
-    if (type === "boks" && variant === "vertical") {
-      return "4";
-    } else {
-      return "6";
-    }
+    return "6";
   };
 
   const filterFooter = () => {

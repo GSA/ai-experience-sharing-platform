@@ -4,7 +4,7 @@ import context from "./context";
 export const name = "content";
 
 const filterTypes = {
-  boolean: ({ filter = [], filterName, value, operand, type }) => {
+  boolean: ({ filter, filterName, value, operand, type }) => {
     const foundFilter = filter.find((item) => item.name === filterName);
     let rVal;
     if (foundFilter) {
@@ -15,7 +15,7 @@ const filterTypes = {
     }
     return rVal;
   },
-  enumeration: ({ filter = [], filterName, value, operand, type }) => {
+  enumeration: ({ filter, filterName, value, operand, type }) => {
     const foundFilter = filter.find((item) => item.name === filterName);
     let rVal;
     if (foundFilter) {
@@ -102,10 +102,12 @@ export const ContentModule = createSlice({
       };
     },
     setListFilter: (state, action) => {
+      /* istanbul ignore next */
       const { filter: currentFilter = [] } = state.list;
 
       const { name: filterName, value, operand, type } = action.payload;
       // does name exist in filter
+      /* istanbul ignore next */
       const filter =
         type in filterTypes
           ? filterTypes[type]({
@@ -134,7 +136,7 @@ export const ContentModule = createSlice({
       ...state,
       list: { ...state.list, sort: initialState.list.sort },
     }),
-    setSearchTerm: (state, action) => {
+ setSearchTerm: (state, action) => {
       return {
         ...state,
         searchTerm: action.payload,

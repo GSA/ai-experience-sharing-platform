@@ -27,4 +27,17 @@ describe("<Banner />", () => {
       expect(wrapper.find(".usa-banner__content").hostNodes().length).toBe(1);
     });
   });
+  describe("on click", () => {
+    it("should should display content", () => {
+      const wrapper = mount(
+        <TestProvider>
+          <Banner />
+        </TestProvider>
+      );
+      const button = wrapper.find(".usa-banner__button");
+      button.simulate("click", { preventDefault: null });
+      wrapper.update();
+      expect(wrapper.find(".usa-banner__content").hostNodes().length).toBe(1);
+    });
+  });
 });

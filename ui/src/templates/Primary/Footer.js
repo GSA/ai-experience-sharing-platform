@@ -6,6 +6,7 @@ import { name as siteName } from "app/SiteModule";
 import Identifier from "features/Identifier";
 
 const Footer = () => {
+  /* istanbul ignore next */
   const { title, footer = [] } = useSelector((state) => state[siteName]);
 
   const social = [

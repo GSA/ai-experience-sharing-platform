@@ -3,6 +3,11 @@ import { mount, render } from "enzyme";
 import Link from "features/Link";
 import Provider from "test/TestProvider";
 
+jest.mock('react', () => ({
+  ...jest.requireActual('react'),
+  useLayoutEffect: jest.requireActual('react').useEffect,
+}));
+
 describe("<Link />", () => {
   describe("default render", () => {
     it("should render", () => {

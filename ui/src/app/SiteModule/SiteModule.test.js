@@ -6,6 +6,8 @@ import reducer, {
   getMenus,
   menu,
   siteData,
+  getUsecaseSettings,
+  getUsecaseFilters,
 } from "./index";
 
 const store = configureStore({ reducer });
@@ -53,6 +55,16 @@ describe("SiteModule", () => {
       expect(data).toHaveProperty("title");
       expect(data).toHaveProperty("author");
       expect(data).toHaveProperty("description");
+    });
+    it("should return use case settings", async () => {
+      await store.dispatch(getUsecaseSettings());
+      const site = await store.getState();
+      expect(site).toHaveProperty("description");
+    });
+    it("should return use case filters", async () => {
+      await store.dispatch(getUsecaseFilters());
+      const site = await store.getState();
+      expect(site).toHaveProperty("description");
     });
   });
 });

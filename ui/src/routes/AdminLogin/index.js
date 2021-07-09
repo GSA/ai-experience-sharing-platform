@@ -6,6 +6,7 @@ import { AdminLogin as AdminLoginTemplate } from "templates/AdminLogin";
 
 const AdminLogin = ({ slug }) => {
   const params = useParams();
+  /* istanbul ignore next */
   const pageSlug = slug ? slug : params.slug;
   useScrollToTop();
   return (
