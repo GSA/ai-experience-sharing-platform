@@ -17,6 +17,7 @@ import {
   faBars as faBarsSolid,
   faCheck as faCheckSolid,
   faThLarge as faThLargeSolid,
+  faAngleDown as faAngleDownSolid,
 } from "@fortawesome/free-solid-svg-icons";
 
 export default () => {
@@ -36,5 +37,6 @@ export default () => {
     faBarsSolid,
     faCheckSolid,
     faThLargeSolid,
+    faAngleDownSolid,
   );
 };
