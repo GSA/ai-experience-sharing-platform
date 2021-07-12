@@ -6,10 +6,13 @@ import { setListFilter } from "app/ContentModule";
 
 const Filters = ({ footer }) => {
   const dispatch = useDispatch();
+  const { isAuth } = useSelector((state) => state.auth);
 
   useEffect(() => {
-    dispatch(getUsecaseFilters());
-  }, [dispatch]);
+    if (isAuth) {
+      dispatch(getUsecaseFilters());
+    }
+  }, [dispatch, isAuth]);
   const state = useSelector((state) => state);
   const { filters, keymaps, usecaseFilterCounts } = state[siteName];
   const sortTitles = (a, b) => {
