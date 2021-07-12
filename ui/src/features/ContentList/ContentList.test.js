@@ -15,7 +15,7 @@ describe("ContentList", () => {
       );
       await runAsyncRender(wrapper);
 
-      expect(wrapper.find(".ContentList__item").length).toBe(2);
+      expect(wrapper.find(".ContentList__item").length).toBe(3);
     });
     it("should render error on incorrect type", async () => {
       const wrapper = mount(

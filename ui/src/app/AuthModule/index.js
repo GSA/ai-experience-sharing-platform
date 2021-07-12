@@ -59,7 +59,7 @@ export const loginAdmin = createAsyncThunk(
 
 export const refreshToken = createAsyncThunk(
   `${name}/refreshToken`,
-  async (props, thunkAPI) => context.refreshToken({ thunkAPI })
+  async (props, thunkAPI) => context.refreshToken({ props, thunkAPI })
 );
 
 const AuthModule = createSlice({
@@ -75,7 +75,7 @@ const AuthModule = createSlice({
       ...state,
       redirect: "",
     }),
-    setAuth: (state) => ({
+    setAuth: /* istanbul ignore next */ (state) => ({
       ...state,
       isAuth: true,
       isAdminAuth: true,

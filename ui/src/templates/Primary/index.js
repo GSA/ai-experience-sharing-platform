@@ -20,6 +20,7 @@ const Primary = ({ children }) => {
   const page = useSelector((state) => state.content.page);
   /* istanbul ignore next */
   const { meta = {}, type } = page.data;
+  /* istanbul ignore next */
   const theme = type === "projects" ? "5" : !meta.theme ? "6" : meta.theme;
   return (
     <>

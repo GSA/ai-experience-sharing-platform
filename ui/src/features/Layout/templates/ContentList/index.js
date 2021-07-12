@@ -42,6 +42,7 @@ const ContentList = ({
   const state = useSelector((state) => state[contentName]);
   const { searchTerm, list: { data, pending, error } = {} } = state;
   const { filters = {} } = useSelector((state) => state[siteName]);
+  const { isAuth } = useSelector((state) => state.auth);
 
   useEffect(() => {
     if (type === "usecases" && variant === "horizontal") {
@@ -50,10 +51,10 @@ const ContentList = ({
   }, [type, variant]);
   
   useEffect(() => {
-    if (type === "usecases") {
+    if (isAuth && type === "usecases") {
       dispatch(getUsecaseSettings());
     }
-  }, [dispatch, type]);
+  }, [dispatch, type, isAuth]);
 
   const resetAll = () => {
     const initialSort = defaultSort ? {name: defaultSort.key, dir: defaultSort.direction} : [];
@@ -102,6 +103,7 @@ const ContentList = ({
     if (sidebar) {
       size = size - 3;
     }
+    /* istanbul ignore next */
     if (variant === "vertical" && sidebar) {
       size = size + 3;
     }
@@ -109,11 +111,7 @@ const ContentList = ({
   };
 
   const cardWidth = () => {
-    if (type === "boks" && variant === "vertical") {
-      return "4";
-    } else {
-      return "6";
-    }
+    return "6";
   };
 
   const filterFooter = () => {

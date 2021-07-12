@@ -18,7 +18,20 @@ describe("<Login />", () => {
   });
 
   describe("form submission", () => {
-    beforeEach(async () => await store.dispatch(reset()));
+    let location = null;
+
+    beforeEach(async () => {
+      await store.dispatch(reset());
+      location = window.location;
+      Object.defineProperty(window, 'location', {
+        writable: true,
+        value: { assign: jest.fn() }
+      });
+    });
+
+    afterEach(async () => {
+      window.location = location;
+    });
 
     it("should show children when authorized", async () => {
       await store.dispatch(login({ provider: "test" }));
@@ -33,7 +46,7 @@ describe("<Login />", () => {
       expect(wrapper.find("h1#test-login").length).toBe(1);
     });
 
-    xit("should set redirect", async () => {
+    it("should set redirect", async () => {
       const wrapper = mount(
         <TestProvider store={store} route={["/test"]}>
           <Login>
@@ -42,10 +55,7 @@ describe("<Login />", () => {
         </TestProvider>
       );
       wrapper.find(".Login__link").hostNodes().simulate("click");
-      const {
-        auth: { redirect },
-      } = await store.getState();
-      expect(redirect).toBe("/test");
+      expect(window.location.href).toBe("/connect/logingov?");
     });
 
     xit("should render error", async () => {
