@@ -19,6 +19,7 @@ const Filters = ({ footer }) => {
       return -1;
     if (compA > compB)
       return 1;
+    /* istanbul ignore next */
     return 0;
   };
 
@@ -29,6 +30,7 @@ const Filters = ({ footer }) => {
     const items = enums.map((enm) => ({ name: enm, title: keymaps[enm] ? keymaps[enm] : enm }))
           .sort(sortTitles)
           .filter((f) => {
+            /* istanbul ignore next */
             return (usecaseFilterCounts &&
                     usecaseFilterCounts[key] &&
                     usecaseFilterCounts[key][f.name] !== null) ?
@@ -36,6 +38,7 @@ const Filters = ({ footer }) => {
           });
     const filterItem = { key, name: key, title, items, type };
 
+    /* istanbul ignore next */
     if (!keymaps[key]) {
       console.warn(`No kepmap found for ${key}`);
     }
@@ -43,6 +46,7 @@ const Filters = ({ footer }) => {
     return [...acc, filterItem];
   }, []).sort(sortTitles);
 
+  /* istanbul ignore next */
   const handleChange = (props) => {
     dispatch(setListFilter(props));
   };

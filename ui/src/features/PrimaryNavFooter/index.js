@@ -12,17 +12,20 @@ const PrimaryNavFooter = () => {
   const { pathname } = useLocation();
   const dispatch = useDispatch();
   const history = useHistory();
+  /* istanbul ignore next */
   const {
     isAuth,
     user: { email = '' },
   } = useSelector((state) => state.auth);
   const nodeId = "sign-out";
+  /* istanbul ignore next */
   const shortEmail = email.split('@').length ? email.split('@')[0] : email;
 
   // For menu item with subitems
   const [activeMenuItem, setActiveMenuItem] = useState(null);
   const handleMenuItemClick = (value) => {
     let newValue = null;
+    /* istanbul ignore next */
     const clicked = value ? value.id : null;
     if (clicked !== newValue && clicked !== activeMenuItem) {
       newValue = clicked;

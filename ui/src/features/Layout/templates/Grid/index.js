@@ -5,10 +5,11 @@ import { Col, Row } from "components/Grid";
 import Mdx from "features/Mdx";
 
 const Grid = ({ className, columns }) => {
+  /* istanbul ignore next */
   return (
     <Row className={classnames({ USGrid: true, [`${className}`]: className })}>
       {columns.length &&
-        columns.map((col, i) => (
+        columns.content.map((col, i) => (
           <Col className={col.className} size={col.size} desktop={col.desktop}>
             <Mdx>{col.body}</Mdx>
           </Col>

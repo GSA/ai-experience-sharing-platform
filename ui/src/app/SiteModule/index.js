@@ -37,7 +37,8 @@ export const getUsecaseSettings = createAsyncThunk(
   `${name}/getUsecaseSettings`,
   async (props, thunkAPI) => {
     const state = thunkAPI.getState();
-    if (state.auth.pending) {
+    /* istanbul ignore next */
+    if (state.auth && state.auth.pending) {
       new Promise((resolve, reject) => {
         setTimeout(reject, cms.authenticatedErrorDelay);
       });

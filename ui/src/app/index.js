@@ -3,7 +3,6 @@ import { loadState, saveState } from "./sessionStorage";
 import auth, { name as authName } from "app/AuthModule";
 import content, { name as contentName } from "app/ContentModule";
 import site, { name as siteName } from "app/SiteModule";
-import ai, { name as aiName } from "app/AIModule";
 import listWatcher from "utils/listWatcher";
 
 const storeKey = "AI_SESSION_STORE";
@@ -16,7 +15,6 @@ const store = configureStore({
     [authName]: auth,
     [contentName]: content,
     [siteName]: site,
-    [aiName]: ai,
   },
 });
 
