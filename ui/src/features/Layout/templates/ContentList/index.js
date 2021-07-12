@@ -42,6 +42,7 @@ const ContentList = ({
   const state = useSelector((state) => state[contentName]);
   const { searchTerm, list: { data, pending, error } = {} } = state;
   const { filters = {} } = useSelector((state) => state[siteName]);
+  const { isAuth } = useSelector((state) => state.auth);
 
   useEffect(() => {
     if (type === "usecases" && variant === "horizontal") {
@@ -50,10 +51,10 @@ const ContentList = ({
   }, [type, variant]);
   
   useEffect(() => {
-    if (type === "usecases") {
+    if (isAuth && type === "usecases") {
       dispatch(getUsecaseSettings());
     }
-  }, [dispatch, type]);
+  }, [dispatch, type, isAuth]);
 
   const resetAll = () => {
     const initialSort = defaultSort ? {name: defaultSort.key, dir: defaultSort.direction} : [];
