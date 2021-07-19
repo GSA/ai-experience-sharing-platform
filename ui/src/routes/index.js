@@ -6,9 +6,9 @@ const AdminLogin = lazy(() => import("./AdminLogin"));
 const Usecase = lazy(() => import("./Usecase"));
 
 export default ({ location }) => (
-  <Switch>
-    <Suspense fallback={<div>Loading...</div>}>
-      <Route key="page" path="/loginadmin" exact>
+  <Suspense fallback={<div>Loading...</div>}>
+    <Switch>
+      <Route path="/loginadmin" exact>
         <AdminLogin />
       </Route>
       <Route path="/usecases/:slug">
@@ -20,6 +20,6 @@ export default ({ location }) => (
       <Route key="default" path="/" exact>
         <Default />
       </Route>
-    </Suspense>
-  </Switch>
+    </Switch>
+  </Suspense>
 );

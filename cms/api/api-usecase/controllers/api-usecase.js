@@ -40,13 +40,14 @@ module.exports = {
           .where('components_content_markdowns.body', 'ilike', `%${query.q}%`)
           .select('Usecase_components.Usecase_id');
     const search = {
-      _limit: query._limit || 10,
+      _limit: Math.min(query._limit, 100) || 10,
       id_in: ids.map((id) => id.Usecase_id),
+      _where: [],
     };
     if (query._sort)
       search._sort = query._sort;
-    Object.keys(query).filter(p => !p.startsWith('_') && !p === 'q').forEach((p) => {
-      search[p] = query[p];
+    Object.keys(query).filter(p => !p.startsWith('_') && p !== 'q').forEach((p) => {
+      search._where.push({ [p]: query[p] });
     });
     const results = await strapi.query('api-usecase').find(search);
     return ctx.send(results);
