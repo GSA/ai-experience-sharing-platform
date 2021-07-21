@@ -15,7 +15,7 @@ const filterTypes = {
     }
     return rVal;
   },
-  enumeration: ({ filter, filterName, value, operand, type }) => {
+  enumeration: ({ filter, filterName, value, operand, type, isVirtual }) => {
     const foundFilter = filter.find((item) => item.name === filterName);
     let rVal;
     if (foundFilter) {
@@ -25,10 +25,10 @@ const filterTypes = {
         : [...foundFilter.value, value];
       rVal = [
         ...filterList,
-        { name: filterName, value: newValues, operand, type },
+        { name: filterName, value: newValues, operand, type, isVirtual },
       ];
     } else {
-      rVal = [...filter, { name: filterName, value: [value], operand, type }];
+      rVal = [...filter, { name: filterName, value: [value], operand, type, isVirtual }];
     }
     return rVal;
   },
@@ -105,7 +105,7 @@ export const ContentModule = createSlice({
       /* istanbul ignore next */
       const { filter: currentFilter = [] } = state.list;
 
-      const { name: filterName, value, operand, type } = action.payload;
+      const { name: filterName, value, operand, type, isVirtual } = action.payload;
       // does name exist in filter
       /* istanbul ignore next */
       const filter =
@@ -116,6 +116,7 @@ export const ContentModule = createSlice({
               value,
               operand,
               type,
+              isVirtual,
             })
           : [...currentFilter];
 

@@ -1,0 +1,52 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/api-ai-ml-techniques",
+      "handler": "api-ai-ml-technique.find",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api-ai-ml-techniques/count",
+      "handler": "api-ai-ml-technique.count",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api-ai-ml-techniques/:id",
+      "handler": "api-ai-ml-technique.findOne",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/api-ai-ml-techniques",
+      "handler": "api-ai-ml-technique.create",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/api-ai-ml-techniques/:id",
+      "handler": "api-ai-ml-technique.update",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/api-ai-ml-techniques/:id",
+      "handler": "api-ai-ml-technique.delete",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}

@@ -22,7 +22,11 @@ const generateQuery = (state) => {
       })
           .map((item) => {
             if (Array.isArray(item.value)) {
-              return item.value.map((value) => `${item.name}_${item.operand}=${value}`)
+              if (item.isVirtual) {
+                return item.value.map((value) => `${item.name}.metadata_${item.operand}=${value}`)
+              } else {
+                return item.value.map((value) => `${item.name}_${item.operand}=${value}`);
+              }
             } else {
               return `${item.name}_${item.operand}=${item.value}`
             }})

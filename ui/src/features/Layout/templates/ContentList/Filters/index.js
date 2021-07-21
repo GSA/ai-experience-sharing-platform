@@ -29,7 +29,8 @@ const Filters = ({ footer }) => {
   const filterData = Object.entries(filters).reduce((acc, [key, value]) => {
     const title = keymaps[key] || key;
     const enums = value.enum || [];
-    const type = value.type;
+    const type = value.isVirtual ? 'enumeration' : value.type;
+    const isVirtual = value.isVirtual || false;
     const items = enums.map((enm) => ({ name: enm, title: keymaps[enm] ? keymaps[enm] : enm }))
           .sort(sortTitles)
           .filter((f) => {
@@ -39,7 +40,7 @@ const Filters = ({ footer }) => {
                     usecaseFilterCounts[key][f.name] !== null) ?
               usecaseFilterCounts[key][f.name] > 0 : true
           });
-    const filterItem = { key, name: key, title, items, type };
+    const filterItem = { key, name: key, title, items, type, isVirtual };
 
     /* istanbul ignore next */
     if (!keymaps[key]) {

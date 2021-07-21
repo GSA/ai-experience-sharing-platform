@@ -1,0 +1,17 @@
+{
+  "kind": "collectionType",
+  "collectionName": "AiMlTechnique",
+  "info": {
+    "name": "Api-AiMlTechnique"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "metadata": {
+      "type": "string"
+    }
+  }
+}

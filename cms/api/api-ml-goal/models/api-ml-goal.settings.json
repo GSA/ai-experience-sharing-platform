@@ -1,0 +1,18 @@
+{
+  "kind": "collectionType",
+  "collectionName": "MlGoal",
+  "info": {
+    "name": "Api-MlGoal",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "metadata": {
+      "type": "string"
+    }
+  }
+}
