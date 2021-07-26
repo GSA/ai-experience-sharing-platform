@@ -2,13 +2,14 @@ module.exports = ({ env }) => {
   return {
     filters: [
       'metadataProcurement',
-      'metadataBenefits',
+      'metadataBenefitsV2',
       'metadataDevelopmentPhase',
       'metadataAiLifecycleStage',
       'metadataDevelopmentPhase',
-      'metadataAiMlTechniques',
+      'metadataAiMlTechniquesV2',
       'metadataAiLifecycleStage',
       'metadataEnvironment',
+      'metadataMlGoals',
       'metadataSpiiPiiUse'
     ],
   };

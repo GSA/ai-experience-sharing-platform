@@ -13,6 +13,13 @@ const testData = [
     publishedDate: "01/01/2021",
     metadataAiLifecycleStage: "verificationAndValidation",
     metadataBenefits: "decreaseCycleTime",
+    metadataAiMlTechniquesV2: [
+      {
+        created_at: "2021-07-21T19:44:23.242Z",
+        id: 1,
+        metadata: "imageRecognition",
+      }
+    ],
     metadataSpiiPiiUse: true,
     content: [
       {
@@ -49,6 +56,13 @@ const testData = [
     path: "test2",
     type: "usecase",
     slug: "usecase1",
+    metadataAiMlTechniquesV2: [
+      {
+        created_at: "2021-07-21T19:44:23.242Z",
+        id: 1,
+        metadata: "imageRecognition",
+      }
+    ],
     metadataSpiiPiiUse: true,
     content: [
       {
@@ -77,6 +91,13 @@ const testData = [
     path: "test3",
     type: "page",
     slug: "page3",
+    metadataAiMlTechniquesV2: [
+      {
+        created_at: "2021-07-21T19:44:23.242Z",
+        id: 1,
+        metadata: "imageRecognition",
+      }
+    ],
     content: [
       {
         __component: "content.markdown",

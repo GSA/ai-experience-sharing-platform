@@ -62,6 +62,7 @@ export const getUsecaseSettings = async () => {
       "publishedDate",
       "solutionBenefits",
       "metadataDevelopmentPhase",
+      "metadataAiMlTechniquesV2",
       "metadataAiLifecycleStage",
       "metadataEnvironment",
       "metadataSpiiPiiUse",
@@ -75,6 +76,7 @@ export const getUsecaseSettings = async () => {
     keymaps: {
       academica: "Academica",
       acquisitionAndProcurement: "Acquisition and Procurement",
+      metadataAiMlTechniquesV2: "Techniques",
       agriculture: "Agriculture",
       autonomousSystems: "Autonomous Systems",
       commercialOffTheShelf: "Commercial Off The Shelf",
@@ -106,6 +108,12 @@ export const getUsecaseSettings = async () => {
 
 export const getUsecaseFilters = async () => {
   return {
+    metadataAiMlTechniquesV2: {
+      attribute: "api-ai-ml-technique",
+      collection: "api-ai-ml-technique",
+      column: "id",
+      enum: ["imageRecognition", "patternAndAnomalyDetection"]
+    },
     metadataProcurement: {
       type: 'enumeration',
       'enum': [

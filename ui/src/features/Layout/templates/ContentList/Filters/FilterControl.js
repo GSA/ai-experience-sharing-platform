@@ -11,7 +11,7 @@ const filterTypes = {
   default: /* istanbul ignore next */ ({ type }) => <span>{`Filter type "${type}" is not defined.`}</span>,
 };
 
-const FilterControl = ({ id, title, name, onChange, items, type }) => {
+const FilterControl = ({ id, title, name, onChange, items, type, isVirtual }) => {
   const state = useSelector((state) => state);
 
   /* istanbul ignore next */
@@ -29,7 +29,7 @@ const FilterControl = ({ id, title, name, onChange, items, type }) => {
     }
   };
   const handleChange = ({ value, operand }) => {
-    onChange({ name, type, value, operand });
+    onChange({ name, type, value, operand, isVirtual });
   };
 
   const findValue = filterValues.find((item) => item.name === name);
@@ -53,14 +53,14 @@ const FilterControl = ({ id, title, name, onChange, items, type }) => {
         hidden={!isExpanded}
         ref={listRef}
       >
-        <Comp items={items} name={name} value={value} onChange={handleChange} />
+        <Comp items={items} name={name} value={value} onChange={handleChange} isVirtual={isVirtual} />
       </div>
     </div>
   );
 };
 FilterControl.defaultProps = {
   items: [],
-  onChange: (props) => console.log(props),
+  onChange: (props) => () => {},
 };
 FilterControl.propTypes = {
   id: PropTypes.string,
@@ -68,6 +68,7 @@ FilterControl.propTypes = {
   type: PropTypes.string,
   name: PropTypes.string,
   items: PropTypes.array,
+  isVirtual: PropTypes.bool,
   onChange: PropTypes.func,
   value: PropTypes.node,
 };
