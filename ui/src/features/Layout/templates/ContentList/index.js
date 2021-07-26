@@ -72,12 +72,15 @@ const ContentList = ({
     const params = new URLSearchParams(location.search);
     const paramFilter = [];
     params.forEach((value, key) => {
-      if (value && filters[key]) {
+      const isVirtual = key.includes('.');
+      const name = isVirtual ? key.split('.')[0] : key;
+      if (value && filters[name]) {
         paramFilter.push({
-          name: key,
           operand: 'eq',
-          type: filters[key].type,
+          type: filters[name].type,
           value: [value],
+          name,
+          isVirtual,
         });
       }
     });
