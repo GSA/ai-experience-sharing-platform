@@ -23,6 +23,9 @@ const setupPermissions = async () => {
     const authenticatedPermissions = {
       application: {
         'api-usecase': ['count', 'find', 'findone', 'filters', 'search'],
+        'api-ai-ml-technique': ['count', 'find', 'findone'],
+        'api-benefit':  ['count', 'find', 'findone'],
+        'api-ml-goal':  ['count', 'find', 'findone'],
         'api-search-suggestion': ['count', 'find', 'findone'],
         'api-usecase-settings': ['find'],
       },

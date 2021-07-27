@@ -88,7 +88,9 @@
         "improveCustomerService",
         "newServiceOrCapability",
         "increaseCompliance",
-        "other"
+        "costSavings",
+        "other",
+        "none"
       ]
     },
     "metadataProcurement": {
@@ -105,6 +107,15 @@
     "metadataDevelopmentPhase": {
       "type": "enumeration",
       "enum": [
+        "exploringOptionsAndCapabilities",
+        "prototypeOrProofOfConcept",
+        "pilot",
+        "production",
+        "researchProjectConcept",
+        "researchProjectIrbApproval",
+        "researchProjectResearchAndTesting",
+        "researchProjectPublished",
+        "researchProjectOngoingRevisions",
         "operationalUse",
         "researchProject"
       ]
@@ -195,6 +206,37 @@
       "type": "component",
       "repeatable": true,
       "component": "menu.menu"
+    },
+    "metadataMachineLearning": {
+      "type": "boolean",
+      "default": false
+    },
+    "metadataMlLearningTypes": {
+      "type": "enumeration",
+      "enum": [
+        "reinforcementLearning",
+        "supervisedLearning",
+        "unsupervisedLearning"
+      ]
+    },
+    "metadataMlTechnique": {
+      "type": "enumeration",
+      "enum": [
+        "classification",
+        "regression",
+        "dimensionalityReduction",
+        "clustering",
+        "notApplicable"
+      ]
+    },
+    "metadataMlGoals": {
+      "collection": "api-ml-goal"
+    },
+    "metadataAiMlTechniquesV2": {
+      "collection": "api-ai-ml-technique"
+    },
+    "metadataBenefitsV2": {
+      "collection": "api-benefit"
     }
   }
 }

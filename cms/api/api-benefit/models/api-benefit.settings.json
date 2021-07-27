@@ -1,0 +1,17 @@
+{
+  "kind": "collectionType",
+  "collectionName": "Benefit",
+  "info": {
+    "name": "Api-Benefit"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "metadata": {
+      "type": "string"
+    }
+  }
+}

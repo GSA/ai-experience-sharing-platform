@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import classnames from "classnames";
 import Icon from "components/Icon";
 
-const FilterEnum = ({ name, items, onChange, value, operand }) => {
+const FilterEnum = ({ name, items, onChange, value, operand, isVirtual }) => {
   return (
     <div className="USFilterControl__enum">
       {items.map((item, i) => {
@@ -13,7 +13,7 @@ const FilterEnum = ({ name, items, onChange, value, operand }) => {
             key={`filter-${i}`}
             tabIndex={-1}
             className="USFilterControl__item"
-            onClick={() => onChange({ name, value: item.name, operand })}
+            onClick={() => onChange({ name, value: item.name, operand, isVirtual })}
           >
             <Icon
               variant={isChecked ? "solid" : "regular"}
@@ -39,6 +39,7 @@ FilterEnum.defaultProps = {
 FilterEnum.propTypes = {
   items: PropTypes.array,
   onChange: PropTypes.func,
+  isVirtual: PropTypes.bool,
   value: PropTypes.array,
 };
 

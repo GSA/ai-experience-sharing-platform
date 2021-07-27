@@ -34,11 +34,20 @@ module.exports = {
   '33 * * * *': async () => {
     const counts = {};
     for (const filter of strapi.config.useCases.filters) {
-      counts[filter] = counts[filter] ? counts[filter] : {};
-      for (const filterOption of (strapi.models['api-usecase'].attributes[filter]['enum'] || [])) {
-        counts[filter][filterOption] = await strapi.services['api-usecase'].count({
-          [filter]: filterOption
-        });
+      counts[filter] = counts[filter] || {};
+      if (strapi.models['api-usecase'].attributes[filter].isVirtual) {
+        const filterOptions = await strapi.models[strapi.models['api-usecase'].attributes[filter].collection].fetchAll();
+        for (const filterOption of (filterOptions.models || [])) {
+          counts[filter][filterOption.attributes.metadata] = await strapi.services['api-usecase'].count({
+            [`${filter}.metadata`]: filterOption.attributes.metadata,
+          });
+        }
+      } else {
+        for (const filterOption of (strapi.models['api-usecase'].attributes[filter]['enum'] || [])) {
+          counts[filter][filterOption] = await strapi.services['api-usecase'].count({
+            [filter]: filterOption,
+          });
+        }
       }
     }
 

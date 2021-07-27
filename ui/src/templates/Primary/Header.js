@@ -34,7 +34,7 @@ const Header = ({ className, variant }) => {
   const [activeMenuItem, setActiveMenuItem] = useState(null);
   const handleMenuItemClick = (value) => {
     let newValue = null;
-    const clicked = value ? value.id : null;
+    const clicked = value ? value.id /* istanbul ignore next */ : null;
     if (clicked !== newValue && clicked !== activeMenuItem) {
       newValue = clicked;
     }

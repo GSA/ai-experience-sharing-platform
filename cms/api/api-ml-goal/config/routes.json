@@ -1,0 +1,52 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/api-ml-goals",
+      "handler": "api-ml-goal.find",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api-ml-goals/count",
+      "handler": "api-ml-goal.count",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api-ml-goals/:id",
+      "handler": "api-ml-goal.findOne",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/api-ml-goals",
+      "handler": "api-ml-goal.create",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/api-ml-goals/:id",
+      "handler": "api-ml-goal.update",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/api-ml-goals/:id",
+      "handler": "api-ml-goal.delete",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}
