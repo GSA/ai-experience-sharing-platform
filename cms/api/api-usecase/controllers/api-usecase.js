@@ -16,17 +16,32 @@ module.exports = {
 
     let agencies
     if (this.cache.get('agencies')) {
-      agencies = this.cache.get('agencies')
+      agencies = this.cache.get('agencies');
     } else {
       agencies = await strapi.connections[connDefault]('Usecase').distinct('metadataAgency').orderBy('metadataAgency');
-      this.cache.set('agencies', agencies)
+      this.cache.set('agencies', agencies);
     }
 
+    const selectedFilters = _.pick(strapi.models["api-usecase"].attributes, strapi.config.useCases.filters);
+    for (const filterName in selectedFilters) {
+      const filter = selectedFilters[filterName];
+      if (filter.isVirtual) {
+        if (this.cache.get(filterName)) {
+          filter.enum = this.cache.get(filterName);
+        } else {
+          const filterValues = await strapi.models[filter.collection].fetchAll();
+          const enums = filterValues.models.map((filterValue) => {return filterValue.attributes.metadata});
+          this.cache.set(filterName, enums);
+          filter.enum = enums;
+        }
+      }
+    }
     return ctx.send({
-      filters: _.extend({},
-                        _.pick(strapi.models["api-usecase"].attributes, strapi.config.useCases.filters),
-                        {metadataAgency: {type: "enumeration", "enum": agencies.map((a) => a.metadataAgency)}}
-                       ),
+      filters: _.extend(
+        {},
+        selectedFilters,
+        {metadataAgency: {type: "enumeration", "enum": agencies.map((a) => a.metadataAgency)}}
+      ),
     });
   },
   async search(ctx) {
@@ -37,7 +52,7 @@ module.exports = {
     const connDefault = strapi.config.database.defaultConnection;
     const ids = await strapi.connections[connDefault]('Usecase_components')
           .innerJoin('components_content_markdowns', 'Usecase_components.component_id', 'components_content_markdowns.id')
-          .where('components_content_markdowns.body', 'ilike', `%${query.q}%`)
+          .where('components_content_markdowns.body', 'ilike', `%${query.q}%`) // Escaped per https://github.com/knex/documentation/issues/73#issuecomment-572482153
           .select('Usecase_components.Usecase_id');
     const search = {
       _limit: Math.min(query._limit, 100) || 10,

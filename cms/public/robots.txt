@@ -1,5 +1,2 @@
-User-agent: usasearch
-Allow: /
-
-User-agent: *
+User-Agent: *
 Disallow: /

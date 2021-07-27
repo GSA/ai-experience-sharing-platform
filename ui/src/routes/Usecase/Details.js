@@ -36,14 +36,25 @@ const Details = ({ items }) => {
           if (!!items[detailKey] && detailKey in mapKeys) {
             const key = detailKey;
             const value = items[detailKey];
-            const title = key in mapKeys ? mapKeys[key] : key;
-            const text = value in mapKeys ? mapKeys[value] : Format({name: key, value});
-            return <div key={i}>
+            const title = mapKeys[key] || key;
+            if (Array.isArray(value)) {
+              const texts = value.map(v => mapKeys[v.metadata] || Format({name: key, value: v.metadata}));
+              return <div key={i}>
+                     <dt>{title}</dt>
+                     <dd>
+                       {texts.map((text, i) => {
+                         return <Link key={i} to={`/usecases?${key}.metadata=${value[i].metadata}`}>{text}</Link>})}
+                     </dd>
+                   </div>;
+            } else {
+              const text = mapKeys[value] || Format({name: key, value});
+              return <div key={i}>
                      <dt>{title}</dt>
                      <dd>
                        {omitLinks.some((l) => l === key) ? <>{text}</> : <Link to={`/usecases?${key}=${value}`}>{text}</Link>}
                      </dd>
                    </div>;
+            }
           }
           return;
         })}
@@ -72,13 +83,6 @@ Details.defaultProps = {
 Details.propTypes = {
   id: PropTypes.string,
   title: PropTypes.string,
-  // items: PropTypes.arrayOf(
-  //   PropTypes.shape({
-  //     title: PropTypes.string,
-  //     key: PropTypes.string,
-  //     value: PropTypes.oneOfType([PropTypes.string, PropTypes.array]),
-  //   })
-  // ),
 };
 
 export default Details;
