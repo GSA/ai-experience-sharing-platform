@@ -19,6 +19,11 @@ const UsecaseTemplate = (props) => {
     "metadataProcurement": "enumeration",
     "metadataSpiiPiiUse": "boolean",
   };
+  const metaDataValueBlockList = [
+    'none',
+    'other',
+    'notApplicable',
+  ];
 
   const { description, title, metadataAgency, publishedDate, slug } = props;
 
@@ -42,6 +47,7 @@ const UsecaseTemplate = (props) => {
       <p className="ai-uc__meta-container">
         {Object.keys(metaDataList)
           .filter((item) => Boolean(props[item]))
+          .filter(item => !metaDataValueBlockList.includes(props[item]))
           .map((item, i) => (
             <Button
               onClick={(e) => handleClick({
