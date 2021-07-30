@@ -43,7 +43,7 @@ const Filters = ({ footer }) => {
     const filterItem = { key, name: key, title, items, type, isVirtual };
 
     /* istanbul ignore next */
-    if (!keymaps[key]) {
+    if (keymaps && keymaps.length && !keymaps[key]) {
       console.warn(`No kepmap found for ${key}`);
     }
 
