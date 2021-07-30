@@ -61,6 +61,10 @@ S3_ACCESS_KEY_ID=example_s3 S3_SECRET_ACCESS_KEY=example_s3 S3_REGION=example_s3
 
 Using nodejs's inspector, https://nodejs.org/en/docs/guides/debugging-getting-started/. You can run the command above and point Google Chrome at `chrome://inspect` and then select the link titled 'Open dedicated DevTools for Node'.
 
+### CORS
+
+You may need to edit the CORS configuration to run the site locally. CORS can be configured at cms/config/middleware.js Add to the array at .cors.origin.
+
 ### Github Actions
 
  * .github/workflows/main.yml - Builds, tests, deploys the AI Sharing Platform for dev, staging, and prod.
