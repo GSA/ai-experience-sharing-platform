@@ -39,7 +39,7 @@
     "react-idle-timer": "^4.5.0",
     "react-moment": "^0.9.7",
     "react-redux": "^7.2.0",
-    "react-responsive-carousel": "^3.2.11",
+    "react-responsive-carousel": "^3.2.20",
     "react-router-dom": "^5.2.0",
     "react-scripts": "^4.0.3",
     "redux-watch": "^1.2.0",
