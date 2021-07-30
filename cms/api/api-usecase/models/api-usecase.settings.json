@@ -79,20 +79,6 @@
     "contactApprovalRequiredBy": {
       "type": "string"
     },
-    "metadataBenefits": {
-      "type": "enumeration",
-      "enum": [
-        "decreaseCycleTime",
-        "increaseAccuracy",
-        "increaseOutputs",
-        "improveCustomerService",
-        "newServiceOrCapability",
-        "increaseCompliance",
-        "costSavings",
-        "other",
-        "none"
-      ]
-    },
     "metadataProcurement": {
       "type": "enumeration",
       "enum": [
