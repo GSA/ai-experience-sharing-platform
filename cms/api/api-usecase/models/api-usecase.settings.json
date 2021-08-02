@@ -106,20 +106,6 @@
         "researchProject"
       ]
     },
-    "metadataAiMlTechniques": {
-      "type": "enumeration",
-      "enum": [
-        "imageRecognition",
-        "patternAndAnomalyDetection",
-        "conversationalAiAndChatbots",
-        "naturalLanguageProcessingOrGeneration",
-        "autonomousSystems",
-        "predictiveAnalyticsAndDecisionMaking",
-        "goalDrivenSystems",
-        "recommendationsAndPersonalization",
-        "intelligentAutomation"
-      ]
-    },
     "metadataAiLifecycleStage": {
       "type": "enumeration",
       "enum": [
