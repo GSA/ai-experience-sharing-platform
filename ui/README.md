@@ -26,20 +26,6 @@ Launches a prebuild script that indexes content and prepares environment variabl
 
 Builds the app for production to the `build` folder.
 
-## Content Workflow
-
-### NetlifyCMS
-
-This site uses NetlifyCMS to build and manage content. All content updates are made to the `content` branch.
-
-The content and admin files are located in the `/plublic` directory.
-
-`/admin` - location for the admin page and config file.
-
-`/settings` - location of `site.json` and `/menu` directory and menu .json files
-
-`/images` - location of uploaded image assets.
-
 ### Github Actions
 
 When a push is made to the `content` branch, a PR will be automatically generated to merge the changes to the `master` branch. This is done to isolate content changes from code changes.
