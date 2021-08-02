@@ -7,6 +7,9 @@ In the project directory, you can run:
 Runs the app in the development mode.<br />
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
+
+Out of the box the UI expects the cms to be running locally at http://localhost:1337. For details on running the CMS locally see the [README.md](https://github.com/GSA/ai-experience-sharing-platform/blob/develop/cms/README.md). Another option is to modify where the UI proxy is pointed to https://github.com/GSA/ai-experience-sharing-platform/blob/develop/ui/src/setupProxy.js#L3. If you want to authenticate locally you can however login.gov will send it's response to http://localhost:1337 if you change the port after login from 1337 to 3000 it will complete the login process locally.
+
 ### `yarn test`
 
 Launches the test runner in the interactive watch mode.<br />
@@ -24,20 +27,6 @@ Launches a prebuild script that indexes content and prepares environment variabl
 ### `yarn run build`
 
 Builds the app for production to the `build` folder.
-
-## Content Workflow
-
-### NetlifyCMS
-
-This site uses NetlifyCMS to build and manage content. All content updates are made to the `content` branch.
-
-The content and admin files are located in the `/plublic` directory.
-
-`/admin` - location for the admin page and config file.
-
-`/settings` - location of `site.json` and `/menu` directory and menu .json files
-
-`/images` - location of uploaded image assets.
 
 ### Github Actions
 
