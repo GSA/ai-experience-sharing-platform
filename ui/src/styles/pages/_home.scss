@@ -1,28 +1,88 @@
 $bgImgDir: "~styles/images";
 
+// CoE Brand Colors
+$coePrimaryDarkest: #1C304A;
+$coePrimaryDarker: #005990;
+$coePrimary: #208BCC;
+$coePrimaryLighter: #349FE0;
+$coePrimaryLightest: #B4E6FF;
+
+
 .US__homepage {
   .margin-bottom-4.usa-hero-container {
     margin-bottom: 0;
   }
 
   .usa-hero {
-    height: 476px;
     position: relative;
-  }
-
-  h1 {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%)
+    background-size: cover;
+    padding-bottom: 3rem;
+    padding-top: 3rem;
   }
 
   .usa-hero-bg {
-    background: linear-gradient(180deg, #F4F3F3 0%, #78E3FB 100%);
-    background-size: auto 300%;
+    background-color: #292a2b;
   }
   .US__homepage-content {
-    background: linear-gradient(180deg, rgba(120,227,251,0.15) 0%, rgba(255,255,255,1) 40%);
-    padding-top: 4rem;
+    padding-top: 0;
+    border-top: 2px solid $coePrimaryLightest;
+
+    .USMarkdown {
+      @include u-font('sans', 'md');
+      @include u-width(full);
+      
+      @include at-media(tablet) {
+        @include grid-col(10);
+        @include grid-offset(1);
+      }
+      @include at-media(widescreen) {
+        @include grid-col(10);
+        @include grid-offset(none);
+      }
+    }
+    p {
+      margin: 3rem 0;
+    }
+    
+    .intro-bg {
+      @include u-font('sans', 'md');
+      background: $coePrimaryDarkest;
+      color: white;
+      padding-top: 2rem;
+      -webkit-font-smoothing: antialiased;
+      a, a:visited {
+        color: $coePrimaryLightest;
+      }
+      a:hover, a:active {
+        color: $coePrimaryLighter;
+      }
+      
+      p:first-child {
+        @include u-font('serif', 'xl');
+        @include u-line-height('serif', 3);
+      }
+    }
+    .home-resources-list.grid-bg {
+      padding-top: 3rem;
+      
+      hr {
+        margin: 4rem 0;
+      }
+    }
+    .home-resources-list--gray-bg {
+      background: #E9EDEE;
+    }
+    .home-resilience-challenge-bg {
+      background: #0C0B2A url("~styles/images/challenge_background.png") no-repeat center right;
+      background-size: cover;
+      color: #fff;
+      a, a:visited {
+        color: $coePrimaryLightest;
+      }
+      a:hover, a:active {
+        color: $coePrimaryLighter;
+      }
+    }
   }
 
   p, .usa-prose > p {

@@ -16,7 +16,7 @@ const Hero = ({ body, bodyRendered, className, heroImage }) => {
           [className]: className,
         })}
         aria-label="Introduction"
-        style={{background: `url(${url}) center center no-repeat`}}
+        style={{backgroundImage: `url(${url})`}}
       >
         <div className="grid-container">
           { bodyRendered && !shortCodesFound ? <div dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(bodyRendered)}}></div> : <Suspense fallback={<div>Loading...</div>}><Mdx>{body}</Mdx></Suspense> }

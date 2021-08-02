@@ -1,3 +1,11 @@
+
+// CoE Brand Colors
+$coePrimaryDarkest: #1C304A;
+$coePrimaryDarker: #005990;
+$coePrimary: #208BCC;
+$coePrimaryLighter: #349FE0;
+$coePrimaryLightest: #B4E6FF;
+
 h1, h2, h3, h4 {
     font-weight: 400;
 }
@@ -7,12 +15,12 @@ h1 {
 }
 
 .usa-app, html {
-    background: $x-randombg;
-    color: $x-charcoal;
+    background: white;
+    color: $coePrimaryDarkest;
 }
 
 .usa-hero {
-    color: $x-charcoal;
+    color: $coePrimaryDarkest;
 }
 
 main#main-content {
@@ -21,17 +29,18 @@ main#main-content {
   
 .usa-hero h1 > span {
     font-size: 56px;
+    line-height: 70px;
     display: block;
     background-color: rgba(255, 255, 255, .85);
-    width: fit-content;
+    width: 100%;
     padding-right: 2em;
     padding-left: .5em;
-    margin-left: .5em;
+    padding-bottom:.5rem;
     filter: $x-drop-shadow;
 }
 
 .usa-button--primary.usa-button--unstyled {
-    color: $x-charcoal;
+    color: $coePrimaryDarkest;
 }
 
 .usa-accordion__button {
@@ -67,4 +76,10 @@ main#main-content {
 
 p, .usa-prose > p {
     max-width: initial;
+}
+
+
+
+.usa-banner__header, .usa-banner__content, .usa-banner, .usa-header, .usa-nav {
+    background: $coePrimaryDarkest;
 }
