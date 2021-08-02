@@ -5,7 +5,8 @@ In the project directory, you can run:
 ### `yarn start`
 
 Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser.<br />
+Out of the box the UI expects the cms to be running locally at http://localhost:1337. For details on running the CMS locally see the [README.md](https://github.com/GSA/ai-experience-sharing-platform/blob/develop/cms/README.md). Another option is to modify where the UI proxy is pointed to https://github.com/GSA/ai-experience-sharing-platform/blob/develop/ui/src/setupProxy.js#L3.
 
 ### `yarn test`
 
