@@ -22,6 +22,14 @@ https://designsystem.digital.gov/design-tokens/color
 Theme palette colors
 ----------------------------------------
 */
+
+// CoE Brand Colors
+$coePrimaryDarkest: #1C304A;
+$coePrimaryDarker: #005990;
+$coePrimary: #208BCC;
+$coePrimaryLighter: #349FE0;
+$coePrimaryLightest: #B4E6FF;
+
 $x-lilac-light: #d8d6ee;
 $x-lilac: #c2c2f5;
 
@@ -68,12 +76,12 @@ $theme-color-base-ink: $x-charcoal;
 // Primary colors
 $theme-color-primary-family: "blue";
 $theme-color-primary-lightest: "blue-5";
-$theme-color-primary-lighter: $x-lilac-light;
-$theme-color-primary-light: $x-lilac;
-$theme-color-primary: $x-royal;
+$theme-color-primary-lighter: $coePrimaryLightest;
+$theme-color-primary-light: $coePrimaryLighter;
+$theme-color-primary: $coePrimary;
 $theme-color-primary-vivid: "blue-warm-60v";
-$theme-color-primary-dark: $x-royal;
-$theme-color-primary-darker: $x-royal;
+$theme-color-primary-dark: $coePrimaryDarker;
+$theme-color-primary-darker: $coePrimaryDarkest;
 $theme-color-primary-darkest: "blue-warm-80v";
 
 // Secondary colors
