@@ -7,10 +7,8 @@ export const cms = {
   },
   usecaseDetailsOrder: [
     'publishedDate',
-    'metadataBenefits',
     'metadataBenefitsV2',
     'metadataDevelopmentPhase',
-    'metadataAiMlTechniques',
     'metadataAiMlTechniquesV2',
     'metadataAiLifecycleStage',
     'metadataMlGoals',
