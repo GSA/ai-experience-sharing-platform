@@ -43,7 +43,7 @@ const Details = ({ items }) => {
                      <dt>{title}</dt>
                      <dd>
                        {texts.map((text, i) => {
-                         return <Link key={i} to={`/usecases?${key}.metadata=${value[i].metadata}`}>{text}</Link>})}
+                         return <span><Link key={i} to={`/usecases?${key}.metadata=${value[i].metadata}`}>{text}</Link> </span>})}
                      </dd>
                    </div>;
             } else {
