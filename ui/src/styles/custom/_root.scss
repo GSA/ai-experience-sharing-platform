@@ -13,26 +13,10 @@ h1 {
     color: $coePrimaryDarkest;
 }
 
-.usa-hero {
-    color: $coePrimaryDarkest;
-}
-
 main#main-content {
     border: none;
 }
   
-.usa-hero h1 > span {
-    font-size: 56px;
-    line-height: 70px;
-    display: block;
-    background-color: rgba(255, 255, 255, .85);
-    width: 100%;
-    padding-right: 2em;
-    padding-left: .5em;
-    padding-bottom:.5rem;
-    filter: $x-drop-shadow;
-}
-
 .usa-button--primary.usa-button--unstyled {
     color: $coePrimaryDarkest;
 }

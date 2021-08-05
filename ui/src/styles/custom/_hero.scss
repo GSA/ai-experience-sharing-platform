@@ -1,3 +1,31 @@
 .usa-hero {
+  color: $coePrimaryDarkest;
+  background-color: #d6dfeb;
   min-height: 10rem;
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+  .grid-container > div {
+    @include at-media(tablet) {
+      @include grid-col(10);
+      @include grid-offset(1);
+    }
+    @include at-media("widescreen") {
+      @include grid-offset(none);
+      @include grid-col(12);
+    }
+  }
+  h1 {
+    font-size: 56px;
+    line-height: 70px;
+    display: inline-block;
+    background-color: rgba(255, 255, 255, .85);
+    filter: $x-drop-shadow;
+    span {
+        display: inline-block;
+        padding-right: .5em;
+        padding-left: .5em;
+        padding-bottom:.5rem;
+    }
+  }
+
 }
