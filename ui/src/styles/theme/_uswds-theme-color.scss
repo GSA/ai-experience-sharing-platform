@@ -26,6 +26,7 @@ Theme palette colors
 // CoE Brand Colors
 $coePrimaryDarkest: #1C304A;
 $coePrimaryDarker: #005990;
+$coePrimaryDark: #1C77B0;
 $coePrimary: #208BCC;
 $coePrimaryLighter: #349FE0;
 $coePrimaryLightest: #B4E6FF;
@@ -80,9 +81,9 @@ $theme-color-primary-lighter: $coePrimaryLightest;
 $theme-color-primary-light: $coePrimaryLighter;
 $theme-color-primary: $coePrimary;
 $theme-color-primary-vivid: "blue-warm-60v";
-$theme-color-primary-dark: $coePrimaryDarker;
-$theme-color-primary-darker: $coePrimaryDarkest;
-$theme-color-primary-darkest: "blue-warm-80v";
+$theme-color-primary-dark: $coePrimaryDark;
+$theme-color-primary-darker: $coePrimaryDarker;
+$theme-color-primary-darkest: $coePrimaryDarkest;
 
 // Secondary colors
 $theme-color-secondary-family: "red";
@@ -166,9 +167,9 @@ General colors
 */
 
 // Links
-$theme-link-color: "primary";
-$theme-link-visited-color: "blue-cool-70v";
-$theme-link-hover-color: "primary-light";
+$theme-link-color: "primary-dark";
+$theme-link-visited-color: "primary-dark";
+$theme-link-hover-color: "primary";
 $theme-link-active-color: "primary-darker";
 $theme-link-reverse-color: "base-lighter";
 $theme-link-reverse-hover-color: "base-lightest";

@@ -7,8 +7,8 @@
       @include grid-col(10);
       @include grid-offset(1);
     }
-    @include at-media("desktop-lg") {
-      @include grid-col(10);
+    @include at-media("desktop") {
+      @include grid-col(9);
     }
     @include at-media("widescreen") {
       @include grid-col(9);
@@ -41,7 +41,9 @@
 }
 .US__section--gray-bg {
   background: #E9EDEE;
-
+  a, a:visited {
+    color: $coePrimaryDarker;
+  }
 }
 .US__section--dark-bg,
 .US__section--gray-bg,
