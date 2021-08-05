@@ -31,9 +31,12 @@
   -webkit-font-smoothing: antialiased;
   a, a:visited {
     color: $coePrimaryLightest;
+    text-decoration: none;
+    border-bottom: 1px solid $coePrimaryLightest;
   }
   a:hover, a:active {
-    color: $coePrimaryLighter;
+    color: #FFF;
+    border-bottom: 1px solid #FFF;
   }
 }
 .US__section--gray-bg {

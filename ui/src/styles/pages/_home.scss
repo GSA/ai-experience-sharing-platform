@@ -36,9 +36,15 @@ $bgImgDir: "~styles/images";
       padding-top: 3rem;
       a, a:visited {
         color: $coePrimaryLightest;
+        text-decoration: none;
+        border-bottom: 1px solid $coePrimaryLightest;
       }
       a:hover, a:active {
-        color: $coePrimaryLighter;
+        color: #FFF;
+        border-bottom: 1px solid #FFF;
+      }
+      img {
+        width: 20rem;
       }
     }
   }
