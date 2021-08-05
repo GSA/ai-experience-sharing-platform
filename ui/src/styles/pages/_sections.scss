@@ -44,6 +44,9 @@
   a, a:visited {
     color: $coePrimaryDarker;
   }
+  a:hover, a:active {
+    color: $coePrimaryDarkest;
+  }
 }
 .US__section--dark-bg,
 .US__section--gray-bg,
