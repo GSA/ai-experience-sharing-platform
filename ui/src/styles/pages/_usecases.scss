@@ -1,5 +1,16 @@
 $bgImgDir: "~styles/images";
 
+.US__usecase_login-content {
+    .USMarkdown {
+        @include u-width(full);
+        
+        @include at-media(tablet) {
+            @include grid-col(8);
+            @include grid-offset(2);
+        }
+    }
+}
+
 .US__page.US__usecases {
     .US__usecases-content {
         @include u-padding-top(4);

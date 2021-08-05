@@ -34,7 +34,7 @@ const Primary = ({ children }) => {
       >
         <div className="usa-app__bg">
           <Header variant="basic" />
-          <main role="main" id="main-content" style={{ minHeight: "42vh" }}>
+          <main role="main" id="main-content">
             {children}
           </main>
           <Footer />
