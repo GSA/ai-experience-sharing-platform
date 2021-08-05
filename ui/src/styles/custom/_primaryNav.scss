@@ -53,6 +53,9 @@
       .usa-nav__link-prefix {
         @include u-margin-right(1);
       }
+      &:not(.usa-button):not(.usa-current) {
+        @include u-color("white");
+      }
     }
   }
 
@@ -91,7 +94,6 @@
     align-self: flex-start;
   }
 }
-
 @include at-media("desktop") {
   .usa-nav {
     position: relative;
