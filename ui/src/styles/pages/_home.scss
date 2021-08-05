@@ -15,60 +15,26 @@ $bgImgDir: "~styles/images";
 
   .usa-hero-bg {
     background-color: #292a2b;
+    border-bottom: 2px solid $coePrimaryLightest;
   }
   .US__homepage-content {
     padding-top: 0;
-    border-top: 2px solid $coePrimaryLightest;
-
-    .USMarkdown {
-      @include u-font('sans', 'md');
-      @include u-width(full);
-      
-      @include at-media(tablet) {
-        @include grid-col(10);
-        @include grid-offset(1);
-      }
-      @include at-media(widescreen) {
-        @include grid-col(10);
-        @include grid-offset(none);
-      }
-    }
-    p {
-      margin: 3rem 0;
-    }
     
-    .intro-bg {
+    .intro {
       @include u-font('sans', 'md');
-      background: $coePrimaryDarkest;
-      color: white;
-      padding-top: 2rem;
-      -webkit-font-smoothing: antialiased;
-      a, a:visited {
-        color: $coePrimaryLightest;
-      }
-      a:hover, a:active {
-        color: $coePrimaryLighter;
-      }
       
       p:first-child {
         @include u-font('serif', 'xl');
         @include u-line-height('serif', 3);
+        margin-top: 0;
       }
     }
-    .home-resources-list.grid-bg {
-      padding-top: 3rem;
-      
-      hr {
-        margin: 4rem 0;
-      }
-    }
-    .home-resources-list--gray-bg {
-      background: #E9EDEE;
-    }
+    
     .home-resilience-challenge-bg {
       background: #0C0B2A url("~styles/images/challenge_background.png") no-repeat center right;
       background-size: cover;
       color: #fff;
+      padding-top: 3rem;
       a, a:visited {
         color: $coePrimaryLightest;
       }

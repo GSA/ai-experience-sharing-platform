@@ -57,7 +57,7 @@ main#main-content {
     @include add-background-svg("chevron");
 }
 
-.US__content {
+.US__content .grid-bg {
     @include u-padding-top(4);
 }
 
