@@ -15,6 +15,7 @@ h1 {
 
 main#main-content {
     border: none;
+    min-height: calc(100vh - 600px);
 }
   
 .usa-button--primary.usa-button--unstyled {
