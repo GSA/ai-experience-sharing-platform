@@ -216,23 +216,18 @@ const ContentList = ({
               </div>
           </div>
         )}
-        <div className="tablet:grid-col-10 desktop:grid-col-8 tablet:grid-offset-1 desktop:grid-offset-none widescreen:grid-col-9">
+        <div className="usa-content-list--card-container tablet:grid-col-10 desktop:grid-col-8 tablet:grid-offset-1 desktop:grid-offset-none widescreen:grid-col-9">
         
-          <Row gap="2">
             {data.map((item, i) => (
-              <Col
-                key={`content-list-item-${i}`}
-                desktop={variant === "horizontal" ? "12" : cardWidth()}
-              >
+
                 <CardTemplate
+                  key={`content-list-item-${i}`}
                   template={template}
                   data={item}
                   markdown={markdown}
                 />
-              </Col>
             ))}
             {noResults(data)}
-          </Row>
         </div>
         {sidebar && variant === "horizontal" && <Col desktop="3"><Sidebar /></Col>}
       </Row>
