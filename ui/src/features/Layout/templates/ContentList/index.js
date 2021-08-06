@@ -141,77 +141,83 @@ const ContentList = ({
       })}
     >
       {(filter || sort || layout) && (
-        <Row gap="2" className="USContentList__header">
-          <Col desktop="3">
+        <Row gap="6" className="USContentList__header">
+          <div className="desktop:grid-col-3 tablet:grid-offset-1 widescreen:grid-offset-none">
             {filter && (
-                <Row>
-                  <Col desktop="7">
-                    <strong className="USContentList__filter--text" onClick={() => setShowFilters((state) => !state)}>
-                      Filters
-                    </strong>
-                    <FilterStatus/>
-                    <Button color="secondary" className="USContentList__filter--button" onClick={() => setShowFilters((state) => !state)}>Filters</Button>
+              <Row>
+                <div>
+                  <Button color="primary" className="USContentList__filter--button" onClick={() => setShowFilters((state) => !state)}>
+                    Filters
+                  </Button>
+                </div>
+                <div className="grid-col-auto">
+                  <strong className="USContentList__filter--text" onClick={() => setShowFilters((state) => !state)}>
+                    Filters
+                  </strong>
+                  <Button color="primary" className="USContentList__filter--reset" onClick={resetAll}>
+                    Reset All
+                  </Button>
+                  <FilterStatus/>
+                </div>
+                {type === 'usecases' ?
+                  <Col className="mobile">
+                  <UsecaseSubmit className="margin-top-2" />
                   </Col>
-                  <Col desktop="5">
-                    <Button color="secondary" className="USContentList__filter--reset" onClick={resetAll}>Reset All</Button>
-                  </Col>
-                  {type === 'usecases' ?
-                   <Col className="mobile">
-                    <UsecaseSubmit className="margin-top-2" />
-                   </Col>
-                   : null}
-                </Row>
+                  : null}
+              </Row>
             )}
-          </Col>
-          <Col desktop="6">
+          </div>
+          <div className="tablet:grid-col-10 desktop:grid-col-5 tablet:grid-offset-1 desktop:grid-offset-none widescreen:grid-col-6">
             {searchTerm.length ? <h1>Search results for "{searchTerm}"</h1> : null}
-          </Col>
+          </div>
           {(sort || layout) && (
-            <Col
-              desktop="3"
-              className={
+            <div className="text-right tablet:grid-col-10 tablet:grid-offset-1 desktop:grid-offset-none desktop:grid-col-3">
+              <div
+                className={
+                  showFilters
+                    ? "USContentList__filter"
+                    : "USContentList__filter--hidden"
+                }
+              >
+                {layout && (
+                  <div className="USContentList__layout-control">
+                    <Button
+                      onClick={() => handleVariant("horizontal")}
+                      variant="link"
+                      className={variant === "horizontal" ? "active" : ""}
+                    >
+                      <Icon icon="list" />
+                    </Button>
+                    <Button
+                      onClick={() => handleVariant("vertical")}
+                      variant="link"
+                      className={variant === "vertical" ? "active" : ""}
+                    >
+                      <Icon icon="th-large" />
+                    </Button>
+                  </div>
+                )}
+                {sort && <Sort />}
+              </div>
+            </div>
+          )}
+        </Row>
+      )}
+      <Row gap="6">
+        {filter && (
+          <div className="desktop:grid-col-3 tablet:grid-offset-1 widescreen:grid-offset-none">
+            <div className={
                 showFilters
                   ? "USContentList__filter"
                   : "USContentList__filter--hidden"
               }
             >
-              {layout && (
-                <div className="USContentList__layout-control">
-                  <Button
-                    onClick={() => handleVariant("horizontal")}
-                    variant="link"
-                    className={variant === "horizontal" ? "active" : ""}
-                  >
-                    <Icon icon="list" />
-                  </Button>
-                  <Button
-                    onClick={() => handleVariant("vertical")}
-                    variant="link"
-                    className={variant === "vertical" ? "active" : ""}
-                  >
-                    <Icon icon="th-large" />
-                  </Button>
-                </div>
-              )}
-              {sort && <Sort />}
-            </Col>
-          )}
-        </Row>
-      )}
-      <Row gap="2">
-        {filter && (
-          <Col
-            desktop="3"
-            className={
-              showFilters
-                ? "USContentList__filter"
-                : "USContentList__filter--hidden"
-            }
-          >
-            <Filters footer={filterFooter()} />
-          </Col>
+              <Filters footer={filterFooter()} />
+              </div>
+          </div>
         )}
-        <Col desktop={setWidth()}>
+        <div className="tablet:grid-col-10 desktop:grid-col-8 tablet:grid-offset-1 desktop:grid-offset-none widescreen:grid-col-9">
+        
           <Row gap="2">
             {data.map((item, i) => (
               <Col
@@ -227,7 +233,7 @@ const ContentList = ({
             ))}
             {noResults(data)}
           </Row>
-        </Col>
+        </div>
         {sidebar && variant === "horizontal" && <Col desktop="3"><Sidebar /></Col>}
       </Row>
     </div>

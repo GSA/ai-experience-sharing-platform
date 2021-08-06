@@ -16,29 +16,26 @@
     text-decoration: underline;
     text-transform: none;
   }
-  &__meta-container {
-    position: absolute;
-    bottom: 1rem;
-  }
+
   .usa-card__container {
     margin: 0;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.25);
     border-radius: 0;
     border: none;
-    min-height: 22rem;
   }
   .usa-card__header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    @include u-padding(2);
+    @include u-padding(3);
     @include u-bg("ink");
-
-    .usa-card__heading,
     .usa-card__meta {
-      @include u-font("serif", "sm");
+      @include u-font("sans", "md");
       @include u-color("white");
-      text-transform: uppercase;
+    }
+    .usa-card__heading {
+      @include u-font("serif", "md");
+      @include u-color("white");
       a {
         text-decoration: none;
         font-weight: 500;
@@ -49,11 +46,11 @@
     }
   }
   .usa-card__body {
-    @include u-padding(2);
+    @include u-padding(3);
     @include u-color("base");
   }
   .usa-card__footer {
-    @include u-padding(2);
+    @include u-padding(3);
     @include u-padding-bottom(4);
   }
   .usa-content-list--vertical {
@@ -62,7 +59,25 @@
     }
   }
 }
-
+.usa-content-list--vertical {
+  .ai-uc__meta-container {
+    @include at-media("desktop") {
+      position: absolute;
+      bottom: 1rem;
+    }
+  }
+  .usa-card__container {
+    @include at-media("desktop") {
+      min-height: 35rem;
+    }
+    @include at-media("desktop-lg") {
+      min-height: 32rem;
+    }
+    @include at-media("widescreen") {
+      min-height: 30rem;
+    }
+  }
+}
 .usa-content-list--horizontal {
   .ai-uc {
     .usa-card__container {
@@ -74,15 +89,25 @@
       background-color: transparent;
       padding-top: 0;
       padding-bottom: 0;
-      .usa-card__heading,
-      .usa-card__meta {
+      
+      .usa-card__heading {
         color: $x-charcoal;
-        @include u-font("serif", "md");
+        @include u-font("serif", "lg");
+        @include u-color("ink");
+      }
+      .usa-card__meta {
+        @include u-font("sans", "md");
         @include u-color("ink");
       }
     }
     .usa-card__body {
       padding-top: 0;
+    }
+    .usa-card__header,
+    .usa-card__body,
+    .usa-card__footer {
+      padding-left: 0;
+      padding-right: 0;
     }
   }
 }
@@ -90,8 +115,11 @@
 .usa-content-list {
   .USContentList__header {
     .USContentList__filter--reset {
-      margin-left: auto;
       display: block;
+      margin-left: 1rem;
+      @include at-media("desktop") {
+        margin-left: auto;
+      }
     }
   }
 }

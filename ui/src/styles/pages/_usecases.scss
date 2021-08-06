@@ -13,25 +13,11 @@ $bgImgDir: "~styles/images";
 
 .US__page.US__usecases {
     .US__usecases-content {
-        @include u-padding-top(4);
     }
 }
 
 .US__usecases, .US__usecase_home {
-    @include u-padding-top(4);
 
-    h1, h2, h3, h4 {
-        @include u-font-family('sans');
-    }
-
-    h1, .usa-prose > h1 {
-        margin-bottom: 1rem;
-        font-weight: 700;
-    }
-
-    h4 {
-        font-size: 26px;
-    }
 
     &.US__page {
         .intro-bg {
@@ -41,9 +27,6 @@ $bgImgDir: "~styles/images";
     }
     .margin-bottom-4.usa-hero-container {
         margin-bottom: 0;
-    }
-    .usa-hero-bg {
-        background-size: auto 300%;
     }
 
     .USMarkdown {
@@ -91,10 +74,6 @@ $bgImgDir: "~styles/images";
         }
     }
 
-    h2 {
-        font-size: 18px;
-        font-weight: 700;
-    }
     
     .submit-use-case {
         button:only-of-type {

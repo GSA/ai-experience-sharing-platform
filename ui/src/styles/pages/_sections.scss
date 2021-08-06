@@ -1,4 +1,4 @@
-.US__content:not([class*="US__usecase"]) {
+.US__content {
   .USMarkdown {
     @include u-font('sans', 'md');
     @include u-width(full);
