@@ -15,15 +15,19 @@
 }
 
 .USFilterControl {
-  max-width: 20rem;
+  @include at-media("tablet") {
+    @include grid-col(11);
+  } 
+  @include at-media("desktop") {
+    @include grid-col('auto');
+  }
   &__title {
     font-weight: 700;
   }
   &__items {
     overflow-y: scroll;
     max-height: 10rem;
-    padding: 0;
-    @include u-padding-top(1);
+    @include u-padding(1);
   }
   &__item {
     display: flex;
@@ -39,11 +43,6 @@
     @include u-padding-left(2);
   }
 
-  &__boolean {
-    .USFilterControl__item-label {
-      text-transform: capitalize;
-    }
-  }
 }
 
 .USContentList {

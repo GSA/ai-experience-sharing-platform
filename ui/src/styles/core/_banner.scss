@@ -19,7 +19,7 @@
         @include u-margin-left("2px");
         background: transparent;
         content: "\f107";
-        @include u-color("primary");
+        color: inherit;
         font-family: "Font Awesome 5 Free Solid";
       }
     }

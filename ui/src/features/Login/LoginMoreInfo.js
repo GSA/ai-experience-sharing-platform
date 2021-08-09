@@ -14,7 +14,7 @@ const LoginMoreInfo = ({ children }) => {
   
   return <>
            <Button onClick={handleClick} className="usa-button--unstyled">More Information</Button>
-           <div style={style}>
+           <div className="usa-summary-box" style={style}>
              {children}
            </div>
          </>;

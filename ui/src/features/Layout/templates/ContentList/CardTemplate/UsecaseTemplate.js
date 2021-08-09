@@ -39,14 +39,14 @@ const UsecaseTemplate = (props) => {
       title={<Link to={url}>{title}</Link>}
       meta={metadataAgency}
     >
-      <div className="font-sans-2xs">
+      <div className="font-sans-sm">
         Published: <Date format="short">{publishedDate}</Date>
         </div>
-      <p>{description}</p>
+      <p className="font-sans-md">{description}</p>
       <Button url={url}>Read use case</Button>
       <p className="ai-uc__meta-container">
         {Object.keys(metaDataList)
-          .filter((item) => Boolean(props[item]))
+          .filter((item) => Boolean(props[item]) && Boolean(props[item].length > 0))
           .filter(item => !metaDataValueBlockList.includes(props[item]))
           .map((item, i) => (
             <Button

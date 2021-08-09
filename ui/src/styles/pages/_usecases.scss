@@ -1,41 +1,32 @@
 $bgImgDir: "~styles/images";
 
-.US__page.US__usecases {
-    .US__usecases-content {
-        @include u-padding-top(4);
+.US__usecase_login-content {
+    .USMarkdown {
+        @include u-width(full);
+        
+        @include at-media(tablet) {
+            @include grid-col(8);
+            @include grid-offset(2);
+        }
     }
 }
 
-.US__usecases, .US__usecase_home {
+.USLayout.US__usecases {
     @include u-padding-top(4);
-    background: linear-gradient(179.89deg, rgba(120, 227, 251, 0.15) 0.1%, rgba(255, 255, 255, 0.5) 2.64%, rgba(255, 255, 255, 0.5) 94.97%, rgba(120, 227, 251, 0.08) 97.61%);
+   
+}
 
-    h1, h2, h3, h4 {
-        @include u-font-family('sans');
-    }
+.US__usecases, .US__usecase_home {
 
-    h1, .usa-prose > h1 {
-        margin-bottom: 1rem;
-        font-weight: 700;
-    }
-
-    h4 {
-        font-size: 26px;
-    }
 
     &.US__page {
         .intro-bg {
-            background: linear-gradient(180deg, rgba(120, 227, 251, 0.15) 0%, rgba(255, 255, 255, 0.5) 6.46%, rgba(255, 255, 255, 0) 83.37%, rgba(120, 227, 251, 0) 87.5%);
             padding-top: 65px;
         }
         padding-top: 0;
     }
     .margin-bottom-4.usa-hero-container {
         margin-bottom: 0;
-    }
-    .usa-hero-bg {
-        background: linear-gradient(180deg, #F4F3F3 0%, #78E3FB 100%);
-        background-size: auto 300%;
     }
 
     .USMarkdown {
@@ -50,43 +41,62 @@ $bgImgDir: "~styles/images";
     }
     
     .sections {
+        h2 {
+            @include u-font("serif", "lg");
+        }
         li {
-          list-style-type: none;
-          margin-bottom: 1rem;
+          list-style-type: lower-roman;
+          margin-bottom: .75rem;
+          margin-left: 2rem;
           a {
-            color: $x-charcoal;
+            color: color('base-darkest')
           }
         }
         ul {
           padding-left: 0;
+          margin-bottom: 2rem;
         }
         .panel {
-          //background-color: $x-whiteish;
-          background-color: #ffffff;
-          filter: drop-shadow(0px 16px 20px rgba(0, 0, 0, 0.1));
-          padding: 0.5rem;
-          margin-bottom: 1rem;
+            @include u-margin-bottom(2);
+            @include u-padding-x(2);
+            @include u-padding-top(2);
+            @include u-padding-bottom(1px);
+            @include u-bg("base-lightest");
+
+            @include at-media("tablet") {
+                @include u-margin-right(2);
+
+            }
         }
 
     }
     .use-case-details.panel {
-        //background-color: $x-whiteish;
-        background-color: #ffffff;
-        filter: drop-shadow(0px 16px 20px rgba(0, 0, 0, 0.1));
-        padding: 0.5rem;
+        @include u-border(1px);
+        @include u-border-color("base-lighter");
+        @include u-margin-bottom(4);
+        @include u-padding-x(2);
+        @include u-padding-top(2);
+        @include u-padding-bottom(1px);
+        @include at-media("tablet") {
+            @include u-margin-left(2);
+        }
+        @include at-media("desktop") {
+        }
+        h2 {
+            @include u-font("serif", "lg");
+        }
+        
     }
     .usecase-scroll-to-top {
         @include at-media("desktop") {
             position: -webkit-sticky;
             position: sticky;
             top: 2rem;
+            margin-top: 2rem;
+            display: block;
         }
     }
 
-    h2 {
-        font-size: 18px;
-        font-weight: 700;
-    }
     
     .submit-use-case {
         button:only-of-type {
@@ -98,7 +108,7 @@ $bgImgDir: "~styles/images";
     }
     .view-all-use-cases {
         .usa-button {
-            background-color: $x-whiteish;
+            background-color: color('gray-cool-1');
             border-color: $theme-color-primary;
             color: $theme-color-primary;
             border-width: 2px;
@@ -116,6 +126,10 @@ $bgImgDir: "~styles/images";
             margin-inline-start: 0;
             font-size: 1rem;
             @include u-margin-bottom(2);
+            a {
+                display: block;
+                width: fit-content;
+            }
         }
     }
     .use-case-related {
@@ -133,6 +147,10 @@ $bgImgDir: "~styles/images";
                 display: inline-block;
               }
         }
+    }
+    .USContentList__filterList {
+        @include u-margin-x(0);
+        @include u-margin-bottom(3);
     }
     .USContentList__header {
         .US__usecase-submit-cta {

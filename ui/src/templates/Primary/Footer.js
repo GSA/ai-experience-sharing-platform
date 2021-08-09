@@ -24,13 +24,32 @@ const Footer = () => {
 
       <div className="usa-footer__secondary-section">
         <Grid>
+          <Row gap={6}>
+            <Col desktop="6">
+              <h3 className="usa-footer__logo-heading">{title}</h3>
+            </Col>
+            <Col desktop="6" className="usa-footer__contact-links">
+              <Row className="usa-footer__social-links" gap={1}>
+                {social.map((item) => (
+                  <Col key={item.key} size="auto">
+                    <a
+                      className={`usa-social-link usa-social-link--${item.key}`}
+                      href={item.link}
+                    >
+                      <span>{item.title}</span>
+                    </a>
+                  </Col>
+                ))}
+              </Row>
+            </Col>
+          </Row>
           {Boolean(footer.length) && (
             <nav className="usa-footer__nav" aria-label="Footer navigation">
               <Row>
                 {footer.map(
                   (foot) =>
                     Boolean(foot.items.length) && (
-                      <Col key={foot.id} desktop="3">
+                      <Col key={foot.id} desktop="3" tablet="6">
                         <section className="usa-footer__primary-content usa-footer__primary-content--collapsible">
                           <h4 className="usa-footer__primary-link">
                             {foot.title}
@@ -52,25 +71,6 @@ const Footer = () => {
               </Row>
             </nav>
           )}
-          <Row gap={6}>
-            <Col desktop="6">
-              <h3 className="usa-footer__logo-heading">{title}</h3>
-            </Col>
-            <Col desktop="6" className="usa-footer__contact-links">
-              <Row className="usa-footer__social-links" gap={1}>
-                {social.map((item) => (
-                  <Col key={item.key} size="auto">
-                    <a
-                      className={`usa-social-link usa-social-link--${item.key}`}
-                      href={item.link}
-                    >
-                      <span>{item.title}</span>
-                    </a>
-                  </Col>
-                ))}
-              </Row>
-            </Col>
-          </Row>
         </Grid>
       </div>
       <div className="usa-footer__primary-section">

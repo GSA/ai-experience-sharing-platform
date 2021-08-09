@@ -31,7 +31,7 @@ const Details = ({ items }) => {
   return (
     <div>
       <div className="use-case-details panel">
-        <h4>Details</h4>
+        <h2>Details</h2>
         {cms.usecaseDetailsOrder.map((detailKey, i) => {
           if (!!items[detailKey] && detailKey in mapKeys) {
             const key = detailKey;

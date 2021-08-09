@@ -1,11 +1,16 @@
 .usa-accordion__button {
     background-color: #ffffff;
-    border: #c4c4c4 1px solid;
-    border-radius: .5rem;
+    @include u-border('1px');
+    @include u-border-color("base-light");
 }
 
 .USFilterControl.usa-accordion {
     @include u-margin-bottom(2);
+}
+.USFilterControl__items.usa-accordion__content {
+    @include u-border('1px');
+    @include u-border-top(0);
+    @include u-border-color("base-light");
 }
 
 .usa-accordion__button[aria-expanded="false"] {

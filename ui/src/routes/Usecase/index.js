@@ -51,9 +51,9 @@ export const Usecase = ({ slug: overrideSlug }) => {
         {hero && <Hero {...hero} />}
         <Grid>
           <Row>
-            <Col desktop={2} className="sections">
+            <Col desktop={3} className="sections">
               <div className="panel">
-                <h4>Sections</h4>
+                <h2>Sections</h2>
                 <ContentNav items={data.content} />
               </div>
               <div>
@@ -61,7 +61,7 @@ export const Usecase = ({ slug: overrideSlug }) => {
               </div>
               <a className="usecase-scroll-to-top" href="#top">Return to top</a>
             </Col>
-            <Col desktop={8} className="padding-right-4 usecase-header">
+            <Col desktop={6} className="padding-right-4 usecase-header">
               <Grid>
                 <h1>{title}</h1>
               </Grid>
@@ -88,7 +88,7 @@ export const Usecase = ({ slug: overrideSlug }) => {
               </Grid>
               <Layout items={layoutContent} renderTitles={true} />
             </Col>
-            <Col desktop={2}>
+            <Col desktop={3}>
               <Details title="Details" items={data} />
             </Col>
           </Row>
