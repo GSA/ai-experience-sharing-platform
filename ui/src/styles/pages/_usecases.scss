@@ -11,9 +11,9 @@ $bgImgDir: "~styles/images";
     }
 }
 
-.US__page.US__usecases {
-    .US__usecases-content {
-    }
+.USLayout.US__usecases {
+    @include u-padding-top(4);
+   
 }
 
 .US__usecases, .US__usecase_home {
@@ -41,36 +41,59 @@ $bgImgDir: "~styles/images";
     }
     
     .sections {
+        h2 {
+            @include u-font("serif", "lg");
+        }
         li {
-          list-style-type: none;
-          margin-bottom: 1rem;
+          list-style-type: lower-roman;
+          margin-bottom: .75rem;
+          margin-left: 2rem;
           a {
             color: color('base-darkest')
           }
         }
         ul {
           padding-left: 0;
+          margin-bottom: 2rem;
         }
         .panel {
-          //background-color: color('gray-cool-1');
-          background-color: #ffffff;
-          box-shadow: 0px 16px 20px rgba(0, 0, 0, 0.1);
-          padding: 0.5rem;
-          margin-bottom: 1rem;
+            @include u-margin-bottom(2);
+            @include u-padding-x(2);
+            @include u-padding-top(2);
+            @include u-padding-bottom(1px);
+            @include u-bg("base-lightest");
+
+            @include at-media("tablet") {
+                @include u-margin-right(2);
+
+            }
         }
 
     }
     .use-case-details.panel {
-        //background-color: color('gray-cool-1');
-        background-color: #ffffff;
-        box-shadow: 0px 16px 20px rgba(0, 0, 0, 0.1);
-        padding: 0.5rem;
+        @include u-border(1px);
+        @include u-border-color("base-lighter");
+        @include u-margin-bottom(4);
+        @include u-padding-x(2);
+        @include u-padding-top(2);
+        @include u-padding-bottom(1px);
+        @include at-media("tablet") {
+            @include u-margin-left(2);
+        }
+        @include at-media("desktop") {
+        }
+        h2 {
+            @include u-font("serif", "lg");
+        }
+        
     }
     .usecase-scroll-to-top {
         @include at-media("desktop") {
             position: -webkit-sticky;
             position: sticky;
             top: 2rem;
+            margin-top: 2rem;
+            display: block;
         }
     }
 
@@ -103,6 +126,10 @@ $bgImgDir: "~styles/images";
             margin-inline-start: 0;
             font-size: 1rem;
             @include u-margin-bottom(2);
+            a {
+                display: block;
+                width: fit-content;
+            }
         }
     }
     .use-case-related {

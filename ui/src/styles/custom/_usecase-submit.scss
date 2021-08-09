@@ -8,6 +8,13 @@
     .usa-card__container {
         background-color: #004374;
         color: color('gray-cool-1');
+        margin-left: 0;
+        margin-right: 0;
+        @include at-media("tablet") {
+            @include u-margin-right(2);
+
+        }
+
     }
     .usa-card__heading {
         font-size: 1.3rem;
