@@ -26,6 +26,7 @@
       left: unset;
       @include u-margin-right(1);
       @include u-font("sans", "3xs");
+      @include linkVariant--light;
 
       &:after {
         display: inline-block;
@@ -33,7 +34,6 @@
         background: transparent;
         content: "\f107";
         font-family: "Font Awesome 5 Free Solid";
-        @include linkVariant--light;
       }
     }
   }

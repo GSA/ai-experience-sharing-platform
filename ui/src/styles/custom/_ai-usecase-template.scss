@@ -63,10 +63,7 @@
   .usa-card__header {
     .usa-card__heading {
       a {
-        @include u-color('primary-darker');
-      }
-      a:hover {
-          @include u-color('primary-darkest');
+        @include linkVariant--dark;
       }
     }
 
