@@ -9,7 +9,7 @@ const Submit = ({className}) => {
            <div className="padding-bottom-2">Showcase your successful use cases here!</div>
            <div>We'd love to speak to you about including it in our growing library.</div>
            <Button url="https://touchpoints.app.cloud.gov/touchpoints/6fccf8ad/submit">Suggest A Use Case</Button>
-           <div className="padding-top-2">You can also <a href="mailto:tts-ai@gsa.gov" className="text-secondary">email us</a>.</div>
+           <div className="padding-top-2">You can also <a href="mailto:tts-ai@gsa.gov" className="text-primary-lightest hover:text-white">email us</a>.</div>
          </Card>
            
            
