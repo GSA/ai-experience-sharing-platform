@@ -97,26 +97,6 @@ const ContentList = ({
     };
   }, [dispatch, type, defaultFilter, defaultSort, filters, location.search]);
   
-  const setWidth = () => {
-    let size = 12;
-
-    if (filter) {
-      size = size - 3;
-    }
-    if (sidebar) {
-      size = size - 3;
-    }
-    /* istanbul ignore next */
-    if (variant === "vertical" && sidebar) {
-      size = size + 3;
-    }
-    return size.toString();
-  };
-
-  const cardWidth = () => {
-    return "6";
-  };
-
   const filterFooter = () => {
     if (type === 'usecases') {
       return <UsecaseSubmit />;
