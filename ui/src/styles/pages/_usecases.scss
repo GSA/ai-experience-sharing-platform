@@ -45,25 +45,25 @@ $bgImgDir: "~styles/images";
           list-style-type: none;
           margin-bottom: 1rem;
           a {
-            color: $x-charcoal;
+            color: color('base-darkest')
           }
         }
         ul {
           padding-left: 0;
         }
         .panel {
-          //background-color: $x-whiteish;
+          //background-color: color('gray-cool-1');
           background-color: #ffffff;
-          filter: drop-shadow(0px 16px 20px rgba(0, 0, 0, 0.1));
+          box-shadow: 0px 16px 20px rgba(0, 0, 0, 0.1);
           padding: 0.5rem;
           margin-bottom: 1rem;
         }
 
     }
     .use-case-details.panel {
-        //background-color: $x-whiteish;
+        //background-color: color('gray-cool-1');
         background-color: #ffffff;
-        filter: drop-shadow(0px 16px 20px rgba(0, 0, 0, 0.1));
+        box-shadow: 0px 16px 20px rgba(0, 0, 0, 0.1);
         padding: 0.5rem;
     }
     .usecase-scroll-to-top {
@@ -85,7 +85,7 @@ $bgImgDir: "~styles/images";
     }
     .view-all-use-cases {
         .usa-button {
-            background-color: $x-whiteish;
+            background-color: color('gray-cool-1');
             border-color: $theme-color-primary;
             color: $theme-color-primary;
             border-width: 2px;
@@ -120,6 +120,10 @@ $bgImgDir: "~styles/images";
                 display: inline-block;
               }
         }
+    }
+    .USContentList__filterList {
+        @include u-margin-x(0);
+        @include u-margin-bottom(3);
     }
     .USContentList__header {
         .US__usecase-submit-cta {

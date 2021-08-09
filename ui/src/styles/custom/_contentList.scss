@@ -10,7 +10,8 @@
     }
     .usa-card__heading a {
         text-decoration: none;
-        color: $x-charcoal;
+        color: color('base-darkest')
+
     }
 }
 
@@ -18,6 +19,14 @@
     svg {
         width: .7rem;
         height: .7rem;
+        display: inline-block;
+        vertical-align: middle;
+        fill: currentColor;
+        color: currentColor;
+        path {
+            fill: currentColor;
+            color: currentColor;
+        }
     }
-    @include u-margin-right(1);
+    @include u-margin-right(1.5);
 }

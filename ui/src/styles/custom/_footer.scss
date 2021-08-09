@@ -6,17 +6,17 @@
   .usa-footer__secondary-section,
   .usa-footer__primary-section {
     padding-top: 2rem;
-    color: $x-whiteish;
+    color: color('gray-cool-1');
     background: $coePrimaryDarkest;
     -webkit-font-smoothing: antialiased;
     a, a:visited {
       color: $coePrimaryLightest;
     }
     a:hover, a:active {
-      color: $x-whiteish;
+      color: color('gray-cool-1');
     }
     .usa-footer__primary-link {
-      color: $x-whiteish;
+      color: color('gray-cool-1');
     }
   }
   .usa-footer__primary-section, 

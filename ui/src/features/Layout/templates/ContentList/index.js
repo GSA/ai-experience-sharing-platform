@@ -145,19 +145,17 @@ const ContentList = ({
           <div className="desktop:grid-col-3 tablet:grid-offset-1 widescreen:grid-offset-none">
             {filter && (
               <Row>
-                <div>
-                  <Button color="primary" className="USContentList__filter--button" onClick={() => setShowFilters((state) => !state)}>
-                    Filters
-                  </Button>
-                </div>
                 <div className="grid-col-auto">
                   <strong className="USContentList__filter--text" onClick={() => setShowFilters((state) => !state)}>
                     Filters
                   </strong>
+                  <Button color="primary" className="USContentList__filter--button" onClick={() => setShowFilters((state) => !state)}>
+                    Toggle filters and sort
+                  </Button>
                   <Button color="primary" className="USContentList__filter--reset" onClick={resetAll}>
                     Reset All
                   </Button>
-                  <FilterStatus/>
+
                 </div>
                 {type === 'usecases' ?
                   <Col className="mobile">
@@ -168,7 +166,7 @@ const ContentList = ({
             )}
           </div>
           <div className="tablet:grid-col-10 desktop:grid-col-5 tablet:grid-offset-1 desktop:grid-offset-none widescreen:grid-col-6">
-            {searchTerm.length ? <h1>Search results for "{searchTerm}"</h1> : null}
+            {searchTerm.length ? <h2>Search results for "{searchTerm}"</h2> : null}
           </div>
           {(sort || layout) && (
             <div className="text-right tablet:grid-col-10 tablet:grid-offset-1 desktop:grid-offset-none desktop:grid-col-3">
@@ -206,6 +204,9 @@ const ContentList = ({
       <Row gap="6">
         {filter && (
           <div className="desktop:grid-col-3 tablet:grid-offset-1 widescreen:grid-offset-none">
+            <div className="USContentList__filterList">
+              <FilterStatus/>
+            </div>
             <div className={
                 showFilters
                   ? "USContentList__filter"

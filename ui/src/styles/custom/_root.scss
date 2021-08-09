@@ -4,10 +4,6 @@ h1, h2, h3, h4 {
     font-weight: 400;
 }
 
-h1 {
-    font-size: 36px;
-}
-
 .usa-app, html {
     background: white;
     color: $coePrimaryDarkest;
@@ -17,18 +13,7 @@ main#main-content {
     border: none;
     min-height: calc(100vh - 600px);
 }
-  
-.usa-button--primary.usa-button--unstyled {
-    color: $coePrimaryDarkest;
-}
 
-.usa-accordion__button {
-    background-color: #ffffff;
-}
-
-.usa-accordion__button {
-    background-color: #ffffff;
-}
 
 .USFilterControl.usa-accordion {
     @include u-margin-bottom(2);

@@ -7,7 +7,7 @@
 
     .usa-card__container {
         background-color: #004374;
-        color: $x-whiteish;
+        color: color('gray-cool-1');
     }
     .usa-card__heading {
         font-size: 1.3rem;
@@ -19,8 +19,6 @@
         margin-top: 1em;
         display: block;
         width: fit-content;
-        margin-left: auto;
-        margin-right: auto;
         font-size: 1.04rem;
     }
 }

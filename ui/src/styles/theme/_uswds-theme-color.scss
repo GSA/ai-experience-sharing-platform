@@ -25,59 +25,28 @@ Theme palette colors
 
 // CoE Brand Colors
 $coePrimaryDarkest: #1C304A;
-$coePrimaryDarker: #005990;
-$coePrimaryDark: #1C77B0;
-$coePrimary: #208BCC;
+$coePrimaryDarker: #003b5f;
+$coePrimaryDark: #005990;
+$coePrimary: #1C77B0;
+$coePrimaryLighter: #208BCC;
 $coePrimaryLighter: #349FE0;
 $coePrimaryLightest: #B4E6FF;
 
-$x-lilac-light: #d8d6ee;
-$x-lilac: #c2c2f5;
-
-$x-grimace: #3a337b;
-$x-grimace-light: #7570a3;
-
-$x-tiger-light: #f3afa6;
-$x-tiger: #ff6839;
-$x-tiger-dark: #b34928;
-
-$x-sky-light: #c9f4fd;
-$x-sky: #78e3fb;
-$x-sky-dark: #549fb0;
-
-$x-ocean-light: #b5f0f0;
-$x-ocean: #45d9d9;
-$x-ocean-dark: #309898;
-
-$x-smoke: #d8d8d8;
-$x-lead: #4e5164;
-$x-charcoal: #292a2b;
-$x-dark-card: #565C65;
-
-$x-whiteish: #fffdf8;
-$x-space-gray: #bedbdb;
-
-$x-royal: #015fa4;
-
-$x-randombg: #f6f6f6;
-
-$x-drop-shadow: drop-shadow(0px 16px 20px rgba(0, 0, 0, 0.1));
-
 // Base colors
 $theme-color-base-family: "gray-cool";
-$theme-color-base-lightest: $x-ocean-light;
-$theme-color-base-lighter: $x-ocean;
-$theme-color-base-light: $x-smoke;
-$theme-color-base: $x-lead;
-$theme-color-base-dark: $x-charcoal;
-$theme-color-base-darker: $x-charcoal;
-$theme-color-base-darkest: $x-charcoal;
-$theme-color-base-ink: $x-charcoal;
+$theme-color-base-lightest: "gray-5";
+$theme-color-base-lighter: "gray-cool-10";
+$theme-color-base-light: "gray-cool-30";
+$theme-color-base: "gray-cool-50";
+$theme-color-base-dark: "gray-cool-60";
+$theme-color-base-darker: "gray-cool-70";
+$theme-color-base-darkest: "gray-90";
+$theme-color-base-ink: "gray-90";
 
 // Primary colors
 $theme-color-primary-family: "blue";
-$theme-color-primary-lightest: "blue-5";
-$theme-color-primary-lighter: $coePrimaryLightest;
+$theme-color-primary-lightest: $coePrimaryLightest;
+$theme-color-primary-lighter: $coePrimaryLighter;
 $theme-color-primary-light: $coePrimaryLighter;
 $theme-color-primary: $coePrimary;
 $theme-color-primary-vivid: "blue-warm-60v";
@@ -87,34 +56,34 @@ $theme-color-primary-darkest: $coePrimaryDarkest;
 
 // Secondary colors
 $theme-color-secondary-family: "red";
-$theme-color-secondary-lightest: "red-cool-5";
+$theme-color-secondary-lightest: false;
 $theme-color-secondary-lighter: "red-cool-10";
-$theme-color-secondary-light: $x-ocean-light;
-$theme-color-secondary: $x-ocean;
-$theme-color-secondary-vivid: $x-ocean-dark;
-$theme-color-secondary-dark: $x-grimace-light;
-$theme-color-secondary-darker: $x-grimace-light;
-$theme-color-secondary-darkest: $x-grimace;
+$theme-color-secondary-light: "red-30";
+$theme-color-secondary: "red-50";
+$theme-color-secondary-vivid: "red-cool-50v";
+$theme-color-secondary-dark: "red-60v";
+$theme-color-secondary-darker: "red-70v";
+$theme-color-secondary-darkest: false;
 
 // Accent warm colors
 $theme-color-accent-warm-family: "orange";
-$theme-color-accent-warm-lightest: "orange-5";
+$theme-color-accent-warm-lightest: false;
 $theme-color-accent-warm-lighter: "orange-10";
-$theme-color-accent-warm-light: $x-tiger-light;
-$theme-color-accent-warm: $x-tiger;
-$theme-color-accent-warm-dark: $x-tiger-dark;
+$theme-color-accent-warm-light: "orange-20v";
+$theme-color-accent-warm: "orange-30v";
+$theme-color-accent-warm-dark: "orange-50v";
 $theme-color-accent-warm-darker: "orange-60";
-$theme-color-accent-warm-darkest: "orange-70";
+$theme-color-accent-warm-darkest: false;
 
 // Accent cool colors
 $theme-color-accent-cool-family: "blue-cool";
-$theme-color-accent-cool-lightest: "blue-cool-5";
+$theme-color-accent-cool-lightest: false;
 $theme-color-accent-cool-lighter: "blue-cool-5v";
-$theme-color-accent-cool-light: $x-sky-light;
-$theme-color-accent-cool: $x-sky;
-$theme-color-accent-cool-dark: $x-sky-dark;
+$theme-color-accent-cool-light: "blue-cool-20v";
+$theme-color-accent-cool: "cyan-30v";
+$theme-color-accent-cool-dark: "blue-cool-40v";
 $theme-color-accent-cool-darker: "blue-cool-60v";
-$theme-color-accent-cool-darkest: "blue-cool-60v";
+$theme-color-accent-cool-darkest: false;
 
 /*
 ----------------------------------------
@@ -143,8 +112,8 @@ $theme-color-success-family: "green-cool";
 $theme-color-success-lighter: "green-cool-5";
 $theme-color-success-light: "green-cool-20v";
 $theme-color-success: "green-cool-40v";
-$theme-color-success-dark: "green-cool-50";
-$theme-color-success-darker: "green-cool-60";
+$theme-color-success-dark: "green-cool-50v";
+$theme-color-success-darker: "green-cool-60v";
 
 // Info colors
 $theme-color-info-family: "cyan";
@@ -160,16 +129,27 @@ $theme-color-disabled-light: "gray-10";
 $theme-color-disabled: "gray-20";
 $theme-color-disabled-dark: "gray-30";
 
+// Emergency colors
+$theme-color-emergency: "red-warm-60v";
+$theme-color-emergency-dark: "red-warm-80";
+
 /*
 ----------------------------------------
 General colors
 ----------------------------------------
 */
 
+// Body
+$theme-body-background-color: "white";
+
+// Text
+$theme-text-color: "ink";
+$theme-text-reverse-color: "white";
+
 // Links
 $theme-link-color: "primary-dark";
-$theme-link-visited-color: "primary-dark";
-$theme-link-hover-color: "primary";
+$theme-link-visited-color: "violet-70v";
+$theme-link-hover-color: "primary-dark";
 $theme-link-active-color: "primary-darker";
 $theme-link-reverse-color: "base-lighter";
 $theme-link-reverse-hover-color: "base-lightest";
