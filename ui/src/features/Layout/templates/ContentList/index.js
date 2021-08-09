@@ -180,6 +180,7 @@ const ContentList = ({
                 {layout && (
                   <div className="USContentList__layout-control">
                     <Button
+                      title="Show as list"
                       onClick={() => handleVariant("horizontal")}
                       variant="link"
                       className={variant === "horizontal" ? "active" : ""}
@@ -187,6 +188,7 @@ const ContentList = ({
                       <Icon icon="list" />
                     </Button>
                     <Button
+                      title="Show as grid"
                       onClick={() => handleVariant("vertical")}
                       variant="link"
                       className={variant === "vertical" ? "active" : ""}
