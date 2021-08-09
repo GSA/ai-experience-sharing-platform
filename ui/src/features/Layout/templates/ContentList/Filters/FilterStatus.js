@@ -32,8 +32,7 @@ export const FilterStatus = () => {
                      variant="link"
                      className="USFilterControl__filter--status"
                    >
-                     <Close alt="Close" />
-                     <Keymap value={value}/>
+                     <Keymap value={value}/>&nbsp;<Close className="margin-left-05" alt="Close" />
                    </Button>
         });
       })}

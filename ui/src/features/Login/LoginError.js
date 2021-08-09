@@ -6,7 +6,7 @@ const LoginError = () => {
   const { error } = useSelector((state) => state.auth);
 
   return <>{ error ? (
-      <div className="padding-bottom-2">
+      <div className="padding-y-2">
         <Alert className="display-inline-block" variant="error" slim>
           {error}
         </Alert>

@@ -1,4 +1,15 @@
-.ai-uc {
+.usa-content-list {
+  .USContentList__header {
+    .USContentList__filter--reset {
+      margin-left: 1rem;
+      @include at-media("desktop") {
+      }
+    }
+  }
+}
+
+// both lists
+.usa-content-list--card-container .ai-uc {
   @include u-margin-bottom(2);
 
   &.usa-card {
@@ -7,99 +18,133 @@
       @include u-margin-bottom(2);
     }
   }
-
-  &__meta {
-    display: inline-block;
-    @include u-margin-right(1);
-    @include u-font("sans", "2xs");
-    @include u-color("ink");
-    text-decoration: underline;
-    text-transform: none;
-  }
-  &__meta-container {
-    position: absolute;
-    bottom: 1rem;
-  }
-  .usa-card__container {
-    margin: 0;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.25);
-    border-radius: 0;
-    border: none;
-    min-height: 22rem;
-  }
   .usa-card__header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    @include u-padding(2);
-    @include u-bg("ink");
-
-    .usa-card__heading,
-    .usa-card__meta {
-      @include u-font("serif", "sm");
-      @include u-color("white");
-      text-transform: uppercase;
-      a {
-        text-decoration: none;
-        font-weight: 500;
-      }
-      a:hover {
-        text-decoration: underline;
-      }
+    .usa-card__heading {
+      @include u-font("serif", "lg");
+      @include u-line-height("serif", 2);
     }
   }
+  .usa-card__meta {
+    @include u-color("base-darker");
+    @include u-font("sans", "md");
+    @include u-margin-top(1);
+    display: block;
+  }
   .usa-card__body {
-    @include u-padding(2);
-    @include u-color("base");
+    @include u-padding(3);
+    @include u-padding-bottom(2);
+    @include u-color("base-darker");
   }
-  .usa-card__footer {
-    @include u-padding(2);
-    @include u-padding-bottom(4);
-  }
-  .usa-content-list--vertical {
-    .usa-card__heading a {
-      color: #FFFDF8;
+  .ai-uc__meta-container {
+    .usa-button {
+      font-weight: normal;
+      @include u-padding-x('1');
+      @include u-padding-y('05');
+      @include u-margin-left('neg-1');
+      @include u-margin-right('05');
+      @include u-color('primary-darker');
+      &:hover {
+        @include u-color('primary-darkest');
+        @include u-bg('blue-5');
+      }
     }
   }
 }
 
-.usa-content-list--horizontal {
+
+// List View (default)
+.usa-content-list--horizontal .ai-uc {
+  .usa-card__container {
+    box-shadow: none;
+    background-color: transparent;
+    @include u-border-bottom(1px);
+    @include u-border-color('base-light');
+  }
+  .usa-card__header {
+    .usa-card__heading {
+      a {
+        @include linkVariant--dark;
+      }
+    }
+
+  }
+  .usa-card__body {
+    padding-top: 0;
+  }
+  .usa-card__header,
+  .usa-card__body,
+  .usa-card__footer {
+    padding-left: 0;
+    padding-right: 0;
+  }
+  &:first-child {
+    .usa-card__header {
+      padding-top: 0;
+    }
+  }
+}
+
+// Grid view
+.usa-content-list--vertical  {
+
+  .usa-content-list--card-container {
+    @include at-media("desktop") {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(400px,2fr));
+      grid-auto-rows: max-content;
+      column-gap: 2rem;
+      row-gap: 1rem;
+    }
+  }
   .ai-uc {
     .usa-card__container {
-      box-shadow: none;
-      background-color: transparent;
-      border-bottom: 1px solid #{color("ink")};
+      margin: 0;
+      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.25);
+      border-radius: 0;
+      border: none;
     }
     .usa-card__header {
-      background-color: transparent;
-      padding-top: 0;
-      padding-bottom: 0;
-      .usa-card__heading,
+      @include u-padding-x(3);
+      @include u-padding-y(2);
+      @include u-bg("primary-darkest");
       .usa-card__meta {
-        color: $x-charcoal;
-        @include u-font("serif", "md");
-        @include u-color("ink");
+        @include u-font("sans", "md");
+        @include u-color("white");
+      }
+      
+      .usa-card__heading {
+        @include u-font("serif", "lg");
+        @include u-color("white");
+        -webkit-font-smoothing: antialiased;
+        a {
+          @include u-color("white");
+          text-decoration: none;
+          font-weight: 400;
+        }
+        a:hover {
+          @include u-color("primary-lightest");
+          text-decoration: underline;
+        }
       }
     }
     .usa-card__body {
-      padding-top: 0;
-    }
-  }
-}
-
-.usa-content-list {
-  .USContentList__header {
-    .USContentList__filter--reset {
-      margin-left: auto;
-      display: block;
-    }
-  }
-}
-
-.usa-content-list--vertical {
-  .ai-uc {
-    .usa-card__heading a {
-      color: #FFFDF8;
+      @include at-media("desktop") {
+        display: flex;
+        align-content: space-between;
+        justify-content: space-between;
+        flex-flow: column wrap;
+        p {
+          @include u-margin-bottom(3);
+        }
+        .usa-button {
+          margin-top: auto;
+          width: fit-content;
+        }
+        .ai-uc__meta-container {
+          @include u-margin-y(0);
+          @include u-padding-top(2);
+        }
+      }
     }
   }
 }

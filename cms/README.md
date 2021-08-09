@@ -65,6 +65,10 @@ Using nodejs's inspector, https://nodejs.org/en/docs/guides/debugging-getting-st
 
 You may need to edit the CORS configuration to run the site locally. CORS can be configured at cms/config/middleware.js Add to the array at .cors.origin.
 
+### Media
+
+The site uses a custom media manager plugin that extends the s3 based one. Media prefixed with `public_` are available without authentication everything else is secure by default.
+
 ### Github Actions
 
  * .github/workflows/main.yml - Builds, tests, deploys the AI Sharing Platform for dev, staging, and prod.

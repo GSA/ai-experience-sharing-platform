@@ -22,6 +22,7 @@ const Nav = ({
   return (
     <>
       <button
+        title="Open menu"
         type="button"
         id="usa-nav-open"
         onClick={onMobileMenuClick}

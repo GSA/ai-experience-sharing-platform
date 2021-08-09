@@ -1,28 +1,52 @@
 $bgImgDir: "~styles/images";
 
+
 .US__homepage {
   .margin-bottom-4.usa-hero-container {
     margin-bottom: 0;
   }
 
   .usa-hero {
-    height: 476px;
     position: relative;
-  }
+    background-size: cover;
 
-  h1 {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%)
   }
 
   .usa-hero-bg {
-    background: linear-gradient(180deg, #F4F3F3 0%, #78E3FB 100%);
-    background-size: auto 300%;
+    background-color: #292a2b;
+    border-bottom: 2px solid $coePrimaryLightest;
   }
   .US__homepage-content {
-    background: linear-gradient(180deg, rgba(120,227,251,0.15) 0%, rgba(255,255,255,1) 40%);
-    padding-top: 4rem;
+    padding-top: 0;
+    
+    .intro {
+      @include u-font('sans', 'md');
+      
+      p:first-child {
+        @include u-font('serif', 'xl');
+        @include u-line-height('serif', 3);
+        margin-top: 0;
+      }
+    }
+    
+    .home-resilience-challenge-bg {
+      background: #0C0B2A url("~styles/images/challenge_background.png") no-repeat center right;
+      background-size: cover;
+      color: #fff;
+      padding-top: 3rem;
+      a, a:visited {
+        color: $coePrimaryLightest;
+        text-decoration: none;
+        border-bottom: 1px solid $coePrimaryLightest;
+      }
+      a:hover, a:active {
+        color: #FFF;
+        border-bottom: 1px solid #FFF;
+      }
+      img {
+        width: 20rem;
+      }
+    }
   }
 
   p, .usa-prose > p {

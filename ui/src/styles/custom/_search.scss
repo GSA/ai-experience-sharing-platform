@@ -13,8 +13,8 @@
 
     &::placeholder {
       @include u-font("sans", "xs");
-      @include u-color("base");
-      font-weight: 200;
+      @include u-color("gray-60");
+      font-weight: 400;
     }
   }
 

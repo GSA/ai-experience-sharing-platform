@@ -97,26 +97,6 @@ const ContentList = ({
     };
   }, [dispatch, type, defaultFilter, defaultSort, filters, location.search]);
   
-  const setWidth = () => {
-    let size = 12;
-
-    if (filter) {
-      size = size - 3;
-    }
-    if (sidebar) {
-      size = size - 3;
-    }
-    /* istanbul ignore next */
-    if (variant === "vertical" && sidebar) {
-      size = size + 3;
-    }
-    return size.toString();
-  };
-
-  const cardWidth = () => {
-    return "6";
-  };
-
   const filterFooter = () => {
     if (type === 'usecases') {
       return <UsecaseSubmit />;
@@ -141,93 +121,97 @@ const ContentList = ({
       })}
     >
       {(filter || sort || layout) && (
-        <Row gap="2" className="USContentList__header">
-          <Col desktop="3">
+        <Row gap="6" className="USContentList__header">
+          <div className="desktop:grid-col-3 tablet:grid-offset-1 widescreen:grid-offset-none">
             {filter && (
-                <Row>
-                  <Col desktop="7">
-                    <strong className="USContentList__filter--text" onClick={() => setShowFilters((state) => !state)}>
-                      Filters
-                    </strong>
-                    <FilterStatus/>
-                    <Button color="secondary" className="USContentList__filter--button" onClick={() => setShowFilters((state) => !state)}>Filters</Button>
+              <Row>
+                <div className="grid-col-auto">
+                  <strong className="USContentList__filter--text" onClick={() => setShowFilters((state) => !state)}>
+                    Filters
+                  </strong>
+                  <Button color="primary" className="USContentList__filter--button" onClick={() => setShowFilters((state) => !state)}>
+                    Toggle filters and sort
+                  </Button>
+                  <Button color="primary" className="USContentList__filter--reset" onClick={resetAll}>
+                    Reset All
+                  </Button>
+
+                </div>
+                {type === 'usecases' ?
+                  <Col className="mobile">
+                  <UsecaseSubmit className="margin-top-2" />
                   </Col>
-                  <Col desktop="5">
-                    <Button color="secondary" className="USContentList__filter--reset" onClick={resetAll}>Reset All</Button>
-                  </Col>
-                  {type === 'usecases' ?
-                   <Col className="mobile">
-                    <UsecaseSubmit className="margin-top-2" />
-                   </Col>
-                   : null}
-                </Row>
+                  : null}
+              </Row>
             )}
-          </Col>
-          <Col desktop="6">
-            {searchTerm.length ? <h1>Search results for "{searchTerm}"</h1> : null}
-          </Col>
+          </div>
+          <div className="tablet:grid-col-10 desktop:grid-col-5 tablet:grid-offset-1 desktop:grid-offset-none widescreen:grid-col-6">
+            {searchTerm.length ? <h2>Search results for "{searchTerm}"</h2> : null}
+          </div>
           {(sort || layout) && (
-            <Col
-              desktop="3"
-              className={
+            <div className="text-right tablet:grid-col-10 tablet:grid-offset-1 desktop:grid-offset-none desktop:grid-col-3">
+              <div
+                className={
+                  showFilters
+                    ? "USContentList__filter"
+                    : "USContentList__filter--hidden"
+                }
+              >
+                {layout && (
+                  <div className="USContentList__layout-control">
+                    <Button
+                      title="Show as list"
+                      onClick={() => handleVariant("horizontal")}
+                      variant="link"
+                      className={variant === "horizontal" ? "active" : ""}
+                    >
+                      <Icon icon="list" />
+                    </Button>
+                    <Button
+                      title="Show as grid"
+                      onClick={() => handleVariant("vertical")}
+                      variant="link"
+                      className={variant === "vertical" ? "active" : ""}
+                    >
+                      <Icon icon="th-large" />
+                    </Button>
+                  </div>
+                )}
+                {sort && <Sort />}
+              </div>
+            </div>
+          )}
+        </Row>
+      )}
+      <Row gap="6">
+        {filter && (
+          <div className="desktop:grid-col-3 tablet:grid-offset-1 widescreen:grid-offset-none">
+            <div className="USContentList__filterList">
+              <FilterStatus/>
+            </div>
+            <div className={
                 showFilters
                   ? "USContentList__filter"
                   : "USContentList__filter--hidden"
               }
             >
-              {layout && (
-                <div className="USContentList__layout-control">
-                  <Button
-                    onClick={() => handleVariant("horizontal")}
-                    variant="link"
-                    className={variant === "horizontal" ? "active" : ""}
-                  >
-                    <Icon icon="list" />
-                  </Button>
-                  <Button
-                    onClick={() => handleVariant("vertical")}
-                    variant="link"
-                    className={variant === "vertical" ? "active" : ""}
-                  >
-                    <Icon icon="th-large" />
-                  </Button>
-                </div>
-              )}
-              {sort && <Sort />}
-            </Col>
-          )}
-        </Row>
-      )}
-      <Row gap="2">
-        {filter && (
-          <Col
-            desktop="3"
-            className={
-              showFilters
-                ? "USContentList__filter"
-                : "USContentList__filter--hidden"
-            }
-          >
-            <Filters footer={filterFooter()} />
-          </Col>
+              <Filters footer={filterFooter()} />
+              </div>
+          </div>
         )}
-        <Col desktop={setWidth()}>
-          <Row gap="2">
+        <div className="usa-content-list--card-container tablet:grid-col-10 desktop:grid-col-8 tablet:grid-offset-1 desktop:grid-offset-none widescreen:grid-col-9">
+        
             {data.map((item, i) => (
-              <Col
-                key={`content-list-item-${i}`}
-                desktop={variant === "horizontal" ? "12" : cardWidth()}
-              >
+
                 <CardTemplate
+                  key={`content-list-item-${i}`}
                   template={template}
                   data={item}
                   markdown={markdown}
                 />
-              </Col>
             ))}
             {noResults(data)}
-          </Row>
-        </Col>
+        </div>
         {sidebar && variant === "horizontal" && <Col desktop="3"><Sidebar /></Col>}
       </Row>
     </div>

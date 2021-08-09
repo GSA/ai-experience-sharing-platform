@@ -5,8 +5,8 @@
     @include u-color("white");
   }
   .usa-banner__inner {
-    max-width: $theme-grid-container-max-width;
-    @include u-padding-x(2);
+    max-width: 87rem; //widescreen
+    @include u-padding-x(4);
   }
   .usa-banner__content {
     @include u-color("white");
@@ -26,6 +26,7 @@
       left: unset;
       @include u-margin-right(1);
       @include u-font("sans", "3xs");
+      @include linkVariant--light;
 
       &:after {
         display: inline-block;
@@ -33,7 +34,6 @@
         background: transparent;
         content: "\f107";
         font-family: "Font Awesome 5 Free Solid";
-        @include linkVariant--light;
       }
     }
   }
