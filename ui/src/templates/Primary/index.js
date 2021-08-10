@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import classnames from "classnames";
 import Header from "./Header";
 import Footer from "./Footer";
+import LoginPrompt from "./LoginPrompt";
 import { getMenus, siteData } from "app/SiteModule";
 import { Helmet } from "react-helmet";
 import IdleTimer from 'components/IdleTimer';
@@ -23,6 +24,14 @@ const Primary = ({ children }) => {
   /* istanbul ignore next */
   const { meta = {}, type } = page.data;
   /* istanbul ignore next */
+  const isLoginPage = page.data.slug === "usecase_login" || page.data.slug === "loginadmin" ||  page.data.slug === "login";
+  
+  console.log(page.data.slug, isLoginPage, isAuth)
+  /* istanbul ignore next */
+  const loginRender = isLoginPage || isAuth ? [] : [
+    <LoginPrompt />
+  ];
+
   const theme = type === "projects" ? "5" : !meta.theme ? "6" : meta.theme;
   return (
     <>
@@ -38,6 +47,7 @@ const Primary = ({ children }) => {
       >
         <div className="usa-app__bg">
           <Header variant="basic" />
+          {loginRender}
           <main role="main" id="main-content">
             {children}
           </main>

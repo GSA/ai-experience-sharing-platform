@@ -18,8 +18,6 @@ const PrimaryNavFooter = () => {
     user: { email = '' },
   } = useSelector((state) => state.auth);
   const nodeId = "sign-out";
-  /* istanbul ignore next */
-  const shortEmail = email.split('@').length ? email.split('@')[0] : email;
 
   // For menu item with subitems
   const [activeMenuItem, setActiveMenuItem] = useState(null);
@@ -33,10 +31,6 @@ const PrimaryNavFooter = () => {
     setActiveMenuItem(newValue);
   };
 
-  const handleLogin = () => {
-    dispatch(setRedirect(pathname));
-    history.push('/login');
-  };
 
   const handleLogout = () => {
     dispatch(logout());
@@ -45,7 +39,7 @@ const PrimaryNavFooter = () => {
 
   const data = {
     id: nodeId,
-    title: <><span className="CustomText__prefix">Hello</span><span className="CustomText__suffix">{shortEmail}</span></>,
+    title: <><span className="CustomText__suffix">{email}</span></>,
     items: [
       {
         id: 1,
@@ -64,7 +58,7 @@ const PrimaryNavFooter = () => {
         desktop="auto"
         className="margin-bottom-4 desktop:margin-bottom-0"
       >
-        <Search />
+        {isAuth ? ( <Search /> ) : null }
       </Col>
 
       <Col size="12" desktop="auto">
@@ -81,16 +75,7 @@ const PrimaryNavFooter = () => {
               renderMenuItem={renderMenuItem}
             />
           </ul>
-        ) : (
-          <button
-            className="usa-auth-button"
-            onClick={handleLogin}
-            url="/login"
-          >
-            <span>Sign In</span>
-            <Svg />
-          </button>
-        )}
+        ) : null }
       </Col>
     </Row>
   );

@@ -233,14 +233,16 @@
         @include add-background-svg("chevron");
         background-color: transparent;
         content: "";
-        width: 1rem;
+        width: .75rem;
         height: 1rem;
-        position: absolute;
+        position: static;
         filter: invert(1);
-        right: 0;
-        top: 2.8rem;
+        margin-left: .5rem;
+        top: unset;
         bottom: unset;
         left: unset;
+        display: inline-block;
+        background-position: center center;
         background-size: contain;
       }
     }
