@@ -20,9 +20,11 @@
   @include u-padding-y("105");
   @include u-border(0, "primary-darker");
   @include u-border-bottom("2px");
-  text-align: center;
   font-weight: 600;
   -webkit-font-smoothing: antialiased;
+  position: sticky;
+  top: 0;
+  z-index: 10;
 
   .loginGovLogo {
     display: inline-block;
