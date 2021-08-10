@@ -17,6 +17,8 @@ const Primary = ({ children }) => {
 
   refreshToken(dispatch);
 
+  const { isAuth } = useSelector((state) => state.auth);
+
   const page = useSelector((state) => state.content.page);
   /* istanbul ignore next */
   const { meta = {}, type } = page.data;
@@ -30,6 +32,8 @@ const Primary = ({ children }) => {
         className={classnames({
           "usa-app": true,
           [`usa-app__theme-${theme}`]: Boolean(theme),
+          "user-logged-in": isAuth,
+          "user-logged-out": !isAuth,
         })}
       >
         <div className="usa-app__bg">
