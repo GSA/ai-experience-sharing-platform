@@ -62,7 +62,6 @@ const Header = ({ className, variant }) => {
     <header
       className={classnames({
         "usa-header": true,
-        "usa-header--basic": variant === "basic",
         [className]: className,
       })}
     >
@@ -79,7 +78,6 @@ const Header = ({ className, variant }) => {
               <Col className="usa-header__nav">
                 <PrimaryNav
                   items={menuItems}
-                  varaint="basic"
                   isMobileMenuOpen={isMenuOpen}
                   onMobileMenuClick={handleMenuToggle}
                   activeMenuItem={activeMenuItem}
