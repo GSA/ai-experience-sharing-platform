@@ -1,15 +1,12 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Search from "./Search";
-import { useLocation } from "react-router-dom";
-import { setRedirect, logout } from "app/AuthModule";
+import { logout } from "app/AuthModule";
 import NavItem from "features/PrimaryNav/NavItem";
-import { ReactComponent as Svg } from "./logingov.svg";
 import { Col, Row } from "components/Grid";
 import { useHistory } from "react-router-dom";
 
 const PrimaryNavFooter = () => {
-  const { pathname } = useLocation();
   const dispatch = useDispatch();
   const history = useHistory();
   /* istanbul ignore next */
