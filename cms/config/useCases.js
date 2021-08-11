@@ -10,6 +10,8 @@ module.exports = ({ env }) => {
       'metadataAiLifecycleStage',
       'metadataEnvironment',
       'metadataMlGoals',
+      'metadataMlLearningTypes',
+      'metadataMlTechnique',
       'metadataSpiiPiiUse'
     ],
   };

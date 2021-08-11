@@ -126,7 +126,7 @@ $bgImgDir: "~styles/images";
             margin-inline-start: 0;
             font-size: 1rem;
             @include u-margin-bottom(2);
-            a {
+            span {
                 display: block;
                 width: fit-content;
             }
