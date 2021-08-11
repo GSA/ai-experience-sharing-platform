@@ -38,12 +38,15 @@ const Details = ({ items }) => {
             const value = items[detailKey];
             const title = mapKeys[key] || key;
             if (Array.isArray(value)) {
+              if (value.length <= 0) {
+                return
+              }
               const texts = value.map(v => mapKeys[v.metadata] || Format({name: key, value: v.metadata}));
               return <div key={i}>
                      <dt>{title}</dt>
                      <dd>
                        {texts.map((text, i) => {
-                         return <span><Link key={i} to={`/usecases?${key}.metadata=${value[i].metadata}`}>{text}</Link> </span>})}
+                         return <span><Link key={i} to={`/usecases?${key}.metadata=${value[i].metadata}`}>{text}</Link>{ i !== texts.length - 1 ? <>,</> : (null)} </span>})}
                      </dd>
                    </div>;
             } else {
