@@ -130,10 +130,10 @@ const ContentList = ({
                     Filters
                   </strong>
                   <Button color="primary" className="USContentList__filter--button" onClick={() => setShowFilters((state) => !state)}>
-                    Toggle filters and sort
+                    Filter and sort
                   </Button>
                   <Button color="primary" className="USContentList__filter--reset" onClick={resetAll}>
-                    Reset All
+                    Reset all
                   </Button>
 
                 </div>

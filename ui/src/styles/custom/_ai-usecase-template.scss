@@ -1,5 +1,8 @@
 .usa-content-list {
   .USContentList__header {
+    .usa-button {
+      width: auto;
+    }
     .USContentList__filter--reset {
       margin-left: 1rem;
       @include at-media("desktop") {
