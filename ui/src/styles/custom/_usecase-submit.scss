@@ -1,9 +1,5 @@
 .US__usecase-submit-cta {
     background-color: #004374;
-    display: none;
-    @include at-media("desktop") {
-        display: initial;
-    }
 
     .usa-card__container {
         background-color: #004374;
