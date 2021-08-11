@@ -26,7 +26,6 @@ const Primary = ({ children }) => {
   /* istanbul ignore next */
   const isLoginPage = page.data.slug === "usecase_login" || page.data.slug === "loginadmin" ||  page.data.slug === "login";
   
-  console.log(page.data.slug, isLoginPage, isAuth)
   /* istanbul ignore next */
   const loginRender = isLoginPage || isAuth ? [] : [
     <LoginPrompt />
