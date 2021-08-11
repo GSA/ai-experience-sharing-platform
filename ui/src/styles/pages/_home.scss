@@ -36,12 +36,16 @@ $bgImgDir: "~styles/images";
       padding-top: 3rem;
       a, a:visited {
         color: $coePrimaryLightest;
-        text-decoration: none;
-        border-bottom: 1px solid $coePrimaryLightest;
       }
       a:hover, a:active {
         color: #FFF;
-        border-bottom: 1px solid #FFF;
+      }
+      a.link-external {
+        background-image: url("data:image/svg+xml,%3Csvg width='15' height='14' viewBox='0 0 15 14' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M4.31384 3.31358L4.31384 4.48163L8.94046 4.48577L3.89964 9.52659L4.72804 10.355L9.76886 5.31417L9.76472 9.94079L10.941 9.94079V3.31358H4.31384Z' fill='%23B4E6FF'/%3E%3Crect x='0.5' y='0.5' width='13' height='13' stroke='%23B4E6FF'/%3E%3C/svg%3E%0A");
+        padding-right: 1.5rem;
+        background-size: 1rem;
+        background-position: center right;
+        background-repeat: no-repeat;
       }
       img {
         width: 20rem;
