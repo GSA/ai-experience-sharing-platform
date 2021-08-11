@@ -70,11 +70,11 @@
     @include u-margin-bottom(2);
 
     &[hidden] {
-      display: inline-block;
+      display: block;
     }
     a {
       @include u-font("sans", 9);
-      font-weight: 300;
+      font-weight: 400;
       @include u-margin-bottom(2);
     }
   }
@@ -138,8 +138,9 @@
         @include u-color("white");
         @include u-font("serif", 3);
         height: 100%;
-
+        &.usa-current,
         &:hover,
+        &:focus,
         &[aria-expanded="true"] {
           &:before {
             display: inline-block;
@@ -202,14 +203,14 @@
         display: block;
         @include u-padding-y(3);
         @include u-padding-x(4);
-        @include u-bg("base");
+        @include u-bg("primary");
         font-weight: 400;
         &[hidden] {
           display: none;
         }
         a {
           @include u-margin-bottom(0);
-          @include u-font("sans", 3);
+          @include u-font("sans", 4);
           font-weight: 400;
 
           &:hover {
@@ -233,14 +234,16 @@
         @include add-background-svg("chevron");
         background-color: transparent;
         content: "";
-        width: 1rem;
+        width: .75rem;
         height: 1rem;
-        position: absolute;
+        position: static;
         filter: invert(1);
-        right: 0;
-        top: 2.8rem;
+        margin-left: .5rem;
+        top: unset;
         bottom: unset;
         left: unset;
+        display: inline-block;
+        background-position: center center;
         background-size: contain;
       }
     }

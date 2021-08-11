@@ -12,3 +12,30 @@
     }
   }
 }
+
+.US_loginPrompt {
+  @include u-bg("primary-dark");
+  @include u-color("white");
+  @include u-font("serif", "sm");
+  @include u-padding-y("105");
+  @include u-border(0, "primary-darker");
+  @include u-border-bottom("2px");
+  font-weight: 600;
+  -webkit-font-smoothing: antialiased;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+
+  .loginGovLogo {
+    display: inline-block;
+    vertical-align: middle;
+    @include u-margin-x(2);
+  }
+  .auth-lock-icon {
+    display: inline-block;
+    vertical-align: middle;
+    @include u-margin-right(2);
+    width: 1.25rem;
+    height: 1.5rem;
+  }
+}
