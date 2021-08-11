@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import classnames from "classnames";
 import Header from "./Header";
 import Footer from "./Footer";
-import LoginPrompt from "./LoginPrompt";
+import LoginPrompt from "../../features/Login/LoginPrompt";
 import { getMenus, siteData } from "app/SiteModule";
 import { Helmet } from "react-helmet";
 import IdleTimer from 'components/IdleTimer';

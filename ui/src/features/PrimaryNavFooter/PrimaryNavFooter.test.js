@@ -18,8 +18,6 @@ describe("<PrimaryNavFooter />", () => {
           <PrimaryNavFooter />
         </TestProvider>
       );
-      const button = wrapper.find(".usa-auth-button");
-      button.simulate("click");
       wrapper.update();
     });
     it("should render when authenticated", async () => {
