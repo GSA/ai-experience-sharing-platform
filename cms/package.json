@@ -50,7 +50,7 @@
     "strapi-plugin-email": "3.6.3",
     "strapi-plugin-sitemap": "^1.2.4",
     "strapi-plugin-upload": "3.6.3",
-    "strapi-plugin-users-permissions": "3.6.3",
+    "strapi-plugin-users-permissions": "3.6.6",
     "strapi-provider-upload-aws-s3-auth": "github:flexion/strapi-provider-upload-aws-s3-auth#v0.0.4",
     "strapi-utils": "3.6.3",
     "systeminformation": "^5.6.4",
