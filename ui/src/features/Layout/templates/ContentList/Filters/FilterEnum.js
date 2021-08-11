@@ -2,11 +2,12 @@ import React from "react";
 import PropTypes from "prop-types";
 import classnames from "classnames";
 import Icon from "components/Icon";
+import { cms } from "utils/cms";
 
 const FilterEnum = ({ name, items, onChange, value, operand, isVirtual }) => {
   return (
     <div className="USFilterControl__enum">
-      {items.map((item, i) => {
+      {items.filter(item => !cms.metaDataValueBlockList.includes(item.name)).map((item, i) => {
         const isChecked = value.includes(item.name);
         return (
           <span

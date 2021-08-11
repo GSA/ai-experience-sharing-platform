@@ -7,6 +7,7 @@ import Keymap from "features/Keymap";
 import Card from "components/Card";
 import Date from "components/Date";
 import Link from "features/Link";
+import { cms } from "utils/cms";
 
 const UsecaseTemplate = (props) => {
   const dispatch = useDispatch();
@@ -19,11 +20,6 @@ const UsecaseTemplate = (props) => {
     "metadataProcurement": "enumeration",
     "metadataSpiiPiiUse": "boolean",
   };
-  const metaDataValueBlockList = [
-    'none',
-    'other',
-    'notApplicable',
-  ];
 
   const { description, title, metadataAgency, publishedDate, slug } = props;
 
@@ -47,7 +43,7 @@ const UsecaseTemplate = (props) => {
       <p className="ai-uc__meta-container">
         {Object.keys(metaDataList)
           .filter((item) => Boolean(props[item]) && Boolean(props[item].length > 0))
-          .filter(item => !metaDataValueBlockList.includes(props[item]))
+          .filter(item => !cms.metaDataValueBlockList.includes(props[item]))
           .map((item, i) => (
             <Button
               onClick={(e) => handleClick({
