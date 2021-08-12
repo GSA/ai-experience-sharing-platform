@@ -99,7 +99,7 @@ const ContentList = ({
   
   const filterFooter = () => {
     if (type === 'usecases') {
-      return <UsecaseSubmit />;
+      return <UsecaseSubmit className="display-none desktop:display-block" />;
     } else {
       return null;
     }
@@ -130,18 +130,12 @@ const ContentList = ({
                     Filters
                   </strong>
                   <Button color="primary" className="USContentList__filter--button" onClick={() => setShowFilters((state) => !state)}>
-                    Toggle filters and sort
+                    Filter and sort
                   </Button>
                   <Button color="primary" className="USContentList__filter--reset" onClick={resetAll}>
-                    Reset All
+                    Reset all
                   </Button>
-
                 </div>
-                {type === 'usecases' ?
-                  <Col className="mobile">
-                  <UsecaseSubmit className="margin-top-2" />
-                  </Col>
-                  : null}
               </Row>
             )}
           </div>
@@ -210,7 +204,9 @@ const ContentList = ({
                   markdown={markdown}
                 />
             ))}
-            {noResults(data)}
+          {noResults(data)}
+          
+          <UsecaseSubmit className="display-block desktop:display-none margin-top-5" />
         </div>
         {sidebar && variant === "horizontal" && <Col desktop="3"><Sidebar /></Col>}
       </Row>
