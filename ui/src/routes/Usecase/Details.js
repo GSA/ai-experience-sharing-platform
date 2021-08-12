@@ -46,7 +46,7 @@ const Details = ({ items }) => {
                      <dt>{title}</dt>
                      <dd>
                        {texts.map((text, i) => {
-                         return <span><Link key={i} to={`/usecases?${key}.metadata=${value[i].metadata}`}>{text}</Link>{ i !== texts.length - 1 ? <>,</> : (null)} </span>})}
+                         return <span key={i}><Link to={`/usecases?${key}.metadata=${value[i].metadata}`}>{text}</Link>{ i !== texts.length - 1 ? <>,</> : (null)} </span>})}
                      </dd>
                    </div>;
             } else {

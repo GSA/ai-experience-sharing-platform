@@ -24,13 +24,8 @@ const Primary = ({ children }) => {
   /* istanbul ignore next */
   const { meta = {}, type } = page.data;
   /* istanbul ignore next */
-  const isLoginPage = page.data.slug === "usecase_login" || page.data.slug === "loginadmin" ||  page.data.slug === "login";
+  const isLoginPage = page.data.slug === "usecase_login" || page.data.slug === "loginadmin" || page.data.slug === "login";
   
-  /* istanbul ignore next */
-  const loginRender = isLoginPage || isAuth ? [] : [
-    <LoginPrompt />
-  ];
-
   const theme = type === "projects" ? "5" : !meta.theme ? "6" : meta.theme;
   return (
     <>
@@ -46,7 +41,9 @@ const Primary = ({ children }) => {
       >
         <div className="usa-app__bg">
           <Header variant="basic" />
-          {loginRender}
+          { (isLoginPage || isAuth) ? null : (
+            <LoginPrompt />
+          )}
           <main role="main" id="main-content">
             {children}
           </main>
