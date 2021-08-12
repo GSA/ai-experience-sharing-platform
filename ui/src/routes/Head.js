@@ -10,7 +10,7 @@ const Head = (props) => {
   const { pathname } = useLocation();
   // const siteURL = "https://ai.gsa.gov";
   const siteURL = "https://strapi-api-host-prod.app.cloud.gov";
-  const defaultShareImage = "/images/ai-social-share.png";
+  const defaultShareImage = siteURL + "/images/ai-social-share.png";
   const title = page.title + " | " + siteTitle; // page or site title
   const description = page.description || "The "+siteTitle+" supports our agency partners in accelerating the adoption of Artificial Intelligence (AI) across the federal government."; // page or site description
   const url = siteURL + pathname; // page url/link
