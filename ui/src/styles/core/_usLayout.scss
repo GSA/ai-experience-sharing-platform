@@ -70,7 +70,7 @@
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    @include u-margin-bottom(1);
+    @include u-margin-bottom("105");
 
     .usa-button {
       @include u-margin-left(2);

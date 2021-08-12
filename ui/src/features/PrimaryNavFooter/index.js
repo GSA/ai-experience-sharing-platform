@@ -1,8 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Search from "./Search";
 import { logout } from "app/AuthModule";
-import NavItem from "features/PrimaryNav/NavItem";
 import { Col, Row } from "components/Grid";
 import { useHistory } from "react-router-dom";
 
@@ -14,39 +13,12 @@ const PrimaryNavFooter = () => {
     isAuth,
     user: { email = '' },
   } = useSelector((state) => state.auth);
-  const nodeId = "sign-out";
-
-  // For menu item with subitems
-  const [activeMenuItem, setActiveMenuItem] = useState(null);
-  const handleMenuItemClick = (value) => {
-    let newValue = null;
-    /* istanbul ignore next */
-    const clicked = value ? value.id : null;
-    if (clicked !== newValue && clicked !== activeMenuItem) {
-      newValue = clicked;
-    }
-    setActiveMenuItem(newValue);
-  };
-
 
   const handleLogout = () => {
     dispatch(logout());
     history.push('/');
   };
 
-  const data = {
-    id: nodeId,
-    title: <><span className="CustomText__suffix">{email}</span></>,
-    items: [
-      {
-        id: 1,
-        link: "/",
-        text: "Sign Out",
-      },
-    ],
-  };
-
-  const renderMenuItem = (props) => <button {...props} title={`Hello ${email}`}>{props.title}</button>;
 
   return (
     <Row gap="2" className="flex-align-center">
@@ -60,18 +32,16 @@ const PrimaryNavFooter = () => {
 
       <Col size="12" desktop="auto">
         {isAuth ? (
-          <ul className="usa-accordion usa-nav__primary">
-            <NavItem
+          <div className="text-white text-left desktop:text-right desktop:padding-left-1">
+            <span aria-label="User email">{email}</span>
+            <button
               id="sign-out"
-              data={data}
-              currentMenuItem=""
-              activeMenuItem={activeMenuItem}
-              onMenuItemClick={handleMenuItemClick}
-              isOpen={activeMenuItem === nodeId}
               onClick={handleLogout}
-              renderMenuItem={renderMenuItem}
-            />
-          </ul>
+              title="Sign out"
+              className="usa-button usa-button--unstyled usa-button-sign-out">
+                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="currentColor"><g><path d="M0,0h24v24H0V0z" fill="none"/></g><g><path d="M17,8l-1.41,1.41L17.17,11H9v2h8.17l-1.58,1.58L17,16l4-4L17,8z M5,5h7V3H5C3.9,3,3,3.9,3,5v14c0,1.1,0.9,2,2,2h7v-2H5V5z"/></g></svg>
+              </button>
+          </div>
         ) : null }
       </Col>
     </Row>
