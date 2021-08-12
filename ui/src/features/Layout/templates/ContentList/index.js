@@ -135,7 +135,6 @@ const ContentList = ({
                   <Button color="primary" className="USContentList__filter--reset" onClick={resetAll}>
                     Reset all
                   </Button>
-
                 </div>
               </Row>
             )}

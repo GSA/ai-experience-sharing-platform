@@ -14,8 +14,6 @@ const Head = (props) => {
   const title = page.title + " | " + siteTitle; // page or site title
   const description = page.description || "The "+siteTitle+" supports our agency partners in accelerating the adoption of Artificial Intelligence (AI) across the federal government."; // page or site description
   const url = siteURL + pathname; // page url/link
-  const fbImg = siteURL + ( page.fbImg ? page.fbImg : defaultShareImage ); // page image or site facebook image
-  const twImg = siteURL + ( page.twImg ? page.twImg : defaultShareImage ); // page image or site twitter image
 
   return (
     <Helmet {...props}>
@@ -29,8 +27,8 @@ const Head = (props) => {
       <meta content={description} property="og:description" />
       <meta content="summary_large_image" name="twitter:card" />
       <meta content="usgsa" name="twitter:site" />
-      <meta content={fbImg} property="og:image" />
-      <meta content={twImg} name="twitter:image" />
+      <meta content={defaultShareImage} property="og:image" />
+      <meta content={defaultShareImage} name="twitter:image" />
     </Helmet>
   );
 };

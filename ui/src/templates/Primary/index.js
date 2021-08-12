@@ -22,11 +22,8 @@ const Primary = ({ children }) => {
 
   const page = useSelector((state) => state.content.page);
   /* istanbul ignore next */
-  const { meta = {}, type } = page.data;
-  /* istanbul ignore next */
   const isLoginPage = page.data.slug === "usecase_login" || page.data.slug === "loginadmin" || page.data.slug === "login";
   
-  const theme = type === "projects" ? "5" : !meta.theme ? "6" : meta.theme;
   return (
     <>
       <Helmet></Helmet>
@@ -34,7 +31,6 @@ const Primary = ({ children }) => {
         id="top"
         className={classnames({
           "usa-app": true,
-          [`usa-app__theme-${theme}`]: Boolean(theme),
           "user-logged-in": isAuth,
           "user-logged-out": !isAuth,
         })}
