@@ -31,7 +31,6 @@ describe("<PrimaryNavFooter />", () => {
       );
       const button = wrapper.find("button#sign-out");
       button.simulate("click");
-      wrapper.find("a[text='Sign Out']").simulate("click");
       wrapper.update();
     });
   });

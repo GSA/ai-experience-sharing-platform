@@ -9,3 +9,21 @@
     @include u-color("white");
   }
 }
+.usa-button-sign-out {
+  @include linkVariant--light;
+  @include u-padding(1);
+  @include u-margin-left(1);
+  @include u-font-family("sans");
+  @include u-color("white");
+  font-weight: normal;
+  text-decoration: none;
+  vertical-align: middle;
+  &:hover,
+  &:active,
+  &:focus {
+      @include u-color("primary-lightest");
+  }
+  svg {
+    display: inline;
+  }
+}
