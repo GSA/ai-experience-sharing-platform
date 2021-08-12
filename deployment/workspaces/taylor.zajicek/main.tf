@@ -6,7 +6,7 @@ terraform {
     }
   }
   backend "s3" {
-    bucket = "cg-6092672a-785e-407e-894f-c0ed2cb2448e"
+    bucket = "cg-5da9590f-e848-4a0e-9100-ca36eeabffc1"
     key    = "terraform/state/strapi-api-host"
     region = "us-gov-west-1"
   }
@@ -20,8 +20,10 @@ provider "cloudfoundry" {
 module "ai_experience_environment" {
   source                        = "../../modules/space"
   strapi_hostname               = "strapi-api-host-main"
+  strapi_memory                 = 1024
+  strapi_instances              = 1
   cf_org                        = "sandbox-gsa"
   cf_space                      = "taylor.zajicek"
-  cf_rds_strapi_db_service_plan = "shared-psql"
+  cf_rds_strapi_db_service_plan = "micro-psql"
   cf_s3_strapi_image_plan       = "basic-sandbox"
 }

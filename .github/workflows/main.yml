@@ -116,7 +116,7 @@ jobs:
 
 
   build_frontend:
-    needs: [build_frontend_build_matrix]
+    needs: [build_frontend_build_matrix, get_frontend_url]
     name: "build frontend"
     runs-on: ubuntu-latest
 
@@ -151,7 +151,7 @@ jobs:
         run: yarn run build
         env:
           NODE_ENV: production
-          REACT_APP_API_URL: ""
+          REACT_APP_API_URL: ${{ needs.get_frontend_url.outputs.frontendurl }}
           REACT_APP_AUTH_ROOT_URL: ${{ matrix.logingovurl }}
           REACT_APP_AUTH_REDIRECT_URL: ${{ matrix.strapiloginurl }}
 
@@ -271,6 +271,42 @@ jobs:
         run: echo "::set-output name=matrix::{\"include\":[{\"deployenv\":\"prod\",\"deployorg\":\"tts-ai-digitalpresence\",\"aws_access_key_id_secret\":\"AWS_ACCESS_KEY_ID_PROD\",\"aws_secret_access_key_secret\":\"AWS_SECRET_ACCESS_KEY_PROD\",\"aws_default_region\":\"us-gov-west-1\",\"cf_user_secret\":\"CF_USER_PROD\",\"cf_password_secret\":\"CF_PASSWORD_PROD\"}]}"
         # run: echo "::set-output name=matrix::{\"include\":[{\"deployenv\":\"dev\",\"deployorg\":\"tts-ai-digitalpresence\",\"aws_access_key_id_secret\":\"AWS_ACCESS_KEY_ID_DEV\",\"aws_secret_access_key_secret\":\"AWS_SECRET_ACCESS_KEY_DEV\",\"aws_default_region\":\"us-gov-west-1\",\"cf_user_secret\":\"CF_USER_DEV\",\"cf_password_secret\":\"CF_PASSWORD_DEV\"}]}"
         # run: echo "::set-output name=matrix::{\"include\":[{\"deployenv\":\"dev\",\"deployorg\":\"tts-ai-digitalpresence\",\"aws_access_key_id_secret\":\"AWS_ACCESS_KEY_ID_DEV\",\"aws_secret_access_key_secret\":\"AWS_SECRET_ACCESS_KEY_DEV\",\"aws_default_region\":\"us-gov-west-1\",\"cf_user_secret\":\"CF_USER_DEV\",\"cf_password_secret\":\"CF_PASSWORD_DEV\"},{\"deployenv\":\"staging\",\"deployorg\":\"tts-ai-digitalpresence\",\"aws_access_key_id_secret\":\"AWS_ACCESS_KEY_ID_STAGING\",\"aws_secret_access_key_secret\":\"AWS_SECRET_ACCESS_KEY_STAGING\",\"aws_default_region\":\"us-gov-west-1\",\"cf_user_secret\":\"CF_USER_STAGING\",\"cf_password_secret\":\"CF_PASSWORD_STAGING\"}]}"
+
+
+  # This will not run or work on the first run, it depends on terraform from a previous run. We need the url from CF but we don't have that until terraform runs.
+  get_frontend_url:
+    name: "get frontend url"
+    needs: [build_deploy_build_matrix]
+    runs-on: ubuntu-latest
+    outputs:
+      frontendurl: ${{ steps.geturl.outputs.url }}
+
+    strategy:
+      # Don't terminate another deploy mid-deploy and leave a mess
+      fail-fast: false
+      matrix: ${{ fromJson(needs.build_deploy_build_matrix.outputs.matrix) }}
+
+    env:
+      AWS_ACCESS_KEY_ID: ${{ secrets[matrix.aws_access_key_id_secret] }}
+      AWS_SECRET_ACCESS_KEY: ${{ secrets[matrix.aws_secret_access_key_secret] }}
+      AWS_DEFAULT_REGION: ${{ secrets[matrix.aws_default_region] }}
+      CF_USERNAME: ${{ secrets[matrix.cf_user_secret] }}
+      CF_PASSWORD: ${{ secrets[matrix.cf_password_secret] }}
+
+    steps:
+      - name: Setup cf cli
+        run: |
+          wget -q -O cf7-cli_linux_x86-64.tgz "https://packages.cloudfoundry.org/stable?release=linux64-binary&version=v7&source=github"
+          echo "e7e6284ebc3c9002681a924c199ea4a79ff22f8a5820afe24a1bae8142143332  cf7-cli_linux_x86-64.tgz" > cf7-cli_linux_x86-64.sha256
+          sha256sum -c cf7-cli_linux_x86-64.sha256
+          tar -zxvf cf7-cli*.tgz
+          ./cf api https://api.fr.cloud.gov
+          ./cf auth
+          ./cf target -o tts-ai-digitalpresence -s ${{ matrix.deployenv }}
+      - name: Get url
+        id: geturl
+        run: echo "::set-output name=url::$(./cf routes | grep strapi-api-host | awk 'BEGIN { FS="[[:space:]]" } ; {print "https://"$6"."$9}')"
+
 
   # build_deploy_build_matrix_debug:
   #   name: "debug a matrix of deploys"
