@@ -58,6 +58,9 @@ const Filters = ({ footer }) => {
   return (
     <div>
       {filterData.map((filter) => {
+        if (filter.type === 'enumeration' && filter.items.length === 0) {
+          return (null);
+        }
         return <FilterControl onChange={handleChange} {...filter} />;
       })}
 
