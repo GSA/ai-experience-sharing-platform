@@ -151,7 +151,7 @@ jobs:
         run: yarn run build
         env:
           NODE_ENV: production
-          REACT_APP_API_URL: ${{ needs.get_frontend_url.outputs.frontendurl }}
+          REACT_APP_API_URL: ""
           REACT_APP_AUTH_ROOT_URL: ${{ matrix.logingovurl }}
           REACT_APP_AUTH_REDIRECT_URL: ${{ matrix.strapiloginurl }}
 
