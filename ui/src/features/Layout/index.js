@@ -28,7 +28,7 @@ const components = {
     const shortCodesFound = areShortCodesFound(bodyRendered);
     return (
       <div className={classnames({ USMarkdown: true, [className]: className })}>
-        { bodyRendered && !shortCodesFound ? <div dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(bodyRendered)}}></div> : <Suspense fallback={<div>Loading...</div>}><Mdx>{body}</Mdx></Suspense> }
+        { bodyRendered && !shortCodesFound ? <div dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(bodyRendered, { ADD_ATTR: ['target'] })}}></div> : <Suspense fallback={<div>Loading...</div>}><Mdx>{body}</Mdx></Suspense> }
       </div>
     )},
   title: Title,
