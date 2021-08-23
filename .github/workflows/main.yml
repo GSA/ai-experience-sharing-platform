@@ -151,6 +151,7 @@ jobs:
         run: yarn run build
         env:
           NODE_ENV: production
+          SITE_URL: ${{ needs.get_frontend_url.outputs.frontendurl }}
           REACT_APP_API_URL: ""
           REACT_APP_AUTH_ROOT_URL: ${{ matrix.logingovurl }}
           REACT_APP_AUTH_REDIRECT_URL: ${{ matrix.strapiloginurl }}
@@ -297,7 +298,7 @@ jobs:
       - name: Setup cf cli
         run: |
           wget -q -O cf7-cli_linux_x86-64.tgz "https://packages.cloudfoundry.org/stable?release=linux64-binary&version=v7&source=github"
-          echo "e7e6284ebc3c9002681a924c199ea4a79ff22f8a5820afe24a1bae8142143332  cf7-cli_linux_x86-64.tgz" > cf7-cli_linux_x86-64.sha256
+          echo "7a78614b2bb58e633d9488a357871c3ce2cc1b70b08f3e56d2bb9c82505565f9  cf7-cli_linux_x86-64.tgz" > cf7-cli_linux_x86-64.sha256
           sha256sum -c cf7-cli_linux_x86-64.sha256
           tar -zxvf cf7-cli*.tgz
           ./cf api https://api.fr.cloud.gov
