@@ -25,7 +25,7 @@
   "dependencies": {
     "aws-sdk": "2.957.0",
     "css-loader": "^2.1.1",
-    "glob-parent": ">=5.1.2",
+    "glob-parent": ">=6.0.1",
     "grant": "5.4.5",
     "immer": ">=8.0.1",
     "knex": "<0.20.0",
