@@ -23,6 +23,7 @@
     "webpack-cli": "^3.3.12"
   },
   "dependencies": {
+    "ansi-html": "gebhardtr/ansi-html#25ca3089b6cb0ff785b76e21643e51f2d3570f0b",
     "axios": "^0.21.4",
     "aws-sdk": "2.957.0",
     "css-loader": "^2.1.1",
@@ -41,6 +42,7 @@
     "pino": "^6.7.0",
     "pm2": "^4.5.6",
     "serialize-javascript": ">=3.1.0",
+    "set-value": ">=4.0.1",
     "slugify": "^1.4.5",
     "sqlite3": "^5.0.1",
     "ssri": ">=8.0.1",

@@ -3,6 +3,7 @@
   "version": "0.2.0",
   "private": true,
   "dependencies": {
+    "ansi-html": "gebhardtr/ansi-html#25ca3089b6cb0ff785b76e21643e51f2d3570f0b",
     "@babel/core": "7.12.9",
     "@babel/generator": "7.14.3",
     "@babel/parser": "7.14.3",
@@ -44,6 +45,7 @@
     "react-scripts": "^4.0.3",
     "redux-watch": "^1.2.0",
     "rehype-sanitize": "^4.0.0",
+    "set-value": ">=4.0.1",
     "trim": ">=0.0.3",
     "uswds": "^2.9.0"
   },
