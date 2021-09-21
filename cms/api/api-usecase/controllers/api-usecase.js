@@ -1,6 +1,7 @@
 'use strict';
 const _ = require('lodash');
 const LRU = require("lru-cache");
+const { sanitizeEntity } = require('strapi-utils');
 
 /**
  * Read the documentation (https://strapi.io/documentation/v3.x/concepts/controllers.html#core-controllers)
@@ -64,7 +65,8 @@ module.exports = {
     Object.keys(query).filter(p => !p.startsWith('_') && p !== 'q').forEach((p) => {
       search._where.push({ [p]: query[p] });
     });
+    search._where.push({ 'published_at_null': false });
     const results = await strapi.query('api-usecase').find(search);
-    return ctx.send(results);
+    return ctx.send(results.map(entity => sanitizeEntity(entity, { model: strapi.models["api-usecase"] })));
   },
 };
