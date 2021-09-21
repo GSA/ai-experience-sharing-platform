@@ -3,6 +3,8 @@
   "version": "0.2.0",
   "private": true,
   "dependencies": {
+    "ansi-html": "gebhardtr/ansi-html#25ca3089b6cb0ff785b76e21643e51f2d3570f0b",
+    "ansi-regex": ">=6.0.1",
     "@babel/core": "7.12.9",
     "@babel/generator": "7.14.3",
     "@babel/parser": "7.14.3",
@@ -28,6 +30,7 @@
     "moment": "^2.29.1",
     "node-env-run": "^4.0.2",
     "node-sass": "^6.0.0",
+    "nth-check": "^2.0.1",
     "prop-types": "^15.7.2",
     "qs": "^6.9.6",
     "query-string": "^7.0.1",
@@ -44,6 +47,7 @@
     "react-scripts": "^4.0.3",
     "redux-watch": "^1.2.0",
     "rehype-sanitize": "^4.0.0",
+    "set-value": ">=4.0.1",
     "trim": ">=0.0.3",
     "uswds": "^2.9.0"
   },
@@ -115,7 +119,7 @@
     "is-svg": ">=4.2.2",
     "node-notifier": ">=8.0.1",
     "npm-force-resolutions": "0.0.10",
-    "object-path": ">=0.11.6",
+    "object-path": ">=0.11.8",
     "pa11y-ci": "^2.4.0",
     "postcss": "^7.0.36",
     "ssri": ">=8.0.1"
