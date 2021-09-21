@@ -2540,6 +2540,11 @@ ansi-html@gebhardtr/ansi-html#25ca3089b6cb0ff785b76e21643e51f2d3570f0b:
   version "0.0.8"
   resolved "https://codeload.github.com/gebhardtr/ansi-html/tar.gz/25ca3089b6cb0ff785b76e21643e51f2d3570f0b"
 
+ansi-regex@>=6.0.1:
+  version "6.0.1"
+  resolved "https://registry.yarnpkg.com/ansi-regex/-/ansi-regex-6.0.1.tgz#3183e38fae9a65d7cb5e53945cd5897d0260a06a"
+  integrity sha512-n5M855fKb2SsfMIiFFoVrABHJC8QtHwVx+mHWP3QcEqBHYienj5dHSgjbxtC0WEZXYt4wcD6zrQElDPhFuZgfA==
+
 ansi-regex@^2.0.0:
   version "2.1.1"
   resolved "https://registry.yarnpkg.com/ansi-regex/-/ansi-regex-2.1.1.tgz#c3b33ab5ee360d86e0e628f0468ae7ef27d654df"
