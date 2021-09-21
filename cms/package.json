@@ -19,7 +19,7 @@
     "npm-force-resolutions": "0.0.10",
     "react-idle-timer": "^4.6.4",
     "supertest": "^6.1.6",
-    "webpack": "^4.44.2",
+    "webpack": "^4.46.0",
     "webpack-cli": "^3.3.12"
   },
   "dependencies": {
