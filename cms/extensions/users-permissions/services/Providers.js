@@ -87,7 +87,7 @@ const connect = (provider, query) => {
         }
 
         if (!profile.email.endsWith('.gov') && !profile.email.endsWith('.mil')) {
-          resolve([
+          return resolve([
             null,
             [{ messages: [{ id: 'Auth.form.error.email.tld' }] }],
             'Email does not end with .gov or .mil.',

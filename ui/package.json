@@ -127,6 +127,7 @@
   "resolutions": {
     "hast-util-sanitize": "git+https://github.com/flexion/hast-util-sanitize.git#a6f5e00526490acce75651b18fc5a7027be9597b",
     "trim": "0.0.3",
+    "nth-check": "^2.0.1",
     "@babel/core": "7.12.9",
     "@babel/traverse": "7.14.2",
     "@babel/types": "7.14.4",
