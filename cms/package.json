@@ -20,7 +20,7 @@
     "react-idle-timer": "^4.6.4",
     "supertest": "^6.1.6",
     "webpack": "^4.44.2",
-    "webpack-cli": "^3.3.12"
+    "webpack-cli": "^4.9.0"
   },
   "dependencies": {
     "ansi-html": "gebhardtr/ansi-html#25ca3089b6cb0ff785b76e21643e51f2d3570f0b",
