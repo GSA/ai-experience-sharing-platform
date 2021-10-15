@@ -28,7 +28,9 @@ module.exports = ({ env }) => {
           'https://strapi-api-host-dev.app.cloud.gov',
           'https://strapi-api-host-staging.app.cloud.gov',
           'https://strapi-api-host-prod.app.cloud.gov',
-          'https://ai.gsa.gov'
+          'https://ai.gsa.gov',
+          'http://localhost:3000',
+          'http://localhost:1337'
         ],
       },
       customLogger: {

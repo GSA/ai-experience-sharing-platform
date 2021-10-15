@@ -5,14 +5,14 @@ import context from "./context";
 export const name = "auth";
 
 export const initialState = {
-  isAuth: false,
-  isAdminAuth: false,
-  token: "",
-  adminToken: "",
+  isAuth: true,
+  isAdminAuth: true,
+  token: "token",
+  adminToken: "token",
   user: {
-    id: "",
-    username: "",
-    email: "",
+    id: "0",
+    username: "example",
+    email: "example@example.com",
     provider: "",
     confirmed: null,
   },
@@ -25,9 +25,6 @@ export const initialState = {
   pendingAdmin: false,
   redirect: "",
   authenticatedTypes: {
-    usecases: true,
-    'usecase-settings': true,
-    'api-search-suggestions': true,
   },
 };
 

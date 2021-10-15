@@ -1,6 +1,7 @@
 const setupPermissions = async () => {
   const publicRoleId = 2;
-  const authenticatedRoleId = 1;
+  // const authenticatedRoleId = 1;
+  const authenticatedRoleId = 2;
 
   const plugins = await strapi.plugins['users-permissions'].services.userspermissions.getPlugins();
   for (roleId of [publicRoleId, authenticatedRoleId]) {

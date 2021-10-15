@@ -9,7 +9,7 @@
     "start": "pm2 -i 0 --no-daemon start server.js",
     "build": "strapi build",
     "build:dev": "strapi build --no-optimization",
-    "strapi": "strapi",
+    "strapi": "strapi start",
     "pm2": "pm2 -i 0 --no-daemon start server.js",
     "test": "jest --forceExit --detectOpenHandles",
     "preinstall": "npx npm-force-resolutions"
