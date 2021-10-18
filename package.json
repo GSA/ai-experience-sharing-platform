@@ -1,0 +1,19 @@
+{
+  "name": "ai-experience-sharing-platform",
+  "private": true,
+  "version": "0.1.1",
+  "description": "A CMS that has public and private content, initially focused on AI Use Case sharing.",
+  "scripts": {
+    "build": "cd ui && yarn && yarn build && cd ../cms && cp -R ../ui/build/* ./public && npm i && npm run build",
+  },
+  "devDependencies": {
+  },
+  "dependencies": {
+  },
+  "resolutions": {
+  },
+  "author": {
+    "name": "A Strapi developer"
+  },
+  "license": "MIT"
+}
