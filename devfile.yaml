@@ -20,5 +20,5 @@ commands:
   - id: install
     exec:
       component: strapi
-      commandLine: "cd ui && yarn && yarn build && cd ../cms && cp -R ../ui/build/* ./public && npm i && npm run build"
+      commandLine: "cd ui && yarn && yarn build && cd ../cms && cp -R ../ui/build/* ./public/ && npm i && npm run build"
       workingDir: "src/github.com/gsa/ai-experience-sharing-platform"
