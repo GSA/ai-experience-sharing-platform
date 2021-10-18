@@ -17,7 +17,7 @@ components:
       mountSources: true
       sourceMapping: /project
 commands:
-  - id: installAndBuild
+  - id: install
     exec:
       component: strapi
       commandLine: "cd ui && yarn && yarn build && cd ../cms && cp -R ../ui/build/* ./public && npm i && npm run build"
