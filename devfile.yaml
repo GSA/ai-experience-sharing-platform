@@ -15,9 +15,9 @@ components:
     container:
       image: strapi/strapi:3.6.8
       mountSources: true
-      command: ['sleep', 'infinity']
+      sourceMapping: /project
 commands:
-  - id: Build and run
+  - id: installAndBuild
     exec:
       component: strapi
       commandLine: "cd ui && yarn && yarn build && cd ../cms && cp -R ../ui/build/* ./public && npm i && npm run build"
