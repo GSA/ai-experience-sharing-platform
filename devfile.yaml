@@ -1,15 +1,15 @@
-schemaVersion: 2.1.0
+schemaVersion: 2.0.0
 metadata:
   name: ai-experience-sharing-platform
-  version: 2.1.0
- projects:
-   - name: api-host
-     clonePath: src/github.com/gsa/ai-experience-sharing-platform
-     git:
-       remotes:
-         origin: "https://github.com/GSA/ai-experience-sharing-platform.git"
-       checkoutFrom:
-         revision: containerization
+  version: 1.0.0
+projects:
+  - name: api-host
+    clonePath: src/github.com/gsa/ai-experience-sharing-platform
+    git:
+      remotes:
+        origin: "https://github.com/GSA/ai-experience-sharing-platform.git"
+      checkoutFrom:
+        revision: containerization
 components:
   - name: strapi
     container:
