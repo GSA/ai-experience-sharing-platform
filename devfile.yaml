@@ -3,13 +3,13 @@ metadata:
   name: ai-experience-sharing-platform
   version: 2.1.0
  projects:
-  - name: api-host
-    clonePath: go/src/github.com/gsa/ai-experience-sharing-platform
-    git:
-      remotes:
-        origin: "https://github.com/GSA/ai-experience-sharing-platform.git"
-      checkoutFrom:
-        revision: containerization
+   - name: api-host
+     clonePath: src/github.com/gsa/ai-experience-sharing-platform
+     git:
+       remotes:
+         origin: "https://github.com/GSA/ai-experience-sharing-platform.git"
+       checkoutFrom:
+         revision: containerization
 components:
   - name: strapi
     container:
@@ -21,4 +21,4 @@ commands:
     exec:
       component: strapi
       commandLine: "cd ui && yarn && yarn build && cd ../cms && cp -R ../ui/build/* ./public && npm i && npm run build"
-      workingDir: "${PROJECTS_ROOT}/src/github.com/gsa/ai-experience-sharing-platform"
+      workingDir: "src/github.com/gsa/ai-experience-sharing-platform"
