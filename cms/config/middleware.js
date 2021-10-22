@@ -22,7 +22,7 @@ module.exports = ({ env }) => {
         maxAge: 10 * 60 * 1000,
         models: [{model: 'api-settings', singleType: true}, 'api-menu', 'api-usecase', 'api-page', 'api-bok'],
       },
-      cors: {
+      /* cors: {
         credentials: false,
         origin: [
           'https://strapi-api-host-dev.app.cloud.gov',
@@ -32,7 +32,7 @@ module.exports = ({ env }) => {
           'http://localhost:3000',
           'http://localhost:1337'
         ],
-      },
+      },*/
       customLogger: {
         enabled: true,
       },
