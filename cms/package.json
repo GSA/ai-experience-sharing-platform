@@ -15,7 +15,7 @@
     "preinstall": "npx npm-force-resolutions"
   },
   "devDependencies": {
-    "jest": "^26.6.0",
+    "jest": "^27.3.1",
     "npm-force-resolutions": "0.0.10",
     "react-idle-timer": "^4.6.4",
     "supertest": "^6.1.6",
