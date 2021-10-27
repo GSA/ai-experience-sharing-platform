@@ -27,7 +27,7 @@
     "ansi-regex": ">=6.0.1",
     "axios": "^0.21.4",
     "aws-sdk": "2.957.0",
-    "css-loader": "^2.1.1",
+    "css-loader": "^5.2.7",
     "glob-parent": ">=6.0.1",
     "grant": "5.4.5",
     "immer": ">=9.0.6",
