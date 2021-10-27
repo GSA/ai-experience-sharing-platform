@@ -7,10 +7,10 @@ name: ai.gsa.gov
 
 on:
   push:
-    branches:
-      - develop
-      - release
-      - main
+    # branches:
+    #   - develop
+    #   - release
+    #   - main
   pull_request:
     branches_ignore: []
 
