@@ -29,7 +29,7 @@
     "http-proxy-middleware": "^2.0.1",
     "moment": "^2.29.1",
     "node-env-run": "^4.0.2",
-    "node-sass": "^6.0.0",
+    "node-sass": "^7.0.1",
     "nth-check": "^2.0.1",
     "prop-types": "^15.7.2",
     "qs": "^6.9.6",
