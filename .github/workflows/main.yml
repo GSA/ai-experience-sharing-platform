@@ -339,28 +339,28 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Download Strapi artifact
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v3
         if: github.event_name != 'pull_request'
         with:
           name: cms-artifact
           path: cms
 
       - name: Download Strapi artifact for PR's
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v3
         if: github.event_name == 'pull_request'
         with:
           name: cms-artifact-pr
           path: cms
 
       - name: Download frontend artifact to CMS
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v3
         if: github.event_name != 'pull_request'
         with:
           name: ui-artifact-${{ matrix.deployenv }}
           path: cms/public
 
       - name: Download frontend artifact to CMS for PR's
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v3
         if: github.event_name == 'pull_request'
         with:
           name: ui-artifact-${{ matrix.deployenv }}-pr
