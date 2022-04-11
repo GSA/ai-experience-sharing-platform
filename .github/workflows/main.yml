@@ -157,14 +157,14 @@ jobs:
           REACT_APP_AUTH_REDIRECT_URL: ${{ matrix.strapiloginurl }}
 
       - name: Upload frontend artifact
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         if: github.event_name != 'pull_request'
         with:
           name: ui-artifact-${{ matrix.deployenv }}
           path: ui/build
 
       - name: Upload frontend artifact for PR's
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         if: github.event_name == 'pull_request'
         with:
           name: ui-artifact-${{ matrix.deployenv }}-pr
@@ -208,7 +208,7 @@ jobs:
           NODE_ENV: production
 
       - name: Upload backend artifact
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         if: github.event_name != 'pull_request'
         with:
           name: cms-artifact
@@ -219,7 +219,7 @@ jobs:
             !cms/node_modules
 
       - name: Upload backend artifact for PR's
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         if: github.event_name == 'pull_request'
         with:
           name: cms-artifact-pr
