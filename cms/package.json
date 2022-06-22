@@ -45,7 +45,7 @@
     "serialize-javascript": ">=3.1.0",
     "set-value": ">=4.0.1",
     "slugify": "^1.4.5",
-    "sqlite3": "^5.0.1",
+    "sqlite3": "^5.0.3",
     "ssri": ">=8.0.1",
     "strapi": "3.6.6",
     "strapi-admin": "3.6.6",
