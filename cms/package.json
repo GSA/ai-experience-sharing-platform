@@ -48,7 +48,7 @@
     "sqlite3": "^5.0.1",
     "ssri": ">=8.0.1",
     "strapi": "3.6.6",
-    "strapi-admin": "3.6.6",
+    "strapi-admin": "3.6.11",
     "strapi-connector-bookshelf": "3.6.6",
     "strapi-middleware-cache": "^1.4.1",
     "strapi-plugin-content-manager": "3.6.6",
