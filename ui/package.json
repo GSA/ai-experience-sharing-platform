@@ -44,7 +44,7 @@
     "react-redux": "^7.2.0",
     "react-responsive-carousel": "^3.2.20",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "^4.0.3",
+    "react-scripts": "^5.0.0",
     "redux-watch": "^1.2.0",
     "rehype-sanitize": "^4.0.0",
     "set-value": ">=4.0.1",
