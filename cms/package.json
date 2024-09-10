@@ -54,7 +54,7 @@
     "strapi-plugin-content-manager": "3.6.6",
     "strapi-plugin-content-type-builder": "3.6.6",
     "strapi-plugin-email": "3.6.6",
-    "strapi-plugin-sitemap": "^1.2.4",
+    "strapi-plugin-sitemap": "^2.0.0",
     "strapi-plugin-upload": "3.6.6",
     "strapi-plugin-users-permissions": "3.6.6",
     "strapi-provider-upload-aws-s3-auth": "github:flexion/strapi-provider-upload-aws-s3-auth#v0.0.4",
